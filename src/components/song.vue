@@ -1,0 +1,322 @@
+<template>
+    <div class = "song"
+    v-on:click="$emit('setCurrentSong')"
+    v-bind:class="{'active': current}" >
+        <div class = "wrapper-song-cover">
+            <img class = "song-cover" :src="require(`../assets/covers/${cover}`)"/>
+            <div class = "song-cover-shade"></div>
+            <button class="round-button" v-bind:class="{ 'bi bi-play-circle-fill': !this.isPlaying, 'bi bi-pause-circle-fill': this.isPlaying }"></button>
+            <div class = "wrapper-wave" v-bind:style="this.$store.state.isPlaying?'display:flex':'display:none'">
+                <div class ="wave"></div>
+                <div class ="wave"></div>
+                <div class ="wave"></div>
+            </div>
+        </div>
+        <div class= "song-info">
+            <div class ="song-info-name">{{songName}}</div>
+            <a href="#" class ="song-info-artist">{{songArtist}}</a>
+        </div>
+        <div class="songMenu">
+            <button class="songButton bi bi-plus"></button>
+            <button class="songButton bi bi-x"></button>
+        </div>
+        <div class = "song-duration" style="float:right;">{{ this.songDurationToMins }}</div>
+    </div>
+  </template>
+
+<script>
+
+export default {
+  name: 'playlistSong',
+  props:
+  {
+    index: {type:Number, default: 0},
+    songID: { type: Number },
+    audio: { type: String, default: 'no-cover.png' },
+    cover: { type: String, default: 'gorgorod2.jpg' },
+    songName: { type: String, default: 'Без названия' },
+    songArtist: { type: String, default: 'Неизвестный' },
+    songDuration: { type: Number, default: 0 }
+  },
+  computed:
+  {
+    current()
+    {
+        return this.$parent.current && this.index === this.$store.state.currentSongIndex;
+    },
+    isPlaying()
+    {
+        if (this.current) return this.$store.state.isPlaying;
+        return false;
+    },
+    songDurationToMins()
+    {
+      return String(Math.floor(this.songDuration/60)).padStart(2,'0')+":"+String(this.songDuration%60).padStart(2,'0');
+    }
+  }
+}
+
+
+
+</script>
+
+<style>
+
+.song
+{
+    display:flex;
+    width:100%;
+    gap:5px;
+    border-radius:10px;
+    padding:5px;
+    box-sizing: border-box;
+    align-items: center;
+    height:58px;
+}
+
+.player .song
+{
+    height:64px;
+    padding:0px;
+}
+
+.wrapper-song-cover
+{
+    position:relative;
+    border-radius: 20%;
+    overflow:hidden;
+    margin:auto;
+    display:flex;
+    justify-content: center;
+    user-select: none;
+    align-items: center;
+}
+
+.playlist .wrapper-song-cover
+{
+    min-width:48px;
+    min-height:48px;
+    max-width:48px;
+    max-height:48px;
+}
+
+.player .wrapper-song-cover
+{
+    min-width:64px;
+    min-height:64px;
+    max-width:64px;
+    max-height:64px;
+}
+
+.playlist .song
+{
+    cursor:pointer;
+}
+
+.wrapper-wave
+{
+    user-select: none;
+    display:flex;
+    width: 25px;
+    height:25px;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items:flex-end;
+    margin-top:auto;
+    margin-bottom:auto;
+    position: relative;
+}
+
+.wave
+{
+    width:5px;
+    height:0px;
+    border-radius: 5px;
+    background:cornflowerblue;
+    animation: wave 0.6s linear infinite;
+}
+
+.wave:nth-child(2)
+{
+    height:13px;
+    animation-delay: -0.2s;
+}
+
+.wave:nth-child(3)
+{
+    height:16px;
+    animation-delay: -0.4s;
+}
+
+@keyframes wave
+{
+    0%   {height:50%;}
+    50%  {height:100%;}
+    100% {height:50%;}
+}
+
+.song-cover
+{
+    position: absolute;
+    height:100%;
+    width:100%;
+}
+
+.song .song-cover-shade
+{
+    visibility:hidden;
+}
+
+.song.active .song-cover-shade
+{
+    visibility:visible;
+}
+
+.song:hover .song-cover-shade
+{
+    visibility:visible;
+}
+
+.song-cover-shade
+{
+    position:absolute;
+    background-color:#1d232f;
+    width:100%;
+    height:100%;
+}
+
+.song .round-button
+{
+    position:absolute;
+    visibility: hidden;
+    background-color:#1d232f;
+}
+
+.song-info
+{
+    width:100%;
+    overflow:hidden;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height:100%;
+}
+
+.song-info-name
+{
+    width:100%;
+    height:50%;
+    font-family: "Kanit regular", sans-serif;
+    font-size:16px;
+    white-space: nowrap;
+    position:relative;
+    color:white;
+    display: flex;
+    align-items:center;
+}
+
+.song-info-artist
+{
+    width:100%;
+    height:50%;
+    font-family: "Kanit regular", sans-serif;
+    font-size:16px;
+    white-space: nowrap;
+    position:relative;
+    color:#808080;
+    text-decoration: none;
+    display: flex;
+    align-items:center;
+}
+
+.song .songMenu
+{
+    display:none;
+    gap:5px;
+    height:100%;
+}
+
+.song:hover .song-duration
+{
+    display:none;
+}
+
+.song:hover .songMenu
+{
+    display:flex;
+    align-items: center;
+}
+
+.songMenu .songButton
+{
+    display:inline;
+    background:none;
+    border:none;
+    color:#808080;
+    cursor:pointer;
+    font-size:24px;
+    padding:0px;
+    margin:0px;
+    transition:0.2s;
+}
+
+.songMenu .songButton:hover
+{
+    color: white;
+}
+
+.song-info-artist:hover
+{
+    text-decoration: underline;
+}
+
+.song-duration
+{
+    font-size:14px;
+    font-family: "Kanit regular", sans-serif;
+    margin: auto;
+    text-align: center;
+    color:#808080;
+    user-select:none;
+}
+
+.song .wrapper-wave
+{
+    visibility:hidden;
+}
+
+.song.active .wrapper-wave
+{
+    visibility:visible;
+}
+
+.song.active:hover .wrapper-wave
+{
+    visibility: hidden;
+}
+
+.song:hover
+{
+    background-color:#32363f;
+}
+
+
+
+
+
+.song:hover .round-button
+{
+    visibility: visible;
+}
+
+.song .song-cover-shade
+{
+    opacity:0.5;
+}
+
+.song.active
+{
+    background-color: #32363f;
+}
+
+</style>
