@@ -1,12 +1,12 @@
 <template>
   <nav>
-    <div class = "logo sidebar-width"></div>
+    <div class = "logo sidebar-width" v-on:click="this.$store.dispatch('toggleTheme')"></div>
     <div class="nav-mainmenu">
       <router-link class="navlink" to="/discover">Discover</router-link>
       <router-link class="navlink" to="/library">My library</router-link>
       <div class="wrapper-search">
         <div class="search-panel">
-          <input class="search" type="text" placeholder="Search music" name="search">
+          <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
           <i class="fa fa-search"></i>
         </div>
       </div>
@@ -38,9 +38,9 @@ nav
 
 .sidebar-width
 {
-  min-width:400px;
-  width:400px;
-  max-width:400px;
+  min-width:320px;
+  width:320px;
+  max-width:320px;
 }
 
 .logo
@@ -63,7 +63,7 @@ nav
 
 .navlink
 {
-  color:#808080;
+  color: var(--text-color-secondary);
   border: none;
   background-color: transparent;
   font-size:18px;
@@ -77,12 +77,12 @@ nav
 
 .navlink:hover
 {
-  color:white;
+  color: var(--text-color-primary);
 }
 
 .router-link-active
 {
-  color:white;
+  color: var(--text-color-primary);
   background:none;
 }
 
@@ -111,7 +111,7 @@ nav
 {
   padding-left: 12px;
   padding-right: 6px;
-  color:#808080;
+  color: var(--text-color-secondary);
   font-size:16px;
   transition: color 0.2s;
 }
@@ -119,7 +119,7 @@ nav
 .search-panel
 {
   height:32px;
-  background-color: #1d232f;
+  background-color: var(--panel-background-color);
   border-radius: 32px;
   overflow:hidden;
   width:100%;
@@ -134,15 +134,15 @@ nav
 
 ::placeholder
 {
-  color:#808080;
+  color: var(--text-color-secondary);
 }
 
 .search
 {
   height:100%;
   width:97%;
-  background-color: #1d232f;
-  color: white;
+  background-color: transparent;
+  color: var(--text-color-primary);
   border-style:none;
   font-size:16px;
   font-family: "Kanit regular", sans-serif;
@@ -156,7 +156,7 @@ nav
 
 .search:not(:placeholder-shown) + i
 {
-  color: white;
+  color: var(--text-color-primary);
 }
 
 .nav-usermenu
@@ -180,7 +180,7 @@ nav
 
 .button-signup
 {
-  color:#808080;
+  color: var(--text-color-secondary);
   border: none;
   background-color: transparent;
   font-size:16px;
@@ -191,18 +191,19 @@ nav
 .button-signup:hover
 {
   font-size:18px;
-  color: white;
+  color: var(--text-color-primary);
 }
 
 .button-signup:active
 {
   font-size:18px;
-  color: #808080;
+  color: var(--text-color-secondary);
 }
 
 .button-main
 {
-  color:#12151d;
+  background-color: var(--text-color-primary);
+  color: var(--main-background-color);
   font-size:16px;
   font-family: "Kanit semibold", sans-serif;
   height:min-content;
@@ -221,7 +222,7 @@ nav
 .button-main:active
 {
   font-size:16px;
-  background-color: #808080;
+  background-color: var(--text-color-secondary);
 }
 
 </style>

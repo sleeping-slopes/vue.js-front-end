@@ -1,33 +1,23 @@
 <template>
+  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
   <navbar/>
   <div class = "main" >
-    <div class = "playlist-menu sidebar-width">
+    <div class = "panel sidebar-width" style="height:100%">
       <div class = "playlist-menu-button-row">
         <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
         <button class="button-switch" v-bind:class="{'active': visiblePlaylist===1}" v-on:click="visiblePlaylist=1"><i class="bi bi-clock-history"></i>Recently played</button>
-        <button class="button-switch" v-bind:class="{'active': visiblePlaylist===2}" v-on:click="visiblePlaylist=2"><i class="bi bi-hand-thumbs-up"></i>Recommended</button>
       </div>
       <playlist
-        v-if="visiblePlaylist===0"
-        :playlistID="playlists[0].playlistID"
-        :songs="playlists[0].songs"
-        @playAudio="playAudio"
-      />
-      <playlist
-        v-if="visiblePlaylist===1"
-        :playlistID="playlists[1].playlistID"
-        :songs="playlists[1].songs"
-        @playAudio="playAudio"
-      />
-      <playlist
-        v-if="visiblePlaylist===2"
-        :playlistID="playlists[2].playlistID"
-        :songs="playlists[2].songs"
-        @playAudio="playAudio"
+        :playlistID="this.$store.state.currentPlaylist.playlistID"
+        :songs="this.$store.state.currentPlaylist.songs"
+        @playSong="playSong"
       />
     </div>
     <div class="browser">
       <router-view/>
+    </div>
+    <div class = "panel sidebar-width" style="height:100%">
+
     </div>
   </div>
   <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
@@ -46,16 +36,17 @@
             <button class="round-button medium bi bi-skip-start-fill"
               v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
             <button class="round-button large"
-              v-bind:class="{ 'bi bi-play-circle': !this.$store.state.isPlaying,'bi bi-pause-circle-fill':this.$store.state.isPlaying }"
+              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
               v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
             <button class="round-button medium bi bi-skip-end-fill"
-              v-on:click="this.$store.dispatch('shiftCurrentSong',1); playAudio()"></button>
+              v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
             <button class="round-button medium bi bi-repeat"></button>
         </div>
       <input class="song-slider" type="range" min="1" max="100" value="0">
     </div>
     <div class ="sidebar-width"></div>
   </div>
+</div>
 </template>
 
 
@@ -71,20 +62,7 @@ export default{
     return {
       playlists:
       [
-        {
-          playlistID:'CURRENT',
-          songs:
-          [
-            {
-              songID: 0,
-              audio: "Слава КПСС - ОЙ ДА.mp3",
-              cover: 'gorgorod.jpg',
-              songName: 'Не с начала',
-              songArtist: 'Oxxxymiron',
-              songDuration: 122
-            }
-          ]
-        },
+        this.$store.state.currentPlaylist,
         {
           playlistID:'RECENT',
           songs:
@@ -98,36 +76,6 @@ export default{
               songDuration: 122
             }
           ]
-        },
-        {
-          playlistID:'RECOMMENDED',
-          songs:
-          [
-            {
-              songID: 0,
-              audio: "Слава КПСС - Горгород.fm.mp3",
-              cover: 'gorgorod2.jpg',
-              songName: 'Горгород.fm',
-              songArtist: 'Слава КПСС',
-              songDuration: 332
-            },
-            {
-              songID: 1,
-              audio: "Слава КПСС - Сон разума.mp3",
-              cover: 'gorgorod2.jpg',
-              songName: 'Сон разума',
-              songArtist: 'Слава КПСС',
-              songDuration: 332
-            },
-            {
-              songID: 2,
-              audio: "Слава КПСС - Девочка-милф.mp3",
-              cover: 'gorgorod2.jpg',
-              songName: 'Девочка-милф',
-              songArtist: 'Слава КПСС',
-              songDuration: 332
-            }
-          ]
         }
       ],
       visiblePlaylist: 0,
@@ -136,10 +84,6 @@ export default{
   },
   computed:
   {
-    fff()
-    {
-      return this.$store.state.isPlaying;
-    }
   },
   methods:
   {
@@ -155,13 +99,10 @@ export default{
     //   this.currentPlaylist.selectedSong=song;
     //   this.playAudio();
     // },
-    playAudio()
+    playSong()
     {
-      //alert(1);
-      // this.audio.pause();
-      // this.audio.src=require(`./assets/audio/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].audio}`);
-      // if (this.$store.state.isPlaying)
-      // this.audio.play();
+      this.audio.src=require(`./assets/audio/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].audio}`);
+      this.audio.play();
     }
   }
 }
@@ -170,10 +111,10 @@ export default{
 
 <style>
 
-#app
+.app
 {
   height:100%;
-  background-color: #12151d;
+  background-color: var(--main-background-color);
   display:flex;
   flex-direction: column;
   padding:10px;
@@ -190,26 +131,28 @@ export default{
   overflow:hidden;
 }
 
-.playlist-menu
+.panel
 {
+  border: 2px solid var(--panel-border-color);
+  background-color: var(--panel-background-color);
   border-radius:10px;
   display:flex;
-  height:100%;
   flex-direction: column;
   overflow:hidden;
-
+  box-sizing: border-box;
 }
 
 .playlist-menu-button-row
 {
   display:flex;
   height:48px;
+  flex-shrink:0;
 }
 
 .button-switch
 {
-    background-color:#2c2d3c;
-    color:#808080;
+    background-color:var(--panel-border-color);
+    color: var(--text-color-secondary);
     font-size:16px;
     font-family: "Kanit semibold", sans-serif;
     height:100%;
@@ -227,13 +170,13 @@ export default{
 
 .button-switch:hover
 {
-    color:white;
+  color: var(--text-color-primary);
 }
 
 .button-switch.active
 {
-  color:white;
-  background-color:#1d232f;
+  color: var(--text-color-primary);
+  background-color:transparent;
 }
 
 .button-switch.active::after
@@ -252,10 +195,16 @@ export default{
 
 .browser
 {
-  background-color:cornflowerblue;
+  /* background-color:cornflowerblue; */
   width:100%;
   border-radius:10px;
-  /* overflow:hidden; */
+
+  gap:10px;
+  display:flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow:hidden;
+  justify-content: center;
 }
 
 .display-none
@@ -296,7 +245,7 @@ export default{
   align-items: center;
   background:none;
   border:none;
-  color: white;
+  color: var(--text-color-primary);
   padding:0px;
   margin:0px;
   border-radius:50%;

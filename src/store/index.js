@@ -2,8 +2,10 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') || '{}'),
-    currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') || '-1'),
+    // localStorage.getItem('currentPlaylist') ||
+    currentPlaylist: JSON.parse('{}'),
+    currentSongIndex: JSON.parse('-1'),
+    darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     isPlaying: false
   },
   getters:
@@ -36,6 +38,11 @@ export default createStore({
       if (state.currentSongIndex<0) state.currentSongIndex=state.currentPlaylist.songs.length-1;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
       state.isPlaying=true;
+    },
+    toggleTheme(state)
+    {
+      state.darkTheme=!state.darkTheme;
+      localStorage.setItem('darkTheme', JSON.stringify(state.darkTheme));
     }
   },
   actions:
@@ -47,6 +54,10 @@ export default createStore({
     shiftCurrentSong({commit}, shift)
     {
       commit("shiftCurrentSong", shift);
+    },
+    toggleTheme({commit})
+    {
+      commit("toggleTheme");
     }
   },
   modules: {

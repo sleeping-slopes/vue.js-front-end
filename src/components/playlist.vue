@@ -9,12 +9,13 @@
       :songArtist="song.songArtist"
       :songDuration="song.songDuration"
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
+      @deleteSong="deleteSong(index)"
       />
     </div>
 </template>
 
 <script>
-// v-bind:style=" current ? 'background-color:red;' : '' "
+
 import song from './song.vue'
 
 export default {
@@ -33,6 +34,15 @@ export default {
     {
       this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: this, songIndex: songIndex});
       this.$emit('playSong');
+    },
+    deleteSong(songIndex)
+    {
+      alert("WIP");
+      // this.songs.splice(songIndex,1);
+      // this.$store.dispatch('setCurrentPlaylist', this);
+      // if (songIndex<this.$store.state.currentSongIndex)
+      // this.$store.dispatch('shiftCurrentSong',-1);
+
     }
   },
   props:
@@ -50,7 +60,7 @@ export default {
   display:flex;
   flex-direction: column;
   gap: 5px;
-  background-color:#1d232f;
+
   padding: 5px;
   box-sizing: border-box;
   height:100%;

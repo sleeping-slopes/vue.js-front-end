@@ -5,8 +5,8 @@
         <div class = "wrapper-song-cover">
             <img class = "song-cover" :src="require(`../assets/covers/${cover}`)"/>
             <div class = "song-cover-shade"></div>
-            <button class="round-button" v-bind:class="{ 'bi bi-play-circle-fill': !this.isPlaying, 'bi bi-pause-circle-fill': this.isPlaying }"></button>
-            <div class = "wrapper-wave" v-bind:style="this.$store.state.isPlaying?'display:flex':'display:none'">
+            <button class="round-button" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+            <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
                 <div class ="wave"></div>
                 <div class ="wave"></div>
@@ -18,7 +18,7 @@
         </div>
         <div class="songMenu">
             <button class="songButton bi bi-plus"></button>
-            <button class="songButton bi bi-x"></button>
+            <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
         <div class = "song-duration" style="float:right;">{{ this.songDurationToMins }}</div>
     </div>
@@ -130,21 +130,24 @@ export default {
 .wave
 {
     width:5px;
-    height:0px;
+    height:5px;
     border-radius: 5px;
     background:cornflowerblue;
+
+}
+
+.wrapper-wave.playing .wave
+{
     animation: wave 0.6s linear infinite;
 }
 
-.wave:nth-child(2)
+.wrapper-wave.playing .wave:nth-child(2)
 {
-    height:13px;
     animation-delay: -0.2s;
 }
 
-.wave:nth-child(3)
+.wrapper-wave.playing .wave:nth-child(3)
 {
-    height:16px;
     animation-delay: -0.4s;
 }
 
@@ -172,6 +175,11 @@ export default {
     visibility:visible;
 }
 
+.song.active #deleteSongButton
+{
+    display:none;
+}
+
 .song:hover .song-cover-shade
 {
     visibility:visible;
@@ -180,7 +188,7 @@ export default {
 .song-cover-shade
 {
     position:absolute;
-    background-color:#1d232f;
+    background-color: var(--panel-background-color);
     width:100%;
     height:100%;
 }
@@ -189,7 +197,8 @@ export default {
 {
     position:absolute;
     visibility: hidden;
-    background-color:#1d232f;
+    background-color: var(--panel-background-color);
+    color: var(--text-color-primary);
 }
 
 .song-info
@@ -210,7 +219,7 @@ export default {
     font-size:16px;
     white-space: nowrap;
     position:relative;
-    color:white;
+    color: var(--text-color-primary);
     display: flex;
     align-items:center;
 }
@@ -223,7 +232,7 @@ export default {
     font-size:16px;
     white-space: nowrap;
     position:relative;
-    color:#808080;
+    color: var(--text-color-secondary);
     text-decoration: none;
     display: flex;
     align-items:center;
@@ -252,7 +261,7 @@ export default {
     display:inline;
     background:none;
     border:none;
-    color:#808080;
+    color: var(--text-color-secondary);
     cursor:pointer;
     font-size:24px;
     padding:0px;
@@ -262,7 +271,7 @@ export default {
 
 .songMenu .songButton:hover
 {
-    color: white;
+    color: var(--text-color-primary);
 }
 
 .song-info-artist:hover
@@ -276,7 +285,7 @@ export default {
     font-family: "Kanit regular", sans-serif;
     margin: auto;
     text-align: center;
-    color:#808080;
+    color: var(--text-color-secondary);
     user-select:none;
 }
 
@@ -295,14 +304,10 @@ export default {
     visibility: hidden;
 }
 
-.song:hover
+.playlist .song:hover
 {
-    background-color:#32363f;
+    background-color:var(--selected-item-background-color);
 }
-
-
-
-
 
 .song:hover .round-button
 {
@@ -316,7 +321,7 @@ export default {
 
 .song.active
 {
-    background-color: #32363f;
+    background-color: var(--selected-item-background-color);
 }
 
 </style>
