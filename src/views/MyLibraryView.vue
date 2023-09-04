@@ -1,5 +1,5 @@
 <template>
-  <div class="panel light" style="flex-shrink:0">
+  <div class="panel" style="flex-shrink:0; width:100%">
     <div class="panel-name">Playlists</div>
     <div class="playlist-carousel">
       <playlistCard v-for="(playlist) in playlists"
@@ -10,7 +10,7 @@
       />
     </div>
   </div>
-  <div class="panel light" style="height:100%; width:100%">
+  <div class="panel" style="height:100%;">
     <div class="panel-name">Songs</div>
     <playlist
         :playlistID="myAudio.playlistID"

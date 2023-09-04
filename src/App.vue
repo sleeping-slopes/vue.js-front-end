@@ -16,9 +16,7 @@
     <div class="browser">
       <router-view/>
     </div>
-    <div class = "panel sidebar-width" style="height:100%">
-
-    </div>
+    <div class = "panel sidebar-width" style="height:100%"></div>
   </div>
   <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
     <div class ="song sidebar-width">
@@ -195,10 +193,7 @@ export default{
 
 .browser
 {
-  /* background-color:cornflowerblue; */
   width:100%;
-  border-radius:10px;
-
   gap:10px;
   display:flex;
   flex-direction: column;
