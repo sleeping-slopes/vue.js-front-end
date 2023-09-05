@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "prune": "prune",
     "build": "vue-cli-service build"
   },
   "dependencies": {
