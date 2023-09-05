@@ -87,6 +87,42 @@ export default {
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
           playlistID: '1'
+        },
+        {
+          playlistName:'Горгород',
+          playlistArtist:'Oxxxymiron',
+          cover: 'gorgorod.jpg',
+          playlistID: '2'
+        },
+        {
+          playlistName:'Горгород 2',
+          playlistArtist:'Слава КПСС',
+          cover: 'gorgorod2.jpg',
+          playlistID: '1'
+        },
+        {
+          playlistName:'Горгород',
+          playlistArtist:'Oxxxymiron',
+          cover: 'gorgorod.jpg',
+          playlistID: '2'
+        },
+        {
+          playlistName:'Горгород 2',
+          playlistArtist:'Слава КПСС',
+          cover: 'gorgorod2.jpg',
+          playlistID: '1'
+        },
+        {
+          playlistName:'Горгород',
+          playlistArtist:'Oxxxymiron',
+          cover: 'gorgorod.jpg',
+          playlistID: '2'
+        },
+        {
+          playlistName:'Горгород 2',
+          playlistArtist:'Слава КПСС',
+          cover: 'gorgorod2.jpg',
+          playlistID: '1'
         }
       ],
       myAudio:
@@ -96,135 +132,7 @@ export default {
         [
           {
             songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-
-          {
-            songID: 0,
-            songArtist: 'Слава КПСС',
-            songName: 'Горгород.fm',
-            audio: "Слава КПСС - Горгород.fm.mp3",
-            cover: 'gorgorod2.jpg',
-            songDuration: 122
-          },
-          {
-            songID: 0,
+            songPos: 0,
             songArtist: 'Слава КПСС',
             songName: 'Горгород.fm',
             audio: "Слава КПСС - Горгород.fm.mp3",
@@ -233,6 +141,7 @@ export default {
           },
           {
             songID: 1,
+            songPos: 1,
             songArtist: 'Слава КПСС',
             songName: 'Сон разума',
             audio: "Слава КПСС - Сон разума.mp3",
@@ -241,6 +150,7 @@ export default {
           },
           {
             songID: 2,
+            songPos: 2,
             songArtist: 'Слава КПСС',
             songName: 'Девочка-милф',
             audio: "Слава КПСС - Девочка-милф.mp3",
@@ -249,6 +159,7 @@ export default {
           },
           {
             songID: 3,
+            songPos: 3,
             songArtist: 'Слава КПСС',
             songName: 'Слово Мэра 2',
             audio: "Слава КПСС - Слово Мэра 2.mp3",
@@ -257,6 +168,7 @@ export default {
           },
           {
             songID: 4,
+            songPos: 4,
             songArtist: 'Слава КПСС',
             songName: 'Радуга тяготения',
             audio: "Слава КПСС - Радуга тяготения.mp3",
@@ -265,6 +177,7 @@ export default {
           },
           {
             songID: 5,
+            songPos: 5,
             songArtist: 'Слава КПСС',
             songName: 'ПСЖД',
             audio: "Слава КПСС - ПСЖД.mp3",
@@ -273,6 +186,7 @@ export default {
           },
           {
             songID: 6,
+            songPos: 6,
             songArtist: 'Слава КПСС',
             songName: 'Конец Империи',
             audio: "Слава КПСС - Конец Империи.mp3",
@@ -281,6 +195,7 @@ export default {
           },
           {
             songID: 7,
+            songPos: 7,
             songArtist: 'Слава КПСС',
             songName: 'Rave Эзотерика',
             audio: "Слава КПСС - Rave Эзотерика.mp3",
@@ -289,6 +204,7 @@ export default {
           },
           {
             songID: 8,
+            songPos: 8,
             songArtist: 'Слава КПСС',
             songName: 'Я упал с луны',
             audio: "Слава КПСС - Я упал с луны.mp3",
@@ -297,6 +213,7 @@ export default {
           },
           {
             songID: 9,
+            songPos: 9,
             songArtist: 'Слава КПСС',
             songName: 'На развалинах',
             audio: "Слава КПСС - На развалинах.mp3",
@@ -305,12 +222,22 @@ export default {
           },
           {
             songID: 10,
+            songPos: 10,
             songArtist: 'Слава КПСС',
             songName: 'ОЙ ДА',
             audio: "Слава КПСС - ОЙ ДА.mp3",
             cover: 'gorgorod2.jpg',
             songDuration: 122
           },
+          {
+            songID: 0,
+            songPos: 11,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          }
         ]
       }
     }
