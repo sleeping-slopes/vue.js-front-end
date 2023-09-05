@@ -10,7 +10,6 @@
       <playlist
         :playlistID="this.$store.state.currentPlaylist.playlistID"
         :songs="this.$store.state.currentPlaylist.songs"
-        @playSong="playSong"
       />
     </div>
     <div class="browser">
@@ -51,6 +50,7 @@
 <script>
 import navbar from "@/components/navbar.vue"
 import playlist from "@/components/playlist.vue"
+import { storeKey } from "vuex"
 
 export default{
   components: {navbar,playlist},
@@ -77,7 +77,26 @@ export default{
         }
       ],
       visiblePlaylist: 0,
-      audio: new Audio(),
+    }
+  },
+  created()
+  {
+    this.audio = new Audio()
+  },
+  watch:
+  {
+    '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
+    {
+      // this.$store.state.isPlaying=false;
+      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+      this.$store.state.isPlaying=false;
+      this.audio.load();
+      setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
+    },
+    '$store.state.isPlaying'(playing)
+    {
+      if (playing) this.audio.play();
+      else this.audio.pause();
     }
   },
   computed:
@@ -85,23 +104,6 @@ export default{
   },
   methods:
   {
-    // selectSong(playlist,song)
-    // {
-    //   alert(1);
-    //   if (this.currentPlaylist!=playlist)
-    //   {
-    //     this.playlists.forEach((p)=>{p.selectedSong=-1});
-    //     this.currentPlaylist = playlist;
-    //   }
-    //   if (this.currentPlaylist.selectedSong===song) { this.togglePlay(); return; }
-    //   this.currentPlaylist.selectedSong=song;
-    //   this.playAudio();
-    // },
-    playSong()
-    {
-      this.audio.src=require(`./assets/audio/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].audio}`);
-      this.audio.play();
-    }
   }
 }
 

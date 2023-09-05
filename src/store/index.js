@@ -6,30 +6,39 @@ export default createStore({
     currentPlaylist: JSON.parse('{}'),
     currentSongIndex: JSON.parse('-1'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
-    isPlaying: false
+    isPlaying: false,
   },
   getters:
   {
+    getCurrentSongPos(state)
+    {
+      if (state.currentPlaylist && state.currentPlaylist.songs && state.currentPlaylist.songs.length &&  state.currentSongIndex>=0)
+      return state.currentPlaylist.songs[state.currentSongIndex].songPos;
+      return -1;
+    },
+    getCurrentSongPlaylistPos(state)
+    {
+      if (state.currentPlaylist && state.currentPlaylist.songs && state.currentPlaylist.songs.length &&  state.currentSongIndex>=0)
+      return JSON.stringify({playlist: state.currentPlaylist.playlistID, songPos:state.currentPlaylist.songs[state.currentSongIndex].songPos});
+      return -1;
+    },
+    getCurrentSongSrc(state)
+    {
+      if (state.currentPlaylist && state.currentPlaylist.songs && state.currentPlaylist.songs.length &&  state.currentSongIndex>=0)
+      return state.currentPlaylist.songs[state.currentSongIndex].audio;
+      return -1;
+    }
   },
   mutations:
   {
     setCurrentPlaylistAndSong(state,playlistSong)
     {
-      if (state.currentPlaylist.playlistID===playlistSong.playlist.playlistID && state.currentSongIndex===playlistSong.songIndex)
-      {
-        state.isPlaying=!state.isPlaying;
-        return;
-      }
 
-      if (state.currentPlaylist.playlistID!==playlistSong.playlist.playlistID)
-      {
-        state.currentPlaylist={playlistID:playlistSong.playlist.playlistID, songs:playlistSong.playlist.songs};
-        localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
-      }
-
-      state.currentSongIndex=playlistSong.songIndex;
-      state.isPlaying=true;
+      state.currentSongIndex=JSON.parse(playlistSong).songIndex;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
+
+      state.currentPlaylist={playlistID:JSON.parse(playlistSong).playlist.playlistID, songs:JSON.parse(playlistSong).playlist.songs};
+      localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
     },
     shiftCurrentSong(state,shift)
     {
@@ -37,7 +46,6 @@ export default createStore({
       if (state.currentSongIndex>=state.currentPlaylist.songs.length) state.currentSongIndex=0;
       if (state.currentSongIndex<0) state.currentSongIndex=state.currentPlaylist.songs.length-1;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
-      state.isPlaying=true;
     },
     toggleTheme(state)
     {

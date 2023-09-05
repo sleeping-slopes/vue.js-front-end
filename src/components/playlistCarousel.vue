@@ -16,7 +16,6 @@
 <script>
 
 import playlistCard from '@/components/playlistCard.vue'
-import { toHandlers } from 'vue';
 
 export default {
   name: 'carousel',
@@ -34,8 +33,8 @@ export default {
   {
     shift(i)
     {
-      this.scrollPosition += i*138*Math.floor(Math.floor(this.$refs.carousel.offsetWidth/138)/2);
-      if (this.scrollPosition<0)
+      this.scrollPosition += i*this.$refs.carousel.offsetWidth/7*3;
+      if (this.scrollPosition<=0)
       {
         this.scrollPosition=0;
         this.$refs.leftScrollButton.style.left="-40px";
@@ -44,7 +43,7 @@ export default {
       {
         this.$refs.leftScrollButton.style.left="10px";
       }
-      if (this.scrollPosition>this.$refs.carousel.scrollWidth-this.$refs.carousel.offsetWidth)
+      if (this.scrollPosition>=this.$refs.carousel.scrollWidth-this.$refs.carousel.offsetWidth)
       {
         this.scrollPosition=this.$refs.carousel.scrollWidth-this.$refs.carousel.offsetWidth;
         this.$refs.rightScrollButton.style.right="-40px";
@@ -75,8 +74,6 @@ export default {
 #carousel-content
 {
   display:flex;
-  gap:10px;
-  margin:5px;
   align-items: center;
   box-sizing: border-box;
   overflow-x:scroll;

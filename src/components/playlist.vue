@@ -3,6 +3,7 @@
       <song v-for="(song,index) in songs"
       :index = "index"
       :songID="song.songID"
+      :songPos="song.songPos"
       :audio="song.audio"
       :cover="song.cover"
       :songName="song.songName"
@@ -32,13 +33,12 @@ export default {
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: this, songIndex: songIndex});
-      this.$emit('playSong');
+      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
     },
     deleteSong(songIndex)
     {
-      alert("WIP");
-      // this.songs.splice(songIndex,1);
+      // alert("WIP");
+      this.songs.splice(songIndex,1);
       // this.$store.dispatch('setCurrentPlaylist', this);
       // if (songIndex<this.$store.state.currentSongIndex)
       // this.$store.dispatch('shiftCurrentSong',-1);

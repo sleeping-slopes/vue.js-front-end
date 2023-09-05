@@ -36,13 +36,15 @@ export default {
 {
     display:flex;
     flex-direction: column;
+    padding:5px;
+    box-sizing: border-box;
+    width:calc(100%/7);
 }
 
 .playlist-cover
 {
     display:flex;
-    width:128px;
-    height:128px;
+
     border-radius:10px;
     flex-shrink: 0;
 }

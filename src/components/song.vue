@@ -31,7 +31,9 @@ export default {
   props:
   {
     index: {type:Number, default: 0},
-    songID: { type: Number },
+
+    songID: { type: Number, default: 0},
+    songPos: { type: Number, default: 0},
     audio: { type: String, default: 'no-cover.png' },
     cover: { type: String, default: 'gorgorod2.jpg' },
     songName: { type: String, default: 'Без названия' },
@@ -42,7 +44,7 @@ export default {
   {
     current()
     {
-        return this.$parent.current && this.index === this.$store.state.currentSongIndex;
+        return this.$parent.current && this.songPos === this.$store.getters.getCurrentSongPos;
     },
     isPlaying()
     {
