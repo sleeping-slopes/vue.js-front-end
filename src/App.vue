@@ -232,9 +232,6 @@ export default{
 
 .round-button
 {
-  font-size:30px;
-  height:30px;
-  width:30px;
   display:flex;
   justify-content:center;
   align-items: center;
@@ -249,21 +246,21 @@ export default{
 
 .round-button.large
 {
-  font-size:42px;
+  font-size:44px;
   height:42px;
   width:42px;
 }
 
 .round-button.medium
 {
-  font-size:28px;
+  font-size:30px;
   height:28px;
   width:28px;
 }
 
 .round-button.small
 {
-  font-size:20px;
+  font-size:22px;
   height:20px;
   width:20px;
 }

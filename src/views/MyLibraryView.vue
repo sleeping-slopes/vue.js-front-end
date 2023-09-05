@@ -1,14 +1,7 @@
 <template>
-  <div class="panel" style="flex-shrink:0; width:100%">
+  <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
     <div class="panel-name">Playlists</div>
-    <div class="playlist-carousel">
-      <playlistCard v-for="(playlist) in playlists"
-        :playlistID="playlist.playlistID"
-        :cover="playlist.cover"
-        :playlistName="playlist.playlistName"
-        :playlistArtist="playlist.playlistArtist"
-      />
-    </div>
+    <playlistCarousel :playlists="playlists"/>
   </div>
   <div class="panel" style="height:100%;">
     <div class="panel-name">Songs</div>
@@ -21,14 +14,14 @@
 
 <script>
 
-import playlistCard from '@/components/playlistCard.vue'
+import playlistCarousel from '@/components/playlistCarousel.vue'
 import playlist from '@/components/playlist.vue'
 
 export default {
   name: 'MyLibrary',
   components:
   {
-    playlistCard,playlist
+    playlistCarousel,playlist
   },
   data()
   {
@@ -36,15 +29,51 @@ export default {
       playlists:
       [
         {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          cover: 'gorgorod.jpg',
+          playlistName:'807 + 1',
+          playlistArtist:'808RUS',
+          cover: '807 + 1.jpg',
           playlistID: '0'
         },
         {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          cover: 'gorgorod2.jpg',
+          playlistName:'Born to Die',
+          playlistArtist:'Lana Del Rey',
+          cover: 'Born to Die.png',
+          playlistID: '1'
+        },
+        {
+          playlistName:'TESTING',
+          playlistArtist:'A$AP Rocky',
+          cover: 'TESTING.png',
+          playlistID: '1'
+        },
+        {
+          playlistName:'IGOR',
+          playlistArtist:'Tyler, the Creator',
+          cover: 'IGOR.jpg',
+          playlistID: '1'
+        },
+        {
+          playlistName:'Flower boy',
+          playlistArtist:'Tyler, the Creator',
+          cover: 'Flower boy.jpg',
+          playlistID: '1'
+        },
+        {
+          playlistName:'Sweet Dreams',
+          playlistArtist:'Boulevard Depo',
+          cover: 'Sweet Dreams.png',
+          playlistID: '1'
+        },
+        {
+          playlistName:'Warlord',
+          playlistArtist:'Yung Lean',
+          cover: 'WARLORD.jpg',
+          playlistID: '1'
+        },
+        {
+          playlistName:'WILD EA$T',
+          playlistArtist:'SALUKI',
+          cover: 'WILD EAST.png',
           playlistID: '1'
         },
         {
@@ -58,13 +87,142 @@ export default {
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
           playlistID: '1'
-        },
+        }
       ],
       myAudio:
       {
         playlistID:'myaudio',
         songs:
         [
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+
+          {
+            songID: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
           {
             songID: 0,
             songArtist: 'Слава КПСС',
@@ -173,12 +331,5 @@ export default {
   font-size:18px;
   white-space: nowrap;
   flex-shrink: 0;
-}
-
-.playlist-carousel
-{
-  display:flex;
-  gap:10px;
-  padding:5px;
 }
 </style>

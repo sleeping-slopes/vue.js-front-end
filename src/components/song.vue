@@ -5,7 +5,7 @@
         <div class = "wrapper-song-cover">
             <img class = "song-cover" :src="require(`../assets/covers/${cover}`)"/>
             <div class = "song-cover-shade"></div>
-            <button class="round-button" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+            <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
                 <div class ="wave"></div>
@@ -188,7 +188,7 @@ export default {
 .song-cover-shade
 {
     position:absolute;
-    background-color: var(--panel-background-color);
+    background-color: black;
     width:100%;
     height:100%;
 }
@@ -316,7 +316,7 @@ export default {
 
 .song .song-cover-shade
 {
-    opacity:0.5;
+    opacity:0.4;
 }
 
 .song.active
