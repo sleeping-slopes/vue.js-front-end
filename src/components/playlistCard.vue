@@ -1,6 +1,10 @@
 <template>
     <div class = "playlistCard">
-        <img class = "playlist-cover" :src="require(`../assets/covers/${cover}`)"/>
+        <div class="playlist-cover-wrapper">
+            <img class = "playlist-cover" :src="require(`../assets/covers/${cover}`)"/>
+            <div class = "playlist-cover-shade"></div>
+        </div>
+
         <div class= "song-info">
             <div class ="song-info-name">{{playlistName}}</div>
             <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
@@ -36,17 +40,47 @@ export default {
 {
     display:flex;
     flex-direction: column;
-    padding:5px;
+    padding-left:5px;
+    padding-right:5px;
     box-sizing: border-box;
-    width:calc(100%/7);
+    min-width:calc(100%/7);
 }
+
+
+
+.playlist-cover-wrapper
+{
+    display:flex;
+    border:2px solid var(--text-color-primary);
+    border-radius:10px;
+    flex-shrink: 0;
+    width:100%;
+    aspect-ratio: 1/1;
+    box-sizing: border-box;
+    overflow:hidden;
+    position:relative;
+}
+
+.playlist-cover-shade
+{
+    position:absolute;
+    background-color: black;
+    width:100%;
+    height:100%;
+    opacity:0.0;
+    transition: 0.2s all;
+}
+
+.playlist-cover-wrapper:hover .playlist-cover-shade
+{
+    opacity:0.4;
+}
+
 
 .playlist-cover
 {
-    display:flex;
-
-    border-radius:10px;
-    flex-shrink: 0;
+    width:100%;
+    height:100%;
 }
 
 </style>

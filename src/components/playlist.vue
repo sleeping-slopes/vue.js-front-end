@@ -1,17 +1,17 @@
 <template>
     <div class = "playlist">
-      <song v-for="(song,index) in songs"
-      :index = "index"
-      :songID="song.songID"
-      :songPos="song.songPos"
-      :audio="song.audio"
-      :cover="song.cover"
-      :songName="song.songName"
-      :songArtist="song.songArtist"
-      :songDuration="song.songDuration"
-      @setCurrentSong="setCurrentPlaylistAndSong(index)"
-      @deleteSong="deleteSong(index)"
-      />
+        <song v-for="(song,index) in songs"
+        :index = "index"
+        :songID="song.songID"
+        :songPos="song.songPos"
+        :audio="song.audio"
+        :cover="song.cover"
+        :songName="song.songName"
+        :songArtist="song.songArtist"
+        :songDuration="song.songDuration"
+        @setCurrentSong="setCurrentPlaylistAndSong(index)"
+        @deleteSong="deleteSong(index)"
+        />
     </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
   {
     setCurrentPlaylistAndSong(songIndex)
     {
+      console.log(1);
       this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
     },
     deleteSong(songIndex)
@@ -59,12 +60,11 @@ export default {
   width:100%;
   display:flex;
   flex-direction: column;
-  gap: 5px;
-
-  padding: 5px;
   box-sizing: border-box;
   height:100%;
   overflow-y:scroll;
+  padding:5px;
+  gap:5px;
 }
 
 .playlist::-webkit-scrollbar

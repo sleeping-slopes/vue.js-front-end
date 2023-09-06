@@ -1,6 +1,6 @@
 <template>
     <div class = "song"
-    v-on:click="$emit('setCurrentSong')"
+    v-on:click="setCurrentSong"
     v-bind:class="{'active': current}" >
         <div class = "wrapper-song-cover">
             <img class = "song-cover" :src="require(`../assets/covers/${cover}`)"/>
@@ -54,6 +54,15 @@ export default {
     songDurationToMins()
     {
       return String(Math.floor(this.songDuration/60)).padStart(2,'0')+":"+String(this.songDuration%60).padStart(2,'0');
+    }
+  },
+  methods:
+  {
+    setCurrentSong()
+    {
+        if (!this.current)
+        this.$emit('setCurrentSong');
+        else this.$store.state.isPlaying=!this.$store.state.isPlaying;
     }
   }
 }

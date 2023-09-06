@@ -1,14 +1,14 @@
 <template>
     <div class="playlist-carousel">
-      <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
-      <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
       <div id="carousel-content" ref="carousel">
-      <playlistCard v-for="(playlist) in playlists"
-        :playlistID="playlist.playlistID"
-        :cover="playlist.cover"
-        :playlistName="playlist.playlistName"
-        :playlistArtist="playlist.playlistArtist"
-      />
+        <playlistCard v-for="(playlist) in playlists"
+          :playlistID="playlist.playlistID"
+          :cover="playlist.cover"
+          :playlistName="playlist.playlistName"
+          :playlistArtist="playlist.playlistArtist"
+        />
+        <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
+        <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
       </div>
     </div>
 </template>
@@ -69,6 +69,9 @@ export default {
   display:flex;
   position:relative;
   align-items: center;
+  box-sizing: border-box;
+  padding-top:5px;
+  padding-bottom:5px;
 }
 
 #carousel-content
@@ -82,13 +85,13 @@ export default {
 
 #carousel-content::-webkit-scrollbar
 {
-    display: none;
+  display: none;
 }
 
 #carousel-content
 {
--ms-overflow-style: none;
-scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 

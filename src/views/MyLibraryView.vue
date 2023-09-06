@@ -1,14 +1,32 @@
 <template>
-  <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
-    <div class="panel-name">Playlists</div>
-    <playlistCarousel :playlists="playlists"/>
+  <div class="browser">
+    <div style="display:flex;flex-direction: column; width:100%; overflow: hidden; gap:10px;">
+    <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
+      <div class="panel-header">Playlists</div>
+      <div class="panel-content">
+      <playlistCarousel :playlists="playlists"/>
+    </div>
+    </div>
+
+    <div class="panel" style="height:100%;">
+      <div class="panel-header">Songs</div>
+      <div class="panel-content">
+      <playlist
+          :playlistID="myAudio.playlistID"
+          :songs="myAudio.songs"
+        />
+      </div>
+    </div>
   </div>
-  <div class="panel" style="height:100%;">
-    <div class="panel-name">Songs</div>
-    <playlist
-        :playlistID="myAudio.playlistID"
-        :songs="myAudio.songs"
-      />
+    <div class = "panel sidebar-width" style="height:100%">
+      <div class="panel-header">Recently played</div>
+      <div class="panel-content">
+      <playlist
+          :playlistID="lastListened.playlistID"
+          :songs="lastListened.songs"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -239,6 +257,121 @@ export default {
             songDuration: 122
           }
         ]
+      },
+      lastListened:
+      {
+        playlistID:'lastListened',
+        songs:
+        [
+          {
+            songID: 0,
+            songPos: 0,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 1,
+            songPos: 1,
+            songArtist: 'Слава КПСС',
+            songName: 'Сон разума',
+            audio: "Слава КПСС - Сон разума.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 2,
+            songPos: 2,
+            songArtist: 'Слава КПСС',
+            songName: 'Девочка-милф',
+            audio: "Слава КПСС - Девочка-милф.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 3,
+            songPos: 3,
+            songArtist: 'Слава КПСС',
+            songName: 'Слово Мэра 2',
+            audio: "Слава КПСС - Слово Мэра 2.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 4,
+            songPos: 4,
+            songArtist: 'Слава КПСС',
+            songName: 'Радуга тяготения',
+            audio: "Слава КПСС - Радуга тяготения.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 5,
+            songPos: 5,
+            songArtist: 'Слава КПСС',
+            songName: 'ПСЖД',
+            audio: "Слава КПСС - ПСЖД.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 6,
+            songPos: 6,
+            songArtist: 'Слава КПСС',
+            songName: 'Конец Империи',
+            audio: "Слава КПСС - Конец Империи.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 7,
+            songPos: 7,
+            songArtist: 'Слава КПСС',
+            songName: 'Rave Эзотерика',
+            audio: "Слава КПСС - Rave Эзотерика.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 8,
+            songPos: 8,
+            songArtist: 'Слава КПСС',
+            songName: 'Я упал с луны',
+            audio: "Слава КПСС - Я упал с луны.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 9,
+            songPos: 9,
+            songArtist: 'Слава КПСС',
+            songName: 'На развалинах',
+            audio: "Слава КПСС - На развалинах.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 10,
+            songPos: 10,
+            songArtist: 'Слава КПСС',
+            songName: 'ОЙ ДА',
+            audio: "Слава КПСС - ОЙ ДА.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          },
+          {
+            songID: 0,
+            songPos: 11,
+            songArtist: 'Слава КПСС',
+            songName: 'Горгород.fm',
+            audio: "Слава КПСС - Горгород.fm.mp3",
+            cover: 'gorgorod2.jpg',
+            songDuration: 122
+          }
+        ]
       }
     }
   },
@@ -247,16 +380,14 @@ export default {
 
 <style>
 
-.panel-name
+.browser
 {
-  padding-left:5px;
+  width:100%;
+  gap:10px;
   display:flex;
-  height:48px;
-  align-items: center;
-  color:var(--text-color-primary);
-  font-family: "Kanit semibold", sans-serif;
-  font-size:18px;
-  white-space: nowrap;
-  flex-shrink: 0;
+  flex-direction: row;
+  box-sizing: border-box;
+  overflow:hidden;
+  justify-content: center;
 }
 </style>

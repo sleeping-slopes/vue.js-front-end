@@ -3,19 +3,19 @@
   <navbar/>
   <div class = "main" >
     <div class = "panel sidebar-width" style="height:100%">
-      <div class = "playlist-menu-button-row">
+    <div class = "panel-header">currentPlaylist</div>
+    <div class = "panel-content">
+      <!-- <div class = "playlist-menu-button-row">
         <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
         <button class="button-switch" v-bind:class="{'active': visiblePlaylist===1}" v-on:click="visiblePlaylist=1"><i class="bi bi-clock-history"></i>Recently played</button>
-      </div>
+      </div> -->
       <playlist
         :playlistID="this.$store.state.currentPlaylist.playlistID"
         :songs="this.$store.state.currentPlaylist.songs"
       />
     </div>
-    <div class="browser">
-      <router-view/>
     </div>
-    <div class = "panel sidebar-width" style="height:100%"></div>
+      <router-view/>
   </div>
   <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
     <div class ="song sidebar-width">
@@ -95,8 +95,8 @@ export default{
     },
     '$store.state.isPlaying'(playing)
     {
-      if (playing) this.audio.play();
-      else this.audio.pause();
+      // if (playing) this.audio.play();
+      // else this.audio.pause();
     }
   },
   computed:
@@ -140,6 +140,28 @@ export default{
   flex-direction: column;
   overflow:hidden;
   box-sizing: border-box;
+
+}
+
+.panel-header
+{
+  display:flex;
+  height:48px;
+  align-items: center;
+  color:var(--text-color-primary);
+  font-family: "Kanit semibold", sans-serif;
+  font-size:18px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-left:5px;
+  padding-right:5px;
+}
+
+.panel-content
+{
+
+  box-sizing: border-box;
+  overflow:hidden;
 }
 
 .playlist-menu-button-row
@@ -191,17 +213,6 @@ export default{
   margin-left: auto;
   margin-right: auto;
   bottom:0px;
-}
-
-.browser
-{
-  width:100%;
-  gap:10px;
-  display:flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  overflow:hidden;
-  justify-content: center;
 }
 
 .display-none
