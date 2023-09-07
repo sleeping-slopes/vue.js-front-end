@@ -2,9 +2,9 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    // localStorage.getItem('currentPlaylist') ||
-    currentPlaylist: JSON.parse('{}'),
-    currentSongIndex: JSON.parse('-1'),
+    //
+    currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') || '{}'),
+    currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') || '-1'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     isPlaying: false,
   },

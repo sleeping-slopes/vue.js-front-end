@@ -1,65 +1,76 @@
 <template>
-  <div class="modal-shade">
-  </div>
-  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
-  <navbar/>
-  <div class = "main" >
 
-    <div class = "panel sidebar-width" style="height:100%">
-    <div class = "panel-header">Current playlist</div>
-    <div class = "panel-content">
-      <!-- <div class = "playlist-menu-button-row">
-        <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
-        <button class="button-switch" v-bind:class="{'active': visiblePlaylist===1}" v-on:click="visiblePlaylist=1"><i class="bi bi-clock-history"></i>Recently played</button>
-      </div> -->
-      <playlist
-        :playlistID="this.$store.state.currentPlaylist.playlistID"
-        :songs="this.$store.state.currentPlaylist.songs"
-      />
+  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
+
+    <div class="modal-shade">
+      <div class="modal">
+        <playlistModal></playlistModal>
+        <button class="bi bi-x modal-close-button"/>
+      </div>
     </div>
+
+  <div class="window">
+
+      <navbar/>
+      <div class = "main" >
+
+        <div class = "panel sidebar-width" style="height:100%">
+        <div class = "panel-header">Current playlist</div>
+        <div class = "panel-content">
+          <!-- <div class = "playlist-menu-button-row">
+            <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
+            <button class="button-switch" v-bind:class="{'active': visiblePlaylist===1}" v-on:click="visiblePlaylist=1"><i class="bi bi-clock-history"></i>Recently played</button>
+          </div> -->
+          <playlist
+            :playlistID="this.$store.state.currentPlaylist.playlistID"
+            :songs="this.$store.state.currentPlaylist.songs"
+          />
+        </div>
+        </div>
+          <router-view/>
+      </div>
+      <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
+        <div class ="song sidebar-width">
+          <div class = "wrapper-song-cover">
+            <img class = "song-cover" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].cover}`)"/>
+          </div>
+          <div class= "song-info">
+              <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
+              <a href="#" class ="song-info-artist" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songArtist}}</a>
+          </div>
+        </div>
+        <div class="player-menu">
+          <div class = "player-menu-button-row">
+            <button class="round-button medium bi bi-plus-lg"></button>
+            <button class="round-button medium bi bi-skip-start-fill"
+              v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
+            <button class="round-button large"
+              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
+              v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
+            <button class="round-button medium bi bi-skip-end-fill"
+              v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
+            <button class="round-button medium bi bi-repeat"></button>
+          </div>
+          <div class="slider-wrapper">
+            <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
+            <input class="song-slider" type="range" min="1" max="100" value="0">
+            <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
+          </div>
+        </div>
+        <div class ="sidebar-width"></div>
+      </div>
     </div>
-      <router-view/>
   </div>
-  <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
-    <div class ="song sidebar-width">
-      <div class = "wrapper-song-cover">
-        <img class = "song-cover" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].cover}`)"/>
-      </div>
-      <div class= "song-info">
-          <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
-          <a href="#" class ="song-info-artist" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songArtist}}</a>
-      </div>
-    </div>
-    <div class="player-menu">
-      <div class = "player-menu-button-row">
-        <button class="round-button medium bi bi-plus-lg"></button>
-        <button class="round-button medium bi bi-skip-start-fill"
-          v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
-        <button class="round-button large"
-          v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
-          v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
-        <button class="round-button medium bi bi-skip-end-fill"
-          v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
-        <button class="round-button medium bi bi-repeat"></button>
-      </div>
-      <div class="slider-wrapper">
-        <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
-        <input class="song-slider" type="range" min="1" max="100" value="0">
-        <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
-      </div>
-    </div>
-    <div class ="sidebar-width"></div>
-  </div>
-</div>
 </template>
 
 
 <script>
 import navbar from "@/components/navbar.vue"
 import playlist from "@/components/playlist.vue"
+import playlistModal from "@/components/playlistModal.vue"
 
 export default{
-  components: {navbar,playlist},
+  components: {navbar,playlist,playlistModal},
   name: 'app',
   data()
   {
@@ -126,12 +137,8 @@ export default{
 .app
 {
   height:100%;
+  width:100%;
   background-color: var(--main-background-color);
-  display:flex;
-  flex-direction: column;
-  padding:10px;
-  gap:10px;
-  box-sizing:border-box;
 }
 
 .modal-shade
@@ -140,10 +147,41 @@ export default{
   display:flex;
   width:100%;
   height:100%;
-  background-color:black;
-  opacity:0.5;
+  background-color:rgba(0,0,0,0.5);
   z-index: 1;
-  display:none;
+  align-items: center;
+  justify-content: center;
+  /* display:none; */
+}
+
+.modal
+{
+  position:relative;
+  display:flex;
+  opacity:1.0;
+}
+
+.modal-close-button
+{
+  position:absolute;
+  left:100%;
+  top:0;
+  font-size:64px;
+  padding:0px;margin:0px;
+  background-color: transparent;
+  color:white;
+  border:none;
+}
+
+.window
+{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  width:100%;
+  height:100%;
+  padding:10px;
+  box-sizing: border-box;
 }
 
 .main
