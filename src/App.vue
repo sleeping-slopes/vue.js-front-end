@@ -1,9 +1,12 @@
 <template>
+  <div class="modal-shade">
+  </div>
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
   <navbar/>
   <div class = "main" >
+
     <div class = "panel sidebar-width" style="height:100%">
-    <div class = "panel-header">currentPlaylist</div>
+    <div class = "panel-header">Current playlist</div>
     <div class = "panel-content">
       <!-- <div class = "playlist-menu-button-row">
         <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
@@ -29,17 +32,21 @@
     </div>
     <div class="player-menu">
       <div class = "player-menu-button-row">
-            <button class="round-button medium bi bi-plus-lg"></button>
-            <button class="round-button medium bi bi-skip-start-fill"
-              v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
-            <button class="round-button large"
-              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
-              v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
-            <button class="round-button medium bi bi-skip-end-fill"
-              v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
-            <button class="round-button medium bi bi-repeat"></button>
-        </div>
-      <input class="song-slider" type="range" min="1" max="100" value="0">
+        <button class="round-button medium bi bi-plus-lg"></button>
+        <button class="round-button medium bi bi-skip-start-fill"
+          v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
+        <button class="round-button large"
+          v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
+          v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
+        <button class="round-button medium bi bi-skip-end-fill"
+          v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
+        <button class="round-button medium bi bi-repeat"></button>
+      </div>
+      <div class="slider-wrapper">
+        <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
+        <input class="song-slider" type="range" min="1" max="100" value="0">
+        <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
+      </div>
     </div>
     <div class ="sidebar-width"></div>
   </div>
@@ -50,7 +57,6 @@
 <script>
 import navbar from "@/components/navbar.vue"
 import playlist from "@/components/playlist.vue"
-import { storeKey } from "vuex"
 
 export default{
   components: {navbar,playlist},
@@ -77,26 +83,28 @@ export default{
         }
       ],
       visiblePlaylist: 0,
+      songCurrentTime: this.audio?this.audio.currentTime:0
     }
   },
   created()
   {
-    this.audio = new Audio()
+    this.audio = new Audio();
+    this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
   },
   watch:
   {
     '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
     {
-      // this.$store.state.isPlaying=false;
-      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
       this.$store.state.isPlaying=false;
+      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
       this.audio.load();
       setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
     },
     '$store.state.isPlaying'(playing)
     {
-      // if (playing) this.audio.play();
-      // else this.audio.pause();
+      if (playing) this.audio.play();
+      else this.audio.pause();
+      console.log(this.audio.currentTime);
     }
   },
   computed:
@@ -104,6 +112,10 @@ export default{
   },
   methods:
   {
+    secsToMins(sec)
+    {
+      return String(Math.floor(sec/60)).padStart(2,'0')+":"+String(Math.floor(sec)%60).padStart(2,'0');
+    }
   }
 }
 
@@ -120,6 +132,18 @@ export default{
   padding:10px;
   gap:10px;
   box-sizing:border-box;
+}
+
+.modal-shade
+{
+  position:absolute;
+  display:flex;
+  width:100%;
+  height:100%;
+  background-color:black;
+  opacity:0.5;
+  z-index: 1;
+  display:none;
 }
 
 .main
@@ -278,4 +302,25 @@ export default{
   width:20px;
 }
 
+.slider-wrapper
+{
+  display:flex;
+}
+
+.song-time
+{
+  color: var(--text-color-primary);
+  font-size:16px;
+  font-family: "Kanit semibold", sans-serif;
+  width:64px;
+  overflow:hidden;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-slider
+{
+  width:100%;
+}
 </style>

@@ -33,7 +33,6 @@ export default {
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      console.log(1);
       this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
     },
     deleteSong(songIndex)

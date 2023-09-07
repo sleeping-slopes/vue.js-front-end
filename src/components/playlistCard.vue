@@ -1,12 +1,13 @@
 <template>
     <div class = "playlistCard">
-        <div class="playlist-cover-wrapper">
+        <router-link to="/discover" class="playlist-cover-wrapper">
             <img class = "playlist-cover" :src="require(`../assets/covers/${cover}`)"/>
             <div class = "playlist-cover-shade"></div>
-        </div>
+            <button class="playlist-button round-button large bi bi-play-fill"></button>
+        </router-link>
 
         <div class= "song-info">
-            <div class ="song-info-name">{{playlistName}}</div>
+            <router-link to="/discover" class ="song-info-name">{{playlistName}}</router-link>
             <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
         </div>
     </div>
@@ -59,6 +60,8 @@ export default {
     box-sizing: border-box;
     overflow:hidden;
     position:relative;
+    justify-content: center;
+    align-items: center;
 }
 
 .playlist-cover-shade
@@ -71,16 +74,31 @@ export default {
     transition: 0.2s all;
 }
 
-.playlist-cover-wrapper:hover .playlist-cover-shade
-{
-    opacity:0.4;
-}
-
-
 .playlist-cover
 {
     width:100%;
     height:100%;
 }
+
+.playlist-cover-wrapper:hover .playlist-cover-shade
+{
+    opacity:0.4;
+}
+
+.playlist-button
+{
+    position:absolute;
+    opacity:0.0;
+    padding-top:20px;
+    transition: 0.2s all;
+    color:white;
+}
+
+.playlist-cover-wrapper:hover .playlist-button
+{
+    opacity:1.0;
+    padding-top:0px;
+}
+
 
 </style>
