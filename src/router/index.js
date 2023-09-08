@@ -11,7 +11,8 @@ const routes = [
   {
     path: '/library',
     name: 'My library',
-    component: MyLibraryView
+    component: MyLibraryView,
+
   }
 ]
 

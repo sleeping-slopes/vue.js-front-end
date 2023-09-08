@@ -1,13 +1,13 @@
 <template>
     <div class = "playlistCard">
-        <router-link to="/discover" class="playlist-cover-wrapper">
+        <a href="#" class="playlist-cover-wrapper">
             <img class = "playlist-cover" :src="require(`../assets/covers/${cover}`)"/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
-        </router-link>
+        </a>
 
         <div class= "song-info">
-            <router-link to="/discover" class ="song-info-name">{{playlistName}}</router-link>
+            <a href="#" class ="song-info-name">{{playlistName}}</a>
             <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
         </div>
     </div>

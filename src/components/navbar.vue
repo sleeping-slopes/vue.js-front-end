@@ -80,13 +80,13 @@
     color: var(--text-color-primary);
   }
 
-  .router-link-active
+  .navlink.router-link-active
   {
     color: var(--text-color-primary);
     background:none;
   }
 
-  .router-link-active::after
+  .navlink.router-link-active::after
   {
     content:"";
     position:absolute;

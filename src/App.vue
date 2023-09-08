@@ -2,32 +2,27 @@
 
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
 
-    <div class="modal-shade">
+    <!-- <div class="modal-shade">
       <div class="modal">
         <playlistModal></playlistModal>
         <button class="bi bi-x modal-close-button"/>
       </div>
-    </div>
+    </div> -->
 
   <div class="window">
 
       <navbar/>
       <div class = "main" >
-
         <div class = "panel sidebar-width" style="height:100%">
-        <div class = "panel-header">Current playlist</div>
-        <div class = "panel-content">
-          <!-- <div class = "playlist-menu-button-row">
-            <button class="button-switch" v-bind:class="{'active': visiblePlaylist===0}" v-on:click="visiblePlaylist=0"><i class="bi bi-music-note-list"></i>Playlist</button>
-            <button class="button-switch" v-bind:class="{'active': visiblePlaylist===1}" v-on:click="visiblePlaylist=1"><i class="bi bi-clock-history"></i>Recently played</button>
-          </div> -->
-          <playlist
-            :playlistID="this.$store.state.currentPlaylist.playlistID"
-            :songs="this.$store.state.currentPlaylist.songs"
-          />
+          <div class = "panel-header">Current playlist</div>
+          <div class = "panel-content">
+            <playlist
+              :playlistID="this.$store.state.currentPlaylist.playlistID"
+              :songs="this.$store.state.currentPlaylist.songs"
+            />
+          </div>
         </div>
-        </div>
-          <router-view/>
+        <router-view/>
       </div>
       <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
         <div class ="song sidebar-width">
@@ -45,7 +40,7 @@
             <button class="round-button medium bi bi-skip-start-fill"
               v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
             <button class="round-button large"
-              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"
+              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle'"
               v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
             <button class="round-button medium bi bi-skip-end-fill"
               v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
@@ -166,8 +161,9 @@ export default{
   position:absolute;
   left:100%;
   top:0;
-  font-size:64px;
-  padding:0px;margin:0px;
+  font-size:48px;
+  padding:0px;
+  margin:0px;
   background-color: transparent;
   color:white;
   border:none;

@@ -62,85 +62,85 @@ export default {
           playlistName:'TESTING',
           playlistArtist:'A$AP Rocky',
           cover: 'TESTING.png',
-          playlistID: '1'
+          playlistID: '2'
         },
         {
           playlistName:'IGOR',
           playlistArtist:'Tyler, the Creator',
           cover: 'IGOR.jpg',
-          playlistID: '1'
+          playlistID: '3'
         },
         {
           playlistName:'Flower boy',
           playlistArtist:'Tyler, the Creator',
           cover: 'Flower boy.jpg',
-          playlistID: '1'
+          playlistID: '4'
         },
         {
           playlistName:'Sweet Dreams',
           playlistArtist:'Boulevard Depo',
           cover: 'Sweet Dreams.png',
-          playlistID: '1'
+          playlistID: '5'
         },
         {
           playlistName:'Warlord',
           playlistArtist:'Yung Lean',
           cover: 'WARLORD.jpg',
-          playlistID: '1'
+          playlistID: '6'
         },
         {
           playlistName:'WILD EA$T',
           playlistArtist:'SALUKI',
           cover: 'WILD EAST.png',
-          playlistID: '1'
+          playlistID: '7'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
           cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistID: '8'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistID: '9'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
           cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistID: '10'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistID: '11'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
           cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistID: '12'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistID: '13'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
           cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistID: '14'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
           cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistID: '15'
         }
       ],
       myAudio:
