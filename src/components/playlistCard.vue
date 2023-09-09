@@ -1,16 +1,20 @@
 <template>
     <div class = "playlistCard">
-        <a href="#" class="playlist-cover-wrapper">
-            <img class = "playlist-cover" :src="require(`../assets/covers/${cover}`)"/>
+        <router-link :to="'library/playlist/0'" class="playlist-cover-wrapper">
+            <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
-        </a>
-
+        </router-link>
         <div class= "song-info">
             <a href="#" class ="song-info-name">{{playlistName}}</a>
             <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
         </div>
+        <!-- <teleport to=".main"> -->
+            <router-view></router-view>
+        <!-- </teleport> -->
+
     </div>
+
 </template>
 
 <script>
@@ -19,7 +23,10 @@ export default {
   name: 'playlistCard',
   computed:
   {
-
+    routePath()
+    {
+        return this.$route.path+"/playlist/"+this.playlistID;
+    }
   },
   methods:
   {
@@ -27,7 +34,7 @@ export default {
   },
   props:
   {
-    cover: { type: String, default: 'gorgorod2.jpg' },
+    playlistCover: { type: String, default: 'gorgorod2.jpg' },
     playlistID: {type: String, default:'test'},
     playlistName: {type: String, default:'Unnamed'},
     playlistArtist: {type: String, default:'Unknown'},

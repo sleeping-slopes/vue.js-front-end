@@ -3,7 +3,7 @@
     v-on:click="setCurrentSong"
     v-bind:class="{'active': current}" >
         <div class = "wrapper-song-cover">
-            <img class = "song-cover" :src="require(`../assets/covers/${cover}`)"/>
+            <img class = "song-cover" :src="require(`../assets/covers/${songCover}`)"/>
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
@@ -34,11 +34,11 @@ export default {
 
     songID: { type: Number, default: 0},
     songPos: { type: Number, default: 0},
-    audio: { type: String, default: 'no-cover.png' },
-    cover: { type: String, default: 'gorgorod2.jpg' },
+    songCover: { type: String, default: 'gorgorod2.jpg' },
     songName: { type: String, default: 'Без названия' },
     songArtist: { type: String, default: 'Неизвестный' },
-    songDuration: { type: Number, default: 0 }
+    songDuration: { type: Number, default: 0 },
+    audio: { type: String, default: 'no-cover.png' }
   },
   computed:
   {

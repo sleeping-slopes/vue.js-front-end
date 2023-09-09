@@ -1,13 +1,13 @@
 <template>
   <div class="browser">
-    <div style="display:flex;flex-direction: column; width:100%; overflow: hidden; gap:10px;">
       <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
         <div class="panel-header">Playlists</div>
         <div class="panel-content">
           <playlistCarousel :playlists="playlists"/>
         </div>
+
       </div>
-    </div>
+
   </div>
 </template>
 
@@ -29,100 +29,100 @@ export default {
         {
           playlistName:'807 + 1',
           playlistArtist:'808RUS',
-          cover: '807 + 1.jpg',
+          playlistCover: '807 + 1.jpg',
           playlistID: '0'
         },
         {
           playlistName:'Born to Die',
           playlistArtist:'Lana Del Rey',
-          cover: 'Born to Die.png',
+          playlistCover: 'Born to Die.png',
           playlistID: '1'
         },
         {
           playlistName:'TESTING',
           playlistArtist:'A$AP Rocky',
-          cover: 'TESTING.png',
-          playlistID: '1'
+          playlistCover: 'TESTING.png',
+          playlistID: '2'
         },
         {
           playlistName:'IGOR',
           playlistArtist:'Tyler, the Creator',
-          cover: 'IGOR.jpg',
-          playlistID: '1'
+          playlistCover: 'IGOR.jpg',
+          playlistID: '3'
         },
         {
           playlistName:'Flower boy',
           playlistArtist:'Tyler, the Creator',
-          cover: 'Flower boy.jpg',
-          playlistID: '1'
+          playlistCover: 'Flower boy.jpg',
+          playlistID: '4'
         },
         {
           playlistName:'Sweet Dreams',
           playlistArtist:'Boulevard Depo',
-          cover: 'Sweet Dreams.png',
-          playlistID: '1'
+          playlistCover: 'Sweet Dreams.png',
+          playlistID: '5'
         },
         {
           playlistName:'Warlord',
           playlistArtist:'Yung Lean',
-          cover: 'WARLORD.jpg',
-          playlistID: '1'
+          playlistCover: 'WARLORD.jpg',
+          playlistID: '6'
         },
         {
           playlistName:'WILD EA$T',
           playlistArtist:'SALUKI',
-          cover: 'WILD EAST.png',
-          playlistID: '1'
+          playlistCover: 'WILD EAST.png',
+          playlistID: '7'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
-          cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistCover: 'gorgorod.jpg',
+          playlistID: '8'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
-          cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistCover: 'gorgorod2.jpg',
+          playlistID: '9'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
-          cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistCover: 'gorgorod.jpg',
+          playlistID: '10'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
-          cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistCover: 'gorgorod2.jpg',
+          playlistID: '11'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
-          cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistCover: 'gorgorod.jpg',
+          playlistID: '12'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
-          cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistCover: 'gorgorod2.jpg',
+          playlistID: '13'
         },
         {
           playlistName:'Горгород',
           playlistArtist:'Oxxxymiron',
-          cover: 'gorgorod.jpg',
-          playlistID: '2'
+          playlistCover: 'gorgorod.jpg',
+          playlistID: '14'
         },
         {
           playlistName:'Горгород 2',
           playlistArtist:'Слава КПСС',
-          cover: 'gorgorod2.jpg',
-          playlistID: '1'
+          playlistCover: 'gorgorod2.jpg',
+          playlistID: '15'
         }
-      ],
+      ]
     }
   },
 }

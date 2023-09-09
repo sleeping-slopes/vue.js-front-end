@@ -2,12 +2,9 @@
 
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
 
-    <!-- <div class="modal-shade">
-      <div class="modal">
-        <playlistModal></playlistModal>
-        <button class="bi bi-x modal-close-button"/>
-      </div>
-    </div> -->
+
+  <!-- <playlistModal></playlistModal> -->
+
 
   <div class="window">
 
@@ -134,39 +131,7 @@ export default{
   height:100%;
   width:100%;
   background-color: var(--main-background-color);
-}
-
-.modal-shade
-{
-  position:absolute;
-  display:flex;
-  width:100%;
-  height:100%;
-  background-color:rgba(0,0,0,0.5);
-  z-index: 1;
-  align-items: center;
-  justify-content: center;
-  /* display:none; */
-}
-
-.modal
-{
   position:relative;
-  display:flex;
-  opacity:1.0;
-}
-
-.modal-close-button
-{
-  position:absolute;
-  left:100%;
-  top:0;
-  font-size:48px;
-  padding:0px;
-  margin:0px;
-  background-color: transparent;
-  color:white;
-  border:none;
 }
 
 .window

@@ -1,23 +1,28 @@
 
 
 <template>
-    <div class="panel" style="width:600px;">
+  <div class="modal-shade">
+    <div class="modal">
+
+      <div class="panel" style="width:600px;">
         <div class="playlist-header">
-        <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
-        <div class="playlist-info">
-          <div class="playlist-info-name">Warlord</div>
-          <div class="playlist-info-artist">Yung Lean</div>
-          <div class="playlist-button-row">
-            <button class="testbtn bi bi-plus-lg">Add to my library</button>
+          <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
+          <div class="playlist-info">
+            <div class="playlist-info-name">Warlord</div>
+            <div class="playlist-info-artist">Yung Lean</div>
+            <div class="playlist-button-row">
+              <button class="testbtn bi bi-plus-lg">Add to my library</button>
+            </div>
           </div>
         </div>
-
+        <div class="panel-content" style="max-height:630px">
+          <playlist
+            :playlistID="this.$store.state.currentPlaylist.playlistID"
+            :songs="this.$store.state.currentPlaylist.songs"
+          />
+        </div>
       </div>
-    <div class="panel-content" style="max-height:630px">
-      <playlist
-        :playlistID="this.$store.state.currentPlaylist.playlistID"
-        :songs="this.$store.state.currentPlaylist.songs"
-      />
+      <button class="bi bi-x modal-close-button"/>
     </div>
   </div>
 </template>
@@ -45,6 +50,40 @@ export default {
 </script>
 
 <style>
+
+.modal-shade
+{
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal
+{
+  position:relative;
+  display:flex;
+
+}
+
+.modal-close-button
+{
+  position:absolute;
+  left:100%;
+  top:0;
+  font-size:48px;
+  padding:0px;
+  margin:0px;
+  background-color: transparent;
+  color:white;
+  border:none;
+}
 
 .testbtn
 {

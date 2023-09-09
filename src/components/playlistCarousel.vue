@@ -3,7 +3,7 @@
       <div id="carousel-content" ref="carousel">
         <playlistCard v-for="(playlist) in playlists"
           :playlistID="playlist.playlistID"
-          :cover="playlist.cover"
+          :playlistCover="playlist.playlistCover"
           :playlistName="playlist.playlistName"
           :playlistArtist="playlist.playlistArtist"
         />
@@ -53,6 +53,7 @@ export default {
         this.$refs.rightScrollButton.style.right="10px";
       }
       this.$refs.carousel.scroll(this.scrollPosition,0);
+      console.log(this.playlists);
     }
   },
   props:

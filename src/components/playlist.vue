@@ -48,6 +48,10 @@ export default {
   props:
   {
     playlistID: {type: String, default:'test'},
+    playlistName: {type: String, default:'test'},
+    playlistArtist: {type: String, default:'test'},
+    playlistCover: {type: String, default:'test'},
+
     songs: {type: Array, default:[]},
   }
 }
