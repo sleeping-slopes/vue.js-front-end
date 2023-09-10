@@ -6,26 +6,24 @@ import playlistModal from '@/components/playlistModal.vue'
 const routes = [
   {
     path: '/discover',
-    name: 'discover',
     component: DiscoverView,
     children:
     [
-      // {
-      //   path: '/library/playlist/:playlistID',
-      //   component: playlistModal
-      // }
+      {
+        path: 'playlist/:playlistID',
+        component: playlistModal
+      }
     ]
   },
   {
     path: '/library',
-    name: 'My library',
     component: MyLibraryView,
     children:
     [
-      // {
-      //   path: '/library/playlist/:playlistID',
-      //   component: playlistModal
-      // }
+      {
+        path: 'playlist/:playlistID',
+        component: playlistModal
+      }
     ]
   }
 ]

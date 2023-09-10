@@ -1,18 +1,19 @@
 <template>
-    <div class = "playlist">
-        <song v-for="(song,index) in songs"
-        :index = "index"
-        :songID="song.songID"
-        :songPos="song.songPos"
-        :audio="song.audio"
-        :cover="song.cover"
-        :songName="song.songName"
-        :songArtist="song.songArtist"
-        :songDuration="song.songDuration"
-        @setCurrentSong="setCurrentPlaylistAndSong(index)"
-        @deleteSong="deleteSong(index)"
-        />
-    </div>
+
+  <div class = "playlist">
+    <song v-for="(song,index) in songs"
+      :index = "index"
+      :songID="song.songID"
+      :songPos="song.songPos"
+      :audio="song.audio"
+      :cover="song.cover"
+      :songName="song.songName"
+      :songArtist="song.songArtist"
+      :songDuration="song.songDuration"
+      @setCurrentSong="setCurrentPlaylistAndSong(index)"
+      @deleteSong="deleteSong(index)"
+    />
+  </div>
 </template>
 
 <script>
@@ -34,12 +35,15 @@ export default {
     setCurrentPlaylistAndSong(songIndex)
     {
       this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
+      // alert(1);
     },
     deleteSong(songIndex)
     {
       // alert("WIP");
       this.songs.splice(songIndex,1);
-      // this.$store.dispatch('setCurrentPlaylist', this);
+      if (this.current)
+      if (songIndex<this.$store.state.currentSongIndex)
+      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: this.$store.state.currentSongIndex-1}));
       // if (songIndex<this.$store.state.currentSongIndex)
       // this.$store.dispatch('shiftCurrentSong',-1);
 
@@ -80,4 +84,5 @@ export default {
 -ms-overflow-style: none;
 scrollbar-width: none;
 }
+
 </style>

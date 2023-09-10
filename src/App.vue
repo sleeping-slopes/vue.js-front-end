@@ -1,13 +1,6 @@
 <template>
-
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
-
-
-  <!-- <playlistModal></playlistModal> -->
-
-
-  <div class="window">
-
+    <div class="window">
       <navbar/>
       <div class = "main" >
         <div class = "panel sidebar-width" style="height:100%">
@@ -45,7 +38,7 @@
           </div>
           <div class="slider-wrapper">
             <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
-            <input class="song-slider" type="range" min="1" max="100" value="0">
+            <input class="song-slider" type="range" min="1" max="100" value="0" @change="test()">
             <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
           </div>
         </div>
@@ -67,25 +60,6 @@ export default{
   data()
   {
     return {
-      playlists:
-      [
-        this.$store.state.currentPlaylist,
-        {
-          playlistID:'RECENT',
-          songs:
-          [
-            {
-              songID: 0,
-              audio: "Слава КПСС - ОЙ ДА.mp3",
-              cover: 'gorgorod.jpg',
-              songName: 'Не с начала',
-              songArtist: 'Oxxxymiron',
-              songDuration: 122
-            }
-          ]
-        }
-      ],
-      visiblePlaylist: 0,
       songCurrentTime: this.audio?this.audio.currentTime:0
     }
   },
@@ -93,11 +67,13 @@ export default{
   {
     this.audio = new Audio();
     this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
+    this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
   },
   watch:
   {
     '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
     {
+      // alert(this.$store.getters.getCurrentSongPlaylistPos);
       this.$store.state.isPlaying=false;
       this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
       this.audio.load();
@@ -107,7 +83,6 @@ export default{
     {
       if (playing) this.audio.play();
       else this.audio.pause();
-      console.log(this.audio.currentTime);
     }
   },
   computed:
@@ -118,6 +93,10 @@ export default{
     secsToMins(sec)
     {
       return String(Math.floor(sec/60)).padStart(2,'0')+":"+String(Math.floor(sec)%60).padStart(2,'0');
+    },
+    test()
+    {
+      alert(1);
     }
   }
 }

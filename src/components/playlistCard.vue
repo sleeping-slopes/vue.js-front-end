@@ -1,18 +1,14 @@
 <template>
     <div class = "playlistCard">
-        <router-link :to="'library/playlist/0'" class="playlist-cover-wrapper">
+        <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">
             <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
-        </router-link>
+        </div>
         <div class= "song-info">
-            <a href="#" class ="song-info-name">{{playlistName}}</a>
+            <div href="#" class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">{{playlistName}}</div>
             <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
         </div>
-        <!-- <teleport to=".main"> -->
-            <router-view></router-view>
-        <!-- </teleport> -->
-
     </div>
 
 </template>
@@ -38,6 +34,7 @@ export default {
     playlistID: {type: String, default:'test'},
     playlistName: {type: String, default:'Unnamed'},
     playlistArtist: {type: String, default:'Unknown'},
+
   }
 }
 </script>
@@ -59,7 +56,7 @@ export default {
 .playlist-cover-wrapper
 {
     display:flex;
-    border:2px solid var(--text-color-primary);
+    border:2px solid var(--panel-border-color);
     border-radius:10px;
     flex-shrink: 0;
     width:100%;

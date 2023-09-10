@@ -1,9 +1,9 @@
 
 
 <template>
+  <teleport to=".app">
   <div class="modal-shade">
     <div class="modal">
-
       <div class="panel" style="width:600px;">
         <div class="playlist-header">
           <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
@@ -15,16 +15,17 @@
             </div>
           </div>
         </div>
-        <div class="panel-content" style="max-height:630px">
+        <div class="panel-content" style="max-height:635px">
           <playlist
             :playlistID="this.$store.state.currentPlaylist.playlistID"
             :songs="this.$store.state.currentPlaylist.songs"
           />
         </div>
       </div>
-      <button class="bi bi-x modal-close-button"/>
+      <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
     </div>
   </div>
+</teleport>
 </template>
 
 <script>
@@ -60,16 +61,17 @@ export default {
   bottom:0px;
 
   display:flex;
-  align-items: center;
+
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
 }
 
 .modal
 {
+  top:64px;
   position:relative;
   display:flex;
-
+  height:fit-content;
 }
 
 .modal-close-button
@@ -83,6 +85,7 @@ export default {
   background-color: transparent;
   color:white;
   border:none;
+  cursor:pointer;
 }
 
 .testbtn

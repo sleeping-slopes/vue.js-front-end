@@ -1,5 +1,6 @@
 <template>
   <div class="browser">
+
       <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
         <div class="panel-header">Playlists</div>
         <div class="panel-content">
