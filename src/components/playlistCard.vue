@@ -1,13 +1,22 @@
 <template>
     <div class = "playlistCard">
         <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">
-            <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/>
+            <!-- <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/> -->
+            <img class = "playlist-cover" v-if="playlistCover" :src="require(`../assets/covers/${playlistCover}`)"/>
+            <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info">
             <div href="#" class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">{{playlistName}}</div>
-            <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.playlistArtists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
+                        {{artist.artistName}}
+                    </router-link>
+                    <span v-if="index+1 < this.playlistArtists.length">, </span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -30,11 +39,13 @@ export default {
   },
   props:
   {
-    playlistCover: { type: String, default: 'gorgorod2.jpg' },
-    playlistID: {type: String, default:'test'},
+    playlistCover: { type: String },
+    playlistID: {type: Number, default:-1},
     playlistName: {type: String, default:'Unnamed'},
-    playlistArtist: {type: String, default:'Unknown'},
-
+    playlistArtists: { type: Array, default: [[{"artistID":-1,"artistName":"Unknown artist"}]] },
+  },
+  created()
+  {
   }
 }
 </script>
@@ -82,6 +93,12 @@ export default {
 {
     width:100%;
     height:100%;
+    background-color:var(--panel-border-color);
+    color:var(--text-color-secondary);
+    align-items: center;
+    display:flex;
+    justify-content:center;
+    font-size: 60px;
 }
 
 .playlist-cover-wrapper:hover .playlist-cover-shade

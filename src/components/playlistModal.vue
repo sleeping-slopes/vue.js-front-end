@@ -6,10 +6,18 @@
     <div class="modal">
       <div class="panel" style="width:600px;">
         <div class="playlist-header">
-          <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
+          <img class = "playlist-modal-cover" v-if="this.playlistData.coversrc" :src="require(`../assets/covers/${this.playlistData.coversrc}`)"/>
+          <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
           <div class="playlist-info">
-            <div class="playlist-info-name">Warlord</div>
-            <div class="playlist-info-artist">Yung Lean</div>
+            <div class="playlist-info-name">{{this.playlistData.name}}</div>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.playlistArtists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
+                        {{artist.artistName}}
+                    </router-link>
+                    <span v-if="index+1 < this.playlistArtists.length">, </span>
+                </div>
+            </div>
             <div class="playlist-button-row">
               <button class="testbtn bi bi-plus-lg">Add to my library</button>
             </div>
@@ -17,8 +25,8 @@
         </div>
         <div class="panel-content" style="max-height:635px">
           <playlist
-            :playlistID="this.$store.state.currentPlaylist.playlistID"
-            :songs="this.$store.state.currentPlaylist.songs"
+            :playlistID="this.$route.params.playlistID"
+            :songs="songs"
           />
         </div>
       </div>
@@ -30,7 +38,8 @@
 
 <script>
 
-import playlist from "@/components/playlist.vue"
+import playlist from "@/components/playlist.vue";
+import axios from "axios";
 
 export default {
   name: 'playlistModal',
@@ -39,14 +48,48 @@ export default {
   {
 
   },
-  methods:
+  data()
   {
-
+    return {
+      playlistData:{},
+      playlistArtists: [],
+      songs:[]
+    }
   },
   props:
   {
 
-  }
+  },
+  created()
+  {
+    this.getPlaylistSongs();
+  },
+  methods:
+  {
+    async getPlaylistSongs()
+    {
+      try
+      {
+        const playlistRes = await axios.get("http://localhost:5000/playlists/"+this.$route.params.playlistID);
+        this.playlistData = playlistRes.data[0];
+        const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistData.id+"/artists");
+        this.playlistArtists = playlistArtistsRes.data;
+        const playlistSongsRes = await axios.get("http://localhost:5000/playlists/"+this.$route.params.playlistID+"/songs");
+        // const songs = playlistSongsRes.data;
+        // console.log(songs[1].coversrc===null);
+        this.songs = playlistSongsRes.data;
+        for (let i = 0;i<this.songs.length;i++)
+        {
+          const songArtistsRes = await axios.get("http://localhost:5000/songs/"+this.songs[i].songID+"/artists");
+          this.songs[i].artists = songArtistsRes.data;
+        }
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    }
+  },
 }
 </script>
 
@@ -59,9 +102,7 @@ export default {
   left:0px;
   right:0px;
   bottom:0px;
-
   display:flex;
-
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
 }
@@ -86,6 +127,21 @@ export default {
   color:white;
   border:none;
   cursor:pointer;
+}
+
+.playlist-modal-cover
+{
+  width:128px;
+  height:128px;
+  border-radius:5px;
+  overflow:hidden;
+
+  background-color:var(--panel-border-color);
+  color:var(--text-color-secondary);
+  align-items: center;
+  display:flex;
+  justify-content:center;
+  font-size: 48px;
 }
 
 .testbtn

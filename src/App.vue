@@ -17,11 +17,19 @@
       <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
         <div class ="song sidebar-width">
           <div class = "wrapper-song-cover">
-            <img class = "song-cover" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].cover}`)"/>
+            <img class = "song-cover" v-if="this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].coversrc" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].coversrc}`)"/>
+            <div class = "song-cover bi bi-music-note" v-else/>
           </div>
           <div class= "song-info">
               <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
-              <a href="#" class ="song-info-artist" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songArtist}}</a>
+              <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists">
+                    <router-link class="artistlink" style="font-size:20px" :to="'/discover/artist/'+artist.artistID">
+                        {{artist.artistName}}
+                    </router-link>
+                    <span v-if="index+1 < this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists.length">, </span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="player-menu">
@@ -67,6 +75,7 @@ export default{
   {
     this.audio = new Audio();
     this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
+    if (this.$store.getters.getCurrentSongSrc)
     this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
   },
   watch:
@@ -74,15 +83,16 @@ export default{
     '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
     {
       // alert(this.$store.getters.getCurrentSongPlaylistPos);
-      this.$store.state.isPlaying=false;
-      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
-      this.audio.load();
+      // this.$store.state.isPlaying=false;
+      this.$store.state.isPlaying=true
+      // this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+      // this.audio.load();
       setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
     },
     '$store.state.isPlaying'(playing)
     {
-      if (playing) this.audio.play();
-      else this.audio.pause();
+      // if (playing) this.audio.play();
+      // else this.audio.pause();
     }
   },
   computed:

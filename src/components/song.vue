@@ -3,7 +3,8 @@
     v-on:click="setCurrentSong"
     v-bind:class="{'active': current}" >
         <div class = "wrapper-song-cover">
-            <img class = "song-cover" :src="require(`../assets/covers/${songCover}`)"/>
+            <img class = "song-cover" v-if="this.coversrc" :src="require(`../assets/covers/${coversrc}`)"/>
+            <div class = "song-cover bi bi-music-note" v-else/>
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
@@ -14,7 +15,14 @@
         </div>
         <div class= "song-info">
             <div class ="song-info-name">{{songName}}</div>
-            <a href="#" class ="song-info-artist">{{songArtist}}</a>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.artists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
+                        {{artist.artistName}}
+                    </router-link>
+                    <span v-if="index+1 < this.artists.length">, </span>
+                </div>
+            </div>
         </div>
         <div class="songMenu">
             <button class="songButton bi bi-plus"></button>
@@ -31,20 +39,19 @@ export default {
   props:
   {
     index: {type:Number, default: 0},
-
     songID: { type: Number, default: 0},
-    songPos: { type: Number, default: 0},
-    songCover: { type: String, default: 'gorgorod2.jpg' },
+    songPosition: { type: Number, default: 0},
+    coversrc: { type: String, default: 'no-cover.png' },
     songName: { type: String, default: 'Без названия' },
-    songArtist: { type: String, default: 'Неизвестный' },
+    artists: { type: Array, default: [[{"artistID":-1,"artistName":"Unknown artist"}]] },
     songDuration: { type: Number, default: 0 },
-    audio: { type: String, default: 'no-cover.png' }
+    audiosrc: { type: String, default: 'no-cover.png' }
   },
   computed:
   {
     current()
     {
-        return this.$parent.current && this.songPos === this.$store.getters.getCurrentSongPos;
+        return this.$parent.current && this.songPosition === this.$store.getters.getCurrentSongPos;
     },
     isPlaying()
     {
@@ -60,8 +67,7 @@ export default {
   {
     setCurrentSong()
     {
-        if (!this.current)
-        this.$emit('setCurrentSong');
+        if (!this.current) this.$emit('setCurrentSong');
         else this.$store.state.isPlaying=!this.$store.state.isPlaying;
     }
   }
@@ -174,6 +180,13 @@ export default {
     position: absolute;
     height:100%;
     width:100%;
+    background-color:var(--panel-border-color);
+    color:var(--text-color-secondary);
+    align-items: center;
+    display:flex;
+    justify-content:center;
+    font-size:30px;
+
 }
 
 .song .song-cover-shade
@@ -239,15 +252,25 @@ export default {
 {
     width:100%;
     height:50%;
+    align-items:center;
     font-family: "Kanit regular", sans-serif;
     font-size:16px;
     white-space: nowrap;
-    position:relative;
     color: var(--text-color-secondary);
-    text-decoration: none;
     display: flex;
-    align-items:center;
 }
+
+.artistlink
+{
+    text-decoration: none;
+    color: var(--text-color-secondary);
+}
+
+.artistlink:hover
+{
+    text-decoration: underline;
+}
+
 
 .song .songMenu
 {
@@ -283,11 +306,6 @@ export default {
 .songMenu .songButton:hover
 {
     color: var(--text-color-primary);
-}
-
-.song-info-artist:hover
-{
-    text-decoration: underline;
 }
 
 .song-duration

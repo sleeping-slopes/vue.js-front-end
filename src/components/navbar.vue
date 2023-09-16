@@ -38,9 +38,9 @@
 
   .sidebar-width
   {
-    min-width:320px;
-    width:320px;
-    max-width:320px;
+    min-width:360px;
+    width:360px;
+    max-width:360px;
   }
 
   .logo

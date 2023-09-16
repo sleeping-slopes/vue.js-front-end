@@ -1,0 +1,45 @@
+import { getAllPlaylists } from "../models/playlistModel.js"
+export const showAllPlaylists = (req, res)=>
+{
+    getAllPlaylists((err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
+import { getPlaylist } from "../models/playlistModel.js"
+export const showPlaylist = (req, res)=>
+{
+    getPlaylist(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
+import { getPlaylistArtists } from "../models/playlistModel.js"
+export const showPlaylistArtists = (req, res)=>
+{
+    getPlaylistArtists(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
+import { getSongArtists } from "../models/playlistModel.js"
+export const showSongArtists = (req, res)=>
+{
+    getSongArtists(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
+import { getPlaylistSongs } from "../models/playlistModel.js"
+export const showPlaylistSongs = (req, res)=>
+{
+    getPlaylistSongs(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+

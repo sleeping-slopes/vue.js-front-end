@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import DiscoverView from '../views/DiscoverView.vue'
 import MyLibraryView from '../views/MyLibraryView.vue'
 import playlistModal from '@/components/playlistModal.vue'
+import artistCard from '@/components/artistCard.vue'
 
 const routes = [
   {
@@ -12,6 +13,10 @@ const routes = [
       {
         path: 'playlist/:playlistID',
         component: playlistModal
+      },
+      {
+        path: 'artist/:artistID',
+        component: artistCard
       }
     ]
   },

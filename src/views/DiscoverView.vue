@@ -14,7 +14,9 @@
 
 <script>
 
-import playlistCarousel from '@/components/playlistCarousel.vue'
+import playlistCarousel from '@/components/playlistCarousel.vue';
+import axios from "axios";
+
 
 export default {
   name: 'discover',
@@ -25,105 +27,31 @@ export default {
   data()
   {
     return {
-      playlists:
-      [
+      playlists:[]
+    }
+  },
+  created()
+  {
+    this.getPlaylists();
+  },
+  methods:
+  {
+    async getPlaylists()
+    {
+      try
+      {
+        const playlistsRes = await axios.get("http://localhost:5000/playlists");
+        this.playlists = playlistsRes.data;
+        for (let i = 0;i<this.playlists.length;i++)
         {
-          playlistName:'807 + 1',
-          playlistArtist:'808RUS',
-          playlistCover: '807 + 1.jpg',
-          playlistID: '0'
-        },
-        {
-          playlistName:'Born to Die',
-          playlistArtist:'Lana Del Rey',
-          playlistCover: 'Born to Die.png',
-          playlistID: '1'
-        },
-        {
-          playlistName:'TESTING',
-          playlistArtist:'A$AP Rocky',
-          playlistCover: 'TESTING.png',
-          playlistID: '2'
-        },
-        {
-          playlistName:'IGOR',
-          playlistArtist:'Tyler, the Creator',
-          playlistCover: 'IGOR.jpg',
-          playlistID: '3'
-        },
-        {
-          playlistName:'Flower boy',
-          playlistArtist:'Tyler, the Creator',
-          playlistCover: 'Flower boy.jpg',
-          playlistID: '4'
-        },
-        {
-          playlistName:'Sweet Dreams',
-          playlistArtist:'Boulevard Depo',
-          playlistCover: 'Sweet Dreams.png',
-          playlistID: '5'
-        },
-        {
-          playlistName:'Warlord',
-          playlistArtist:'Yung Lean',
-          playlistCover: 'WARLORD.jpg',
-          playlistID: '6'
-        },
-        {
-          playlistName:'WILD EA$T',
-          playlistArtist:'SALUKI',
-          playlistCover: 'WILD EAST.png',
-          playlistID: '7'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '8'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '9'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '10'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '11'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '12'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '13'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '14'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '15'
+          const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlists[i].id+"/artists");
+          this.playlists[i].artists = playlistArtistsRes.data;
         }
-      ]
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
     }
   },
 }
