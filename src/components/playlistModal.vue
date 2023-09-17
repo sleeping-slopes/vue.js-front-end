@@ -6,7 +6,7 @@
     <div class="modal">
       <div class="panel" style="width:600px;">
         <div class="playlist-header">
-          <img class = "playlist-modal-cover" v-if="this.playlistData.coversrc" :src="require(`../assets/covers/${this.playlistData.coversrc}`)"/>
+          <img class = "playlist-modal-cover bi bi-music-note-list" v-if="this.playlistData.coversrc" :src="require(`../assets/covers/${this.playlistData.coversrc}`)"/>
           <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
           <div class="playlist-info">
             <div class="playlist-info-name">{{this.playlistData.name}}</div>
@@ -23,6 +23,7 @@
             </div>
           </div>
         </div>
+        <hr/>
         <div class="panel-content" style="max-height:635px">
           <playlist
             :playlistID="this.$route.params.playlistID"
@@ -75,8 +76,6 @@ export default {
         const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistData.id+"/artists");
         this.playlistArtists = playlistArtistsRes.data;
         const playlistSongsRes = await axios.get("http://localhost:5000/playlists/"+this.$route.params.playlistID+"/songs");
-        // const songs = playlistSongsRes.data;
-        // console.log(songs[1].coversrc===null);
         this.songs = playlistSongsRes.data;
         for (let i = 0;i<this.songs.length;i++)
         {
@@ -120,13 +119,13 @@ export default {
   position:absolute;
   left:100%;
   top:0;
-  font-size:48px;
   padding:0px;
   margin:0px;
   background-color: transparent;
   color:white;
   border:none;
   cursor:pointer;
+  font-size:3em;
 }
 
 .playlist-modal-cover
@@ -135,25 +134,21 @@ export default {
   height:128px;
   border-radius:5px;
   overflow:hidden;
-
   background-color:var(--panel-border-color);
   color:var(--text-color-secondary);
   align-items: center;
   display:flex;
   justify-content:center;
-  font-size: 48px;
+  font-size:4em;
 }
 
 .testbtn
 {
   background:none;
   border:none;
-  font-size:18px;
-  font-family: "Kanit regular", sans-serif;
   cursor:pointer;
   color:var(--text-color-secondary);
   padding:0px;
-  /* background-color:blue; */
   transition:all 0.2s;
   white-space: nowrap;
 }
@@ -169,7 +164,6 @@ export default {
     padding:5px;
     display:flex;
     box-sizing: border-box;
-    border-bottom: 2px solid var(--panel-border-color);
 }
 
 .playlist-info
@@ -184,17 +178,11 @@ export default {
 
 .playlist-info-name
 {
-  /* background-color:yellow; */
-  font-size:24px;
-  font-family: "Kanit semibold", sans-serif;
   color: var(--text-color-primary);
 }
 
 .playlist-info-artist
 {
-  /* background-color:blue; */
-  font-size:16px;
-  font-family: "Kanit regular", sans-serif;
   color: var(--text-color-secondary);
 }
 

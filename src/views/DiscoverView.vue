@@ -1,6 +1,5 @@
 <template>
   <div class="browser">
-
       <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
         <div class="panel-header">Playlists</div>
         <div class="panel-content">
@@ -59,14 +58,4 @@ export default {
 
 <style>
 
-/* .browser
-{
-  width:100%;
-  gap:10px;
-  display:flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  overflow:hidden;
-  justify-content: center;
-} */
 </style>

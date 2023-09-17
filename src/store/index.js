@@ -26,7 +26,7 @@ export default createStore({
     getCurrentSongSrc(state)
     {
       if (state.currentPlaylist && state.currentPlaylist.songs && state.currentPlaylist.songs.length &&  state.currentSongIndex>=0)
-      return state.currentPlaylist.songs[state.currentSongIndex].audio;
+      return state.currentPlaylist.songs[state.currentSongIndex].audiosrc;
       return undefined;
     }
   },

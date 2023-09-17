@@ -16,47 +16,66 @@
     <div id="app" style="height:100%"></div>
     <!-- built files will be auto injected -->
 
-  <script>
+    <script>
 
-  </script>
-  <style>
-    @font-face
-    {
-      font-family: "Kanit Regular";
-      src: url("/fonts/Kanit-Regular.ttf");
-    }
+    </script>
 
-    @font-face
-    {
-      font-family: "Kanit Semibold";
-      src: url("/fonts/Kanit-SemiBold.ttf");
-    }
+    <style>
 
-    @font-face
-    {
-      font-family: "Kanit Extrabold";
-      src: url("/fonts/Kanit-ExtraBold.ttf");
-    }
+      /* @font-face
+      {
+        font-family: "Kanit";
+        src: url("/fonts/Kanit-Regular.ttf") font-weight-normal;
+        src: url("/fonts/Kanit-SemiBold.ttf") font-weight-bold;
+      } */
 
-    .app
-    {
-      --main-background-color: #e4e5f1;
-      --panel-background-color: #fafafa;
-      --panel-border-color: #cccccc;
-      --selected-item-background-color: #d2d3db;
-      --text-color-primary: #404040;
-      --text-color-secondary: #808080;
-    }
+      @font-face
+      {
+        font-family: "Kanit";
+        src: url("/fonts/Kanit-Regular.ttf");
+        font-weight: normal;
+        font-style: normal;
+      }
 
-    .app.dark
-    {
-      --main-background-color: #12151d;
-      --panel-background-color: #1d232f;
-      --panel-border-color: #2c2d3c;
-      --selected-item-background-color: #32363f;
-      --text-color-primary: #ffffff ;
-      --text-color-secondary: #808080;
-    }
-  </style>
+      @font-face
+      {
+        font-family: "Kanit";
+        src: url("/fonts/Kanit-SemiBold.ttf");
+        font-weight: bold;
+        font-style: normal;
+      }
+
+      *
+      {
+        font-family:"Kanit",sans-serif;
+        font-weight:normal;
+        font-size:1em;
+      }
+
+      html
+      {
+        font-size:16px;
+      }
+
+      .app
+      {
+        --main-background-color: #e4e5f1;
+        --panel-background-color: #fafafa;
+        --panel-border-color: #cccccc;
+        --selected-item-background-color: #d2d3db;
+        --text-color-primary: #404040;
+        --text-color-secondary: #808080;
+      }
+
+      .app.dark
+      {
+        --main-background-color: #12151d;
+        --panel-background-color: #1d232f;
+        --panel-border-color: #2c2d3c;
+        --selected-item-background-color: #32363f;
+        --text-color-primary: #ffffff ;
+        --text-color-secondary: #808080;
+      }
+    </style>
   </body>
 </html>

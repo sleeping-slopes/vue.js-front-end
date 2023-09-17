@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import DiscoverView from '../views/DiscoverView.vue'
-import MyLibraryView from '../views/MyLibraryView.vue'
+import discoverView from '@/views/discoverView.vue'
+import myLibraryView from '@/views/myLibraryView.vue'
 import playlistModal from '@/components/playlistModal.vue'
-import artistCard from '@/components/artistCard.vue'
+import logInModal from '@/components/logInModal.vue'
+import artistCardView from '@/views/artistCardView.vue'
 
 const routes = [
   {
     path: '/discover',
-    component: DiscoverView,
+    component: discoverView,
     children:
     [
       {
@@ -16,13 +17,13 @@ const routes = [
       },
       {
         path: 'artist/:artistID',
-        component: artistCard
+        component: artistCardView
       }
     ]
   },
   {
     path: '/library',
-    component: MyLibraryView,
+    component: myLibraryView,
     children:
     [
       {
@@ -30,6 +31,10 @@ const routes = [
         component: playlistModal
       }
     ]
+  },
+  {
+    path: '/login',
+    component: logInModal
   }
 ]
 

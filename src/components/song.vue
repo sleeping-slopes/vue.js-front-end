@@ -95,6 +95,7 @@ export default {
 {
     height:64px;
     padding:0px;
+    font-size:1.25rem;
 }
 
 .wrapper-song-cover
@@ -105,11 +106,10 @@ export default {
     margin:auto;
     display:flex;
     justify-content: center;
-    user-select: none;
     align-items: center;
 }
 
-.playlist .wrapper-song-cover
+.wrapper-song-cover
 {
     min-width:48px;
     min-height:48px;
@@ -132,7 +132,6 @@ export default {
 
 .wrapper-wave
 {
-    user-select: none;
     display:flex;
     width: 25px;
     height:25px;
@@ -185,8 +184,7 @@ export default {
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:30px;
-
+    font-size:2em;
 }
 
 .song .song-cover-shade
@@ -233,37 +231,39 @@ export default {
     flex-direction: column;
     justify-content: center;
     height:100%;
+    overflow:hidden;
 }
 
 .song-info-name
 {
-    width:100%;
-    height:50%;
-    font-family: "Kanit regular", sans-serif;
-    font-size:16px;
-    white-space: nowrap;
-    position:relative;
-    color: var(--text-color-primary);
     display: flex;
     align-items:center;
+    width:100%;
+    height:50%;
+    white-space: nowrap;
+    color: var(--text-color-primary);
+    overflow:hidden;
+
 }
 
 .song-info-artist
 {
+    display: flex;
+    align-items:center;
     width:100%;
     height:50%;
-    align-items:center;
-    font-family: "Kanit regular", sans-serif;
-    font-size:16px;
     white-space: nowrap;
     color: var(--text-color-secondary);
-    display: flex;
+    overflow:hidden;
+
 }
 
 .artistlink
 {
     text-decoration: none;
-    color: var(--text-color-secondary);
+    overflow:hidden;
+
+    color:inherit;
 }
 
 .artistlink:hover
@@ -297,10 +297,10 @@ export default {
     border:none;
     color: var(--text-color-secondary);
     cursor:pointer;
-    font-size:24px;
     padding:0px;
     margin:0px;
     transition:0.2s;
+    font-size:1.5em;
 }
 
 .songMenu .songButton:hover
@@ -310,12 +310,9 @@ export default {
 
 .song-duration
 {
-    font-size:14px;
-    font-family: "Kanit regular", sans-serif;
     margin: auto;
     text-align: center;
     color: var(--text-color-secondary);
-    user-select:none;
 }
 
 .song .wrapper-wave

@@ -21,10 +21,10 @@
             <div class = "song-cover bi bi-music-note" v-else/>
           </div>
           <div class= "song-info">
-              <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
+              <div class ="song-info-name">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
               <div class ="song-info-artist">
                 <div v-for="(artist,index) in this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists">
-                    <router-link class="artistlink" style="font-size:20px" :to="'/discover/artist/'+artist.artistID">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID">
                         {{artist.artistName}}
                     </router-link>
                     <span v-if="index+1 < this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists.length">, </span>
@@ -82,17 +82,15 @@ export default{
   {
     '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
     {
-      // alert(this.$store.getters.getCurrentSongPlaylistPos);
-      // this.$store.state.isPlaying=false;
-      this.$store.state.isPlaying=true
-      // this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
-      // this.audio.load();
+      this.$store.state.isPlaying=false;
+      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+      this.audio.load();
       setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
     },
     '$store.state.isPlaying'(playing)
     {
-      // if (playing) this.audio.play();
-      // else this.audio.pause();
+      if (playing) this.audio.play();
+      else this.audio.pause();
     }
   },
   computed:
@@ -161,19 +159,24 @@ export default{
   height:48px;
   align-items: center;
   color:var(--text-color-primary);
-  font-family: "Kanit semibold", sans-serif;
-  font-size:18px;
   white-space: nowrap;
   flex-shrink: 0;
   padding-left:5px;
   padding-right:5px;
+  font-size:1.25em;
+  font-weight: bold;
 }
 
 .panel-content
 {
-
+  display:flex;
+  flex-direction: column;
   box-sizing: border-box;
   overflow:hidden;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  padding:5px;
 }
 
 .playlist-menu-button-row
@@ -187,8 +190,6 @@ export default{
 {
     background-color:var(--panel-border-color);
     color: var(--text-color-secondary);
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
     height:100%;
     width:100%;
     cursor:pointer;
@@ -298,8 +299,6 @@ export default{
 .song-time
 {
   color: var(--text-color-primary);
-  font-size:16px;
-  font-family: "Kanit semibold", sans-serif;
   width:64px;
   overflow:hidden;
   display:flex;

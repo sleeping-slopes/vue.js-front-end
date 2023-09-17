@@ -12,10 +12,9 @@
         </div>
       </div>
       <div class="nav-usermenu sidebar-width">
-        <div class="wrapper-button-main"><button class="button-signup">Sign up</button></div>
-        <div class="wrapper-button-main"><button class="button-main">Log in</button></div>
+        <button class="button-signup">Sign up</button>
+        <router-link to="login" class="button-main">Log in</router-link>
       </div>
-
     </nav>
   </template>
 
@@ -33,7 +32,6 @@
     display:flex;
     align-items: center;
     gap:10px;
-    user-select: none;
   }
 
   .sidebar-width
@@ -66,13 +64,14 @@
     color: var(--text-color-secondary);
     border: none;
     background-color: transparent;
-    font-size:18px;
-    font-family: "Kanit semibold", sans-serif;
     cursor:pointer;
     transition: all 0.2s;
     position:relative;
     text-decoration: none;
     white-space: nowrap;
+
+    font-size:1.25rem;
+    font-weight:bold;
   }
 
   .navlink:hover
@@ -112,7 +111,6 @@
     padding-left: 12px;
     padding-right: 6px;
     color: var(--text-color-secondary);
-    font-size:16px;
     transition: color 0.2s;
   }
 
@@ -140,13 +138,9 @@
   .search
   {
     height:100%;
-    width:97%;
     background-color: transparent;
     color: var(--text-color-primary);
     border-style:none;
-    font-size:16px;
-    font-family: "Kanit regular", sans-serif;
-
   }
 
   .search:focus
@@ -168,35 +162,22 @@
     margin-left:auto;
   }
 
-  .wrapper-button-main
-  {
-    display:inline-flex;
-    height:100%;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    min-width:120px;
-  }
-
   .button-signup
   {
     color: var(--text-color-secondary);
     border: none;
     background-color: transparent;
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
+
     cursor:pointer;
   }
 
   .button-signup:hover
   {
-    font-size:18px;
     color: var(--text-color-primary);
   }
 
   .button-signup:active
   {
-    font-size:18px;
     color: var(--text-color-secondary);
   }
 
@@ -204,25 +185,25 @@
   {
     background-color: var(--text-color-primary);
     color: var(--main-background-color);
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
     height:min-content;
     width:min-content;
-    padding:5px 30px 5px 30px;
+    padding:5px 20px 5px 20px;
     border-radius: 50vh;
     cursor:pointer;
     border: none;
+    white-space: nowrap;
+    text-decoration: none;
   }
 
   .button-main:hover
   {
-    font-size:18px;
+    transform: scale(1.1);
   }
 
   .button-main:active
   {
-    font-size:16px;
     background-color: var(--text-color-secondary);
+    transform: scale(1.0);
   }
 
   </style>

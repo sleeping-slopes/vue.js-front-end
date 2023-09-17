@@ -34,10 +34,6 @@ export default {
       return this.$store.state.currentPlaylist.playlistID===this.playlistID;
     }
   },
-  created()
-  {
-
-  },
   methods:
   {
     setCurrentPlaylistAndSong(songIndex)
@@ -58,7 +54,7 @@ export default {
   },
   props:
   {
-    playlistID: {type: String, default:'test'},
+    playlistID: {type: String, default:'-1'},
     songs: {type: Array, default:[]},
   }
 }
@@ -73,7 +69,6 @@ export default {
   box-sizing: border-box;
   height:100%;
   overflow-y:scroll;
-  padding:5px;
   gap:5px;
 }
 
@@ -91,7 +86,6 @@ scrollbar-width: none;
 .songs-empty
 {
   color:var(--text-color-secondary);
-  font-size:64px;
   width:100%;
   padding-top:20px;
   padding-bottom:20px;
@@ -99,12 +93,10 @@ scrollbar-width: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
-.songs-empty span
+.songs-empty i
 {
-  font-size:16px;
-  font-family: "Kanit regular", sans-serif;
+  font-size:3em;
 }
 </style>

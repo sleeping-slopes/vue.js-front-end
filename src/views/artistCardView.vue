@@ -8,12 +8,8 @@
 
   <script>
 
-  import playlist from "@/components/playlist.vue";
-  import axios from "axios";
-
   export default {
-    name: 'playlistModal',
-    components: {playlist},
+    name: 'artistCardView',
     computed:
     {
 
@@ -21,9 +17,7 @@
     data()
     {
       return {
-        playlistData:{coversrc:"Sweet Dreams.png"},
-        playlistArtists: [],
-        songs:[]
+
       }
     },
     props:

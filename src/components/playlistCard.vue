@@ -1,7 +1,6 @@
 <template>
     <div class = "playlistCard">
         <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">
-            <!-- <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/> -->
             <img class = "playlist-cover" v-if="playlistCover" :src="require(`../assets/covers/${playlistCover}`)"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
@@ -33,10 +32,6 @@ export default {
         return this.$route.path+"/playlist/"+this.playlistID;
     }
   },
-  methods:
-  {
-
-  },
   props:
   {
     playlistCover: { type: String },
@@ -44,9 +39,6 @@ export default {
     playlistName: {type: String, default:'Unnamed'},
     playlistArtists: { type: Array, default: [[{"artistID":-1,"artistName":"Unknown artist"}]] },
   },
-  created()
-  {
-  }
 }
 </script>
 
@@ -56,8 +48,6 @@ export default {
 {
     display:flex;
     flex-direction: column;
-    padding-left:5px;
-    padding-right:5px;
     box-sizing: border-box;
     min-width:calc(100%/7);
 }
@@ -98,7 +88,7 @@ export default {
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size: 60px;
+    font-size:5em;
 }
 
 .playlist-cover-wrapper:hover .playlist-cover-shade
