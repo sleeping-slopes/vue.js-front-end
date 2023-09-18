@@ -1,18 +1,25 @@
 <template>
-    <div class="playlist-carousel">
-      <div id="carousel-content" ref="carousel">
-        <playlistCard v-for="(playlist) in playlists"
-          :playlistID="playlist.id"
-          :playlistCover="playlist.coversrc"
-          :playlistName="playlist.name"
-          :playlistArtists="playlist.artists"
-        />
-        <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
-        <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
-      </div>
-
+  <div class="panel" style="flex-shrink:0; width:100%; height:max-content" v-if="playlists.length>0">
+    <div class="panel-header">
+      Playlists
+      <router-link to="playlists" class="panel-header-button">Show all</router-link>
     </div>
-    <router-view></router-view>
+    <div class="panel-content" style="align-items: flex-start;">
+      <div class="playlist-carousel">
+        <div id="carousel-content" ref="carousel">
+          <playlistCard v-for="(playlist) in playlists"
+            :playlistID="playlist.id"
+            :playlistCover="playlist.coversrc"
+            :playlistName="playlist.name"
+            :playlistArtists="playlist.artists"
+          />
+          <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
+          <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -35,7 +42,8 @@ export default {
   {
     shift(i)
     {
-      this.scrollPosition += i*this.$refs.carousel.offsetWidth/7*3;
+      this.scrollPosition += i*Math.floor(this.$refs.carousel.offsetWidth/133)/2*133;
+      // Math.floor(this.$refs.carousel.offsetWidth/128)/2;
       if (this.scrollPosition<=0)
       {
         this.scrollPosition=0;
@@ -70,17 +78,20 @@ export default {
 {
   display:flex;
   position:relative;
-  align-items: center;
   box-sizing: border-box;
+  width:100%;
 }
 
 #carousel-content
 {
   display:flex;
-  align-items: center;
+  width:100%;
+  gap:5px;
   box-sizing: border-box;
   overflow-x:scroll;
   scroll-behavior: smooth;
+  align-items: center;
+
 }
 
 #carousel-content::-webkit-scrollbar

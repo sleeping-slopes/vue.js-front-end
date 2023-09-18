@@ -70,6 +70,20 @@ export const getPlaylistSongs=(id,result)=>
     });
 }
 
+export const getAllSongs=(result)=>
+{
+    db.query("SELECT * FROM songs", (err,results)=>
+    {
+        if (err)
+        {
+            console.log(err);
+            result(err,null);
+            return;
+        }
+        result(null,results);
+    });
+}
+
 
 // SELECT * FROM playlists
 // INNER JOIN user_playlists ON user_playlists.playlistID = playlists.id

@@ -162,9 +162,10 @@ export default{
   white-space: nowrap;
   flex-shrink: 0;
   padding-left:5px;
-  padding-right:5px;
+  padding-right:15px;
   font-size:1.25em;
   font-weight: bold;
+  justify-content: space-between;
 }
 
 .panel-content
@@ -309,5 +310,35 @@ export default{
 .song-slider
 {
   width:100%;
+}
+
+.button-link
+{
+  color: var(--text-color-primary);
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor:pointer;
+  text-decoration: underline;
+}
+
+.button-link:active
+{
+  color: var(--text-color-secondary);
+}
+
+.panel-header-button
+{
+  color: var(--text-color-primary);
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor:pointer;
+  font-size:1rem;
+}
+
+.panel-header-button:active
+{
+  color: var(--text-color-secondary);
 }
 </style>

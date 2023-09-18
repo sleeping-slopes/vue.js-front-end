@@ -3,17 +3,25 @@ import discoverView from '@/views/discoverView.vue'
 import myLibraryView from '@/views/myLibraryView.vue'
 import playlistModal from '@/components/playlistModal.vue'
 import logInModal from '@/components/logInModal.vue'
+import signUpModal from '@/components/signUpModal.vue'
 import artistCardView from '@/views/artistCardView.vue'
 
 const routes = [
   {
     path: '/discover',
-    component: discoverView,
+    redirect:'/discover/main',
     children:
     [
       {
-        path: 'playlist/:playlistID',
-        component: playlistModal
+        path:'main',
+        component: discoverView,
+        children:
+        [
+          {
+            path: 'playlist/:playlistID',
+            component: playlistModal
+          },
+        ]
       },
       {
         path: 'artist/:artistID',
@@ -35,6 +43,10 @@ const routes = [
   {
     path: '/login',
     component: logInModal
+  },
+  {
+    path: '/signup',
+    component: signUpModal
   }
 ]
 

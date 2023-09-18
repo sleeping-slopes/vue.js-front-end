@@ -48,11 +48,9 @@ export default {
 {
     display:flex;
     flex-direction: column;
-    box-sizing: border-box;
-    min-width:calc(100%/7);
+    width:128px;
+    flex-shrink: 0;
 }
-
-
 
 .playlist-cover-wrapper
 {
@@ -88,7 +86,7 @@ export default {
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:5em;
+    font-size:4em;
 }
 
 .playlist-cover-wrapper:hover .playlist-cover-shade

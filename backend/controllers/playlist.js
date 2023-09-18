@@ -25,6 +25,15 @@ export const showPlaylistArtists = (req, res)=>
     });
 };
 
+import { getAllSongs } from "../models/playlistModel.js"
+export const showAllSongs = (req, res)=>
+{
+    getAllSongs((err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
 import { getSongArtists } from "../models/playlistModel.js"
 export const showSongArtists = (req, res)=>
 {

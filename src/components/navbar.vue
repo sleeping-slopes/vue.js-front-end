@@ -12,8 +12,8 @@
         </div>
       </div>
       <div class="nav-usermenu sidebar-width">
-        <button class="button-signup">Sign up</button>
-        <router-link to="login" class="button-main">Log in</router-link>
+        <router-link to="/signup" class="button-signup">Sign up</router-link>
+        <router-link to="/login" class="button-main">Log in</router-link>
       </div>
     </nav>
   </template>
@@ -160,6 +160,7 @@
     align-items: center;
     height:100%;
     margin-left:auto;
+    gap:20px;
   }
 
   .button-signup
@@ -167,7 +168,7 @@
     color: var(--text-color-secondary);
     border: none;
     background-color: transparent;
-
+    text-decoration: none;
     cursor:pointer;
   }
 
