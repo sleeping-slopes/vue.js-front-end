@@ -34,6 +34,15 @@ export const showAllSongs = (req, res)=>
     });
 };
 
+import { getSong } from "../models/playlistModel.js"
+export const showSong = (req, res)=>
+{
+    getSong(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};
+
 import { getSongArtists } from "../models/playlistModel.js"
 export const showSongArtists = (req, res)=>
 {
@@ -52,3 +61,11 @@ export const showPlaylistSongs = (req, res)=>
     });
 };
 
+import { getArtist } from "../models/playlistModel.js"
+export const showArtist = (req, res)=>
+{
+    getArtist(req.params.id, (err,results) =>
+    {
+        if (err) {res.send(err); return;} res.json(results);
+    });
+};

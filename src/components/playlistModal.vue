@@ -26,8 +26,7 @@
         <hr/>
         <div class="panel-content" style="max-height:635px">
           <playlist
-            :playlistID="this.$route.params.playlistID"
-            :songs="songs"
+            :playlistID="this.playlistID"
           />
         </div>
       </div>
@@ -52,9 +51,9 @@ export default {
   data()
   {
     return {
-      playlistData:{},
-      playlistArtists: [],
-      songs:[]
+      playlistID: this.$route.params.playlistID,
+      playlistData: {},
+      playlistArtists: []
     }
   },
   props:
@@ -63,30 +62,32 @@ export default {
   },
   created()
   {
-    this.getPlaylistSongs();
+    this.getPlaylistData();
+    this.getPlaylistArtists();
   },
   methods:
   {
-    async getPlaylistSongs()
+    async getPlaylistData()
     {
-      try
-      {
-        const playlistRes = await axios.get("http://localhost:5000/playlists/"+this.$route.params.playlistID);
-        this.playlistData = playlistRes.data[0];
-        const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistData.id+"/artists");
+        const playlistDataRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID);
+        this.playlistData = playlistDataRes.data[0];
+    },
+    async getPlaylistArtists()
+    {
+        const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID+"/artists");
         this.playlistArtists = playlistArtistsRes.data;
-        const playlistSongsRes = await axios.get("http://localhost:5000/playlists/"+this.$route.params.playlistID+"/songs");
-        this.songs = playlistSongsRes.data;
-        for (let i = 0;i<this.songs.length;i++)
+        for (let i = 0;i<this.playlistArtists.length;i++)
         {
-          const songArtistsRes = await axios.get("http://localhost:5000/songs/"+this.songs[i].songID+"/artists");
-          this.songs[i].artists = songArtistsRes.data;
+            if (!this.playlistArtists[i].artistName && this.playlistArtists[i].artistID)
+            {
+                const artistRes = await axios.get("http://localhost:5000/artists/"+this.playlistArtists[i].artistID);
+                this.playlistArtists[i].artistName = artistRes.data[0].name;
+            }
+            if (!this.playlistArtists[i].artistName && !this.playlistArtists[i].artistID)
+            {
+                this.playlistArtists[i].artistName="unknown";
+            }
         }
-      }
-      catch(err)
-      {
-        console.log(err);
-      }
     }
   },
 }

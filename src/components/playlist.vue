@@ -5,11 +5,6 @@
       :index = "index"
       :songID="song.songID"
       :songPosition="song.songPosition"
-      :audiosrc="song.audiosrc"
-      :coversrc="song.coversrc"
-      :songName="song.songName"
-      :artists="song.artists"
-      :songDuration="song.songDuration"
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
       @deleteSong="deleteSong(index)"
     />
@@ -23,6 +18,7 @@
 <script>
 
 import song from './song.vue'
+import axios from 'axios'
 
 export default {
   name: 'myPlaylist',
@@ -40,22 +36,33 @@ export default {
     {
       this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
     },
-    deleteSong(songIndex)
+    async getPlaylistSongs()
     {
-      // // alert("WIP");
-      // this.songs.splice(songIndex,1);
-      // if (this.current)
-      // if (songIndex<this.$store.state.currentSongIndex)
-      // this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: this.$store.state.currentSongIndex-1}));
-      // // if (songIndex<this.$store.state.currentSongIndex)
-      // // this.$store.dispatch('shiftCurrentSong',-1);
-
-    }
+      try
+      {
+        const playlistsSongsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID+"/songs");
+        this.songs = playlistsSongsRes.data;
+      }
+      catch(err)
+      {
+        console.log(err);
+      }
+    },
   },
   props:
   {
     playlistID: {type: String, default:'-1'},
-    songs: {type: Array, default:[]},
+    songs: {},
+  },
+  data()
+  {
+    return {
+      songs:{}
+    }
+  },
+  created()
+  {
+    this.getPlaylistSongs();
   }
 }
 </script>

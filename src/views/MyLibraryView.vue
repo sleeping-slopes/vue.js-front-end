@@ -10,10 +10,10 @@
       <div class="panel" style="height:100%;">
         <div class="panel-header">Songs</div>
         <div class="panel-content">
-        <playlist
+        <!-- <playlist
           :playlistID="myAudio.playlistID"
           :songs="myAudio.songs"
-        />
+        /> -->
         </div>
       </div>
 
@@ -21,10 +21,10 @@
     <div class = "panel sidebar-width" style="height:100%">
       <div class="panel-header">Recently played</div>
       <div class="panel-content">
-      <playlist
+      <!-- <playlist
           :playlistID="lastListened.playlistID"
           :songs="lastListened.songs"
-        />
+        /> -->
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import db from "../config/database.js"
 
 export const getAllPlaylists=(result)=>
 {
-    db.query("SELECT * FROM playlists", (err,results)=>
+    db.query("SELECT id FROM playlists", (err,results)=>
     {
         if (err)
         {
@@ -58,7 +58,7 @@ export const getSongArtists=(id,result)=>
 
 export const getPlaylistSongs=(id,result)=>
 {
-    db.query("SELECT * FROM view_playlist_songs WHERE playlistID=?",[id], (err,results)=>
+    db.query("SELECT songID,songPosition FROM view_playlist_songs WHERE playlistID=?",[id], (err,results)=>
     {
         if (err)
         {
@@ -72,7 +72,7 @@ export const getPlaylistSongs=(id,result)=>
 
 export const getAllSongs=(result)=>
 {
-    db.query("SELECT * FROM songs", (err,results)=>
+    db.query("SELECT id FROM songs", (err,results)=>
     {
         if (err)
         {
@@ -84,9 +84,30 @@ export const getAllSongs=(result)=>
     });
 }
 
+export const getSong=(id,result)=>
+{
+    db.query("SELECT * FROM songs WHERE songs.id=?",[id], (err,results)=>
+    {
+        if (err)
+        {
+            console.log(err);
+            result(err,null);
+            return;
+        }
+        result(null,results);
+    });
+}
 
-// SELECT * FROM playlists
-// INNER JOIN user_playlists ON user_playlists.playlistID = playlists.id
-// WHERE user_playlists.userID=1
-
-// SELECT * FROM view_user_playlists WHERE userID=0;
+export const getArtist=(id,result)=>
+{
+    db.query("SELECT * FROM artists WHERE artists.id=?",[id], (err,results)=>
+    {
+        if (err)
+        {
+            console.log(err);
+            result(err,null);
+            return;
+        }
+        result(null,results);
+    });
+}

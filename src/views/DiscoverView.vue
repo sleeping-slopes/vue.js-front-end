@@ -6,10 +6,10 @@
     <div class="panel" style="height:100%;">
         <div class="panel-header">Songs</div>
         <div class="panel-content">
-        <playlist
+        <!-- <playlist
           :songs="discoverPlaylist.songs"
           :playlistID="discoverPlaylist.playlistID"
-        />
+        /> -->
         </div>
       </div>
   </div>
@@ -55,11 +55,6 @@ export default {
       {
         const playlistsRes = await axios.get("http://localhost:5000/playlists");
         this.playlists = playlistsRes.data;
-        for (let i = 0;i<this.playlists.length;i++)
-        {
-          const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlists[i].id+"/artists");
-          this.playlists[i].artists = playlistArtistsRes.data;
-        }
       }
       catch(err)
       {
