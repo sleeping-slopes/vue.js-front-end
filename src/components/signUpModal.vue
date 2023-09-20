@@ -39,23 +39,7 @@
   <script>
 
   export default {
-    name: 'signUpModal',
-    computed:
-    {
-
-    },
-    data()
-    {
-
-    },
-    props:
-    {
-
-    },
-    created()
-    {
-
-    },
+    name: 'signUpModal'
   }
   </script>
 

@@ -1,12 +1,10 @@
 <template>
 
-  <div class = "playlist">
+  <div class = "playlist" :key="playlistID">
     <song v-for="(song,index) in songs"
       :index = "index"
-      :songID="song.songID"
-      :songPosition="song.songPosition"
+      :song="song"
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
-      @deleteSong="deleteSong(index)"
     />
     <div class="songs-empty" v-if="songs.length==0">
       <i class="bi bi-music-note-beamed"></i>
@@ -18,7 +16,6 @@
 <script>
 
 import song from './song.vue'
-import axios from 'axios'
 
 export default {
   name: 'myPlaylist',
@@ -34,35 +31,15 @@ export default {
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
-    },
-    async getPlaylistSongs()
-    {
-      try
-      {
-        const playlistsSongsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID+"/songs");
-        this.songs = playlistsSongsRes.data;
-      }
-      catch(err)
-      {
-        console.log(err);
-      }
-    },
+      //console.log(JSON.stringify({playlist: {playlistID:this.playlistID,songs:this.songs}, songIndex: songIndex}));
+      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {playlistID:this.playlistID,songs:this.songs}, songIndex: songIndex}));
+      this.$store.dispatch('shuffleSongs');
+    }
   },
   props:
   {
     playlistID: {type: String, default:'-1'},
-    songs: {},
-  },
-  data()
-  {
-    return {
-      songs:{}
-    }
-  },
-  created()
-  {
-    this.getPlaylistSongs();
+    songs: {type: Object, default: {}}
   }
 }
 </script>
@@ -86,8 +63,8 @@ export default {
 
 .playlist
 {
--ms-overflow-style: none;
-scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .songs-empty

@@ -9,21 +9,7 @@
   <script>
 
   export default {
-    name: 'artistCardView',
-    computed:
-    {
-
-    },
-    data()
-    {
-      return {
-
-      }
-    },
-    props:
-    {
-
-    }
+    name: 'artistCardView'
   }
   </script>
 

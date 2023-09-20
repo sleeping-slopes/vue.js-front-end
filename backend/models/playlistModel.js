@@ -58,7 +58,7 @@ export const getSongArtists=(id,result)=>
 
 export const getPlaylistSongs=(id,result)=>
 {
-    db.query("SELECT songID,songPosition FROM view_playlist_songs WHERE playlistID=?",[id], (err,results)=>
+    db.query("SELECT songID FROM view_playlist_songs WHERE playlistID=?",[id], (err,results)=>
     {
         if (err)
         {
@@ -72,7 +72,7 @@ export const getPlaylistSongs=(id,result)=>
 
 export const getAllSongs=(result)=>
 {
-    db.query("SELECT id FROM songs", (err,results)=>
+    db.query("SELECT id as songID FROM songs", (err,results)=>
     {
         if (err)
         {

@@ -37,22 +37,6 @@
 
   export default {
     name: 'logInModal',
-    computed:
-    {
-
-    },
-    data()
-    {
-
-    },
-    props:
-    {
-
-    },
-    created()
-    {
-
-    },
   }
   </script>
 

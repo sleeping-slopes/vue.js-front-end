@@ -1,19 +1,19 @@
 <template>
     <div class = "playlistCard">
         <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">
-            <img class = "playlist-cover" v-if="this.playlistData.coversrc" :src="require(`../assets/covers/${this.playlistData.coversrc}`)"/>
+            <img class = "playlist-cover" v-if="this.playlist.data.coversrc" :src="require(`../assets/covers/${this.playlist.data.coversrc}`)"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info">
-            <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">{{this.playlistData.name}}</div>
+            <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">{{this.playlist.data.name}}</div>
             <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.playlistArtists">
+                <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
                         {{artist.artistName}}
                     </router-link>
-                    <span v-if="index+1 < this.playlistArtists.length">, </span>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
 
 <script>
 
-import axios from "axios";
+import { getPlaylist } from "@/axios/getters.js"
 
 export default {
   name: 'playlistCard',
@@ -41,39 +41,16 @@ export default {
   data()
   {
     return {
-      playlistData: {},
-      playlistArtists: []
-    }
-  },
-  methods:
-  {
-    async getPlaylistData()
-    {
-        const playlistDataRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID);
-        this.playlistData = playlistDataRes.data[0];
-    },
-    async getPlaylistArtists()
-    {
-        const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID+"/artists");
-        this.playlistArtists = playlistArtistsRes.data;
-        for (let i = 0;i<this.playlistArtists.length;i++)
-        {
-            if (!this.playlistArtists[i].artistName && this.playlistArtists[i].artistID)
-            {
-                const artistRes = await axios.get("http://localhost:5000/artists/"+this.playlistArtists[i].artistID);
-                this.playlistArtists[i].artistName = artistRes.data[0].name;
-            }
-            if (!this.playlistArtists[i].artistName && !this.playlistArtists[i].artistID)
-            {
-                this.playlistArtists[i].artistName="unknown";
-            }
-        }
+      playlist:
+      {
+        data:{},
+        artists:[]
+      }
     }
   },
   created()
   {
-    this.getPlaylistData();
-    this.getPlaylistArtists();
+    (async () => { this.playlist = await getPlaylist(this.playlistID); })();
   }
 }
 </script>

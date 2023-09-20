@@ -65,7 +65,7 @@ export default {
   props:
   {
     playlists: {type:Array,default:[]}
-  }
+  },
 }
 </script>
 

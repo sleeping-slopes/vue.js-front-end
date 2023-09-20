@@ -14,20 +14,20 @@
         </div>
         <router-view/>
       </div>
-      <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
+      <div class="player" v-if="this.$store.getters.getCurrentSong">
         <div class ="song sidebar-width">
           <div class = "wrapper-song-cover">
-            <img class = "song-cover" v-if="this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].coversrc" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].coversrc}`)"/>
+            <img class = "song-cover" v-if="this.$store.getters.getCurrentSong.data.coversrc" :src="require(`./assets/covers/${this.$store.getters.getCurrentSong.data.coversrc}`)"/>
             <div class = "song-cover bi bi-music-note" v-else/>
           </div>
           <div class= "song-info">
-              <div class ="song-info-name">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
+              <div class ="song-info-name">{{this.$store.getters.getCurrentSong.data.songName}}</div>
               <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists">
+                <div v-for="(artist,index) in this.$store.getters.getCurrentSong.artists">
                     <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID">
                         {{artist.artistName}}
                     </router-link>
-                    <span v-if="index+1 < this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].artists.length">, </span>
+                    <span v-if="index+1 < this.$store.getters.getCurrentSong.artists.length">, </span>
               </div>
             </div>
           </div>
@@ -75,15 +75,16 @@ export default{
   {
     this.audio = new Audio();
     this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
-    if (this.$store.getters.getCurrentSongSrc)
-    this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+    if (this.$store.getters.getCurrentSong)
+    this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSong.data.audiosrc}`);
   },
   watch:
   {
-    '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
+    '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
     {
       this.$store.state.isPlaying=false;
-      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSong.data.audiosrc}`);
+
       this.audio.load();
       setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
     },

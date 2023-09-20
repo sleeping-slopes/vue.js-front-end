@@ -6,16 +6,16 @@
     <div class="modal">
       <div class="panel" style="width:600px;">
         <div class="playlist-header">
-          <img class = "playlist-modal-cover bi bi-music-note-list" v-if="this.playlistData.coversrc" :src="require(`../assets/covers/${this.playlistData.coversrc}`)"/>
+          <img class = "playlist-modal-cover bi bi-music-note-list" v-if="this.playlist.data.coversrc" :src="require(`../assets/covers/${this.playlist.data.coversrc}`)"/>
           <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
           <div class="playlist-info">
-            <div class="playlist-info-name">{{this.playlistData.name}}</div>
+            <div class="playlist-info-name">{{this.playlist.data.name}}</div>
             <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.playlistArtists">
+                <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
                         {{artist.artistName}}
                     </router-link>
-                    <span v-if="index+1 < this.playlistArtists.length">, </span>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </div>
             </div>
             <div class="playlist-button-row">
@@ -27,6 +27,7 @@
         <div class="panel-content" style="max-height:635px">
           <playlist
             :playlistID="this.playlistID"
+            :songs="this.songs"
           />
         </div>
       </div>
@@ -39,7 +40,7 @@
 <script>
 
 import playlist from "@/components/playlist.vue";
-import axios from "axios";
+import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
 
 export default {
   name: 'playlistModal',
@@ -52,44 +53,19 @@ export default {
   {
     return {
       playlistID: this.$route.params.playlistID,
-      playlistData: {},
-      playlistArtists: []
+      playlist:
+      {
+        data:{},
+        artists:[]
+      },
+      songs: []
     }
-  },
-  props:
-  {
-
   },
   created()
   {
-    this.getPlaylistData();
-    this.getPlaylistArtists();
-  },
-  methods:
-  {
-    async getPlaylistData()
-    {
-        const playlistDataRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID);
-        this.playlistData = playlistDataRes.data[0];
-    },
-    async getPlaylistArtists()
-    {
-        const playlistArtistsRes = await axios.get("http://localhost:5000/playlists/"+this.playlistID+"/artists");
-        this.playlistArtists = playlistArtistsRes.data;
-        for (let i = 0;i<this.playlistArtists.length;i++)
-        {
-            if (!this.playlistArtists[i].artistName && this.playlistArtists[i].artistID)
-            {
-                const artistRes = await axios.get("http://localhost:5000/artists/"+this.playlistArtists[i].artistID);
-                this.playlistArtists[i].artistName = artistRes.data[0].name;
-            }
-            if (!this.playlistArtists[i].artistName && !this.playlistArtists[i].artistID)
-            {
-                this.playlistArtists[i].artistName="unknown";
-            }
-        }
-    }
-  },
+    (async () => { this.playlist = await getPlaylist(this.playlistID); })();
+    (async () => { this.songs = await getPlaylistSongs(this.playlistID) })();
+  }
 }
 </script>
 

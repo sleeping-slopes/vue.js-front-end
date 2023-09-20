@@ -1,9 +1,10 @@
 <template>
     <div class = "song"
+    :key="songID"
     v-on:click="setCurrentSong"
     v-bind:class="{'active': current}" >
         <div class = "wrapper-song-cover">
-            <img class = "song-cover" v-if="this.songData.coversrc" :src="require(`../assets/covers/${this.songData.coversrc}`)"/>
+            <img class = "song-cover" v-if="this.song.data.coversrc" :src="require(`../assets/covers/${this.song.data.coversrc}`)"/>
             <div class = "song-cover bi bi-music-note" v-else/>
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
@@ -14,13 +15,13 @@
             </div>
         </div>
         <div class= "song-info">
-            <div class ="song-info-name">{{this.songData.songName}}</div>
+            <div class ="song-info-name">{{this.song.data.songName}}</div>
             <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.songArtists">
+                <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink" :to="'/discover/artist/'+artist.artistID" @click.stop>
                         {{artist.artistName}}
                     </router-link>
-                    <span v-if="index+1 < this.songArtists.length">, </span>
+                    <span v-if="index+1 < this.song.artists.length">, </span>
                 </div>
             </div>
         </div>
@@ -34,28 +35,33 @@
 
 <script>
 
-import axios from "axios";
-
 export default {
   name: 'playlistSong',
   props:
   {
-    index: {type:Number, default: 0},
     songID: { type: Number, default: 0},
-    songPosition: { type: Number, default: 0},
+    index: { type: Number, default:0},
+    song:
+    {
+        type:Object,
+        default:
+        {
+            // data:{songName:"123",coversrc:"134"},
+            // artists:[]
+        }
+    }
   },
   data()
   {
-    return{
-        songData:{},
-        songArtists:{}
+    return {
+        songDuration:312
     }
   },
   computed:
   {
     current()
     {
-        return this.$parent.current && this.songPosition === this.$store.getters.getCurrentSongPos;
+        return this.$parent.current && this.index === this.$store.state.queue[this.$store.state.currentSongIndex];
     },
     isPlaying()
     {
@@ -67,40 +73,15 @@ export default {
       return String(Math.floor(this.songDuration/60)).padStart(2,'0')+":"+String(this.songDuration%60).padStart(2,'0');
     }
   },
-  created()
-  {
-    this.getSongData();
-    this.getSongArtists();
-  },
   methods:
   {
     setCurrentSong()
     {
-        if (!this.current) this.$emit('setCurrentSong');
-        else this.$store.state.isPlaying=!this.$store.state.isPlaying;
+        if (!this.current)
+        this.$emit('setCurrentSong');
+        else
+        this.$store.state.isPlaying=!this.$store.state.isPlaying;
     },
-    async getSongData()
-    {
-        const songDataRes = await axios.get("http://localhost:5000/songs/"+this.songID);
-        this.songData = songDataRes.data[0];
-    },
-    async getSongArtists()
-    {
-        const songArtistsRes = await axios.get("http://localhost:5000/songs/"+this.songID+"/artists");
-        this.songArtists = songArtistsRes.data;
-        for (let i = 0;i<this.songArtists.length;i++)
-        {
-            if (!this.songArtists[i].artistName && this.songArtists[i].artistID)
-            {
-                const artistRes = await axios.get("http://localhost:5000/artists/"+this.songArtists[i].artistID);
-                this.songArtists[i].artistName = artistRes.data[0].name;
-            }
-            if (!this.songArtists[i].artistName && !this.songArtists[i].artistID)
-            {
-                this.songArtists[i].artistName="unknown";
-            }
-        }
-    }
   }
 }
 
