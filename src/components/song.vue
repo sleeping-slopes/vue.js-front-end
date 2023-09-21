@@ -61,7 +61,7 @@ export default {
   {
     current()
     {
-        return this.$parent.current && this.index === this.$store.state.queue[this.$store.state.currentSongIndex];
+        return this.$parent.current && this.song.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos;
     },
     isPlaying()
     {

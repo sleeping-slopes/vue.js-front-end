@@ -8,20 +8,20 @@ export default createStore({
     currentPlaylist: JSON.parse('{}'),
 
     currentSongIndex: JSON.parse('-1'),
-    queue: JSON.parse('[]'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     isPlaying: false,
+    shuffle: false
   },
   getters:
   {
     getCurrentPlaylistSongPos(state)
     {
-      return JSON.stringify({playlist: state.currentPlaylist.playlistID, songPos:state.queue[state.currentSongIndex]});
+      return JSON.stringify({playlist: state.currentPlaylist.playlistID, songPos:state.currentSongIndex});
     },
     getCurrentSong(state)
     {
       if (state.currentPlaylist.songs)
-      return state.currentPlaylist.songs[state.queue[state.currentSongIndex]];
+      return state.currentPlaylist.songs[state.currentSongIndex];
     }
   },
   mutations:
@@ -31,17 +31,14 @@ export default createStore({
         state.currentPlaylist={playlistID:JSON.parse(playlistSong).playlist.playlistID, songs:JSON.parse(playlistSong).playlist.songs};
         localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
 
-        state.queue= [...Array(state.currentPlaylist.songs.length).keys()];
-        localStorage.setItem('queue', JSON.stringify(state.queue));
-
         state.currentSongIndex=JSON.parse(playlistSong).songIndex;
         localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
     },
     shiftCurrentSong(state,shift)
     {
       state.currentSongIndex+=shift;
-      if (state.currentSongIndex>=state.queue.length) state.currentSongIndex=0;
-      if (state.currentSongIndex<0) state.currentSongIndex=state.queue.length-1;
+      if (state.currentSongIndex>=state.currentPlaylist.songs.length) state.currentSongIndex=0;
+      if (state.currentSongIndex<0) state.currentSongIndex=state.currentPlaylist.songs.length-1;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
     },
     toggleTheme(state)
@@ -49,12 +46,20 @@ export default createStore({
       state.darkTheme=!state.darkTheme;
       localStorage.setItem('darkTheme', JSON.stringify(state.darkTheme));
     },
-    shuffleSongs(state)
+    shuffle(state)
     {
-      // for (let i = state.queue.length - 1; i > 0; i--) {
-      //   let j = Math.floor(Math.random() * (i + 1));
-      //   [state.queue[i], state.queue[j]] = [state.queue[j], state.queue[i]];
-      // }
+      this.state.shuffle=!this.state.shuffle;
+      if (this.state.shuffle)
+      for (let i = state.currentPlaylist.songs.length - 1; i > 0; i--)
+      {
+        let j = Math.floor(Math.random() * (i + 1));
+        if (i!==state.currentSongIndex && j!==state.currentSongIndex)
+        [state.currentPlaylist.songs[i], state.currentPlaylist.songs[j]] = [state.currentPlaylist.songs[j], state.currentPlaylist.songs[i]];
+      }
+      else
+      {
+        state.currentPlaylist.songs.sort((a,b)=>{return a.pos-b.pos});
+      }
     }
   },
   actions:
@@ -71,9 +76,9 @@ export default createStore({
     {
       commit("toggleTheme");
     },
-    shuffleSongs({commit})
+    shuffle({commit})
     {
-      commit("shuffleSongs");
+      commit("shuffle");
     }
   },
   modules: {

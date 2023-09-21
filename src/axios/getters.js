@@ -65,7 +65,7 @@ export async function getPlaylistSongs(playlistID)
                     songArtists[j].artistName="unknown";
                 }
             }
-            songsInfo[i]= {data:songDataRes.data[0],artists: songArtists};
+            songsInfo[i]= {data:songDataRes.data[0],artists: songArtists,pos:i};
         }
         return songsInfo;
     }
@@ -99,7 +99,7 @@ export async function getSongs()
                 songArtists[j].artistName="unknown";
             }
         }
-        songsInfo[i]= {data:songDataRes.data[0],artists: songArtists};
+        songsInfo[i]= {data:songDataRes.data[0],artists: songArtists,pos:i};
     }
     return songsInfo;
   }

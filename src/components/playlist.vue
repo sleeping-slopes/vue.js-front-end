@@ -33,7 +33,6 @@ export default {
     {
       //console.log(JSON.stringify({playlist: {playlistID:this.playlistID,songs:this.songs}, songIndex: songIndex}));
       this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {playlistID:this.playlistID,songs:this.songs}, songIndex: songIndex}));
-      this.$store.dispatch('shuffleSongs');
     }
   },
   props:

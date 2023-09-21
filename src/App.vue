@@ -35,6 +35,9 @@
         <div class="player-menu">
           <div class = "player-menu-button-row">
             <button class="round-button medium bi bi-plus-lg"></button>
+            <button class="round-button small bi bi-shuffle" v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
+              v-on:click = "this.$store.dispatch('shuffle')">
+            </button>
             <button class="round-button medium bi bi-skip-start-fill"
               v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
             <button class="round-button large"
