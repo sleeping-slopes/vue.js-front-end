@@ -3,20 +3,20 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    // currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') || '{}'),
-    // currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') || '-1'),
-    currentPlaylist: JSON.parse('{}'),
-
-    currentSongIndex: JSON.parse('-1'),
+    currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') || '{}'),
+    currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') || '-1'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
+    shuffle: JSON.parse(localStorage.getItem('shuffle') || 'false' ),
+    // currentPlaylist: JSON.parse('{}'),
+    // currentSongIndex: JSON.parse('-1'),
     isPlaying: false,
-    shuffle: false
   },
   getters:
   {
     getCurrentPlaylistSongPos(state)
     {
-      return JSON.stringify({playlist: state.currentPlaylist.playlistID, songPos:state.currentSongIndex});
+      if (state.currentPlaylist.songs)
+      return JSON.stringify({playlist: state.currentPlaylist.playlistID, songPos:state.currentPlaylist.songs[state.currentSongIndex].pos});
     },
     getCurrentSong(state)
     {
@@ -48,8 +48,8 @@ export default createStore({
     },
     shuffle(state)
     {
-      this.state.shuffle=!this.state.shuffle;
-      if (this.state.shuffle)
+      state.shuffle=!state.shuffle;
+      if (state.shuffle)
       for (let i = state.currentPlaylist.songs.length - 1; i > 0; i--)
       {
         let j = Math.floor(Math.random() * (i + 1));
@@ -58,8 +58,13 @@ export default createStore({
       }
       else
       {
+        state.currentSongIndex=state.currentPlaylist.songs[state.currentSongIndex].pos;
         state.currentPlaylist.songs.sort((a,b)=>{return a.pos-b.pos});
       }
+
+      localStorage.setItem('shuffle', JSON.stringify(state.shuffle));
+      localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
+      localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
     }
   },
   actions:
