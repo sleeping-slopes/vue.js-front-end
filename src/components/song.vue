@@ -1,9 +1,27 @@
 <template>
+<<<<<<< Updated upstream
     <div class = "song"
     v-on:click="setCurrentSong"
     v-bind:class="{'active': current}" >
         <div class = "wrapper-song-cover">
             <img class = "song-cover" :src="require(`../assets/covers/${songCover}`)"/>
+=======
+    <!-- <div class = "song" v-if="loading">
+        <div class = "wrapper-song-cover">
+            <div class = "song-cover bi bi-music-note"></div>
+        </div>
+        <div class= "song-info">
+            <div class ="song-info-name">loading</div>
+            <div class ="song-info-artist">loading</div>
+        </div>
+    </div> -->
+    <div class = "song" v-if="!loading"
+    v-on:click="setCurrentSong"
+    v-bind:class="{'active': current}">
+        <div class = "wrapper-song-cover">
+            <img class = "song-cover" v-if="this.song.coversrc" :src="require(`../assets/covers/${this.song.coversrc}`)"/>
+            <div class = "song-cover bi bi-music-note" v-else/>
+>>>>>>> Stashed changes
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
@@ -13,10 +31,23 @@
             </div>
         </div>
         <div class= "song-info">
+<<<<<<< Updated upstream
             <div class ="song-info-name">{{songName}}</div>
             <a href="#" class ="song-info-artist">{{songArtist}}</a>
+=======
+            <div class ="song-info-name">{{this.song.songName}}</div>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.song.artists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                        {{artist.name}}
+                    </router-link>
+                    <span v-if="index+1 < this.song.artists.length">, </span>
+                </div>
+            </div>
+>>>>>>> Stashed changes
         </div>
         <div class="songMenu">
+            <!-- <button class="songButton bi bi-check"></button> -->
             <button class="songButton bi bi-plus"></button>
             <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
@@ -25,6 +56,8 @@
   </template>
 
 <script>
+import { getSongData } from '@/axios/getters';
+
 
 export default {
   name: 'playlistSong',
@@ -33,18 +66,36 @@ export default {
     index: {type:Number, default: 0},
 
     songID: { type: Number, default: 0},
+<<<<<<< Updated upstream
     songPos: { type: Number, default: 0},
     songCover: { type: String, default: 'gorgorod2.jpg' },
     songName: { type: String, default: 'Без названия' },
     songArtist: { type: String, default: 'Неизвестный' },
     songDuration: { type: Number, default: 0 },
     audio: { type: String, default: 'no-cover.png' }
+=======
+    pos: { type: Number, default: 0},
+    index: { type: Number, default:0},
+  },
+  data()
+  {
+    return {
+        songDuration:312,
+        song:{},
+        loading:true
+    }
+>>>>>>> Stashed changes
   },
   computed:
   {
     current()
     {
+<<<<<<< Updated upstream
         return this.$parent.current && this.songPos === this.$store.getters.getCurrentSongPos;
+=======
+        return this.$parent.current && this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos;
+
+>>>>>>> Stashed changes
     },
     isPlaying()
     {
@@ -62,8 +113,20 @@ export default {
     {
         if (!this.current)
         this.$emit('setCurrentSong');
+<<<<<<< Updated upstream
         else this.$store.state.isPlaying=!this.$store.state.isPlaying;
     }
+=======
+        else
+        this.$store.state.isPlaying=!this.$store.state.isPlaying;
+    },
+  },
+  async mounted()
+  {
+    this.loading=true;
+    this.song = await getSongData(this.songID);
+    this.loading=false;
+>>>>>>> Stashed changes
   }
 }
 
@@ -231,8 +294,12 @@ export default {
     white-space: nowrap;
     position:relative;
     color: var(--text-color-primary);
+<<<<<<< Updated upstream
     display: flex;
     align-items:center;
+=======
+    overflow:hidden;
+>>>>>>> Stashed changes
 }
 
 .song-info-artist

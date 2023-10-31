@@ -8,12 +8,13 @@
           <div class = "panel-content">
             <playlist
               :playlistID="this.$store.state.currentPlaylist.playlistID"
-              :songs="this.$store.state.currentPlaylist.songs"
+              :songs="this.songs"
             />
           </div>
         </div>
         <router-view/>
       </div>
+<<<<<<< Updated upstream
       <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
         <div class ="song sidebar-width">
           <div class = "wrapper-song-cover">
@@ -22,6 +23,24 @@
           <div class= "song-info">
               <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
               <a href="#" class ="song-info-artist" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songArtist}}</a>
+=======
+      <div class="player" v-if="this.currentSong">
+        <div class ="song sidebar-width">
+          <div class = "wrapper-song-cover">
+            <img class = "song-cover" v-if="this.currentSong.coversrc" :src="require(`./assets/covers/${this.currentSong.coversrc}`)"/>
+            <div class = "song-cover bi bi-music-note" v-else/>
+          </div>
+          <div class= "song-info">
+              <div class ="song-info-name">{{this.currentSong.songName}}</div>
+              <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.currentSong.artists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id">
+                        {{artist.name}}
+                    </router-link>
+                    <span v-if="index+1 < this.currentSong.artists.length">, </span>
+              </div>
+            </div>
+>>>>>>> Stashed changes
           </div>
         </div>
         <div class="player-menu">
@@ -47,12 +66,12 @@
     </div>
   </div>
 </template>
-
-
 <script>
+
 import navbar from "@/components/navbar.vue"
 import playlist from "@/components/playlist.vue"
 import playlistModal from "@/components/playlistModal.vue"
+import { getSongData } from "./axios/getters"
 
 export default{
   components: {navbar,playlist,playlistModal},
@@ -60,33 +79,53 @@ export default{
   data()
   {
     return {
-      songCurrentTime: this.audio?this.audio.currentTime:0
+      songCurrentTime: this.audio?this.audio.currentTime:0,
+      currentSong:undefined,
+      songs: this.$store.state.currentPlaylist.songs
     }
   },
-  created()
+  async created()
   {
     this.audio = new Audio();
     this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
+<<<<<<< Updated upstream
     this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
   },
   watch:
   {
     '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
+=======
+    if (this.$store.getters.getCurrentSong)
+    {
+      this.currentSong = await getSongData(this.$store.getters.getCurrentSong);
+      this.audio.src=require(`./assets/audio/${this.currentSong.audiosrc}`);
+    }
+  },
+  watch:
+  {
+    async '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
+>>>>>>> Stashed changes
     {
       // alert(this.$store.getters.getCurrentSongPlaylistPos);
       this.$store.state.isPlaying=false;
+<<<<<<< Updated upstream
       this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
+=======
+      this.currentSong = await getSongData(this.$store.getters.getCurrentSong);
+      this.audio.src=require(`./assets/audio/${this.currentSong.audiosrc}`);
+>>>>>>> Stashed changes
       this.audio.load();
       setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
+    },
+    '$store.getters.getCurrentPlaylist'(songs)
+    {
+      this.songs = this.$store.state.currentPlaylist.songs;
     },
     '$store.state.isPlaying'(playing)
     {
       if (playing) this.audio.play();
       else this.audio.pause();
     }
-  },
-  computed:
-  {
   },
   methods:
   {

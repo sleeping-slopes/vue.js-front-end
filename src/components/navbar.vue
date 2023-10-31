@@ -1,6 +1,6 @@
 <template>
     <nav>
-      <div class = "logo sidebar-width" v-on:click="this.$store.dispatch('toggleTheme')"></div>
+      <div class = "logo sidebar-width"></div>
       <div class="nav-mainmenu">
         <router-link class="navlink" to="/discover">Discover</router-link>
         <router-link class="navlink" to="/library">My library</router-link>
@@ -11,29 +11,42 @@
           </div>
         </div>
       </div>
+<<<<<<< Updated upstream
       <div class="nav-usermenu sidebar-width">
         <div class="wrapper-button-main"><button class="button-signup">Sign up</button></div>
         <div class="wrapper-button-main"><button class="button-main">Log in</button></div>
       </div>
 
+=======
+      <usermenu/>
+>>>>>>> Stashed changes
     </nav>
   </template>
-
-
   <script>
-  export default {}
+
+import usermenu from "@/components/usermenu.vue"
+
+  export default
+  {
+    name:'navbar',
+    components: {usermenu}
+  }
   </script>
 
   <style>
 
   nav
   {
-    height: 44px;
-    min-height:44px;
+    height: 32px;
+    min-height:32px;
     display:flex;
     align-items: center;
     gap:10px;
+<<<<<<< Updated upstream
     user-select: none;
+=======
+
+>>>>>>> Stashed changes
   }
 
   .sidebar-width
@@ -73,6 +86,11 @@
     position:relative;
     text-decoration: none;
     white-space: nowrap;
+<<<<<<< Updated upstream
+=======
+    font-size:1.25rem;
+    font-weight:bold;
+>>>>>>> Stashed changes
   }
 
   .navlink:hover
@@ -159,6 +177,7 @@
     color: var(--text-color-primary);
   }
 
+<<<<<<< Updated upstream
   .nav-usermenu
   {
     display:flex;
@@ -225,4 +244,6 @@
     background-color: var(--text-color-secondary);
   }
 
+=======
+>>>>>>> Stashed changes
   </style>

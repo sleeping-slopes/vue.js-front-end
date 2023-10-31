@@ -1,8 +1,21 @@
 <template>
   <div class="browser">
+<<<<<<< Updated upstream
 
       <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
         <div class="panel-header">Playlists</div>
+=======
+    <div style="display:flex;flex-direction: column; width:100%; overflow: hidden; gap:10px;">
+    <!-- <div class="panel" style="height:100%;">
+      <div class="panel-header">Artists</div>
+      <div class="panel-content">
+        test
+      </div>
+    </div> -->
+    <playlistCarousel :playlists="playlists"/>
+    <div class="panel" style="height:100%;">
+        <div class="panel-header">Songs</div>
+>>>>>>> Stashed changes
         <div class="panel-content">
           <playlistCarousel :playlists="playlists"/>
         </div>

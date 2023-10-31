@@ -1,5 +1,5 @@
 <template>
-  <div class="browser">
+  <div class="browser" >
 
     <div style="display:flex;flex-direction: column; width:100%; overflow: hidden; gap:10px;">
 
@@ -24,9 +24,15 @@
     <div class = "panel sidebar-width" style="height:100%">
       <div class="panel-header">Recently played</div>
       <div class="panel-content">
+<<<<<<< Updated upstream
       <playlist
           :playlistID="lastListened.playlistID"
           :songs="lastListened.songs"
+=======
+        <playlist
+          :playlistID="this.lastListened.playlistID"
+          :songs="this.$store.state.recentListened"
+>>>>>>> Stashed changes
         />
       </div>
     </div>
@@ -39,6 +45,10 @@ import playlistCarousel from '@/components/playlistCarousel.vue'
 import playlist from '@/components/playlist.vue'
 import playlistModal from '@/components/playlistModal.vue'
 
+<<<<<<< Updated upstream
+=======
+import {getUserSongs, getUserPlaylists} from "@/axios/getters.js"
+>>>>>>> Stashed changes
 
 export default {
   name: 'MyLibrary',
@@ -265,6 +275,7 @@ export default {
       },
       lastListened:
       {
+<<<<<<< Updated upstream
         playlistID:'lastListened',
         songs:
         [
@@ -377,9 +388,17 @@ export default {
             songDuration: 122
           }
         ]
+=======
+        playlistID:'lastListened'
+>>>>>>> Stashed changes
       }
     }
   },
+  async created()
+  {
+    this.playlists = await getUserPlaylists();
+    this.myAudio.songs = await getUserSongs();
+  }
 }
 </script>
 

@@ -3,6 +3,7 @@
   <div class = "playlist">
     <song v-for="(song,index) in songs"
       :index = "index"
+<<<<<<< Updated upstream
       :songID="song.songID"
       :songPos="song.songPos"
       :audio="song.audio"
@@ -10,6 +11,11 @@
       :songName="song.songName"
       :songArtist="song.songArtist"
       :songDuration="song.songDuration"
+=======
+      :songID="song.id"
+      :pos="song.pos"
+      :key="{id:song.id,pos:song.pos}"
+>>>>>>> Stashed changes
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
       @deleteSong="deleteSong(index)"
     />

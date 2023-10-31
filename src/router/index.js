@@ -5,6 +5,10 @@ import playlistModal from '@/components/playlistModal.vue'
 
 const routes = [
   {
+    path: '/',
+    redirect:'/discover/main'
+  },
+  {
     path: '/discover',
     component: DiscoverView,
     children:

@@ -6,10 +6,25 @@
     <div class="modal">
       <div class="panel" style="width:600px;">
         <div class="playlist-header">
+<<<<<<< Updated upstream
           <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
           <div class="playlist-info">
             <div class="playlist-info-name">Warlord</div>
             <div class="playlist-info-artist">Yung Lean</div>
+=======
+          <img class = "playlist-modal-cover bi bi-music-note-list" v-if="this.playlist.coversrc" :src="require(`../assets/covers/${this.playlist.coversrc}`)"/>
+          <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
+          <div class="playlist-info">
+            <div class="playlist-info-name">{{this.playlist.name}}</div>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.playlist.artists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                        {{artist.name}}
+                    </router-link>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
+                </div>
+            </div>
+>>>>>>> Stashed changes
             <div class="playlist-button-row">
               <button class="testbtn bi bi-plus-lg">Add to my library</button>
             </div>
@@ -17,8 +32,13 @@
         </div>
         <div class="panel-content" style="max-height:635px">
           <playlist
+<<<<<<< Updated upstream
             :playlistID="this.$store.state.currentPlaylist.playlistID"
             :songs="this.$store.state.currentPlaylist.songs"
+=======
+            :playlistID="this.playlist.id+''"
+            :songs="this.songs"
+>>>>>>> Stashed changes
           />
         </div>
       </div>
@@ -30,7 +50,12 @@
 
 <script>
 
+<<<<<<< Updated upstream
 import playlist from "@/components/playlist.vue"
+=======
+import playlist from "@/components/playlist.vue";
+import { getPlaylistData, getPlaylistSongs} from "@/axios/getters.js"
+>>>>>>> Stashed changes
 
 export default {
   name: 'playlistModal',
@@ -43,9 +68,16 @@ export default {
   {
 
   },
+<<<<<<< Updated upstream
   props:
   {
 
+=======
+  async mounted()
+  {
+    this.playlist = await getPlaylistData(this.playlistID);
+    this.songs = await getPlaylistSongs(this.playlistID);
+>>>>>>> Stashed changes
   }
 }
 </script>
