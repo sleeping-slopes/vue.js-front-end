@@ -3,140 +3,44 @@
     <div class="window">
       <navbar/>
       <div class = "main" >
-        <div class = "panel sidebar-width" style="height:100%">
-          <div class = "panel-header">Current playlist</div>
-          <div class = "panel-content">
+        <panel class = "sidebar-width" style="height:100%">
+          <template v-slot:header>Current playlist</template>
+          <template v-slot:menu>
+            <button class="round-button small bi bi-shuffle"
+              v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
+              v-on:click = "this.$store.dispatch('shuffle')">
+            </button>
+          </template>
+          <template v-slot:content>
             <playlist
-              :playlistID="this.$store.state.currentPlaylist.playlistID"
-              :songs="this.songs"
+              :id="this.$store.state.currentPlaylist.id"
+              :songs="this.$store.state.currentPlaylist.songs"
             />
-          </div>
+        </template>
+        </panel>
+        <div class="browser">
+          <router-view/>
         </div>
-        <router-view/>
       </div>
-<<<<<<< Updated upstream
-      <div class="player" v-if="this.$store.state.currentPlaylist.songs && this.$store.state.currentPlaylist.songs.length>0 && this.$store.state.currentSongIndex>=0">
-        <div class ="song sidebar-width">
-          <div class = "wrapper-song-cover">
-            <img class = "song-cover" :src="require(`./assets/covers/${this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].cover}`)"/>
-          </div>
-          <div class= "song-info">
-              <div class ="song-info-name" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songName}}</div>
-              <a href="#" class ="song-info-artist" style="font-size:20px">{{this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].songArtist}}</a>
-=======
-      <div class="player" v-if="this.currentSong">
-        <div class ="song sidebar-width">
-          <div class = "wrapper-song-cover">
-            <img class = "song-cover" v-if="this.currentSong.coversrc" :src="require(`./assets/covers/${this.currentSong.coversrc}`)"/>
-            <div class = "song-cover bi bi-music-note" v-else/>
-          </div>
-          <div class= "song-info">
-              <div class ="song-info-name">{{this.currentSong.songName}}</div>
-              <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.currentSong.artists">
-                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id">
-                        {{artist.name}}
-                    </router-link>
-                    <span v-if="index+1 < this.currentSong.artists.length">, </span>
-              </div>
-            </div>
->>>>>>> Stashed changes
-          </div>
-        </div>
-        <div class="player-menu">
-          <div class = "player-menu-button-row">
-            <button class="round-button medium bi bi-plus-lg"></button>
-            <button class="round-button medium bi bi-skip-start-fill"
-              v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
-            <button class="round-button large"
-              v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle'"
-              v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
-            <button class="round-button medium bi bi-skip-end-fill"
-              v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
-            <button class="round-button medium bi bi-repeat"></button>
-          </div>
-          <div class="slider-wrapper">
-            <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
-            <input class="song-slider" type="range" min="1" max="100" value="0" @change="test()">
-            <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
-          </div>
-        </div>
-        <div class ="sidebar-width"></div>
-      </div>
+      <player/>
     </div>
   </div>
 </template>
+
 <script>
 
 import navbar from "@/components/navbar.vue"
+import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 import playlistModal from "@/components/playlistModal.vue"
-import { getSongData } from "./axios/getters"
+import player from "@/components/player.vue"
 
-export default{
-  components: {navbar,playlist,playlistModal},
+export default
+{
   name: 'app',
-  data()
+  components:
   {
-    return {
-      songCurrentTime: this.audio?this.audio.currentTime:0,
-      currentSong:undefined,
-      songs: this.$store.state.currentPlaylist.songs
-    }
-  },
-  async created()
-  {
-    this.audio = new Audio();
-    this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
-<<<<<<< Updated upstream
-    this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
-  },
-  watch:
-  {
-    '$store.getters.getCurrentSongPlaylistPos'(playlistSong)
-=======
-    if (this.$store.getters.getCurrentSong)
-    {
-      this.currentSong = await getSongData(this.$store.getters.getCurrentSong);
-      this.audio.src=require(`./assets/audio/${this.currentSong.audiosrc}`);
-    }
-  },
-  watch:
-  {
-    async '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
->>>>>>> Stashed changes
-    {
-      // alert(this.$store.getters.getCurrentSongPlaylistPos);
-      this.$store.state.isPlaying=false;
-<<<<<<< Updated upstream
-      this.audio.src=require(`./assets/audio/${this.$store.getters.getCurrentSongSrc}`);
-=======
-      this.currentSong = await getSongData(this.$store.getters.getCurrentSong);
-      this.audio.src=require(`./assets/audio/${this.currentSong.audiosrc}`);
->>>>>>> Stashed changes
-      this.audio.load();
-      setTimeout(()=>{this.$store.state.isPlaying=true}, 500);
-    },
-    '$store.getters.getCurrentPlaylist'(songs)
-    {
-      this.songs = this.$store.state.currentPlaylist.songs;
-    },
-    '$store.state.isPlaying'(playing)
-    {
-      if (playing) this.audio.play();
-      else this.audio.pause();
-    }
-  },
-  methods:
-  {
-    secsToMins(sec)
-    {
-      return String(Math.floor(sec/60)).padStart(2,'0')+":"+String(Math.floor(sec)%60).padStart(2,'0');
-    },
-    test()
-    {
-      alert(1);
-    }
+    navbar,panel,playlist,playlistModal,player
   }
 }
 
@@ -172,88 +76,14 @@ export default{
   overflow:hidden;
 }
 
-.panel
+.browser
 {
-  border: 2px solid var(--panel-border-color);
-  background-color: var(--panel-background-color);
-  border-radius:10px;
-  display:flex;
-  flex-direction: column;
-  overflow:hidden;
-  box-sizing: border-box;
-
-}
-
-.panel-header
-{
-  display:flex;
-  height:48px;
-  align-items: center;
-  color:var(--text-color-primary);
-  font-family: "Kanit semibold", sans-serif;
-  font-size:18px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding-left:5px;
-  padding-right:5px;
-}
-
-.panel-content
-{
-
-  box-sizing: border-box;
-  overflow:hidden;
-}
-
-.playlist-menu-button-row
-{
-  display:flex;
-  height:48px;
-  flex-shrink:0;
-}
-
-.button-switch
-{
-    background-color:var(--panel-border-color);
-    color: var(--text-color-secondary);
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
-    height:100%;
-    width:100%;
-    cursor:pointer;
-    white-space: nowrap;
-    border:none;
-    position:relative;
-}
-
-.button-switch i
-{
-    margin-right:4px;
-}
-
-.button-switch:hover
-{
-  color: var(--text-color-primary);
-}
-
-.button-switch.active
-{
-  color: var(--text-color-primary);
-  background-color:transparent;
-}
-
-.button-switch.active::after
-{
-  content:"";
-  position:absolute;
   width:100%;
-  height:2px;
-  background-color:cornflowerblue;
-  left:0;
-  right:0;
-  margin-left: auto;
-  margin-right: auto;
-  bottom:0px;
+  height:100%;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  gap:10px;
 }
 
 .display-none
@@ -261,83 +91,20 @@ export default{
   display:none;
 }
 
-.player
+.button-link
 {
-    display:flex;
-    width:100%;
-    gap:10px;
-}
-
-.player-menu
-{
-  width:100%;
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.player-menu-button-row
-{
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  gap:5px;
-}
-
-.round-button
-{
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  background:none;
-  border:none;
   color: var(--text-color-primary);
-  padding:0px;
-  margin:0px;
-  border-radius:50%;
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
   cursor:pointer;
+  text-decoration: underline;
 }
 
-.round-button.large
+.button-link:active
 {
-  font-size:44px;
-  height:42px;
-  width:42px;
+  color: var(--text-color-secondary);
 }
 
-.round-button.medium
-{
-  font-size:30px;
-  height:28px;
-  width:28px;
-}
 
-.round-button.small
-{
-  font-size:22px;
-  height:20px;
-  width:20px;
-}
-
-.slider-wrapper
-{
-  display:flex;
-}
-
-.song-time
-{
-  color: var(--text-color-primary);
-  font-size:16px;
-  font-family: "Kanit semibold", sans-serif;
-  width:64px;
-  overflow:hidden;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.song-slider
-{
-  width:100%;
-}
 </style>

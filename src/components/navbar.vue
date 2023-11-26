@@ -1,6 +1,6 @@
 <template>
     <nav>
-      <div class = "logo sidebar-width"></div>
+      <div class = "logo sidebar-width" v-on:click="this.$store.dispatch('toggleTheme')"></div>
       <div class="nav-mainmenu">
         <router-link class="navlink" to="/discover">Discover</router-link>
         <router-link class="navlink" to="/library">My library</router-link>
@@ -11,25 +11,18 @@
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
       <div class="nav-usermenu sidebar-width">
-        <div class="wrapper-button-main"><button class="button-signup">Sign up</button></div>
-        <div class="wrapper-button-main"><button class="button-main">Log in</button></div>
+        <router-link to="/signup" class="button-signup">Sign up</router-link>
+        <router-link to="/login" class="button-main">Log in</router-link>
       </div>
-
-=======
-      <usermenu/>
->>>>>>> Stashed changes
     </nav>
   </template>
+
+
   <script>
-
-import usermenu from "@/components/usermenu.vue"
-
   export default
   {
-    name:'navbar',
-    components: {usermenu}
+    name: 'navbar'
   }
   </script>
 
@@ -37,23 +30,18 @@ import usermenu from "@/components/usermenu.vue"
 
   nav
   {
-    height: 32px;
-    min-height:32px;
+    height: 44px;
+    min-height:44px;
     display:flex;
     align-items: center;
     gap:10px;
-<<<<<<< Updated upstream
-    user-select: none;
-=======
-
->>>>>>> Stashed changes
   }
 
   .sidebar-width
   {
-    min-width:320px;
-    width:320px;
-    max-width:320px;
+    min-width:360px;
+    width:360px;
+    max-width:360px;
   }
 
   .logo
@@ -79,18 +67,14 @@ import usermenu from "@/components/usermenu.vue"
     color: var(--text-color-secondary);
     border: none;
     background-color: transparent;
-    font-size:18px;
-    font-family: "Kanit semibold", sans-serif;
     cursor:pointer;
     transition: all 0.2s;
     position:relative;
     text-decoration: none;
     white-space: nowrap;
-<<<<<<< Updated upstream
-=======
+
     font-size:1.25rem;
     font-weight:bold;
->>>>>>> Stashed changes
   }
 
   .navlink:hover
@@ -130,7 +114,6 @@ import usermenu from "@/components/usermenu.vue"
     padding-left: 12px;
     padding-right: 6px;
     color: var(--text-color-secondary);
-    font-size:16px;
     transition: color 0.2s;
   }
 
@@ -158,13 +141,9 @@ import usermenu from "@/components/usermenu.vue"
   .search
   {
     height:100%;
-    width:97%;
     background-color: transparent;
     color: var(--text-color-primary);
     border-style:none;
-    font-size:16px;
-    font-family: "Kanit regular", sans-serif;
-
   }
 
   .search:focus
@@ -177,7 +156,6 @@ import usermenu from "@/components/usermenu.vue"
     color: var(--text-color-primary);
   }
 
-<<<<<<< Updated upstream
   .nav-usermenu
   {
     display:flex;
@@ -185,16 +163,7 @@ import usermenu from "@/components/usermenu.vue"
     align-items: center;
     height:100%;
     margin-left:auto;
-  }
-
-  .wrapper-button-main
-  {
-    display:inline-flex;
-    height:100%;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    min-width:120px;
+    gap:20px;
   }
 
   .button-signup
@@ -202,20 +171,17 @@ import usermenu from "@/components/usermenu.vue"
     color: var(--text-color-secondary);
     border: none;
     background-color: transparent;
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
+    text-decoration: none;
     cursor:pointer;
   }
 
   .button-signup:hover
   {
-    font-size:18px;
     color: var(--text-color-primary);
   }
 
   .button-signup:active
   {
-    font-size:18px;
     color: var(--text-color-secondary);
   }
 
@@ -223,27 +189,25 @@ import usermenu from "@/components/usermenu.vue"
   {
     background-color: var(--text-color-primary);
     color: var(--main-background-color);
-    font-size:16px;
-    font-family: "Kanit semibold", sans-serif;
     height:min-content;
     width:min-content;
-    padding:5px 30px 5px 30px;
+    padding:5px 20px 5px 20px;
     border-radius: 50vh;
     cursor:pointer;
     border: none;
+    white-space: nowrap;
+    text-decoration: none;
   }
 
   .button-main:hover
   {
-    font-size:18px;
+    transform: scale(1.1);
   }
 
   .button-main:active
   {
-    font-size:16px;
     background-color: var(--text-color-secondary);
+    transform: scale(1.0);
   }
 
-=======
->>>>>>> Stashed changes
   </style>

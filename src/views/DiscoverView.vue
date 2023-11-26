@@ -1,157 +1,59 @@
 <template>
-  <div class="browser">
-<<<<<<< Updated upstream
 
-      <div class="panel" style="flex-shrink:0; width:100%; height:max-content">
-        <div class="panel-header">Playlists</div>
-=======
     <div style="display:flex;flex-direction: column; width:100%; overflow: hidden; gap:10px;">
-    <!-- <div class="panel" style="height:100%;">
-      <div class="panel-header">Artists</div>
-      <div class="panel-content">
-        test
-      </div>
-    </div> -->
-    <playlistCarousel :playlists="playlists"/>
-    <div class="panel" style="height:100%;">
-        <div class="panel-header">Songs</div>
->>>>>>> Stashed changes
-        <div class="panel-content">
-          <playlistCarousel :playlists="playlists"/>
-        </div>
 
-      </div>
-
+    <panel style="flex-shrink:0; width:100%; height:max-content">
+      <template v-slot:header>Playlists</template>
+      <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template>
+      <template v-slot:content>
+        <playlistCarousel :playlists="playlists"/>
+      </template>
+    </panel>
+    <panel style="height:100%;">
+      <template v-slot:header>Songs</template>
+      <template v-slot:content>
+        <playlist
+        :id="discoverPlaylist.id"
+        :songs="discoverPlaylist.songs"
+        />
+      </template>
+    </panel>
   </div>
 </template>
 
 <script>
 
-import playlistCarousel from '@/components/playlistCarousel.vue'
+import panel from '@/components/panel.vue';
+import playlistCarousel from '@/components/playlistCarousel.vue';
+import playlist from '@/components/playlist.vue';
+
+import {getSongs, getPlaylists} from "@/axios/getters.js"
 
 export default {
-  name: 'discover',
+  name: 'DiscoverView',
   components:
   {
-    playlistCarousel
+    panel,playlistCarousel,playlist
   },
   data()
   {
     return {
-      playlists:
-      [
-        {
-          playlistName:'807 + 1',
-          playlistArtist:'808RUS',
-          playlistCover: '807 + 1.jpg',
-          playlistID: '0'
-        },
-        {
-          playlistName:'Born to Die',
-          playlistArtist:'Lana Del Rey',
-          playlistCover: 'Born to Die.png',
-          playlistID: '1'
-        },
-        {
-          playlistName:'TESTING',
-          playlistArtist:'A$AP Rocky',
-          playlistCover: 'TESTING.png',
-          playlistID: '2'
-        },
-        {
-          playlistName:'IGOR',
-          playlistArtist:'Tyler, the Creator',
-          playlistCover: 'IGOR.jpg',
-          playlistID: '3'
-        },
-        {
-          playlistName:'Flower boy',
-          playlistArtist:'Tyler, the Creator',
-          playlistCover: 'Flower boy.jpg',
-          playlistID: '4'
-        },
-        {
-          playlistName:'Sweet Dreams',
-          playlistArtist:'Boulevard Depo',
-          playlistCover: 'Sweet Dreams.png',
-          playlistID: '5'
-        },
-        {
-          playlistName:'Warlord',
-          playlistArtist:'Yung Lean',
-          playlistCover: 'WARLORD.jpg',
-          playlistID: '6'
-        },
-        {
-          playlistName:'WILD EA$T',
-          playlistArtist:'SALUKI',
-          playlistCover: 'WILD EAST.png',
-          playlistID: '7'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '8'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '9'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '10'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '11'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '12'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '13'
-        },
-        {
-          playlistName:'Горгород',
-          playlistArtist:'Oxxxymiron',
-          playlistCover: 'gorgorod.jpg',
-          playlistID: '14'
-        },
-        {
-          playlistName:'Горгород 2',
-          playlistArtist:'Слава КПСС',
-          playlistCover: 'gorgorod2.jpg',
-          playlistID: '15'
-        }
-      ]
+      playlists:[],
+      discoverPlaylist:
+      {
+        id:'discover',
+        songs:[]
+      },
     }
   },
+  async mounted()
+  {
+    this.playlists = await getPlaylists();
+    this.discoverPlaylist.songs = await getSongs();
+  }
 }
 </script>
 
 <style>
 
-/* .browser
-{
-  width:100%;
-  gap:10px;
-  display:flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  overflow:hidden;
-  justify-content: center;
-} */
 </style>

@@ -1,27 +1,8 @@
 <template>
-<<<<<<< Updated upstream
-    <div class = "song"
-    v-on:click="setCurrentSong"
-    v-bind:class="{'active': current}" >
+    <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
         <div class = "wrapper-song-cover">
-            <img class = "song-cover" :src="require(`../assets/covers/${songCover}`)"/>
-=======
-    <!-- <div class = "song" v-if="loading">
-        <div class = "wrapper-song-cover">
-            <div class = "song-cover bi bi-music-note"></div>
-        </div>
-        <div class= "song-info">
-            <div class ="song-info-name">loading</div>
-            <div class ="song-info-artist">loading</div>
-        </div>
-    </div> -->
-    <div class = "song" v-if="!loading"
-    v-on:click="setCurrentSong"
-    v-bind:class="{'active': current}">
-        <div class = "wrapper-song-cover">
-            <img class = "song-cover" v-if="this.song.coversrc" :src="require(`../assets/covers/${this.song.coversrc}`)"/>
+            <img class = "song-cover" v-if="cover" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="cover=false" />
             <div class = "song-cover bi bi-music-note" v-else/>
->>>>>>> Stashed changes
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
@@ -31,11 +12,7 @@
             </div>
         </div>
         <div class= "song-info">
-<<<<<<< Updated upstream
-            <div class ="song-info-name">{{songName}}</div>
-            <a href="#" class ="song-info-artist">{{songArtist}}</a>
-=======
-            <div class ="song-info-name">{{this.song.songName}}</div>
+            <div class ="song-info-name">{{this.song.name}}</div>
             <div class ="song-info-artist">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
@@ -44,10 +21,8 @@
                     <span v-if="index+1 < this.song.artists.length">, </span>
                 </div>
             </div>
->>>>>>> Stashed changes
         </div>
         <div class="songMenu">
-            <!-- <button class="songButton bi bi-check"></button> -->
             <button class="songButton bi bi-plus"></button>
             <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
@@ -56,46 +31,35 @@
   </template>
 
 <script>
-import { getSongData } from '@/axios/getters';
 
+import { getSong } from "@/axios/getters.js"
 
-export default {
-  name: 'playlistSong',
+export default
+{
+  name: 'song',
   props:
   {
-    index: {type:Number, default: 0},
-
-    songID: { type: Number, default: 0},
-<<<<<<< Updated upstream
-    songPos: { type: Number, default: 0},
-    songCover: { type: String, default: 'gorgorod2.jpg' },
-    songName: { type: String, default: 'Без названия' },
-    songArtist: { type: String, default: 'Неизвестный' },
-    songDuration: { type: Number, default: 0 },
-    audio: { type: String, default: 'no-cover.png' }
-=======
+    id: { type: Number, default: 0},
     pos: { type: Number, default: 0},
     index: { type: Number, default:0},
   },
   data()
   {
     return {
-        songDuration:312,
         song:{},
-        loading:true
+        songDuration:312,
+        cover:true,
     }
->>>>>>> Stashed changes
+  },
+  async mounted()
+  {
+    this.song = await getSong(this.id);
   },
   computed:
   {
     current()
     {
-<<<<<<< Updated upstream
-        return this.$parent.current && this.songPos === this.$store.getters.getCurrentSongPos;
-=======
         return this.$parent.current && this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos;
-
->>>>>>> Stashed changes
     },
     isPlaying()
     {
@@ -112,21 +76,10 @@ export default {
     setCurrentSong()
     {
         if (!this.current)
-        this.$emit('setCurrentSong');
-<<<<<<< Updated upstream
-        else this.$store.state.isPlaying=!this.$store.state.isPlaying;
-    }
-=======
+            this.$emit('setCurrentSong');
         else
-        this.$store.state.isPlaying=!this.$store.state.isPlaying;
+            this.$store.state.isPlaying=!this.$store.state.isPlaying;
     },
-  },
-  async mounted()
-  {
-    this.loading=true;
-    this.song = await getSongData(this.songID);
-    this.loading=false;
->>>>>>> Stashed changes
   }
 }
 
@@ -152,6 +105,7 @@ export default {
 {
     height:64px;
     padding:0px;
+    font-size:1.25rem;
 }
 
 .wrapper-song-cover
@@ -162,11 +116,10 @@ export default {
     margin:auto;
     display:flex;
     justify-content: center;
-    user-select: none;
     align-items: center;
 }
 
-.playlist .wrapper-song-cover
+.wrapper-song-cover
 {
     min-width:48px;
     min-height:48px;
@@ -189,7 +142,6 @@ export default {
 
 .wrapper-wave
 {
-    user-select: none;
     display:flex;
     width: 25px;
     height:25px;
@@ -237,6 +189,12 @@ export default {
     position: absolute;
     height:100%;
     width:100%;
+    background-color:var(--panel-border-color);
+    color:var(--text-color-secondary);
+    align-items: center;
+    display:flex;
+    justify-content:center;
+    font-size:2em;
 }
 
 .song .song-cover-shade
@@ -254,7 +212,7 @@ export default {
     display:none;
 }
 
-.song:hover .song-cover-shade
+.playlist .song:hover .song-cover-shade
 {
     visibility:visible;
 }
@@ -283,55 +241,63 @@ export default {
     flex-direction: column;
     justify-content: center;
     height:100%;
+    overflow:hidden;
 }
 
 .song-info-name
 {
-    width:100%;
-    height:50%;
-    font-family: "Kanit regular", sans-serif;
-    font-size:16px;
-    white-space: nowrap;
-    position:relative;
-    color: var(--text-color-primary);
-<<<<<<< Updated upstream
     display: flex;
     align-items:center;
-=======
+    width:100%;
+    height:50%;
+    white-space: nowrap;
+    color: var(--text-color-primary);
     overflow:hidden;
->>>>>>> Stashed changes
+
 }
 
 .song-info-artist
 {
-    width:100%;
-    height:50%;
-    font-family: "Kanit regular", sans-serif;
-    font-size:16px;
-    white-space: nowrap;
-    position:relative;
-    color: var(--text-color-secondary);
-    text-decoration: none;
     display: flex;
     align-items:center;
+    width:100%;
+    height:50%;
+    white-space: nowrap;
+    color: var(--text-color-secondary);
+    overflow:hidden;
+
 }
+
+.artistlink
+{
+    text-decoration: none;
+    overflow:hidden;
+
+    color:inherit;
+}
+
+.artistlink:hover
+{
+    text-decoration: underline;
+}
+
 
 .song .songMenu
 {
     display:none;
     gap:5px;
     height:100%;
+    align-items: center;
 }
 
-.song:hover .song-duration
+.playlist .song:hover .song-duration
 {
     display:none;
 }
 
-.song:hover .songMenu
+.playlist .song:hover .songMenu
 {
     display:flex;
-    align-items: center;
 }
 
 .songMenu .songButton
@@ -341,10 +307,10 @@ export default {
     border:none;
     color: var(--text-color-secondary);
     cursor:pointer;
-    font-size:24px;
     padding:0px;
     margin:0px;
     transition:0.2s;
+    font-size:1.5em;
 }
 
 .songMenu .songButton:hover
@@ -352,19 +318,17 @@ export default {
     color: var(--text-color-primary);
 }
 
-.song-info-artist:hover
-{
-    text-decoration: underline;
-}
-
 .song-duration
 {
-    font-size:14px;
-    font-family: "Kanit regular", sans-serif;
+    display:none;
     margin: auto;
     text-align: center;
     color: var(--text-color-secondary);
-    user-select:none;
+}
+
+.playlist .song-duration
+{
+    display:inline;
 }
 
 .song .wrapper-wave
@@ -387,7 +351,7 @@ export default {
     background-color:var(--selected-item-background-color);
 }
 
-.song:hover .round-button
+.playlist .song:hover .round-button
 {
     visibility: visible;
 }

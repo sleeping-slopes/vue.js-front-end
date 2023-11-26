@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export async function getPlaylists()
 {
     try
@@ -14,24 +13,25 @@ export async function getPlaylists()
     }
 }
 
-export async function getPlaylistData(playlistID)
+export async function getPlaylist(playlistID)
 {
     try
     {
         const playlistDataRes = await axios.get("http://localhost:5000/api/playlists/"+playlistID);
+        // if (playlistDataRes.data.status==404) alert(playlistDataRes.data.message);
         return playlistDataRes.data.values;
     }
     catch(err)
     {
-        console.log(err);
+        return err.response.data.values;
     }
 }
 
-export async function getPlaylistSongs(playlistID)
+export async function getPlaylistSongs(id)
 {
     try
     {
-        const playlistsSongsRes = await axios.get("http://localhost:5000/api/playlists/"+playlistID+"/songs");
+        const playlistsSongsRes = await axios.get("http://localhost:5000/api/playlists/"+id+"/songs");
         return playlistsSongsRes.data.values;
     }
     catch(err)
@@ -42,105 +42,39 @@ export async function getPlaylistSongs(playlistID)
 
 export async function getSongs()
 {
-    try
-    {
-        const songsRes = await axios.get("http://localhost:5000/api/songs");
-        const songsInfo = [];
-        for (let i = 0;i<songsRes.data.values.length;i++)
-        {
-            songsInfo[i]={id:songsRes.data.values[i].id,pos:i};
-        }
-        return songsInfo;
-    }
-    catch(err)
-    {
-        console.log(err);
-    }
-}
-
-export async function getSongData(songID)
-{
-    try
-    {
-        const songDataRes = await axios.get("http://localhost:5000/api/songs/"+songID);
-        return songDataRes.data.values;
-    }
-    catch(err)
-    {
-        console.log(err);
-    }
-}
-
-
-
-export async function postUser(email,password,username)
-{
-    try
-    {
-        const postUserRes = await axios.post("http://localhost:5000/api/auth/signup",{ email:email, password:password, username:username});
-        return postUserRes.data.values;
-    }
-    catch(err)
-    {
-        return err.response.data.values;
-    }
-}
-
-export async function logInUser(username,password)
-{
-    try
-    {
-        const logInUserRes = await axios.post("http://localhost:5000/api/auth/login",{ username:username, password:password });
-        return logInUserRes.data.values;
-    }
-    catch(err)
-    {
-        return err.response.data.values;
-    }
-}
-
-export async function getUser()
-{
-    try
-    {
-        const userRes = await axios.get("http://localhost:5000/api/user");
-        return userRes.data;
-    }
-    catch(err)
-    {
-        return err.response.data;
-    }
-}
-
-export async function getUserPlaylists()
-{
-    try
-    {
-        const playlistsRes = await axios.get("http://localhost:5000/api/user/playlists");
-        return playlistsRes.data.values;
-    }
-    catch(err)
-    {
-        console.log(err.response.data.values.message);
-        return [];
-    }
-}
-
-export async function getUserSongs()
-{
   try
   {
-    const songsRes = await axios.get("http://localhost:5000/api/user/songs");
-    const songsInfo = [];
-    for (let i = 0;i<songsRes.data.values.length;i++)
-    {
-        songsInfo[i]= {id:songsRes.data.values[i].id,pos:i};
-    }
-    return songsInfo;
+    const songsRes = await axios.get("http://localhost:5000/api/songs");
+    return songsRes.data.values;
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    console.log(err);
+  }
+}
+
+export async function getSong(id)
+{
+  try
+  {
+    const songRes = await axios.get("http://localhost:5000/api/songs/"+id);
+    return songRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err);
+  }
+}
+
+export async function getAudio(id)
+{
+  try
+  {
+    const songRes = await axios.get("http://localhost:5000/api/songs/"+id+"/audio");
+    return songRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err);
   }
 }

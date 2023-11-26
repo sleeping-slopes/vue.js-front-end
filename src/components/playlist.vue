@@ -1,24 +1,19 @@
 <template>
 
-  <div class = "playlist">
-    <song v-for="(song,index) in songs"
+  <ul class = "playlist" v-if="songs.length>0">
+    <li v-for="(song,index) in songs">
+    <song
       :index = "index"
-<<<<<<< Updated upstream
-      :songID="song.songID"
-      :songPos="song.songPos"
-      :audio="song.audio"
-      :cover="song.cover"
-      :songName="song.songName"
-      :songArtist="song.songArtist"
-      :songDuration="song.songDuration"
-=======
-      :songID="song.id"
-      :pos="song.pos"
-      :key="{id:song.id,pos:song.pos}"
->>>>>>> Stashed changes
+      :id = "song.id"
+      :pos = "song.pos"
+      :key = song.id
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
-      @deleteSong="deleteSong(index)"
     />
+    </li>
+  </ul>
+  <div class="songs-empty" v-else>
+    <i class="bi bi-music-note-beamed"></i>
+    No audio here yet
   </div>
 </template>
 
@@ -26,43 +21,31 @@
 
 import song from './song.vue'
 
-export default {
-  name: 'myPlaylist',
-  components: { song },
+export default
+{
+  name: 'playlist',
+  components:
+  {
+    song
+  },
   computed:
   {
     current()
     {
-      return this.$store.state.currentPlaylist.playlistID===this.playlistID;
+      return this.$store.state.currentPlaylist.id===this.id;
     }
   },
   methods:
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: songIndex}));
-      // alert(1);
-    },
-    deleteSong(songIndex)
-    {
-      // alert("WIP");
-      this.songs.splice(songIndex,1);
-      if (this.current)
-      if (songIndex<this.$store.state.currentSongIndex)
-      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this, songIndex: this.$store.state.currentSongIndex-1}));
-      // if (songIndex<this.$store.state.currentSongIndex)
-      // this.$store.dispatch('shiftCurrentSong',-1);
-
+      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: songIndex}));
     }
   },
   props:
   {
-    playlistID: {type: String, default:'test'},
-    playlistName: {type: String, default:'test'},
-    playlistArtist: {type: String, default:'test'},
-    playlistCover: {type: String, default:'test'},
-
-    songs: {type: Array, default:[]},
+    id: { default:'-1'},
+    songs: {type: Array, default: []}
   }
 }
 </script>
@@ -76,8 +59,10 @@ export default {
   box-sizing: border-box;
   height:100%;
   overflow-y:scroll;
-  padding:5px;
   gap:5px;
+  list-style: none;
+  padding:0px;
+  margin:0px;
 }
 
 .playlist::-webkit-scrollbar
@@ -87,8 +72,24 @@ export default {
 
 .playlist
 {
--ms-overflow-style: none;
-scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
+.songs-empty
+{
+  color:var(--text-color-secondary);
+  width:100%;
+  padding-top:20px;
+  padding-bottom:20px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.songs-empty i
+{
+  font-size:3em;
+}
 </style>

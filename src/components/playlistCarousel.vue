@@ -1,24 +1,26 @@
 <template>
-    <div class="playlist-carousel">
-      <div id="carousel-content" ref="carousel">
-        <playlistCard v-for="(playlist) in playlists"
-          :playlistID="playlist.playlistID"
-          :playlistCover="playlist.playlistCover"
-          :playlistName="playlist.playlistName"
-          :playlistArtist="playlist.playlistArtist"
-        />
-        <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
-        <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
-      </div>
-      <router-view></router-view>
+  <div class="playlist-carousel">
+    <ul id="carousel-content" ref="carousel" v-if="playlists.length>0">
+      <li v-for="(playlist) in playlists">
+        <playlistCard :id="playlist.id"/>
+      </li>
+      <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
+      <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
+    </ul>
+    <div class="songs-empty" v-else>
+      <i class="bi bi-music-note-list"></i>
+        No playlists here yet
     </div>
+  </div>
+  <router-view></router-view>
 </template>
 
 <script>
 
 import playlistCard from '@/components/playlistCard.vue'
 
-export default {
+export default
+{
   name: 'carousel',
   components:
   {
@@ -34,7 +36,8 @@ export default {
   {
     shift(i)
     {
-      this.scrollPosition += i*this.$refs.carousel.offsetWidth/7*3;
+      this.scrollPosition += i*Math.floor(this.$refs.carousel.offsetWidth/133)/2*133;
+      // Math.floor(this.$refs.carousel.offsetWidth/128)/2;
       if (this.scrollPosition<=0)
       {
         this.scrollPosition=0;
@@ -59,7 +62,7 @@ export default {
   props:
   {
     playlists: {type:Array,default:[]}
-  }
+  },
 }
 </script>
 
@@ -69,19 +72,22 @@ export default {
 {
   display:flex;
   position:relative;
-  align-items: center;
   box-sizing: border-box;
-  padding-top:5px;
-  padding-bottom:5px;
+  width:100%;
 }
 
 #carousel-content
 {
   display:flex;
-  align-items: center;
+  width:100%;
+  gap:5px;
   box-sizing: border-box;
   overflow-x:scroll;
   scroll-behavior: smooth;
+  align-items: center;
+  list-style: none;
+  padding:0px;
+  margin:0px;
 }
 
 #carousel-content::-webkit-scrollbar

@@ -4,44 +4,41 @@
   <teleport to=".app">
   <div class="modal-shade">
     <div class="modal">
-      <div class="panel" style="width:600px;">
-        <div class="playlist-header">
-<<<<<<< Updated upstream
-          <img src='@/assets/covers/WARLORD.jpg' style="width:128px;height:128px;border-radius:10px; overflow:hidden">
-          <div class="playlist-info">
-            <div class="playlist-info-name">Warlord</div>
-            <div class="playlist-info-artist">Yung Lean</div>
-=======
-          <img class = "playlist-modal-cover bi bi-music-note-list" v-if="this.playlist.coversrc" :src="require(`../assets/covers/${this.playlist.coversrc}`)"/>
-          <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
-          <div class="playlist-info">
-            <div class="playlist-info-name">{{this.playlist.name}}</div>
-            <div class ="song-info-artist">
-                <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
-                        {{artist.name}}
-                    </router-link>
-                    <span v-if="index+1 < this.playlist.artists.length">, </span>
-                </div>
-            </div>
->>>>>>> Stashed changes
-            <div class="playlist-button-row">
-              <button class="testbtn bi bi-plus-lg">Add to my library</button>
+      <panel style="width:600px;">
+        <template v-slot:content v-if="this.playlist.error">
+          <div class="songs-empty">
+            <i class="bi bi-emoji-frown"></i>
+            404
+          </div>
+        </template>
+        <template v-slot:content v-else>
+          <div class="playlist-header">
+            <img class = "playlist-modal-cover" v-if="cover" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="cover=false"/>
+            <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
+            <div class="playlist-info">
+              <div class="playlist-info-name">{{this.playlist.name}}</div>
+              <div class ="song-info-artist">
+                  <div v-for="(artist,index) in this.playlist.artists">
+                      <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                          {{artist.name}}
+                      </router-link>
+                      <span v-if="index+1 < this.playlist.artists.length">, </span>
+                  </div>
+              </div>
+              <div class="playlist-button-row">
+                <button class="testbtn bi bi-plus-lg">Add to my library</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="panel-content" style="max-height:635px">
-          <playlist
-<<<<<<< Updated upstream
-            :playlistID="this.$store.state.currentPlaylist.playlistID"
-            :songs="this.$store.state.currentPlaylist.songs"
-=======
-            :playlistID="this.playlist.id+''"
-            :songs="this.songs"
->>>>>>> Stashed changes
-          />
-        </div>
-      </div>
+          <hr/>
+          <div style="max-height:635px">
+            <playlist
+              :id="this.id"
+              :songs="this.songs"
+            />
+          </div>
+        </template>
+      </panel>
       <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
     </div>
   </div>
@@ -50,34 +47,39 @@
 
 <script>
 
-<<<<<<< Updated upstream
-import playlist from "@/components/playlist.vue"
-=======
+import panel from "@/components/panel.vue";
 import playlist from "@/components/playlist.vue";
-import { getPlaylistData, getPlaylistSongs} from "@/axios/getters.js"
->>>>>>> Stashed changes
 
-export default {
+import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
+
+export default
+{
   name: 'playlistModal',
-  components: {playlist},
+  components:
+  {
+    panel,playlist
+  },
   computed:
   {
 
   },
-  methods:
+  data()
   {
-
+    return {
+      id: this.$route.params.playlistID,
+      playlist:
+      {
+        data:{},
+        artists:[]
+      },
+      songs: [],
+      cover:true,
+    }
   },
-<<<<<<< Updated upstream
-  props:
-  {
-
-=======
   async mounted()
   {
-    this.playlist = await getPlaylistData(this.playlistID);
-    this.songs = await getPlaylistSongs(this.playlistID);
->>>>>>> Stashed changes
+    this.playlist = await getPlaylist(this.id);
+    this.songs = await getPlaylistSongs(this.id);
   }
 }
 </script>
@@ -91,9 +93,7 @@ export default {
   left:0px;
   right:0px;
   bottom:0px;
-
   display:flex;
-
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
 }
@@ -111,25 +111,36 @@ export default {
   position:absolute;
   left:100%;
   top:0;
-  font-size:48px;
   padding:0px;
   margin:0px;
   background-color: transparent;
   color:white;
   border:none;
   cursor:pointer;
+  font-size:3em;
+}
+
+.playlist-modal-cover
+{
+  width:128px;
+  height:128px;
+  border-radius:5px;
+  overflow:hidden;
+  background-color:var(--panel-border-color);
+  color:var(--text-color-secondary);
+  align-items: center;
+  display:flex;
+  justify-content:center;
+  font-size:4em;
 }
 
 .testbtn
 {
   background:none;
   border:none;
-  font-size:18px;
-  font-family: "Kanit regular", sans-serif;
   cursor:pointer;
   color:var(--text-color-secondary);
   padding:0px;
-  /* background-color:blue; */
   transition:all 0.2s;
   white-space: nowrap;
 }
@@ -142,10 +153,9 @@ export default {
 
 .playlist-header
 {
-    padding:5px;
+
     display:flex;
     box-sizing: border-box;
-    border-bottom: 2px solid var(--panel-border-color);
 }
 
 .playlist-info
@@ -160,17 +170,11 @@ export default {
 
 .playlist-info-name
 {
-  /* background-color:yellow; */
-  font-size:24px;
-  font-family: "Kanit semibold", sans-serif;
   color: var(--text-color-primary);
 }
 
 .playlist-info-artist
 {
-  /* background-color:blue; */
-  font-size:16px;
-  font-family: "Kanit regular", sans-serif;
   color: var(--text-color-secondary);
 }
 

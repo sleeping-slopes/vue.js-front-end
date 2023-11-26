@@ -1,49 +1,21 @@
 <template>
     <div class = "playlistCard">
-<<<<<<< Updated upstream
-        <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">
-            <img class = "playlist-cover" :src="require(`../assets/covers/${playlistCover}`)"/>
+        <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
+            <img class = "playlist-cover" v-if="cover" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="cover=false"/>
+            <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info">
-            <div href="#" class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlistID)">{{playlistName}}</div>
-            <a href="#" class ="song-info-artist">{{playlistArtist}}</a>
-=======
-        <div v-if="loading">
-            <div class="playlist-cover-wrapper">
-                <div class = "playlist-cover bi bi-music-note-list"/>
-            </div>
-            <div class= "song-info">
-                <div class ="song-info-name">loading</div>
-                <div class ="song-info-artist">loading</div>
-            </div>
-        </div>
-        <div v-else>
-            <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.playlist.id)">
-                <img class = "playlist-cover" v-if="this.playlist.coversrc" :src="require(`../assets/covers/${this.playlist.coversrc}`)"/>
-                <div class = "playlist-cover bi bi-music-note-list" v-else/>
-                <div class = "playlist-cover-shade"></div>
-                <div class = playlist-menu>
-                    <button class="playlist-button round-button large bi bi-play-fill"></button>
-                        <button class="playlist-button round-button medium bi bi-plus"></button>
-                        <button class="playlist-button round-button medium bi bi-check"></button>
+            <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
+            <div class ="song-info-artist">
+                <div v-for="(artist,index) in this.playlist.artists">
+                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                        {{artist.name}}
+                    </router-link>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </div>
             </div>
-            <div class= "song-info">
-                <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.playlist.id)">{{this.playlist.name}}</div>
-                <div class ="song-info-artist">
-                    <div v-for="(artist,index) in this.playlist.artists">
-
-                        <router-link v-if="artist.id" class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
-                            {{artist.name}}
-                        </router-link>
-                        <span class="artistlink" v-else>{{ artist.name }}</span>
-                        <span v-if="index+1 < this.playlist.artists.length">, </span>
-                    </div>
-                </div>
-            </div>
->>>>>>> Stashed changes
         </div>
     </div>
 
@@ -51,34 +23,14 @@
 
 <script>
 
-<<<<<<< Updated upstream
-=======
-import { getPlaylistData } from "@/axios/getters.js"
+import { getPlaylist } from "@/axios/getters.js"
 
->>>>>>> Stashed changes
-export default {
+export default
+{
   name: 'playlistCard',
-  computed:
-  {
-    routePath()
-    {
-        return this.$route.path+"/playlist/"+this.playlistID;
-    }
-  },
-  methods:
-  {
-
-  },
   props:
   {
-<<<<<<< Updated upstream
-    playlistCover: { type: String, default: 'gorgorod2.jpg' },
-    playlistID: {type: String, default:'test'},
-    playlistName: {type: String, default:'Unnamed'},
-    playlistArtist: {type: String, default:'Unknown'},
-
-=======
-    playlistID: {type: Number, default:-1},
+    id: {type: Number, default:-1},
   },
   data()
   {
@@ -86,15 +38,12 @@ export default {
       playlist:
       {
       },
-      loading:true
+      cover:true
     }
   },
   async mounted()
   {
-    this.loading=true;
-    this.playlist = await getPlaylistData(this.playlistID);
-    this.loading=false;
->>>>>>> Stashed changes
+    this.playlist = await getPlaylist(this.id);
   }
 }
 </script>
@@ -105,13 +54,9 @@ export default {
 {
     display:flex;
     flex-direction: column;
-    padding-left:5px;
-    padding-right:5px;
-    box-sizing: border-box;
-    min-width:calc(100%/7);
+    width:128px;
+    flex-shrink: 0;
 }
-
-
 
 .playlist-cover-wrapper
 {
@@ -142,6 +87,12 @@ export default {
 {
     width:100%;
     height:100%;
+    background-color:var(--panel-border-color);
+    color:var(--text-color-secondary);
+    align-items: center;
+    display:flex;
+    justify-content:center;
+    font-size:4em;
 }
 
 .playlist-cover-wrapper:hover .playlist-cover-shade
@@ -149,31 +100,16 @@ export default {
     opacity:0.4;
 }
 
-.playlist-menu
-{
-    position:absolute;
-    /* background-color:red; */
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    height:100%;
-    gap:5px;
-    padding-top:20px;
-    transition: 0.2s all;
-    opacity:0.0;
-}
-
-.playlist-button:first-child
-{
-    margin-top:100%;
-}
-
 .playlist-button
 {
+    position:absolute;
+    opacity:0.0;
+    padding-top:20px;
+    transition: 0.2s all;
     color:white;
 }
 
-.playlist-cover-wrapper:hover .playlist-menu
+.playlist-cover-wrapper:hover .playlist-button
 {
     opacity:1.0;
     padding-top:0px;
