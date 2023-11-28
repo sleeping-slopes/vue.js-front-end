@@ -31,12 +31,12 @@ export async function getPlaylistSongs(id)
 {
     try
     {
-        const playlistsSongsRes = await axios.get("http://localhost:5000/api/playlists/"+id+"/songs");
-        return playlistsSongsRes.data.values;
+      const playlistsSongsRes = await axios.get("http://localhost:5000/api/playlists/"+id+"/songs");
+      return playlistsSongsRes.data.values;
     }
     catch(err)
     {
-        console.log(err);
+      console.log(err);
     }
 }
 

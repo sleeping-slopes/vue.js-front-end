@@ -1,4 +1,9 @@
 <template>
+  <audio ref="audio"
+    @timeupdate="this.currentTime = $event.target.currentTime"
+    @ended="this.$store.dispatch('shiftCurrentSong',1)"
+    preload="none">
+  </audio>
   <div class="player" v-if="this.currentSongID!=undefined">
     <song class="sidebar-width" :id = "this.currentSongID" :key = "this.currentSongID"/>
     <div class="player-menu">
@@ -14,9 +19,9 @@
         <button class="round-button medium bi bi-repeat"></button>
       </div>
       <div class="slider-wrapper">
-        <div class="song-time"> {{ secsToMins(this.audio.currentTime) }}</div>
-        <input class="song-slider" type="range" min="1" max="100" value="0" @change="test()">
-        <div class="song-time"> {{ secsToMins(this.audio.duration) }} </div>
+        <div class="song-time"> {{ secsToMins(this.currentTime) }}</div>
+        <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="test()">
+        <div class="song-time"> {{ secsToMins(this.$refs.audio.duration) }} </div>
       </div>
     </div>
     <div class ="sidebar-width"></div>
@@ -26,7 +31,6 @@
 <script>
 
 import song from "@/components/song.vue"
-import { getAudio } from "@/axios/getters.js"
 
 export default
 {
@@ -38,24 +42,18 @@ export default
   data()
   {
     return {
-      songCurrentTime: this.audio?this.audio.currentTime:0,
       currentSongID: undefined,
-      audio: new Audio(),
+      currentTime:0,
+      ii:50,
     }
   },
   async mounted()
   {
-    this.audio.onended=(()=>this.$store.dispatch('shiftCurrentSong',1));
-
     this.currentSongID = this.$store.getters.getCurrentSong;
-
     if (this.currentSongID!=undefined)
     {
-      const AUDIOPATH = await getAudio(this.currentSongID);
-      this.audio.src = "data:audio/mpeg;base64,"+AUDIOPATH;
-      this.audio.load();
+      this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
     }
-
   },
   watch:
   {
@@ -64,26 +62,29 @@ export default
       this.currentSongID = id;
     },
 
-    async '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
+    '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
     {
       this.$store.state.isPlaying=false;
 
       this.currentSongID = this.$store.getters.getCurrentSong;
-
       if (this.currentSongID!=undefined)
       {
-        const AUDIOPATH = await getAudio(this.currentSongID);
-        this.audio.src = "data:audio/mpeg;base64,"+AUDIOPATH;
-        this.audio.load();
-      }
+        this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
 
-      this.$store.state.isPlaying=true;
+        setTimeout(()=>{this.$store.state.isPlaying=true}, 0);
+      }
     },
 
     '$store.state.isPlaying'(playing)
     {
-      if (playing) this.audio.play();
-      else this.audio.pause();
+      if (playing)
+      {
+        this.$refs.audio.play();
+      }
+      else
+      {
+        this.$refs.audio.pause();
+      }
     }
   },
   methods:
@@ -94,8 +95,8 @@ export default
     },
     test()
     {
-      alert(1);
-    }
+      this.$refs.audio.currentTime=this.$refs.slider.value;
+    },
   }
 }
 

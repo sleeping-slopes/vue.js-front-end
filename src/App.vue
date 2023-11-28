@@ -54,6 +54,9 @@ export default
   width:100%;
   background-color: var(--main-background-color);
   position:relative;
+
+  display:flex;
+  justify-content: center;
 }
 
 .window
@@ -61,10 +64,12 @@ export default
   display:flex;
   flex-direction:column;
   gap:10px;
-  width:100%;
+  width:90%;
   height:100%;
   padding:10px;
   box-sizing: border-box;
+
+  min-width:min-content;
 }
 
 .main
