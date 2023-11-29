@@ -1,6 +1,7 @@
 <template>
-  <div style="display:flex;flex-direction: column; max-width:100%; overflow: hidden; gap:10px;">
-    <panel style="flex-shrink:0; width:100%; height:max-content">
+  <div class = "main">
+  <div style="display:flex;flex-direction: column; overflow: hidden; gap:10px; width:100%">
+    <panel style="flex-shrink:0; height:max-content">
       <template v-slot:header>Playlists</template>
       <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template>
       <template v-slot:content>
@@ -17,6 +18,7 @@
       </template>
     </panel>
   </div>
+</div>
 </template>
 
 <script>

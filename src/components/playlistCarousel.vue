@@ -117,7 +117,7 @@ export default
 
 .playlist-carousel:hover .carousel-button
 {
-  opacity:0.8;
+  opacity:0.9;
 }
 
 .carousel-button:hover

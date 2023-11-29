@@ -1,24 +1,16 @@
 <template>
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <div class="window">
       <navbar/>
-      <div class = "main" >
 
-        <div class="browser">
-          <router-view/>
-        </div>
-      </div>
-      <player/>
-    </div>
+        <router-view/>
+      <!-- </div> -->
+    <player/>
   </div>
 </template>
 
 <script>
 
 import navbar from "@/components/navbar.vue"
-import panel from "@/components/panel.vue"
-import playlist from "@/components/playlist.vue"
-import playlistModal from "@/components/playlistModal.vue"
 import player from "@/components/player.vue"
 
 
@@ -28,7 +20,7 @@ export default
   name: 'app',
   components:
   {
-    navbar,panel,playlist,playlistModal,player
+    navbar,player
   },
   mounted()
   {
@@ -36,7 +28,7 @@ export default
   },
   props:
   {
-    query: { default:'-1'},
+
   }
 }
 
@@ -50,39 +42,25 @@ export default
   width:100%;
   background-color: var(--main-background-color);
   position:relative;
-
   display:flex;
-  justify-content: center;
-}
-
-.window
-{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  width:1440px;
-  height:100%;
-  padding:10px;
+  flex-direction: column;
+  align-items:center;
+  /* gap:10px; */
   box-sizing: border-box;
+  overflow:hidden;
 }
 
 .main
 {
-  width:100%;
+  /* background-color:red; */
+  padding:10px 0px 10px 0px;
+  width:1180px;
   height:100%;
   display:flex;
   flex-direction: row;
   gap:10px;
   overflow:hidden;
-}
-
-.browser
-{
-
-  display:flex;
-  flex-direction: row;
-  gap:10px;
-  box-sizing: border-box;
+  z-index:1;
 }
 
 .display-none
@@ -105,5 +83,53 @@ export default
   color: var(--text-color-secondary);
 }
 
+.button-secondary
+{
+  display:flex;
+  align-items: center;
+  background-color:none;
+  color: var(--text-color-secondary);
+  border: 1px solid var(--text-color-secondary);
+  height:20px;
+  font-size:14px;
+  padding:0px 20px 0px 20px;
+  border-radius:5px;
+  text-decoration: none;
+  cursor:pointer;
+  white-space:nowrap;
+  background:none;
+}
 
+.button-secondary:hover
+{
+  color: var(--text-color-primary);
+  border-color: var(--text-color-primary);
+}
+
+.button-primary
+{
+  display:flex;
+  align-items: center;
+  background-color: cornflowerblue;
+  color: #ffffff;
+  height:20px;
+  font-size:14px;
+  padding:0px 20px 0px 20px;
+  border: none;
+  border-radius:5px;
+  text-decoration: none;
+  cursor:pointer;
+  white-space: nowrap;
+
+}
+
+.button-primary:hover
+{
+  transform: scale(1.1);
+}
+
+.button-primary:active
+{
+  transform: scale(1.0);
+}
 </style>

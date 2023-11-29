@@ -1,19 +1,23 @@
 <template>
+  <div class="nav-wrapper">
     <nav>
-      <div class = "logo sidebar-width" v-on:click="this.$store.dispatch('toggleTheme')"></div>
       <div class="nav-mainmenu">
-        <router-link class="navlink" to="/discover">Discover</router-link>
-        <router-link class="navlink" to="/library">My library</router-link>
+        <div class = "logo" v-on:click="this.$store.dispatch('toggleTheme')"></div>
+        <router-link class="navlink" to="/discover">Home</router-link>
+        <router-link class="navlink" to="/feed">Feed</router-link>
+        <router-link class="navlink" to="/library">Library</router-link>
+      </div>
         <div class="wrapper-search">
           <div class="search-panel">
             <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
             <i class="fa fa-search"></i>
           </div>
         </div>
-      </div>
-      <usermenu/>
+
+      <usermenu style="margin-left:auto"/>
     </nav>
-  </template>
+  </div>
+</template>
 
 
   <script>
@@ -29,79 +33,72 @@
 
   <style>
 
-  nav
+  .nav-wrapper
   {
-    height: 44px;
-    min-height:44px;
+    width:100%;
     display:flex;
-    align-items: center;
-    gap:10px;
+    justify-content: center;
+    background-color: #1d232f;
+    /* border-bottom:2px solid var(--panel-border-color); */
+    box-shadow: 0 -6px 14px 0 rgba(0,0,0,.2);
   }
 
-  .sidebar-width
+  nav
   {
-    min-width:360px;
-    width:360px;
-    max-width:360px;
+    width:1240px;
+    max-height:48px;
+    height: 48px;
+    min-height:48px;
+    display:flex;
+    gap:15px;
   }
 
   .logo
   {
-    /* background: url('img/pixelated logo.png') center center no-repeat; */
+    background: url('/src/assets/img/pixelated logo.png') center center no-repeat;
+    width:100px;
     background-size:contain;
     height:100%;
-    background-color: cornflowerblue;
+    background-color: #111111;
   }
 
   .nav-mainmenu
   {
-    width:100%;
+    /* width:100%; */
     height:100%;
     display:flex;
-    flex-direction: row;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    /* gap:10px; */
     align-items: center;
+    /* background-color:red; */
   }
 
   .navlink
   {
-    color: var(--text-color-secondary);
-    border: none;
-    background-color: transparent;
+    color: #808080;
+    height:100%;
+    border-right:1px solid #111111;
+    box-sizing:border-box;
     cursor:pointer;
     transition: all 0.2s;
     position:relative;
     text-decoration: none;
     white-space: nowrap;
 
-    font-size:1.25rem;
-    font-weight:bold;
+    padding:0px 20px 0px 20px;
+    display:flex;
+    align-items: center;
   }
 
   .navlink:hover
   {
-    color: var(--text-color-primary);
+    color: #ffffff;
   }
 
   .navlink.router-link-active
   {
-    color: var(--text-color-primary);
-    background:none;
-  }
-
-  .navlink.router-link-active::after
-  {
-    content:"";
-    position:absolute;
-    width:100%;
-    height:2px;
-    background-color:cornflowerblue;
-    left:0;
-    right:0;
-    border-radius:50vh;
-    margin-left: auto;
-    margin-right: auto;
-    bottom:-3px;
+    color: #ffffff;
+    background-color: #111111;
   }
 
   .wrapper-search
@@ -114,36 +111,38 @@
   {
     padding-left: 12px;
     padding-right: 6px;
-    color: var(--text-color-secondary);
+    color: #808080;
     transition: color 0.2s;
   }
 
   .search-panel
   {
     height:32px;
-    background-color: var(--panel-background-color);
-    border-radius: 32px;
+    background-color: #e5e5e5;
+    border-radius: 8px;
     overflow:hidden;
-    width:100%;
+    width:300px;
     min-width:200px;
     max-width:400px;
     white-space: nowrap;
     margin:auto;
     display:flex;
+    justify-content:left;
     flex-direction: row-reverse;
     align-items: center;
   }
 
   ::placeholder
   {
-    color: var(--text-color-secondary);
+    color: #808080;
   }
 
   .search
   {
     height:100%;
+    width:100%;
     background-color: transparent;
-    color: var(--text-color-primary);
+    color: #404040;
     border-style:none;
   }
 
@@ -154,7 +153,7 @@
 
   .search:not(:placeholder-shown) + i
   {
-    color: var(--text-color-primary);
+    color: #404040;
   }
 
   </style>

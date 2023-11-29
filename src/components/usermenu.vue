@@ -1,18 +1,18 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <router-link to="/signup" class="button-signup">Sign up</router-link>
-    <router-link to="/login" class="button-main">Log in</router-link>
+    <router-link to="/signup" class="button-secondary">Sign up</router-link>
+    <router-link to="/login" class="button-primary">Log in</router-link>
   </template>
   <template v-else>
     <div class="user-panel"
       @click="this.show=!this.show"
-      v-bind:style= "[this.show ? {'background-color':'var(--panel-border-color)'} : {}]"
+      v-bind:style= "[this.show ? {'background-color':'#111111'} : {}]"
     >
-      <div class = "user-profile-picture bi bi-person-fill"/>
-      <span class="bi-caret-down-fill primary-text"></span>
+      <div class = "user-profile-picture-dark bi bi-person-fill"/>
+      <span class="bi-caret-down-fill" style="color:#808080"></span>
     </div>
-    <panel v-if="this.show" style="position:absolute;top:100%;right:0px; z-index:1000">
+    <panel v-if="this.show" style="position:absolute;top:100%;right:0px; z-index:999">
       <template v-slot:content>
         <div class="usercard">
           <div class = "user-profile-picture bi bi-person-fill"/>
@@ -118,7 +118,6 @@ export default {
 .usermenu-button:hover
 {
   background-color:var(--selected-item-background-color);
-
 }
 
 .usermenu-button-icon
@@ -154,17 +153,30 @@ export default {
 
 .user-profile-picture
 {
+  height:44px;
+  width:44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color:var(--panel-border-color);
+  color:var(--text-color-secondary);
+  align-items: center;
+  display:flex;
+  justify-content:center;
+  font-size:2em;
+}
 
-    height:44px;
-    width:44px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background-color:var(--panel-border-color);
-    color:var(--text-color-secondary);
-    align-items: center;
-    display:flex;
-    justify-content:center;
-    font-size:2em;
+.user-profile-picture-dark
+{
+  height:44px;
+  width:44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  /* background-color:#1d232f; */
+  color:#808080;
+  align-items: center;
+  display:flex;
+  justify-content:center;
+  font-size:2em;
 }
 
 .nav-loginmenu
@@ -173,7 +185,8 @@ export default {
   align-items:center;
   gap:10px;
   position:relative;
-
+  height:100%;
+  float:right;
 }
 
 .user-panel
@@ -185,56 +198,12 @@ export default {
   gap:10px;
   padding-left:10px;
   padding-right:10px;
+  height:100%;
 }
 
 .user-panel:hover
 {
-background-color:var(--panel-border-color);
-}
-
-.button-signup
-{
-color: var(--text-color-secondary);
-border: none;
-background-color: transparent;
-text-decoration: none;
-cursor:pointer;
-white-space:nowrap;
-}
-
-.button-signup:hover
-{
-color: var(--text-color-primary);
-}
-
-.button-signup:active
-{
-color: var(--text-color-secondary);
-}
-
-.button-main
-{
-background-color: var(--text-color-primary);
-color: var(--main-background-color);
-height:min-content;
-width:min-content;
-padding:5px 20px 5px 20px;
-border-radius: 50vh;
-cursor:pointer;
-border: none;
-white-space: nowrap;
-text-decoration: none;
-}
-
-.button-main:hover
-{
-transform: scale(1.1);
-}
-
-.button-main:active
-{
-background-color: var(--text-color-secondary);
-transform: scale(1.0);
+  background-color:#111111;
 }
 
 </style>

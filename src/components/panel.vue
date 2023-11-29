@@ -1,7 +1,9 @@
 <template>
     <div class = "panel">
         <div class = "panel-header" v-if="!!this.$slots.header">
-            <slot name="header"></slot>
+            <span class="panel-title">
+              <slot name="header"></slot>
+            </span>
             <div class = "panel-menu">
                 <slot name="menu"></slot>
             </div>
@@ -37,16 +39,47 @@ export default
 .panel-header
 {
   display:flex;
-  height:48px;
+  height:40px;
   align-items: center;
   color:var(--text-color-primary);
   white-space: nowrap;
   flex-shrink: 0;
-  padding-left:5px;
-  padding-right:15px;
-  font-size:1.25em;
-  font-weight: bold;
+  padding:5px 10px 5px 10px;
   justify-content: space-between;
+  /* background-color:olive; */
+  box-sizing: border-box;
+  border-bottom:1px solid var(--panel-border-color);
+}
+
+.panel-title
+{
+  /* height:100%; */
+  font-size:1.25rem;
+  /* background-color:rebeccapurple; */
+}
+
+.panel-menu
+{
+  height:100%;
+  display:flex;
+  /* background-color:red; */
+  /* height:fit-content; */
+  align-items: center;
+  gap:20px;
+}
+
+.panel-header-button
+{
+  height:100%;
+  display:flex;
+  align-items: center;
+  color: var(--text-color-primary);
+  border: none;
+  background-color: transparent;
+  text-decoration: none;
+  cursor:pointer;
+  padding:5px 10px 5px 10px;
+  box-sizing: border-box;
 }
 
 .panel-content
@@ -60,20 +93,6 @@ export default
   gap:5px;
 }
 
-.panel-header-button
-{
-  color: var(--text-color-primary);
-  border: none;
-  background-color: transparent;
-  text-decoration: none;
-  cursor:pointer;
-  font-size:1rem;
-}
-
-.panel-header-button:active
-{
-  color: var(--text-color-secondary);
-}
 </style>
 <!--
 .button-switch

@@ -26,7 +26,7 @@
             <button class="songButton bi bi-plus"></button>
             <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
-        <div class = "song-duration" style="float:right;">{{ this.songDurationToMins }}</div>
+        <div class = "song-duration" style="float:right;">{{ songDurationToMins }}</div>
     </div>
   </template>
 
@@ -47,7 +47,6 @@ export default
   {
     return {
         song:{},
-        songDuration:312,
         cover:true,
     }
   },
@@ -68,7 +67,7 @@ export default
     },
     songDurationToMins()
     {
-      return String(Math.floor(this.songDuration/60)).padStart(2,'0')+":"+String(this.songDuration%60).padStart(2,'0');
+      return String(Math.floor(this.song.duration/60)).padStart(2,'0')+":"+String(this.song.duration%60).padStart(2,'0');
     }
   },
   methods:

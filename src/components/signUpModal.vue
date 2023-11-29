@@ -1,7 +1,8 @@
 <template>
+  <teleport to=".app">
   <div class="modal-shade" style="background-color:rgba(0,0,0,0.5)">
     <div class="modal">
-      <div class="panel" style="width:400px;">
+      <div class="panel" style="width:400px; z-index:999">
           <div class ="panel-content" style="height:200px;font-size:2.5em;color:var(--text-color-primary)">
               Sign up to SSS
           </div>
@@ -37,7 +38,7 @@
                   </div>
               </label>
               <div class = "wrapper-button-main">
-                  <button type="submit" class = "button-main">Sign up</button>
+                  <button type="submit" class = "button-primary">Sign up</button>
               </div>
             </form>
           <hr />
@@ -48,6 +49,7 @@
       <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
     </div>
   </div>
+  </teleport>
 </template>
 
 <script>

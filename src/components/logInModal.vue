@@ -28,7 +28,7 @@
                   </div>
               </label>
               <div class = "wrapper-button-main">
-                  <button type="submit" class = "button-main">Log in</button>
+                  <button type="submit" class = "button-primary">Log in</button>
               </div>
             </form>
           <hr />

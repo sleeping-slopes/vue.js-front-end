@@ -4,52 +4,59 @@
     @ended="this.$store.dispatch('shiftCurrentSong',1)"
     preload="none">
   </audio>
-  <div class="player" v-if="this.currentSongID!=undefined">
+  <div class="player-wrapper" v-if="this.currentSongID!=undefined">
+    <div class="player" >
 
-    <div class="player-menu">
-      <button class="round-button small bi bi-skip-start-fill"
-        v-on:click="this.$store.dispatch('shiftCurrentSong',-1)">
-      </button>
-      <button class="round-button small"
-        v-bind:class="this.$store.state.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'"
-        v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying">
-      </button>
-      <button class="round-button small bi bi-skip-end-fill"
-        v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
-      </button>
-      <button class="round-button small bi bi-shuffle"
-        v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
-        v-on:click = "this.$store.dispatch('shuffle')">
-      </button>
-      <button class="round-button small bi bi-repeat">
+      <div class="player-menu">
+        <button class="round-button small bi bi-skip-start-fill"
+          v-on:click="this.$store.dispatch('shiftCurrentSong',-1)">
+        </button>
+        <button class="round-button small"
+          v-bind:class="this.$store.state.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'"
+          v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying">
+        </button>
+        <button class="round-button small bi bi-skip-end-fill"
+          v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
+        </button>
+        <button class="round-button small bi bi-shuffle"
+          v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
+          v-on:click = "this.$store.dispatch('shuffle')">
+        </button>
+        <button class="round-button small bi bi-repeat">
 
-      </button>
-    </div>
+        </button>
+      </div>
 
-    <div class="player-slider">
-      <span class="song-time"> {{ secsToMins(this.currentTime) }}</span>
-      <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="test()">
-      <span class="song-time"> {{ secsToMins(this.$refs.audio.duration) }}</span>
-    </div>
-    <div class="player-menu">
-      <button class="round-button small bi bi-volume-up-fill">
+      <div class="player-slider">
+        <span class="song-time"> {{ secsToMins(this.currentTime) }}</span>
+        <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="seek()">
+        <span class="song-time"> {{ secsToMins(this.$refs.audio.duration) }}</span>
+      </div>
+      <div class="player-menu">
+        <button class="round-button small bi bi-volume-up-fill">
 
-      </button>
-    </div>
-    <div style="float:right;display:flex; gap:10px;">
-    <song class="sidebar-width" :id = "this.currentSongID" :key = "this.currentSongID"/>
-    <div class="player-menu">
-      <button class="round-button small bi bi-heart-fill">
+        </button>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <song ref="song" style="width:360px" :id = "this.currentSongID" :key = "this.currentSongID"/>
+        <div class="player-menu">
+          <button class="round-button small bi bi-suit-heart-fill">
 
-      </button>
-      <button class="round-button small bi bi-music-note-list"
-        v-on:click="this.show=!this.show">
-      </button>
-    </div>
-  </div>
-
-      <panel class = "sidebar-width" style="position:absolute; height:640px;bottom:100%; right:0px" v-if="this.show">
+          </button>
+          <button class="round-button small bi bi-music-note-list"
+            v-bind:style="this.show?{'color':'cornflowerblue'}:{}"
+            v-on:click="this.show=!this.show">
+          </button>
+        </div>
+      </div>
+      <panel class="current-playlist-popup" v-bind:class="this.show?'visible':'hidden'">
         <template v-slot:header>Current playlist</template>
+        <template v-slot:menu>
+          <button class="button-secondary">Clear</button>
+          <button class="panel-header-button bi bi-x-lg"
+            v-on:click="this.show=!this.show">
+          </button>
+        </template>
         <template v-slot:content>
           <playlist
             :id="this.$store.state.currentPlaylist.id"
@@ -58,6 +65,7 @@
         </template>
       </panel>
 
+    </div>
   </div>
 </template>
 
@@ -85,6 +93,7 @@ export default
   async mounted()
   {
     this.currentSongID = this.$store.getters.getCurrentSong;
+    console.log(this.$refs.song);
     if (this.currentSongID!=undefined)
     {
       this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
@@ -128,9 +137,10 @@ export default
     {
       return String(Math.floor(sec/60)).padStart(2,'0')+":"+String(Math.floor(sec)%60).padStart(2,'0');
     },
-    test()
+    seek()
     {
       this.$refs.audio.currentTime=this.$refs.slider.value;
+      this.$store.state.isPlaying=true;
     }
   }
 }
@@ -139,16 +149,52 @@ export default
 
 <style>
 
+.visible
+{
+  opacity:1.0;
+  transform:translateY(-100%) translateY(-12px);
+}
+
+.hidden
+{
+  transform:translateY(0%);
+  opacity:0.0;
+}
+
+.current-playlist-popup
+{
+  position:absolute;
+  width:480px;
+  height:640px;
+  max-height: calc(100vh - 140px);
+  right:0px;
+  transition:transform 0.35s cubic-bezier(0,0,0,1.2),opacity 0.1s ease;
+  box-shadow: 0 0 20px 5px rgba(0,0,0,.2);
+  z-index:-1;
+}
+
+.player-wrapper
+{
+  background-color:var(--panel-background-color);
+  width:100%;
+  display:flex;
+  justify-content: center;
+  border-top:2px solid var(--panel-border-color);
+  box-shadow: 0 6px 14px 0 rgba(0,0,0,.2);
+  z-index:1;
+  margin-top:auto;
+}
+
 .player
 {
-    display:flex;
-    width:100%;
-    gap:40px;
-    position:relative;
-
-    padding-left:10px;
-    padding-right:10px;
-    box-sizing: border-box;
+  display:flex;
+  width:1240px;
+  gap:40px;
+  position:relative;
+  padding-left:10px;
+  padding-right:10px;
+  box-sizing: border-box;
+  background-color:var(--panel-background-color);
 }
 
 .player-menu
@@ -204,6 +250,7 @@ export default
 
 .song-slider
 {
+  min-width:250px;
   width:100%;
 }
 

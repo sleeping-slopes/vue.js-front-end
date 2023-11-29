@@ -101,6 +101,7 @@ export default
   display:flex;
   justify-content: center;
   background-color: rgba(0,0,0,0.5);
+  z-index:999;
 }
 
 .modal
