@@ -3,21 +3,7 @@
     <div class="window">
       <navbar/>
       <div class = "main" >
-        <panel class = "sidebar-width" style="height:100%">
-          <template v-slot:header>Current playlist</template>
-          <template v-slot:menu>
-            <button class="round-button small bi bi-shuffle"
-              v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
-              v-on:click = "this.$store.dispatch('shuffle')">
-            </button>
-          </template>
-          <template v-slot:content>
-            <playlist
-              :id="this.$store.state.currentPlaylist.id"
-              :songs="this.$store.state.currentPlaylist.songs"
-            />
-        </template>
-        </panel>
+
         <div class="browser">
           <router-view/>
         </div>
@@ -35,12 +21,22 @@ import playlist from "@/components/playlist.vue"
 import playlistModal from "@/components/playlistModal.vue"
 import player from "@/components/player.vue"
 
+
+
 export default
 {
   name: 'app',
   components:
   {
     navbar,panel,playlist,playlistModal,player
+  },
+  mounted()
+  {
+
+  },
+  props:
+  {
+    query: { default:'-1'},
   }
 }
 
@@ -64,16 +60,15 @@ export default
   display:flex;
   flex-direction:column;
   gap:10px;
-  width:90%;
+  width:1440px;
   height:100%;
   padding:10px;
   box-sizing: border-box;
-
-  min-width:min-content;
 }
 
 .main
 {
+  width:100%;
   height:100%;
   display:flex;
   flex-direction: row;
@@ -83,12 +78,11 @@ export default
 
 .browser
 {
-  width:100%;
-  height:100%;
+
   display:flex;
   flex-direction: row;
-  justify-content: center;
   gap:10px;
+  box-sizing: border-box;
 }
 
 .display-none

@@ -63,6 +63,10 @@ export default
   {
 
   },
+  props:
+  {
+    qid: {default:888}
+  },
   data()
   {
     return {
@@ -80,6 +84,7 @@ export default
   {
     this.playlist = await getPlaylist(this.id);
     this.songs = await getPlaylistSongs(this.id);
+    console.log(this.qid);
   }
 }
 </script>

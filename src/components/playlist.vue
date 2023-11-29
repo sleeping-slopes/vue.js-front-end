@@ -44,7 +44,6 @@ export default
   },
   props:
   {
-    id: { default:'-1'},
     songs: {type: Array, default: []}
   }
 }

@@ -7,6 +7,7 @@ export default createStore({
     currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') ||'-1'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
+    authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null' ),
     isPlaying: false,
   },
   getters:
@@ -62,10 +63,20 @@ export default createStore({
         state.currentSongIndex=state.currentPlaylist.songs[state.currentSongIndex].pos;
         state.currentPlaylist.songs.sort((a,b)=>{return a.pos-b.pos});
       }
-
       localStorage.setItem('shuffle', JSON.stringify(state.shuffle));
       localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
+    },
+    logIn(state,authJWT)
+    {
+      state.authJWT=authJWT;
+      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
+      console.log("loggedin");
+    },
+    logOut(state)
+    {
+      state.authJWT=null;
+      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
     }
   },
   actions:
@@ -85,6 +96,14 @@ export default createStore({
     shuffle({commit})
     {
       commit("shuffle");
+    },
+    logIn({commit},authJWT)
+    {
+      commit("logIn",authJWT);
+    },
+    logOut({commit})
+    {
+      commit("logOut");
     }
   },
   modules: {

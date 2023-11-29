@@ -5,31 +5,66 @@
     preload="none">
   </audio>
   <div class="player" v-if="this.currentSongID!=undefined">
+
+    <div class="player-menu">
+      <button class="round-button small bi bi-skip-start-fill"
+        v-on:click="this.$store.dispatch('shiftCurrentSong',-1)">
+      </button>
+      <button class="round-button small"
+        v-bind:class="this.$store.state.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'"
+        v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying">
+      </button>
+      <button class="round-button small bi bi-skip-end-fill"
+        v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
+      </button>
+      <button class="round-button small bi bi-shuffle"
+        v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
+        v-on:click = "this.$store.dispatch('shuffle')">
+      </button>
+      <button class="round-button small bi bi-repeat">
+
+      </button>
+    </div>
+
+    <div class="player-slider">
+      <span class="song-time"> {{ secsToMins(this.currentTime) }}</span>
+      <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="test()">
+      <span class="song-time"> {{ secsToMins(this.$refs.audio.duration) }}</span>
+    </div>
+    <div class="player-menu">
+      <button class="round-button small bi bi-volume-up-fill">
+
+      </button>
+    </div>
+    <div style="float:right;display:flex; gap:10px;">
     <song class="sidebar-width" :id = "this.currentSongID" :key = "this.currentSongID"/>
     <div class="player-menu">
-      <div class = "player-menu-button-row">
-        <button class="round-button medium bi bi-plus-lg"></button>
-        <button class="round-button medium bi bi-skip-start-fill"
-          v-on:click="this.$store.dispatch('shiftCurrentSong',-1)"></button>
-        <button class="round-button large"
-          v-bind:class="this.$store.state.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle'"
-          v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying"></button>
-        <button class="round-button medium bi bi-skip-end-fill"
-          v-on:click="this.$store.dispatch('shiftCurrentSong',1)"></button>
-        <button class="round-button medium bi bi-repeat"></button>
-      </div>
-      <div class="slider-wrapper">
-        <div class="song-time"> {{ secsToMins(this.currentTime) }}</div>
-        <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="test()">
-        <div class="song-time"> {{ secsToMins(this.$refs.audio.duration) }} </div>
-      </div>
+      <button class="round-button small bi bi-heart-fill">
+
+      </button>
+      <button class="round-button small bi bi-music-note-list"
+        v-on:click="this.show=!this.show">
+      </button>
     </div>
-    <div class ="sidebar-width"></div>
+  </div>
+
+      <panel class = "sidebar-width" style="position:absolute; height:640px;bottom:100%; right:0px" v-if="this.show">
+        <template v-slot:header>Current playlist</template>
+        <template v-slot:content>
+          <playlist
+            :id="this.$store.state.currentPlaylist.id"
+            :songs="this.$store.state.currentPlaylist.songs"
+          />
+        </template>
+      </panel>
+
   </div>
 </template>
 
 <script>
 
+import panel from "@/components/panel.vue"
+import playlist from "@/components/playlist.vue"
 import song from "@/components/song.vue"
 
 export default
@@ -37,14 +72,14 @@ export default
   name: 'player',
   components:
   {
-    song
+    panel,playlist,song
   },
   data()
   {
     return {
       currentSongID: undefined,
       currentTime:0,
-      ii:50,
+      show:false
     }
   },
   async mounted()
@@ -96,7 +131,7 @@ export default
     test()
     {
       this.$refs.audio.currentTime=this.$refs.slider.value;
-    },
+    }
   }
 }
 
@@ -104,34 +139,23 @@ export default
 
 <style>
 
-.playlist-menu-button-row
-{
-  display:flex;
-  height:48px;
-  flex-shrink:0;
-}
-
 .player
 {
     display:flex;
     width:100%;
-    gap:10px;
+    gap:40px;
+    position:relative;
+
+    padding-left:10px;
+    padding-right:10px;
+    box-sizing: border-box;
 }
 
 .player-menu
 {
-  width:100%;
   display:flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.player-menu-button-row
-{
-  display:flex;
-  justify-content: center;
-  align-items:center;
-  gap:5px;
+  align-items: center;
+  gap:20px;
 }
 
 .round-button
@@ -169,23 +193,23 @@ export default
   width:20px;
 }
 
-.slider-wrapper
-{
-  display:flex;
-}
-
 .song-time
 {
+  display:inline-flex;
   color: var(--text-color-primary);
-  width:64px;
-  overflow:hidden;
-  display:flex;
-  justify-content: center;
+  width:80px;
   align-items: center;
+  justify-content: center;
 }
 
 .song-slider
 {
+  width:100%;
+}
+
+.player-slider
+{
+  display:flex;
   width:100%;
 }
 

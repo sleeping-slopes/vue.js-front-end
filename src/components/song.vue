@@ -101,12 +101,7 @@ export default
     height:58px;
 }
 
-.player .song
-{
-    height:64px;
-    padding:0px;
-    font-size:1.25rem;
-}
+
 
 .wrapper-song-cover
 {
@@ -127,13 +122,7 @@ export default
     max-height:48px;
 }
 
-.player .wrapper-song-cover
-{
-    min-width:64px;
-    min-height:64px;
-    max-width:64px;
-    max-height:64px;
-}
+
 
 .playlist .song
 {

@@ -11,18 +11,19 @@
           </div>
         </div>
       </div>
-      <div class="nav-usermenu sidebar-width">
-        <router-link to="/signup" class="button-signup">Sign up</router-link>
-        <router-link to="/login" class="button-main">Log in</router-link>
-      </div>
+      <usermenu/>
     </nav>
   </template>
 
 
   <script>
+
+  import usermenu from "@/components/usermenu.vue"
+
   export default
   {
-    name: 'navbar'
+    name: 'navbar',
+    components:{ usermenu }
   }
   </script>
 
@@ -154,60 +155,6 @@
   .search:not(:placeholder-shown) + i
   {
     color: var(--text-color-primary);
-  }
-
-  .nav-usermenu
-  {
-    display:flex;
-    justify-content: right;
-    align-items: center;
-    height:100%;
-    margin-left:auto;
-    gap:20px;
-  }
-
-  .button-signup
-  {
-    color: var(--text-color-secondary);
-    border: none;
-    background-color: transparent;
-    text-decoration: none;
-    cursor:pointer;
-  }
-
-  .button-signup:hover
-  {
-    color: var(--text-color-primary);
-  }
-
-  .button-signup:active
-  {
-    color: var(--text-color-secondary);
-  }
-
-  .button-main
-  {
-    background-color: var(--text-color-primary);
-    color: var(--main-background-color);
-    height:min-content;
-    width:min-content;
-    padding:5px 20px 5px 20px;
-    border-radius: 50vh;
-    cursor:pointer;
-    border: none;
-    white-space: nowrap;
-    text-decoration: none;
-  }
-
-  .button-main:hover
-  {
-    transform: scale(1.1);
-  }
-
-  .button-main:active
-  {
-    background-color: var(--text-color-secondary);
-    transform: scale(1.0);
   }
 
   </style>
