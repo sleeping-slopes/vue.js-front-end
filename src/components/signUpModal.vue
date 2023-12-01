@@ -136,7 +136,7 @@ color:red;
 
 .my-input
 {
-outline: none;
+outline-color: transparent;
 border: 2px solid var(--panel-border-color);
 box-sizing: border-box;
 background:none;
