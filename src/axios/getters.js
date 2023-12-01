@@ -86,12 +86,12 @@ export async function getAudio(id)
   }
 }
 
-export async function postUser(email,password,username)
+export async function postUser(email,password,login)
 {
     try
     {
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const postUserRes = await axios.post("http://localhost:5000/api/auth/signup",{ email:email, password:password, username:username});
+      const postUserRes = await axios.post("http://localhost:5000/api/auth/signup",{ email:email, password:password, login:login});
       return postUserRes.data.values;
     }
     catch(err)
@@ -100,12 +100,12 @@ export async function postUser(email,password,username)
     }
 }
 
-export async function logInUser(username,password)
+export async function logInUser(login,password)
 {
     try
     {
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const logInUserRes = await axios.post("http://localhost:5000/api/auth/login",{ username:username, password:password });
+      const logInUserRes = await axios.post("http://localhost:5000/api/auth/login",{ login:login, password:password });
       return logInUserRes.data.values;
     }
     catch(err)
@@ -114,13 +114,13 @@ export async function logInUser(username,password)
     }
 }
 
-export async function getUserByID(id)
+export async function getUserByLogin(login)
 {
     try
     {
 
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const userRes = await axios.get("http://localhost:5000/api/user/"+id);
+      const userRes = await axios.get("http://localhost:5000/api/user/"+login);
       return userRes.data;
     }
     catch(err)

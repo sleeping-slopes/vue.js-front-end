@@ -15,8 +15,8 @@
             <div class ="song-info-name">{{this.song.name}}</div>
             <div class ="song-info-artist">
                 <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink" v-if="artist.id"
-                        :to="'/id/'+artist.id"
+                    <router-link class="artistlink" v-if="artist.login"
+                        :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>

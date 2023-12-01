@@ -10,7 +10,7 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "nav-user-profile-picture" :src="`http://localhost:5000/api/user/`+this.user.username+`/picture`"/>
+      <img class = "nav-user-profile-picture" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`"/>
       <!-- <div class = "nav-user-profile-picture bi bi-person-fill"/> -->
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
@@ -18,7 +18,7 @@
 
           <div class = "usermenu">
             <router-link class="usermenu-button"
-              :to="'/id/'+this.user.username">
+              :to="'/id/'+this.user.login">
               <span class="bi-person-fill usermenu-button-icon"></span>
               <span>Profile</span>
             </router-link>

@@ -28,13 +28,13 @@
                   </div>
               </label>
               <label class = "label">
-                  Username
-                  <input class="my-input" type="text" v-bind:style="username.error?{'border-color':'red'}:{}"
+                  Login
+                  <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
                   placeholder="What should we call you?"
-                  v-model="username.data"/>
-                  <div class="error-message" v-if=username.error>
+                  v-model="login.data"/>
+                  <div class="error-message" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
-                    {{ username.error }}
+                    {{ login.error }}
                   </div>
               </label>
               <div class = "wrapper-button-main">
@@ -63,7 +63,7 @@ export default {
     return {
       email:{data:null,error:null},
       password:{data:null,error:null},
-      username:{data:null,error:null}
+      login:{data:null,error:null}
     }
   },
   methods:
@@ -78,16 +78,16 @@ export default {
       if (!this.password.data) this.password.error="Required field";
       else if (this.password.data.length<5) this.password.error='Password is too short';
 
-      this.username.error=null;
-      if (!this.username.data) this.username.error="Required field";
-      else if (!this.validUsername(this.username.data)) this.username.error='Invalid username';
-      else if (this.username.data.length<5) this.username.error='Username is too short';
+      this.login.error=null;
+      if (!this.login.data) this.login.error="Required field";
+      else if (!this.validLogin(this.login.data)) this.login.error='Invalid login';
+      else if (this.login.data.length<5) this.login.error='Login is too short';
 
-      if ((this.email.error) || (this.password.error) || (this.username.error)) return;
+      if ((this.email.error) || (this.password.error) || (this.login.error)) return;
 
       (async () =>
       {
-        const r = await postUser(this.email.data,this.password.data,this.username.data);
+        const r = await postUser(this.email.data,this.password.data,this.login.data);
         if (r.token)
         {
           this.$store.dispatch('logIn',r.token);
@@ -96,7 +96,7 @@ export default {
         else
         {
           if (r.emailError) this.email.error = r.emailError;
-          if (r.usernameError) this.username.error = r.usernameError;
+          if (r.loginError) this.login.error = r.loginError;
         }
       })();
     },
@@ -105,10 +105,10 @@ export default {
       const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
     },
-    validUsername(username)
+    validLogin(login)
     {
       const re = /^[a-zA-Z0-9_.-]*$/;
-      return re.test(username);
+      return re.test(login);
     }
   }
 }

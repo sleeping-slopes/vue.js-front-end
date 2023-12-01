@@ -8,13 +8,13 @@
           </div>
           <form @submit.prevent="logIn" class ="panel-content" style="gap:10px">
               <label class = "label">
-                  Email or username
-                  <input class="my-input" type="text" v-bind:style="username.error?{'border-color':'red'}:{}"
-                  placeholder="Enter email or username"
-                  v-model="username.data"/>
-                  <div class="error-message" v-if=username.error>
+                  Login or email
+                  <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
+                  placeholder="Enter login or email"
+                  v-model="login.data"/>
+                  <div class="error-message" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
-                    {{ username.error }}
+                    {{ login.error }}
                   </div>
               </label>
               <label class = "label">
@@ -51,7 +51,7 @@ export default {
   data()
   {
     return {
-      username:{data:null,error:null},
+      login:{data:null,error:null},
       password:{data:null,error:null}
     }
   },
@@ -59,17 +59,17 @@ export default {
   {
     logIn()
     {
-      this.username.error=null;
-      if (!this.username.data) this.username.error="Required field";
+      this.login.error=null;
+      if (!this.login.data) this.login.error="Required field";
 
       this.password.error=null;
       if (!this.password.data) this.password.error="Required field";
 
-      if ((this.username.error) || (this.password.error)) return;
+      if ((this.login.error) || (this.password.error)) return;
 
       (async () =>
       {
-        const r = await logInUser(this.username.data,this.password.data);
+        const r = await logInUser(this.login.data,this.password.data);
         if (r.token)
         {
           this.$store.dispatch('logIn',r.token);
@@ -77,7 +77,7 @@ export default {
         }
         else
         {
-          if (r.usernameError) this.username.error = r.usernameError;
+          if (r.loginError) this.login.error = r.loginError;
           if (r.passwordError) this.password.error = r.passwordError;
         }
       })();

@@ -49,7 +49,7 @@ export default {
   async mounted()
   {
     this.playlists = await getPlaylists();
-    this.discoverPlaylist.songs = await getSongs();
+    // this.discoverPlaylist.songs = await getSongs();
   }
 }
 </script>

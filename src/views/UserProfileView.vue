@@ -1,13 +1,13 @@
 <template >
   <div class="scr" v-if="this.user">
     <div class="user-banner">
-      <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.username+`/picture`"/>
+      <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
         <span class="user-banner-name">
           {{ this.user.username }}
         </span>
         <span class="user-banner-status">
-          {{ this.user.username }}
+          {{ this.user.status }}
         </span>
       </div>
     </div>
@@ -15,9 +15,9 @@
       <div class="column">
         <nav class="navtab">
           <div class="nav-menu">
-            <router-link class="tablink" :to="{ name: 'UserPopular', params: { username: this.username }}">Popular songs</router-link>
-            <router-link class="tablink" :to="{ name: 'UserSongs', params: { username: this.username }}">Songs</router-link>
-            <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { username: this.username }}">Playlists</router-link>
+            <router-link class="tablink" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular songs</router-link>
+            <router-link class="tablink" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
+            <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
             <button class="button-primary">Follow</button>
@@ -45,7 +45,7 @@
                   </div>
                 </div>
                 <div class="user-description">
-                  {{ this.user.username }}
+                  {{ this.user.description }}
                 </div>
                 <ul class="user-link-list">
                   <li>
@@ -104,7 +104,7 @@
 
   <script>
 
-import { getUserByID } from "@/axios/getters";
+import { getUserByLogin } from "@/axios/getters";
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 
@@ -113,9 +113,9 @@ import playlist from "@/components/playlist.vue"
     components:{panel,playlist},
     props:
     {
-      username:
+      login:
       {
-        default:-1,
+        default: -1,
       },
     },
     data()
@@ -126,9 +126,11 @@ import playlist from "@/components/playlist.vue"
     },
     async created()
     {
-      const r = await getUserByID(this.username);
+      const r = await getUserByLogin(this.login);
       if (r.status===200) this.user=r.values;
+
       else this.user=undefined;
+      console.log(this.user);
     },
   }
   </script>
