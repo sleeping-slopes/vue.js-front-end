@@ -114,7 +114,22 @@ export async function logInUser(username,password)
     }
 }
 
-export async function getUser()
+export async function getUserByID(id)
+{
+    try
+    {
+
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const userRes = await axios.get("http://localhost:5000/api/user/"+id);
+      return userRes.data;
+    }
+    catch(err)
+    {
+        return err.response.data;
+    }
+}
+
+export async function getUserByToken()
 {
     try
     {

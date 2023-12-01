@@ -22,7 +22,7 @@ const routes = [
   },
   {
 
-    path: '/id/:id',
+    path: '/id/:username',
     component: userProfileView,
     redirect: { name: "UserPopular"},
     props:true,

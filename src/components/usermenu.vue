@@ -10,16 +10,18 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <div class = "nav-user-profile-picture bi bi-person-fill"/>
+      <img class = "nav-user-profile-picture" :src="`http://localhost:5000/api/user/`+this.user.username+`/picture`"/>
+      <!-- <div class = "nav-user-profile-picture bi bi-person-fill"/> -->
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
 
           <div class = "usermenu">
-            <button class ="usermenu-button">
+            <router-link class="usermenu-button"
+              :to="'/id/'+this.user.username">
               <span class="bi-person-fill usermenu-button-icon"></span>
               <span>Profile</span>
-            </button>
+            </router-link>
             <button class ="usermenu-button" v-on:click="this.$store.dispatch('toggleTheme')">
               <span class="bi bi-palette usermenu-button-icon"></span>
               <span>Mode</span>
@@ -38,7 +40,7 @@
 
 <script>
 
-import {getUser} from "@/axios/getters.js"
+import {getUserByToken} from "@/axios/getters.js"
 
 import panel from "@/components/panel.vue"
 
@@ -54,7 +56,7 @@ export default {
   },
   async created()
   {
-    const r = await getUser();
+    const r = await getUserByToken();
     if (r.status===200) this.user=r.values;
     else this.user=undefined;
   },
@@ -62,7 +64,7 @@ export default {
   {
     async '$store.state.authJWT'(playlistSong)
     {
-      const r = await getUser();
+      const r = await getUserByToken();
       if (r.status===200) this.user=r.values;
       else this.user=undefined;
     }
@@ -91,7 +93,7 @@ export default {
 {
   display:flex;
   flex-direction: column;
-  gap:5px;
+  gap:3px;
 }
 
 .usermenu-button
@@ -101,13 +103,11 @@ export default {
   text-align: left;
   border:none;
   cursor:pointer;
-
+  text-decoration: none;
   align-items: center;
   gap:10px;
-
   border-radius:10px;
-  padding-top:5px;
-  padding-bottom:5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .usermenu-button:hover

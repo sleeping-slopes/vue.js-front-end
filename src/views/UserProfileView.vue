@@ -1,13 +1,13 @@
 <template >
-  <div class="scr">
+  <div class="scr" v-if="this.user">
     <div class="user-banner">
-      <div class= "user-image"></div>
+      <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.username+`/picture`"/>
         <div class="user-banner-info">
         <span class="user-banner-name">
-          Slava Marlow {{ this.id }}
+          {{ this.user.username }}
         </span>
         <span class="user-banner-status">
-          pososi
+          {{ this.user.username }}
         </span>
       </div>
     </div>
@@ -15,9 +15,9 @@
       <div class="column">
         <nav class="navtab">
           <div class="nav-menu">
-            <router-link class="tablink" :to="{ name: 'UserPopular', params: { id: this.id }}">Popular songs</router-link>
-            <router-link class="tablink" :to="{ name: 'UserSongs', params: { id: this.id }}">Songs</router-link>
-            <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { id: this.id }}">Playlists</router-link>
+            <router-link class="tablink" :to="{ name: 'UserPopular', params: { username: this.username }}">Popular songs</router-link>
+            <router-link class="tablink" :to="{ name: 'UserSongs', params: { username: this.username }}">Songs</router-link>
+            <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { username: this.username }}">Playlists</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
             <button class="button-primary">Follow</button>
@@ -45,9 +45,7 @@
                   </div>
                 </div>
                 <div class="user-description">
-                  VARSKVA В СЕТИ | BENZO GANG TEAM GOD 🕊️
-                  babytapebooking@gmail.com
-                  babytapecommercial@gmail.com
+                  {{ this.user.username }}
                 </div>
                 <ul class="user-link-list">
                   <li>
@@ -106,6 +104,7 @@
 
   <script>
 
+import { getUserByID } from "@/axios/getters";
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 
@@ -114,11 +113,23 @@ import playlist from "@/components/playlist.vue"
     components:{panel,playlist},
     props:
     {
-      id:
+      username:
       {
         default:-1,
       },
-    }
+    },
+    data()
+    {
+      return {
+        user: undefined
+      }
+    },
+    async created()
+    {
+      const r = await getUserByID(this.username);
+      if (r.status===200) this.user=r.values;
+      else this.user=undefined;
+    },
   }
   </script>
 

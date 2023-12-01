@@ -53,20 +53,16 @@ export default
 {
   padding:10px 0px 10px 0px;
   width:1180px;
-  height:fit-content;
-
+  display:flex;
+  flex-direction: column;
   margin-left:auto;
   margin-right:auto;
   overflow:hidden;
   z-index:1;
-  display:flex;
-  flex-direction: column;
-  /* background-color:palegoldenrod; */
 }
 
 .row
 {
-  /* background-color:red; */
   display:flex;
   flex-direction:row;
   overflow:hidden;
@@ -76,7 +72,6 @@ export default
 
 .column
 {
-  /* background-color:rebeccapurple; */
   display:flex;
   flex-direction:column;
   overflow:hidden;
