@@ -19,10 +19,13 @@
               <div class="playlist-info-name">{{this.playlist.name}}</div>
               <div class ="song-info-artist">
                   <div v-for="(artist,index) in this.playlist.artists">
-                      <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
-                          {{artist.name}}
-                      </router-link>
-                      <span v-if="index+1 < this.playlist.artists.length">, </span>
+                    <router-link class="artistlink" v-if="artist.id"
+                        :to="'/id/'+artist.id"
+                        @click.stop>
+                        {{artist.name}}
+                    </router-link>
+                    <span v-else>{{artist.name}}</span>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
                   </div>
               </div>
               <div class="playlist-button-row">
@@ -65,12 +68,11 @@ export default
   },
   props:
   {
-    qid: {default:888}
+    id:{default:-1}
   },
   data()
   {
     return {
-      id: this.$route.params.playlistID,
       playlist:
       {
         data:{},
@@ -84,7 +86,6 @@ export default
   {
     this.playlist = await getPlaylist(this.id);
     this.songs = await getPlaylistSongs(this.id);
-    console.log(this.qid);
   }
 }
 </script>

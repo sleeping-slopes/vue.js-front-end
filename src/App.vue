@@ -45,22 +45,43 @@ export default
   display:flex;
   flex-direction: column;
   align-items:center;
-  /* gap:10px; */
   box-sizing: border-box;
   overflow:hidden;
 }
 
 .main
 {
-  /* background-color:red; */
   padding:10px 0px 10px 0px;
   width:1180px;
-  height:100%;
-  display:flex;
-  flex-direction: row;
-  gap:10px;
+  height:fit-content;
+
+  margin-left:auto;
+  margin-right:auto;
   overflow:hidden;
   z-index:1;
+  display:flex;
+  flex-direction: column;
+  /* background-color:palegoldenrod; */
+}
+
+.row
+{
+  /* background-color:red; */
+  display:flex;
+  flex-direction:row;
+  overflow:hidden;
+  gap:10px;
+  height:100%;
+}
+
+.column
+{
+  /* background-color:rebeccapurple; */
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  gap:10px;
+  width:100%;
 }
 
 .display-none
@@ -90,7 +111,7 @@ export default
   background-color:none;
   color: var(--text-color-secondary);
   border: 1px solid var(--text-color-secondary);
-  height:20px;
+  height:30px;
   font-size:14px;
   padding:0px 20px 0px 20px;
   border-radius:5px;
@@ -98,6 +119,7 @@ export default
   cursor:pointer;
   white-space:nowrap;
   background:none;
+  box-sizing: border-box;
 }
 
 .button-secondary:hover
@@ -110,9 +132,9 @@ export default
 {
   display:flex;
   align-items: center;
-  background-color: cornflowerblue;
-  color: #ffffff;
-  height:20px;
+  background-color: var(--accent-color);
+  color: var(--soft-white);
+  height:30px;
   font-size:14px;
   padding:0px 20px 0px 20px;
   border: none;
@@ -132,4 +154,5 @@ export default
 {
   transform: scale(1.0);
 }
+
 </style>

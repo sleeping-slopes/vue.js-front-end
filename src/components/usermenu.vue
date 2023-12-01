@@ -1,42 +1,37 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <router-link to="/signup" class="button-secondary">Sign up</router-link>
+    <router-link to="/signup" class="button-secondary dark">Sign up</router-link>
     <router-link to="/login" class="button-primary">Log in</router-link>
   </template>
   <template v-else>
+    <router-link class="navlink" to="/upload">Upload</router-link>
     <div class="user-panel"
       @click="this.show=!this.show"
-      v-bind:style= "[this.show ? {'background-color':'#111111'} : {}]"
+      v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <div class = "user-profile-picture-dark bi bi-person-fill"/>
-      <span class="bi-caret-down-fill" style="color:#808080"></span>
-    </div>
-    <panel v-if="this.show" style="position:absolute;top:100%;right:0px; z-index:999">
-      <template v-slot:content>
-        <div class="usercard">
-          <div class = "user-profile-picture bi bi-person-fill"/>
-          <div class="userdata">
-            <span class="primary-text">{{ this.user.username }}</span>
-            <span class="primary-text">{{ this.user.email }}</span>
+      <div class = "nav-user-profile-picture bi bi-person-fill"/>
+      <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
+      <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
+        <template v-slot:content>
+
+          <div class = "usermenu">
+            <button class ="usermenu-button">
+              <span class="bi-person-fill usermenu-button-icon"></span>
+              <span>Profile</span>
+            </button>
+            <button class ="usermenu-button" v-on:click="this.$store.dispatch('toggleTheme')">
+              <span class="bi bi-palette usermenu-button-icon"></span>
+              <span>Mode</span>
+            </button>
+            <button class ="usermenu-button" v-on:click="this.$store.dispatch('logOut')">
+              <span class="bi bi-box-arrow-right usermenu-button-icon"></span>
+              <span>Sign out</span>
+            </button>
           </div>
-        </div>
-        <div class = "usermenu">
-          <button class ="usermenu-button">
-            <span class="bi bi-gear usermenu-button-icon"></span>
-            <span>Settings</span>
-          </button>
-          <button class ="usermenu-button" v-on:click="this.$store.dispatch('toggleTheme')">
-            <span class="bi bi-palette usermenu-button-icon"></span>
-            <span>Mode</span>
-          </button>
-          <button class ="usermenu-button" v-on:click="this.$store.dispatch('logOut')">
-            <span class="bi bi-box-arrow-right usermenu-button-icon"></span>
-            <span>Sign out</span>
-          </button>
-        </div>
-      </template>
-    </panel>
+        </template>
+      </panel>
+    </div>
   </template>
 </div>
 </template>
@@ -122,7 +117,7 @@ export default {
 
 .usermenu-button-icon
 {
-  color:cornflowerblue;
+  color:var(--accent-color);
   padding-right:5px;
 }
 
@@ -132,47 +127,13 @@ export default {
   white-space: nowrap;
 }
 
-.usercard
-{
-
-  padding:10px;
-  background-color:var(--selected-item-background-color);
-  border-radius: 10px;
-  display:flex;
-  flex-direction: row;
-  gap:10px;
-}
-
-.userdata
-{
-
-  display:flex;
-  width:100%;
-  flex-direction: column;
-}
-
-.user-profile-picture
+.nav-user-profile-picture
 {
   height:44px;
   width:44px;
   flex-shrink: 0;
   border-radius: 50%;
-  background-color:var(--panel-border-color);
-  color:var(--text-color-secondary);
-  align-items: center;
-  display:flex;
-  justify-content:center;
-  font-size:2em;
-}
-
-.user-profile-picture-dark
-{
-  height:44px;
-  width:44px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  /* background-color:#1d232f; */
-  color:#808080;
+  color:var(--light-gray);
   align-items: center;
   display:flex;
   justify-content:center;
@@ -203,7 +164,7 @@ export default {
 
 .user-panel:hover
 {
-  background-color:#111111;
+  background-color:var(--soft-black);
 }
 
 </style>

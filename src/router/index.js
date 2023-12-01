@@ -4,29 +4,45 @@ import myLibraryView from '@/views/MyLibraryView.vue'
 import playlistModal from '@/components/playlistModal.vue'
 import logInModal from '@/components/logInModal.vue'
 import signUpModal from '@/components/signUpModal.vue'
-import artistCardView from '@/views/artistCardView.vue'
+import userProfileView from '@/views/UserProfileView.vue'
+import userSongsView from '@/views/UserSongsView.vue'
 
 const routes = [
   {
     path: '/discover',
-    redirect:'/discover/main',
+    component: discoverView,
     children:
     [
       {
-        path:'main',
-        component: discoverView,
-        children:
-        [
-          {
-            path: 'playlist/:playlistID',
-            component: playlistModal
-          },
-        ]
+        path: 'playlist/:id/',
+        component: playlistModal,
+        props:true,
+      },
+    ]
+  },
+  {
+
+    path: '/id/:id',
+    component: userProfileView,
+    redirect: { name: "UserPopular"},
+    props:true,
+    children:
+    [
+      {
+        name: "UserPopular",
+        path: 'popular',
+        component: userSongsView,
       },
       {
-        path: 'artist/:artistID',
-        component: artistCardView
-      }
+        name: "UserSongs",
+        path: 'songs',
+        component: userSongsView
+      },
+      {
+        name: "UserPlaylists",
+        path: 'playlists',
+        component: userSongsView
+      },
     ]
   },
   {
@@ -35,8 +51,9 @@ const routes = [
     children:
     [
       {
-        path: 'playlist/:playlistID',
-        component: playlistModal
+        path: 'playlist/:id',
+        component: playlistModal,
+        props:true,
       }
     ]
   },

@@ -19,7 +19,7 @@
           v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
         </button>
         <button class="round-button small bi bi-shuffle"
-          v-bind:style="this.$store.state.shuffle?{'color':'cornflowerblue'}:{}"
+          v-bind:style="this.$store.state.shuffle?{'color':'var(--accent-color)'}:{}"
           v-on:click = "this.$store.dispatch('shuffle')">
         </button>
         <button class="round-button small bi bi-repeat">
@@ -38,13 +38,13 @@
         </button>
       </div>
       <div style="display:flex; gap:10px;">
-        <song ref="song" style="width:360px" :id = "this.currentSongID" :key = "this.currentSongID"/>
+        <song ref="song" style="width:360px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
         <div class="player-menu">
           <button class="round-button small bi bi-suit-heart-fill">
 
           </button>
           <button class="round-button small bi bi-music-note-list"
-            v-bind:style="this.show?{'color':'cornflowerblue'}:{}"
+            v-bind:style="this.show?{'color':'var(--accent-color)'}:{}"
             v-on:click="this.show=!this.show">
           </button>
         </div>
@@ -93,7 +93,6 @@ export default
   async mounted()
   {
     this.currentSongID = this.$store.getters.getCurrentSong;
-    console.log(this.$refs.song);
     if (this.currentSongID!=undefined)
     {
       this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
@@ -180,7 +179,7 @@ export default
   display:flex;
   justify-content: center;
   border-top:2px solid var(--panel-border-color);
-  box-shadow: 0 6px 14px 0 rgba(0,0,0,.2);
+  /* box-shadow: 0 -6px 14px 0 rgba(0,0,0,.2); */
   z-index:1;
   margin-top:auto;
 }

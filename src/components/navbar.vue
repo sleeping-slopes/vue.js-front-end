@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-wrapper">
+  <header class="header-wrapper">
     <nav>
       <div class="nav-mainmenu">
         <div class = "logo" v-on:click="this.$store.dispatch('toggleTheme')"></div>
@@ -16,7 +16,7 @@
 
       <usermenu style="margin-left:auto"/>
     </nav>
-  </div>
+  </header>
 </template>
 
 
@@ -33,24 +33,22 @@
 
   <style>
 
-  .nav-wrapper
+  .header-wrapper
   {
     width:100%;
     display:flex;
     justify-content: center;
-    background-color: #1d232f;
-    /* border-bottom:2px solid var(--panel-border-color); */
-    box-shadow: 0 -6px 14px 0 rgba(0,0,0,.2);
+    background-color: var(--nav-color);
+    /* box-shadow: 0 2px 4px 0 rgba(0,0,0,.2); */
   }
 
-  nav
+  .header-wrapper nav
   {
     width:1240px;
     max-height:48px;
     height: 48px;
     min-height:48px;
-    display:flex;
-    gap:15px;
+
   }
 
   .logo
@@ -59,29 +57,29 @@
     width:100px;
     background-size:contain;
     height:100%;
-    background-color: #111111;
+    background-color: var(--soft-black);
   }
 
   .nav-mainmenu
   {
-    /* width:100%; */
-    height:100%;
+    /* height:100%; */
     display:flex;
-    /* justify-content: space-around; */
-    /* gap:10px; */
     align-items: center;
-    /* background-color:red; */
+  }
+
+  .nav-mainmenu > *
+  {
+    border-right:1px solid var(--soft-black);
   }
 
   .navlink
   {
-    color: #808080;
+    color: var(--light-gray);
     height:100%;
-    border-right:1px solid #111111;
+
     box-sizing:border-box;
     cursor:pointer;
     transition: all 0.2s;
-    position:relative;
     text-decoration: none;
     white-space: nowrap;
 
@@ -92,13 +90,13 @@
 
   .navlink:hover
   {
-    color: #ffffff;
+    color: var(--soft-white);
   }
 
   .navlink.router-link-active
   {
-    color: #ffffff;
-    background-color: #111111;
+    color: var(--soft-white);
+    background-color: var(--soft-black);
   }
 
   .wrapper-search
@@ -111,14 +109,14 @@
   {
     padding-left: 12px;
     padding-right: 6px;
-    color: #808080;
+    color: var(--light-gray);
     transition: color 0.2s;
   }
 
   .search-panel
   {
     height:32px;
-    background-color: #e5e5e5;
+    background-color: var(--soft-white);
     border-radius: 8px;
     overflow:hidden;
     width:300px;
@@ -134,7 +132,7 @@
 
   ::placeholder
   {
-    color: #808080;
+    color: var(--light-gray);
   }
 
   .search
@@ -142,7 +140,7 @@
     height:100%;
     width:100%;
     background-color: transparent;
-    color: #404040;
+    color: var(--dark-gray);
     border-style:none;
   }
 
@@ -153,7 +151,7 @@
 
   .search:not(:placeholder-shown) + i
   {
-    color: #404040;
+    color: var(--light-gray);
   }
 
   </style>

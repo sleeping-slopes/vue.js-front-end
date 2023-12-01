@@ -10,9 +10,12 @@
             <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
             <div class ="song-info-artist">
                 <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                    <router-link class="artistlink" v-if="artist.id"
+                        :to="'/id/'+artist.id"
+                        @click.stop>
                         {{artist.name}}
                     </router-link>
+                    <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </div>
             </div>

@@ -15,9 +15,12 @@
             <div class ="song-info-name">{{this.song.name}}</div>
             <div class ="song-info-artist">
                 <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink" :to="'/discover/artist/'+artist.id" @click.stop>
+                    <router-link class="artistlink" v-if="artist.id"
+                        :to="'/id/'+artist.id"
+                        @click.stop>
                         {{artist.name}}
                     </router-link>
+                    <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.song.artists.length">, </span>
                 </div>
             </div>
@@ -146,7 +149,7 @@ export default
     width:5px;
     height:5px;
     border-radius: 5px;
-    background:cornflowerblue;
+    background:var(--accent-color);
 
 }
 
@@ -217,8 +220,8 @@ export default
 {
     position:absolute;
     visibility: hidden;
-    background-color: var(--panel-background-color);
-    color: var(--text-color-primary);
+    background-color: var(--soft-black);
+    color: var(--soft-white);
 }
 
 .song-info
@@ -260,13 +263,13 @@ export default
 {
     text-decoration: none;
     overflow:hidden;
-
     color:inherit;
 }
 
 .artistlink:hover
 {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color:var(--text-color-primary);
 }
 
 

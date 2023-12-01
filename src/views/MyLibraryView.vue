@@ -1,34 +1,33 @@
 <template>
   <div class="main">
-    <div style="display:flex;flex-direction: column; overflow: hidden; gap:10px; width:100%">
-
-      <panel style="flex-shrink:0; height:max-content">
-      <template v-slot:header>My playlists</template>
-      <template v-slot:content>
-        <playlistCarousel :playlists="myPlaylists"/>
-      </template>
-    </panel>
-
-      <panel style="height:100%;">
-        <template v-slot:header>Songs</template>
+    <div class="row">
+      <div class="column">
+        <panel style="height:max-content; flex-shrink:0;">
+          <template v-slot:header>My playlists</template>
+          <template v-slot:content>
+            <playlistCarousel :playlists="myPlaylists"/>
+          </template>
+        </panel>
+        <panel style="height:100%;">
+          <template v-slot:header>Songs</template>
+          <template v-slot:content>
+          <playlist
+            :playlistID="myAudio.playlistID"
+            :songs="myAudio.songs"
+          />
+          </template>
+        </panel>
+      </div>
+      <panel style="width:360px; flex-shrink:0">
+        <template v-slot:header>Recently played</template>
         <template v-slot:content>
         <playlist
-          :playlistID="myAudio.playlistID"
-          :songs="myAudio.songs"
-        />
+            :playlistID="lastListened.playlistID"
+            :songs="lastListened.songs"
+          />
         </template>
       </panel>
-
   </div>
-  <panel style="width:360px;height:100%; flex-shrink:0">
-    <template v-slot:header>Recently played</template>
-    <template v-slot:content>
-    <playlist
-        :playlistID="lastListened.playlistID"
-        :songs="lastListened.songs"
-      />
-    </template>
-  </panel>
 </div>
 </template>
 
