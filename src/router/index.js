@@ -21,29 +21,8 @@ const routes = [
     ]
   },
   {
-
-    path: '/id/:login',
-    component: userProfileView,
-    redirect: { name: "UserPopular"},
-    props:true,
-    children:
-    [
-      {
-        name: "UserPopular",
-        path: 'popular',
-        component: userSongsView,
-      },
-      {
-        name: "UserSongs",
-        path: 'songs',
-        component: userSongsView
-      },
-      {
-        name: "UserPlaylists",
-        path: 'playlists',
-        component: userSongsView
-      },
-    ]
+    path: '/feed',
+    component: discoverView,
   },
   {
     path: '/library',
@@ -58,18 +37,52 @@ const routes = [
     ]
   },
   {
-    path: '/login',
-    component: logInModal
+
+    path: '/id/:login',
+    component: userProfileView,
+    redirect: { name: "UserPopular"},
+    props:true,
+    children:
+    [
+      {
+        name: "UserPopular",
+        path: 'popular',
+        component: userSongsView,
+        props:true
+      },
+      {
+        name: "UserSongs",
+        path: 'songs',
+        component: userSongsView,
+        props:true
+      },
+      {
+        name: "UserPlaylists",
+        path: 'playlists',
+        // component: userSongsView
+      },
+      {
+        name: "UserFollowers",
+        path: 'followers',
+        // component: userSongsView
+      },
+      {
+        name: "UserFollowing",
+        path: 'following',
+        // component: userSongsView
+      },
+    ]
   },
   {
     path: '/signup',
     component: signUpModal
+  },
+  {
+    path: '/login',
+    component: logInModal
   }
 ]
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+const router = createRouter({ history: createWebHistory(process.env.BASE_URL), routes })
 
 export default router

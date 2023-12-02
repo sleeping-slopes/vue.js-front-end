@@ -26,23 +26,25 @@
           </div>
         </nav>
         <div class="row">
-          <router-view></router-view>
+          <div class="column" style="width:100%;">
+            <router-view></router-view>
+          </div>
           <div class="column" style="width:360px;flex-shrink:0;">
             <panel style="flex-shrink: 0;">
               <template v-slot:content>
                 <div class="user-stats">
-                  <div>
+                  <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
                     <span class="stat-name">Followers</span>
                     <span class="stat-value">32K</span>
-                  </div>
-                  <div>
+                  </router-link>
+                  <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
                     <span class="stat-name">Following</span>
                     <span class="stat-value">32K</span>
-                  </div>
-                  <div>
+                  </router-link>
+                  <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
                     <span class="stat-name">Songs</span>
                     <span class="stat-value">999</span>
-                  </div>
+                  </router-link>
                 </div>
                 <div class="user-description">
                   {{ this.user.description }}
@@ -78,20 +80,8 @@
               </template>
               <template v-slot:content>
                 <playlist
-                  :id="this.$store.state.currentPlaylist.id"
-                  :songs="this.$store.state.currentPlaylist.songs.slice(0,3)"
-                />
-              </template>
-            </panel>
-            <panel style="">
-              <template v-slot:header>Likes</template>
-              <template v-slot:menu>
-                <button class="button-secondary">View all</button>
-              </template>
-              <template v-slot:content>
-                <playlist
-                  :id="this.$store.state.currentPlaylist.id"
-                  :songs="this.$store.state.currentPlaylist.songs.slice(0,3)"
+                  :id="this.userLikedSongs.id"
+                  :songs="this.userLikedSongs.songs"
                 />
               </template>
             </panel>
@@ -104,7 +94,7 @@
 
   <script>
 
-import { getUserByLogin } from "@/axios/getters";
+import { getUserByLogin,getUserLikedSongs } from "@/axios/getters";
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 
@@ -121,16 +111,21 @@ import playlist from "@/components/playlist.vue"
     data()
     {
       return {
-        user: undefined
+        user: undefined,
+        userLikedSongs:
+        {
+          id:this.login+' liked',
+          songs:[]
+        },
       }
     },
     async created()
     {
       const r = await getUserByLogin(this.login);
       if (r.status===200) this.user=r.values;
-
       else this.user=undefined;
-      console.log(this.user);
+
+      this.userLikedSongs.songs = await getUserLikedSongs(this.login);
     },
   }
   </script>
@@ -167,6 +162,8 @@ import playlist from "@/components/playlist.vue"
     gap:20px;
     margin-left:auto;
     margin-right:auto;
+    border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
   }
 
   .user-image
@@ -257,7 +254,7 @@ import playlist from "@/components/playlist.vue"
   }
 
 
-  .user-stats > div
+  .user-stat
   {
     width:100%;
     display:flex;
@@ -265,10 +262,11 @@ import playlist from "@/components/playlist.vue"
     justify-content:center;
     color: var(--text-color-secondary);
     cursor:pointer;
+    text-decoration: none;
     /* height: 40px; */
   }
 
-  .user-stats > div:hover
+  .user-stat:hover
   {
     color: var(--text-color-primary);
     /* height: 40px; */

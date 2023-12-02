@@ -3,7 +3,7 @@
     <div class="column">
       <panel style="height:max-content;flex-shrink:0;">
         <template v-slot:header>Playlists</template>
-        <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template>
+        <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
           <playlistCarousel :playlists="playlists"/>
         </template>
@@ -49,7 +49,7 @@ export default {
   async mounted()
   {
     this.playlists = await getPlaylists();
-    // this.discoverPlaylist.songs = await getSongs();
+    this.discoverPlaylist.songs = await getSongs();
   }
 }
 </script>

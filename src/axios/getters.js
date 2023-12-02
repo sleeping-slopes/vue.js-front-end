@@ -143,33 +143,28 @@ export async function getUserByToken()
     }
 }
 
-export async function getUserPlaylists()
-{
-    try
-    {
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const playlistsRes = await axios.get("http://localhost:5000/api/user/playlists");
-      return playlistsRes.data.values;
-    }
-    catch(err)
-    {
-        console.log(err.response.data.values.message);
-        return [];
-    }
-}
-
-export async function getUserSongs()
+export async function getUserSongs(login)
 {
   try
   {
     axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const songsRes = await axios.get("http://localhost:5000/api/user/songs");
-    const songsInfo = [];
-    for (let i = 0;i<songsRes.data.values.length;i++)
-    {
-        songsInfo[i]= {id:songsRes.data.values[i].id,pos:i};
-    }
-    return songsInfo;
+    const userSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/songs");
+    return userSongsRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}
+
+export async function getUserLikedSongs(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/likes/songs");
+    return userLikedSongsRes.data.values;
   }
   catch(err)
   {
