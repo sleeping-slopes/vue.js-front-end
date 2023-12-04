@@ -3,17 +3,16 @@
     <nav>
       <div class="nav-mainmenu">
         <div class = "logo" v-on:click="this.$store.dispatch('toggleTheme')"></div>
-        <router-link class="navlink" to="/discover">Home</router-link>
+        <router-link class="navlink" to="/discover">Discover</router-link>
         <router-link class="navlink" to="/feed">Feed</router-link>
         <router-link class="navlink" to="/library">Library</router-link>
       </div>
-        <div class="wrapper-search">
-          <div class="search-panel">
-            <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
-            <i class="fa fa-search"></i>
-          </div>
+      <div class="wrapper-search">
+        <div class="search-panel">
+          <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
+          <i class="fa fa-search"></i>
         </div>
-
+      </div>
       <usermenu style="margin-left:auto"/>
     </nav>
   </header>

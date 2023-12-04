@@ -172,3 +172,18 @@ export async function getUserLikedSongs(login)
     return [];
   }
 }
+
+export async function getUserLikedPlaylists(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/likes/playlists");
+    return userLikedSongsRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}

@@ -4,11 +4,14 @@ import myLibraryView from '@/views/MyLibraryView.vue'
 import playlistModal from '@/components/playlistModal.vue'
 import logInModal from '@/components/logInModal.vue'
 import signUpModal from '@/components/signUpModal.vue'
+
 import userProfileView from '@/views/UserProfileView.vue'
 import userSongsView from '@/views/UserSongsView.vue'
+import userLikesView from '@/views/UserLikesView.vue'
 
 const routes = [
   {
+    name: 'Discover',
     path: '/discover',
     component: discoverView,
     children:
@@ -21,10 +24,12 @@ const routes = [
     ]
   },
   {
+    name: 'Feed',
     path: '/feed',
-    component: discoverView,
+    component: '',
   },
   {
+    name: 'Library',
     path: '/library',
     component: myLibraryView,
     children:
@@ -37,13 +42,16 @@ const routes = [
     ]
   },
   {
-
     path: '/id/:login',
     component: userProfileView,
-    redirect: { name: "UserPopular"},
     props:true,
     children:
     [
+      {
+        name: "UserActivity",
+        path: '',
+        props:true
+      },
       {
         name: "UserPopular",
         path: 'popular',
@@ -59,17 +67,23 @@ const routes = [
       {
         name: "UserPlaylists",
         path: 'playlists',
-        // component: userSongsView
+        component: '',
       },
       {
         name: "UserFollowers",
         path: 'followers',
-        // component: userSongsView
+        component: '',
       },
       {
         name: "UserFollowing",
         path: 'following',
-        // component: userSongsView
+        component: '',
+      },
+      {
+        name: "UserLikes",
+        path: 'likes',
+        component: userLikesView,
+        props:true
       },
     ]
   },

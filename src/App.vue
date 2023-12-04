@@ -1,7 +1,7 @@
 <template>
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
       <navbar/>
-        <router-view/>
+        <router-view :key="this.$route.params.login"/>
     <player/>
   </div>
 </template>

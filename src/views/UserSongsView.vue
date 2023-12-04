@@ -1,9 +1,6 @@
 <template>
   <panel>
-    <template v-slot:header>Songs</template>
-    <template v-slot:menu>
-      <button class="button-secondary">View all</button>
-    </template>
+    <template v-slot:header>Songs by {{ this.login }}</template>
     <template v-slot:content>
       <playlist
         :id="this.userSongs.id"

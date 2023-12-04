@@ -1,5 +1,5 @@
 <template >
-  <div class="scr" v-if="this.user">
+  <div class="scr" v-if="this.user" >
     <div class="user-banner">
       <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
@@ -15,9 +15,11 @@
       <div class="column">
         <nav class="navtab">
           <div class="nav-menu">
+            <router-link class="tablink" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
             <router-link class="tablink" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular songs</router-link>
             <router-link class="tablink" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
             <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
+            <router-link class="tablink" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
             <button class="button-primary">Follow</button>
@@ -74,14 +76,15 @@
               </template>
             </panel>
             <panel style="">
-              <template v-slot:header>Likes</template>
+              <template v-slot:header>{{this.userLikedSongs.songs.length}} likes</template>
               <template v-slot:menu>
-                <button class="button-secondary">View all</button>
+                <router-link class="button-secondary" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
                 <playlist
                   :id="this.userLikedSongs.id"
                   :songs="this.userLikedSongs.songs"
+                  :maxDisplay="3"
                 />
               </template>
             </panel>
@@ -117,6 +120,13 @@ import playlist from "@/components/playlist.vue"
           id:this.login+' liked',
           songs:[]
         },
+      }
+    },
+    watch:
+    {
+      "this.$route.params.login"(s)
+      {
+        alert(s);
       }
     },
     async created()
@@ -241,7 +251,7 @@ import playlist from "@/components/playlist.vue"
     border-bottom:2px solid var(--text-color-primary);
   }
 
-  .tablink.router-link-active
+  .tablink.router-link-exact-active
   {
     border-bottom:2px solid var(--accent-color);
     color: var(--accent-color);

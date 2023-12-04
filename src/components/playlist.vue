@@ -1,7 +1,7 @@
 <template>
 
   <ul class = "playlist" v-if="songs.length>0">
-    <li v-for="(song,index) in songs">
+    <li v-for="(song,index) in this.getShortList">
     <song
       :index = "index"
       :id = "song.id"
@@ -33,6 +33,11 @@ export default
     current()
     {
       return this.$store.state.currentPlaylist.id===this.id;
+    },
+    getShortList()
+    {
+      if (this.maxDisplay<1) return this.songs;
+      return this.songs.slice(0,this.maxDisplay);
     }
   },
   methods:
@@ -45,7 +50,8 @@ export default
   props:
   {
     id: { default: "noid"},
-    songs: {type: Array, default: []}
+    songs: {type: Array, default: []},
+    maxDisplay: {default:0}
   }
 }
 </script>
