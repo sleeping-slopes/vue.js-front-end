@@ -1,14 +1,22 @@
-<template >
-  <div class="scr" v-if="this.user" >
+<template>
+  <div class="songs-empty" v-if="this.user.error">
+    <i class="bi bi-emoji-frown"></i>
+    404
+  </div>
+  <div class="scr" v-else>
     <div class="user-banner">
       <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
-        <span class="user-banner-name">
-          {{ this.user.username }}
-        </span>
-        <span class="user-banner-status">
-          {{ this.user.status }}
-        </span>
+          <span class="user-banner-name">
+            {{ this.user.username }}
+            <i class="bi bi-patch-check-fill" v-if="this.user.verified"></i>
+          </span>
+          <span class="user-banner-status" v-if=this.user.status>
+            {{ this.user.status }}
+          </span>
+          <span class="user-banner-status" v-if="this.user.city || this.user.country">
+            {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
+          </span>
       </div>
     </div>
     <div class="main">
@@ -16,7 +24,7 @@
         <nav class="navtab">
           <div class="nav-menu">
             <router-link class="tablink" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
-            <router-link class="tablink" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular songs</router-link>
+            <router-link class="tablink" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link>
             <router-link class="tablink" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
             <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
             <router-link class="tablink" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
@@ -48,8 +56,8 @@
                     <span class="stat-value">999</span>
                   </router-link>
                 </div>
-                <div class="user-description">
-                  {{ this.user.description }}
+                <div class="user-bio">
+                  {{ this.user.bio }}
                 </div>
                 <ul class="user-link-list">
                   <li>
@@ -114,10 +122,10 @@ import playlist from "@/components/playlist.vue"
     data()
     {
       return {
-        user: undefined,
+        user:{},
         userLikedSongs:
         {
-          id:this.login+' liked',
+          id:"[]"+this.login+' liked',
           songs:[]
         },
       }
@@ -131,9 +139,7 @@ import playlist from "@/components/playlist.vue"
     },
     async created()
     {
-      const r = await getUserByLogin(this.login);
-      if (r.status===200) this.user=r.values;
-      else this.user=undefined;
+      this.user = await getUserByLogin(this.login);
 
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
     },
@@ -217,7 +223,7 @@ import playlist from "@/components/playlist.vue"
   .nav-menu
   {
     display:flex;
-    gap:10px;
+    gap:20px;
   }
 
   nav
@@ -292,7 +298,7 @@ import playlist from "@/components/playlist.vue"
     font-size:22px;
   }
 
-  .user-description
+  .user-bio
   {
     font-size:16px;
     color: var(--text-color-primary);

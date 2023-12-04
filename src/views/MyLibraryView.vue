@@ -54,14 +54,14 @@ export default
       [],
       myAudio:
       {
-        playlistID:'myaudio',
+        id:'[]myaudio',
         songs:
         [
         ]
       },
       lastListened:
       {
-        playlistID:'lastListened',
+        id:'[]lastListened',
         songs:
         [
         ]

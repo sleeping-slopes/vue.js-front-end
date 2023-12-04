@@ -33,7 +33,7 @@ export default
   name: 'playlistCard',
   props:
   {
-    id: {type: Number, default:-1},
+    id: { default:"noid"},
   },
   data()
   {

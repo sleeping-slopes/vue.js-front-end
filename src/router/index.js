@@ -6,6 +6,7 @@ import logInModal from '@/components/logInModal.vue'
 import signUpModal from '@/components/signUpModal.vue'
 
 import userProfileView from '@/views/UserProfileView.vue'
+import userPopularView from '@/views/UserPopularView.vue'
 import userSongsView from '@/views/UserSongsView.vue'
 import userLikesView from '@/views/UserLikesView.vue'
 
@@ -50,13 +51,22 @@ const routes = [
       {
         name: "UserActivity",
         path: '',
-        props:true
+        props:true,
+        // component:''
       },
       {
         name: "UserPopular",
         path: 'popular',
-        component: userSongsView,
-        props:true
+        component: userPopularView,
+        props:true,
+        children:
+        [
+          {
+            path: 'playlist/:id/',
+            component: playlistModal,
+            props:true,
+          }
+        ]
       },
       {
         name: "UserSongs",
@@ -83,7 +93,15 @@ const routes = [
         name: "UserLikes",
         path: 'likes',
         component: userLikesView,
-        props:true
+        props:true,
+        children:
+        [
+          {
+            path: 'playlist/:id/',
+            component: playlistModal,
+            props:true,
+          }
+        ]
       },
     ]
   },

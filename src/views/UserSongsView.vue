@@ -1,6 +1,6 @@
 <template>
   <panel>
-    <template v-slot:header>Songs by {{ this.login }}</template>
+    <template v-slot:header>Songs by {{ this.user.username }}</template>
     <template v-slot:content>
       <playlist
         :id="this.userSongs.id"
@@ -15,6 +15,7 @@
   import panel from '@/components/panel.vue';
   import playlist from '@/components/playlist.vue';
 
+  import { getUserByLogin } from '@/axios/getters';
   import { getUserSongs } from '@/axios/getters'
 
   export default {
@@ -35,17 +36,15 @@
       return{
         userSongs:
         {
-          id:this.login+' songs',
+          id:"[]"+this.login+' songs',
           songs:[]
         },
+        user:{}
       }
     },
     async created()
     {
-      // const r = await getUserByLogin(this.login);
-      // if (r.status===200) this.user=r.values;
-      // else this.user=undefined;
-
+      this.user = await getUserByLogin(this.login);
       this.userSongs.songs = await getUserSongs(this.login);
     },
   }

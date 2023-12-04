@@ -1,13 +1,13 @@
 <template>
     <panel style="height:max-content;flex-shrink:0;">
-        <template v-slot:header>Playlists</template>
+        <template v-slot:header>Playlists liked by {{ this.user.username }}</template>
         <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
           <playlistCarousel :playlists="userLikedPlaylists"/>
         </template>
       </panel>
       <panel>
-        <template v-slot:header>Songs</template>
+        <template v-slot:header>Songs liked by {{ this.user.username }}</template>
         <template v-slot:content>
           <playlist
           :id="userLikedSongs.id"
@@ -23,6 +23,7 @@
     import playlistCarousel from '@/components/playlistCarousel.vue';
     import playlist from '@/components/playlist.vue';
 
+    import { getUserByLogin } from '@/axios/getters';
     import { getUserLikedSongs } from '@/axios/getters'
     import { getUserLikedPlaylists } from '@/axios/getters'
 
@@ -45,16 +46,15 @@
           userLikedPlaylists:[],
           userLikedSongs:
           {
-            id:this.login+' liked',
+            id:"[]"+this.login+' liked',
             songs:[]
           },
+          user:{},
         }
       },
       async created()
       {
-        // const r = await getUserByLogin(this.login);
-        // if (r.status===200) this.user=r.values;
-        // else this.user=undefined;
+        this.user = await getUserByLogin(this.login);
         this.userLikedSongs.songs = await getUserLikedSongs(this.login);
         this.userLikedPlaylists = await getUserLikedPlaylists(this.login);
       },

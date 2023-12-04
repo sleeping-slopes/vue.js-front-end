@@ -41,7 +41,7 @@ export default {
       playlists:[],
       discoverPlaylist:
       {
-        id:'discover',
+        id:'[]discover',
         songs:[]
       },
     }

@@ -68,7 +68,7 @@ export default
   },
   props:
   {
-    id:{default:-1}
+    id:{default:"noid"}
   },
   data()
   {
