@@ -145,7 +145,7 @@
 
   .search:focus
   {
-    outline:none;
+    outline-color: transparent;
   }
 
   .search:not(:placeholder-shown) + i
