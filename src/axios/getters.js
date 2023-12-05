@@ -114,21 +114,6 @@ export async function logInUser(login,password)
     }
 }
 
-export async function getUserByLogin(login)
-{
-    try
-    {
-
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const userRes = await axios.get("http://localhost:5000/api/user/"+login);
-      return userRes.data.values;
-    }
-    catch(err)
-    {
-        return err.response.data.values;
-    }
-}
-
 export async function getUserByToken()
 {
     try
@@ -140,6 +125,51 @@ export async function getUserByToken()
     catch(err)
     {
         return err.response.data;
+    }
+}
+
+export async function getUserUsername(login)
+{
+    try
+    {
+
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const userRes = await axios.get("http://localhost:5000/api/user/"+login+"/username");
+      return userRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
+export async function getUserProfile(login)
+{
+    try
+    {
+
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const userRes = await axios.get("http://localhost:5000/api/user/"+login+"/profile");
+      return userRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
+export async function getUserLinks(login)
+{
+    try
+    {
+
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const userLinksRes = await axios.get("http://localhost:5000/api/user/"+login+"/links");
+      return userLinksRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
     }
 }
 
@@ -163,8 +193,8 @@ export async function getUserPlaylists(login)
   try
   {
     axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/likes/playlists");
-    return userLikedSongsRes.data.values;
+    const userPlaylists = await axios.get("http://localhost:5000/api/user/"+login+"/playlists");
+    return userPlaylists.data.values;
   }
   catch(err)
   {

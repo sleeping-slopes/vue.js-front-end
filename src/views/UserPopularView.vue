@@ -23,7 +23,7 @@
   import playlistCarousel from '@/components/playlistCarousel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserByLogin } from '@/axios/getters';
+  import { getUserUsername } from '@/axios/getters';
   import { getUserSongs } from '@/axios/getters'
   import { getUserPlaylists } from '@/axios/getters'
 
@@ -54,7 +54,7 @@
     },
     async created()
     {
-      this.user = await getUserByLogin(this.login);
+      this.user = await getUserUsername(this.login);
       this.userPopularSongs.songs = await getUserSongs(this.login);
       this.userPopularPlaylists = await getUserPlaylists(this.login);
     },

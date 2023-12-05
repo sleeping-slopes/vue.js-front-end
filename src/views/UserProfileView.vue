@@ -7,11 +7,11 @@
     <div class="user-banner">
       <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
-          <span class="user-banner-name">
-            {{ this.user.username }}
+          <span class="user-banner-name" v-if="this.user.username || this.user.login">
+            {{ this.user.username?this.user.username:this.user.login }}
             <i class="bi bi-patch-check-fill" v-if="this.user.verified"></i>
           </span>
-          <span class="user-banner-status" v-if=this.user.status>
+          <span class="user-banner-status" v-if="this.user.status">
             {{ this.user.status }}
           </span>
           <span class="user-banner-status" v-if="this.user.city || this.user.country">
@@ -45,40 +45,26 @@
                 <div class="user-stats">
                   <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
                     <span class="stat-name">Followers</span>
-                    <span class="stat-value">32K</span>
+                    <span class="stat-value">{{abbreviate_number(this.user.followers_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
                     <span class="stat-name">Following</span>
-                    <span class="stat-value">32K</span>
+                    <span class="stat-value">{{abbreviate_number(this.user.following_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
                     <span class="stat-name">Songs</span>
-                    <span class="stat-value">999</span>
+                    <span class="stat-value">{{abbreviate_number(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
                 <div class="user-bio">
                   {{ this.user.bio }}
                 </div>
                 <ul class="user-link-list">
-                  <li>
-                    <a href="#" class="user-link">
-                        <i class="bi bi-telegram"></i>Telegram
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="user-link">
-                        <i class="bi bi-telegram"></i>Telegram
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="user-link">
-                        <i class="bi bi-telegram"></i>Telegram
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="user-link">
-                        <i class="bi bi-telegram"></i>Telegram
-                    </a>
+                  <li v-for="(link) in this.user.links">
+                    <glyphLink
+                      :url=link.url
+                      :description=link.description
+                    />
                   </li>
                 </ul>
               </template>
@@ -105,19 +91,17 @@
 
   <script>
 
-import { getUserByLogin,getUserLikedSongs } from "@/axios/getters";
+import { getUserProfile,getUserLinks, getUserLikedSongs } from "@/axios/getters";
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
+import glyphLink from "@/components/glyphLink.vue"
 
   export default {
     name: 'UserProfileView',
-    components:{panel,playlist},
+    components:{panel,playlist,glyphLink},
     props:
     {
-      login:
-      {
-        default: -1,
-      },
+      login: { default: "nologin" },
     },
     data()
     {
@@ -130,19 +114,26 @@ import playlist from "@/components/playlist.vue"
         },
       }
     },
-    watch:
-    {
-      "this.$route.params.login"(s)
-      {
-        alert(s);
-      }
-    },
     async created()
     {
-      this.user = await getUserByLogin(this.login);
-
+      this.user = await getUserProfile(this.login);
+      this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
     },
+    methods:
+    {
+      abbreviate_number(num, fixed)
+      {
+        if (!num || num === 0) { return '0'; } // terminate early
+        fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
+        var b = (num).toPrecision(2).split("e"), // get power
+        k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+        c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed), // divide by power
+        d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
+        e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
+        return e;
+      }
+    }
   }
   </script>
 
@@ -153,6 +144,7 @@ import playlist from "@/components/playlist.vue"
     overflow-y:scroll;
     width:100%;
   }
+
   .scr::-webkit-scrollbar
   {
     display: none;
@@ -304,31 +296,11 @@ import playlist from "@/components/playlist.vue"
     color: var(--text-color-primary);
   }
 
-
-
   .user-link-list
   {
     list-style: none;
     padding:0px;
     margin:0px;
-    color:var(--text-color-secondary);
-
-  }
-
-  .user-link
-  {
-    all: unset;
-    display:flex;
-    width:min-content;
-    white-space: nowrap;
-    gap:3px;
-    font-size:16px;
-    cursor:pointer;
-  }
-
-  .user-link:hover
-  {
-    color:var(--text-color-primary);
   }
 
   </style>

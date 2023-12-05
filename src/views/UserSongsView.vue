@@ -15,7 +15,7 @@
   import panel from '@/components/panel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserByLogin } from '@/axios/getters';
+  import { getUserUsername } from '@/axios/getters';
   import { getUserSongs } from '@/axios/getters'
 
   export default {
@@ -44,7 +44,7 @@
     },
     async created()
     {
-      this.user = await getUserByLogin(this.login);
+      this.user = await getUserUsername(this.login);
       this.userSongs.songs = await getUserSongs(this.login);
     },
   }

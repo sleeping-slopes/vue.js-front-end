@@ -10,6 +10,8 @@ import userPopularView from '@/views/UserPopularView.vue'
 import userSongsView from '@/views/UserSongsView.vue'
 import userLikesView from '@/views/UserLikesView.vue'
 
+import userFollowers from '@/views/UserFollowers.vue'
+
 const routes = [
   {
     name: 'Discover',
@@ -80,16 +82,6 @@ const routes = [
         component: '',
       },
       {
-        name: "UserFollowers",
-        path: 'followers',
-        component: '',
-      },
-      {
-        name: "UserFollowing",
-        path: 'following',
-        component: '',
-      },
-      {
         name: "UserLikes",
         path: 'likes',
         component: userLikesView,
@@ -103,7 +95,20 @@ const routes = [
           }
         ]
       },
-    ]
+    ],
+
+  },
+  {
+    name: "UserFollowers",
+    path: '/id/:login/followers',
+    component: userFollowers,
+    props:true
+  },
+  {
+    name: "UserFollowing",
+    path: '/id/:login/following',
+    component: userFollowers,
+    props:true
   },
   {
     path: '/signup',
