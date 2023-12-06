@@ -28,9 +28,9 @@
       </div>
 
       <div class="player-slider">
-        <span class="song-time"> {{ secsToMins(this.currentTime) }}</span>
+        <span class="song-time"> {{ numberToTimeString(this.currentTime) }}</span>
         <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="seek()">
-        <span class="song-time"> {{ secsToMins(this.$refs.audio.duration) }}</span>
+        <span class="song-time"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
       </div>
       <div class="player-menu">
         <button class="round-button small bi bi-volume-up-fill">
@@ -74,6 +74,8 @@
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 import song from "@/components/song.vue"
+
+import { numberToTimeString } from "@/functions.js"
 
 export default
 {
@@ -132,15 +134,12 @@ export default
   },
   methods:
   {
-    secsToMins(sec)
-    {
-      return String(Math.floor(sec/60)).padStart(2,'0')+":"+String(Math.floor(sec)%60).padStart(2,'0');
-    },
     seek()
     {
       this.$refs.audio.currentTime=this.$refs.slider.value;
       this.$store.state.isPlaying=true;
-    }
+    },
+    numberToTimeString:numberToTimeString
   }
 }
 

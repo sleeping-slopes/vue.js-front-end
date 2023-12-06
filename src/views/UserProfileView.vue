@@ -5,7 +5,7 @@
   </div>
   <div class="scr" v-else>
     <div class="user-banner">
-      <img class = "user-image" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+      <img class = "user-image s200x200" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
           <span class="user-banner-name" v-if="this.user.username || this.user.login">
             {{ this.user.username?this.user.username:this.user.login }}
@@ -45,15 +45,15 @@
                 <div class="user-stats">
                   <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
                     <span class="stat-name">Followers</span>
-                    <span class="stat-value">{{abbreviate_number(this.user.followers_count,0)}}</span>
+                    <span class="stat-value">{{abbreviateNumber(this.user.followers_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
                     <span class="stat-name">Following</span>
-                    <span class="stat-value">{{abbreviate_number(this.user.following_count,0)}}</span>
+                    <span class="stat-value">{{abbreviateNumber(this.user.following_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
                     <span class="stat-name">Songs</span>
-                    <span class="stat-value">{{abbreviate_number(this.user.songs_count,0)}}</span>
+                    <span class="stat-value">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
                 <div class="user-bio">
@@ -92,6 +92,8 @@
   <script>
 
 import { getUserProfile,getUserLinks, getUserLikedSongs } from "@/axios/getters";
+import { abbreviateNumber } from "@/functions.js"
+
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 import glyphLink from "@/components/glyphLink.vue"
@@ -122,17 +124,7 @@ import glyphLink from "@/components/glyphLink.vue"
     },
     methods:
     {
-      abbreviate_number(num, fixed)
-      {
-        if (!num || num === 0) { return '0'; } // terminate early
-        fixed = (!fixed || fixed < 0) ? 0 : fixed; // number of decimal places to show
-        var b = (num).toPrecision(2).split("e"), // get power
-        k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
-        c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3) ).toFixed(1 + fixed), // divide by power
-        d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
-        e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
-        return e;
-      }
+      abbreviateNumber: abbreviateNumber
     }
   }
   </script>
@@ -172,17 +164,6 @@ import glyphLink from "@/components/glyphLink.vue"
     margin-right:auto;
     border-bottom-left-radius:10px;
     border-bottom-right-radius:10px;
-  }
-
-  .user-image
-  {
-    width:200px;
-    height:200px;
-    background-color:red;
-    border-radius:50%;
-    border:3px solid black;
-    box-sizing: border-box;
-    flex-shrink:0;
   }
 
   .user-banner-info

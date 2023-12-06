@@ -48,6 +48,7 @@ export default
 .main
 {
   padding:10px 0px 10px 0px;
+  gap:20px;
   width:1180px;
   display:flex;
   flex-direction: column;
@@ -146,4 +147,57 @@ export default
   transform: scale(1.0);
 }
 
+.user-image
+  {
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    flex-shrink:0;
+    border-radius:50%;
+    width:200px;
+    height:200px;
+    font-size:2em;
+    color:var(--light-gray);
+  }
+
+  .user-image.s44x44
+  {
+    height:44px;
+    width:44px;
+    font-size:2em;
+  }
+
+  .user-image.s100x100
+  {
+    width:100px;
+    height:100px;
+    font-size:2em;
+  }
+
+  .user-image.s180x180
+  {
+    width:180px;
+    height:180px;
+    font-size:2em;
+  }
+
+  .user-image.s200x200
+  {
+    width:200px;
+    height:200px;
+    font-size:2em;
+  }
+
+.primary-text-hoverable
+{
+	color:var(--text-color-primary);
+  /* background-color:red; */
+  display:inline;
+  height:min-content;
+}
+
+.primary-text-hoverable:hover
+{
+	color:var(--text-color-primary-hover);
+}
 </style>

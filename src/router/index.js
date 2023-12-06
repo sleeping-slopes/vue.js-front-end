@@ -11,6 +11,7 @@ import userSongsView from '@/views/UserSongsView.vue'
 import userLikesView from '@/views/UserLikesView.vue'
 
 import userFollowers from '@/views/UserFollowers.vue'
+import userFollowing from '@/views/UserFollowing.vue'
 
 const routes = [
   {
@@ -107,7 +108,7 @@ const routes = [
   {
     name: "UserFollowing",
     path: '/id/:login/following',
-    component: userFollowers,
+    component: userFollowing,
     props:true
   },
   {

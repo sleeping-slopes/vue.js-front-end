@@ -29,13 +29,13 @@
             <button class="songButton bi bi-plus"></button>
             <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
-        <div class = "song-duration" style="float:right;">{{ songDurationToMins }}</div>
+        <div class = "song-duration" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
   </template>
-
 <script>
 
 import { getSong } from "@/axios/getters.js"
+import { numberToTimeString } from "@/functions.js"
 
 export default
 {
@@ -67,10 +67,6 @@ export default
     {
         if (this.current) return this.$store.state.isPlaying;
         return false;
-    },
-    songDurationToMins()
-    {
-      return String(Math.floor(this.song.duration/60)).padStart(2,'0')+":"+String(this.song.duration%60).padStart(2,'0');
     }
   },
   methods:
@@ -82,6 +78,7 @@ export default
         else
             this.$store.state.isPlaying=!this.$store.state.isPlaying;
     },
+    numberToTimeString:numberToTimeString
   }
 }
 

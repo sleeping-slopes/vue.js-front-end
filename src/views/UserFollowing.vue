@@ -2,7 +2,7 @@
 <div class="main" style="padding:0px">
 	<div class="fixed-top">
 		<img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
-		<span class="primary-text-hoverable">Followers of {{this.user.username?this.user.username:this.login}}</span>
+		<span class="primary-text-hoverable">{{this.user.username?this.user.username:this.login}} is following</span>
 	</div>
 	<div class="column" style="gap:0px">
 		<nav class="navtab">
@@ -13,20 +13,7 @@
 		</nav>
 		<div class="scr">
 			<ul class="user-list">
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
+
 				<li><userCard :login="'norimyxxxo'"></userCard></li>
 				<li><userCard :login="'norimyxxxo'"></userCard></li>
 				<li><userCard :login="'norimyxxxo'"></userCard></li>
@@ -68,24 +55,5 @@
 
     <style>
 
-.fixed-top
-{
-	display:flex;
-	font-size:32px;
-	gap: 20px;
-	color:var(--text-color-primary);
-	padding-top:10px;
-}
-
-.user-list
-{
-	list-style: none;
-	padding:0px;
-	margin:0px;
-	gap:20px;
-	display:flex;
-	flex-wrap:wrap;
-	width:100%;
-}
     </style>
 

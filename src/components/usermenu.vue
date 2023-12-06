@@ -10,8 +10,8 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "nav-user-profile-picture" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`"/>
-      <!-- <div class = "nav-user-profile-picture bi bi-person-fill"/> -->
+      <img class = "user-image s44x44" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`"/>
+      <!-- <div class = "user-image s44x44"/> -->
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
@@ -125,19 +125,6 @@ export default {
 {
   color:var(--text-color-primary);
   white-space: nowrap;
-}
-
-.nav-user-profile-picture
-{
-  height:44px;
-  width:44px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  color:var(--light-gray);
-  align-items: center;
-  display:flex;
-  justify-content:center;
-  font-size:2em;
 }
 
 .nav-loginmenu
