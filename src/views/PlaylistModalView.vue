@@ -16,16 +16,16 @@
             <img class = "playlist-modal-cover" v-if="cover" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="cover=false"/>
             <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
             <div class="playlist-info">
-              <div class="playlist-info-name">{{this.playlist.name}}</div>
+              <div class="primary-text">{{this.playlist.name}}</div>
               <div class ="song-info-artist">
                   <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink" v-if="artist.login"
+                    <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>
-                    <span v-else>{{artist.name}}</span>
-                    <span v-if="index+1 < this.playlist.artists.length">, </span>
+                    <span class="secondary-text" v-else>{{artist.name}}</span>
+                    <span class="secondary-text" v-if="index+1 < this.playlist.artists.length">, </span>
                   </div>
               </div>
               <div class="playlist-button-row">
@@ -91,7 +91,6 @@ export default
 </script>
 
 <style>
-
 .modal-shade
 {
   position:fixed;
@@ -160,19 +159,16 @@ export default
 
 .playlist-header
 {
-
-    display:flex;
-    box-sizing: border-box;
+  display:flex;
+  box-sizing: border-box;
 }
 
 .playlist-info
 {
   padding:10px;
-
   display:flex;
   flex-direction: column;
   position:relative;
-
 }
 
 .playlist-info-name
@@ -191,6 +187,5 @@ export default
   height:100%;
   align-items:flex-end;
 }
-
 </style>
 

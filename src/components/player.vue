@@ -202,41 +202,6 @@ export default
   gap:20px;
 }
 
-.round-button
-{
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  background:none;
-  border:none;
-  color: var(--text-color-primary);
-  padding:0px;
-  margin:0px;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.round-button.large
-{
-  font-size:44px;
-  height:42px;
-  width:42px;
-}
-
-.round-button.medium
-{
-  font-size:30px;
-  height:28px;
-  width:28px;
-}
-
-.round-button.small
-{
-  font-size:22px;
-  height:20px;
-  width:20px;
-}
-
 .song-time
 {
   display:inline-flex;

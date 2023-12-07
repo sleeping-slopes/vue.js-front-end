@@ -12,7 +12,7 @@
                   <input class="my-input" type="text" v-bind:style="email.error?{'border-color':'red'}:{}"
                   placeholder="Enter email"
                   v-model="email.data"/>
-                  <div class="error-message" v-if=email.error>
+                  <div class="error" v-if=email.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
                     {{ email.error }}
                   </div>
@@ -22,7 +22,7 @@
                   <input class="my-input" type="password" v-bind:style="password.error?{'border-color':'red'}:{}"
                   placeholder="Enter password"
                   v-model="password.data"/>
-                  <div class="error-message" v-if=password.error>
+                  <div class="error" v-if=password.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
                     {{ password.error }}
                   </div>
@@ -32,7 +32,7 @@
                   <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
                   placeholder="What should we call you?"
                   v-model="login.data"/>
-                  <div class="error-message" v-if=login.error>
+                  <div class="error" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
                     {{ login.error }}
                   </div>
@@ -115,44 +115,5 @@ export default {
 </script>
 
 <style>
-
-.label
-{
-display:flex;
-flex-direction: column;
-color: var(--text-color-primary);
-width:100%;
-}
-
-.my-input:focus
-{
-border-color: var(--text-color-primary);
-}
-
-.error-message
-{
-color:red;
-}
-
-.my-input
-{
-outline-color: transparent;
-border: 2px solid var(--panel-border-color);
-box-sizing: border-box;
-background:none;
-color: var(--text-color-primary);
-border-radius:5px;
-transition:0.1s all;
-}
-
-.panel hr
-{
-border: none;
-width:100%;
-border-top: 2px solid var(--panel-border-color);
-height: 0px;
-box-sizing: border-box;
-margin:0px;
-}
 
 </style>

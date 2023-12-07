@@ -1,7 +1,7 @@
 
 
 <template>
-    <a class="user-link"
+    <a class="user-link secondary-text-hoverable"
         :href="'https://'+this.url"
         target=”_blank” rel="noopener noreferrer">
         <i :class="'bi bi-'+this.glyph"></i>
@@ -54,20 +54,13 @@ export default
 
 .user-link
 {
-    all: unset;
     display:flex;
     width:min-content;
     white-space: nowrap;
     gap:3px;
     font-size:16px;
-    cursor:pointer;
-    color:var(--text-color-secondary);
+    text-decoration: none;
     align-items: center;
-}
-
-.user-link:hover
-{
-    color:var(--text-color-primary);
 }
 
 </style>

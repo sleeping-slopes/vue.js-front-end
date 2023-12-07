@@ -12,7 +12,7 @@
                   <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
                   placeholder="Enter login or email"
                   v-model="login.data"/>
-                  <div class="error-message" v-if=login.error>
+                  <div class="error" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
                     {{ login.error }}
                   </div>
@@ -22,7 +22,7 @@
                   <input class="my-input" type="password" v-bind:style="password.error?{'border-color':'red'}:{}"
                   placeholder="Enter password"
                   v-model="password.data"/>
-                  <div class="error-message" v-if=password.error>
+                  <div class="error" v-if=password.error>
                     <span class="bi bi-exclamation-circle-fill"></span>
                     {{ password.error }}
                   </div>

@@ -232,3 +232,33 @@ export async function getUserLikedPlaylists(login)
     return [];
   }
 }
+
+export async function getUserFollowers(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userFollowersRes = await axios.get("http://localhost:5000/api/user/"+login+"/followers");
+    return userFollowersRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}
+
+export async function getUserFollowing(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userFollowingRes = await axios.get("http://localhost:5000/api/user/"+login+"/following");
+    return userFollowingRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}

@@ -13,12 +13,7 @@
 		</nav>
 		<div class="scr">
 			<ul class="user-list">
-
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
+				<li v-for="following in this.followings"><userCard :login="following.login"></userCard></li>
 				<!-- <li><userCard :login="'norimyxxxo'"></userCard></li> -->
 			</ul>
 		</div>
@@ -29,6 +24,7 @@
 <script>
 
   import { getUserUsername } from "@/axios/getters";
+  import { getUserFollowing } from "@/axios/getters";
 
   import panel from "@/components/panel.vue"
   import userCard from "@/components/userCard.vue"
@@ -44,11 +40,13 @@
       {
         return {
           user:{},
+          followings:[]
         }
       },
       async created()
       {
         this.user = await getUserUsername(this.login);
+        this.followings = await getUserFollowing(this.login);
       }
     }
     </script>

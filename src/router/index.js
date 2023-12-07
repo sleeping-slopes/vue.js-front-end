@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import discoverView from '@/views/DiscoverView.vue'
 import myLibraryView from '@/views/MyLibraryView.vue'
-import playlistModal from '@/components/playlistModal.vue'
-import logInModal from '@/components/logInModal.vue'
-import signUpModal from '@/components/signUpModal.vue'
+
+import playlistModal from '@/views/PlaylistModalView.vue'
+import logInModal from '@/views/LogInModalView.vue'
+import signUpModal from '@/views/SignUpModalView.vue'
 
 import userProfileView from '@/views/UserProfileView.vue'
 import userPopularView from '@/views/UserPopularView.vue'

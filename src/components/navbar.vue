@@ -44,10 +44,9 @@
   .header-wrapper nav
   {
     width:1240px;
-    max-height:48px;
-    height: 48px;
     min-height:48px;
-
+    height: 48px;
+    max-height:48px;
   }
 
   .logo

@@ -13,26 +13,8 @@
 		</nav>
 		<div class="scr">
 			<ul class="user-list">
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'user'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<li><userCard :login="'norimyxxxo'"></userCard></li>
-				<!-- <li><userCard :login="'norimyxxxo'"></userCard></li> -->
+				<li v-for="follower in this.followers"><userCard :login="follower.login"></userCard></li>
+				<!-- <li><userCard :login="'user'"></userCard></li> -->
 			</ul>
 		</div>
 	</div>
@@ -42,6 +24,7 @@
 <script>
 
   import { getUserUsername } from "@/axios/getters";
+  import { getUserFollowers } from "@/axios/getters";
 
   import panel from "@/components/panel.vue"
   import userCard from "@/components/userCard.vue"
@@ -57,35 +40,19 @@
       {
         return {
           user:{},
+		  followers:[]
         }
       },
       async created()
       {
         this.user = await getUserUsername(this.login);
+		this.followers = await getUserFollowers(this.login);
+		console.log(this.followers);
       }
     }
     </script>
 
     <style>
 
-.fixed-top
-{
-	display:flex;
-	font-size:32px;
-	gap: 20px;
-	color:var(--text-color-primary);
-	padding-top:10px;
-}
-
-.user-list
-{
-	list-style: none;
-	padding:0px;
-	margin:0px;
-	gap:20px;
-	display:flex;
-	flex-wrap:wrap;
-	width:100%;
-}
     </style>
 
