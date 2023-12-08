@@ -8,7 +8,7 @@
       <img class = "user-image s200x200" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
         <div class="user-banner-info">
           <span class="user-banner-name" v-if="this.user.username || this.user.login">
-            {{ this.user.username?this.user.username:this.user.login }}
+            {{ this.user.username || this.user.login }}
             <i class="bi bi-patch-check-fill" v-if="this.user.verified"></i>
           </span>
           <span class="user-banner-status" v-if="this.user.status">
@@ -56,7 +56,7 @@
                     <span class="stat-value">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
-                <div class="user-bio">
+                <div class="primary-text">
                   {{ this.user.bio }}
                 </div>
                 <ul class="user-link-list">

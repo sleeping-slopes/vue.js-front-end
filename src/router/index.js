@@ -47,6 +47,7 @@ const routes = [
     ]
   },
   {
+    name: "User",
     path: '/id/:login',
     component: userProfileView,
     props:true,

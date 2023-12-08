@@ -108,6 +108,7 @@ export default {
   gap:10px;
   border-radius:10px;
   padding: 5px 5px 5px 5px;
+  font-size:16px;
 }
 
 .usermenu-button:hover
@@ -119,12 +120,6 @@ export default {
 {
   color:var(--accent-color);
   padding-right:5px;
-}
-
-.primary-text
-{
-  color:var(--text-color-primary);
-  white-space: nowrap;
 }
 
 .nav-loginmenu

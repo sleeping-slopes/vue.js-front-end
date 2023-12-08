@@ -158,6 +158,21 @@ export async function getUserProfile(login)
     }
 }
 
+export async function getUserShortProfile(login)
+{
+    try
+    {
+
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const userRes = await axios.get("http://localhost:5000/api/user/"+login+"/shortprofile");
+      return userRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
 export async function getUserLinks(login)
 {
     try

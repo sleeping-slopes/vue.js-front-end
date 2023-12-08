@@ -1,8 +1,10 @@
 <template>
 <div class="main" style="padding:0px">
 	<div class="fixed-top">
-		<img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
-		<span class="primary-text-hoverable">Followers of {{this.user.username?this.user.username:this.login}}</span>
+    <router-link :to="{ name: 'User', params: { login: this.login }}">
+		  <img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+    </router-link>
+		<router-link class="primary-text-hoverable" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>
 	</div>
 	<div class="column" style="gap:0px">
 		<nav class="navtab">

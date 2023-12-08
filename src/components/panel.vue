@@ -1,7 +1,7 @@
 <template>
     <div class = "panel">
-        <div class = "panel-header primary-text" v-if="!!this.$slots.header">
-            <span class="panel-title">
+        <div class = "panel-header" v-if="!!this.$slots.header">
+            <span class="panel-title primary-text">
               <slot name="header"></slot>
             </span>
             <div class = "panel-menu">
@@ -51,7 +51,7 @@ export default
 
 .panel-title
 {
-  font-size:1.25rem;
+  font-size: 20px;
 }
 
 .panel-menu

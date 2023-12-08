@@ -45,6 +45,11 @@ export default
   overflow:hidden;
 }
 
+a
+{
+  text-decoration: none;
+}
+
 .scr
 {
   overflow-y:scroll;
@@ -411,20 +416,9 @@ nav
   color: var(--text-color-primary);
 }
 
-.stat-name
-{
-  font-size:16px;
-}
-
 .stat-value
 {
   font-size:22px;
-}
-
-.user-bio
-{
-  font-size:16px;
-  color: var(--text-color-primary);
 }
 
 .user-link-list

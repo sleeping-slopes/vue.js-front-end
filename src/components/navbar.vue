@@ -74,13 +74,10 @@
   {
     color: var(--light-gray);
     height:100%;
-
     box-sizing:border-box;
-    cursor:pointer;
     transition: all 0.2s;
     text-decoration: none;
     white-space: nowrap;
-
     padding:0px 20px 0px 20px;
     display:flex;
     align-items: center;

@@ -171,16 +171,6 @@ export default
   position:relative;
 }
 
-.playlist-info-name
-{
-  color: var(--text-color-primary);
-}
-
-.playlist-info-artist
-{
-  color: var(--text-color-secondary);
-}
-
 .playlist-button-row
 {
   display:flex;

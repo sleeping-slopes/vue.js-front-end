@@ -1,8 +1,10 @@
 <template>
   <div class = "user-card">
+    <router-link :to="{ name: 'User', params: { login: this.login }}">
     <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+  </router-link>
     <div class= "user-info">
-      <span class ="user-info-name primary-text-hoverable">{{this.user.username?this.user.username:this.login}}</span>
+      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="user-info-name primary-text-hoverable">{{this.user.username || this.login}}</router-link>
       <span class ="user-info-followers secondary-text" v-if="this.user.followers_count>0"><i class="bi bi-people-fill"></i>{{this.user.followers_count}} follower{{ this.user.followers_count>1?'s':'' }}</span>
     </div>
   </div>
@@ -10,7 +12,8 @@
 
 <script>
 
-import { getUserProfile } from "@/axios/getters.js"
+import { getUserShortProfile } from "@/axios/getters.js"
+
 import { abbreviateNumber } from "@/functions.js";
 
 export default
@@ -28,7 +31,7 @@ export default
   },
   async mounted()
   {
-    this.user = await getUserProfile(this.login);
+    this.user = await getUserShortProfile(this.login);
   },
   methods:
   {
@@ -47,11 +50,6 @@ export default
     width:180px;
     height:250px;
     padding-top:20px;
-}
-
-.user-card .user-image, .user-card .user-info-name
-{
-  cursor:pointer;
 }
 
 .user-info

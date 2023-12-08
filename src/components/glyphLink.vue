@@ -5,7 +5,7 @@
         :href="'https://'+this.url"
         target=”_blank” rel="noopener noreferrer">
         <i :class="'bi bi-'+this.glyph"></i>
-        {{this.description?this.description:this.url}}
+        {{this.description || this.url}}
     </a>
 </template>
 
@@ -58,7 +58,6 @@ export default
     width:min-content;
     white-space: nowrap;
     gap:3px;
-    font-size:16px;
     text-decoration: none;
     align-items: center;
 }

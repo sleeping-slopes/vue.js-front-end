@@ -11,7 +11,7 @@
     />
     </li>
   </ul>
-  <div class="songs-empty" v-else>
+  <div class="playlist-empty" v-else>
     <i class="bi bi-music-note-beamed"></i>
     No audio here yet
   </div>
@@ -82,7 +82,7 @@ export default
   scrollbar-width: none;
 }
 
-.songs-empty
+.playlist-empty
 {
   color:var(--text-color-secondary);
   width:100%;
@@ -94,7 +94,7 @@ export default
   align-items: center;
 }
 
-.songs-empty i
+.playlist-empty i
 {
   font-size:3em;
 }
