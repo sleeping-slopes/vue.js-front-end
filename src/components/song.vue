@@ -26,8 +26,8 @@
             </div>
         </div>
         <div class="songMenu">
-            <button class="songButton bi bi-plus"></button>
-            <button id ="deleteSongButton" class="songButton bi bi-x" v-on:click.stop="$emit('deleteSong')" ></button>
+            <button class="songButton bi bi-suit-heart-fill" v-bind:style="this.song.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()"></button>
+            <button id = "deleteSongButton" class="songButton bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
         <div class = "song-duration" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
@@ -36,6 +36,8 @@
 
 import { getSong } from "@/axios/getters.js"
 import { numberToTimeString } from "@/functions.js"
+import { likeSong } from "@/axios/getters"
+import { dislikeSong } from "@/axios/getters"
 
 export default
 {
@@ -78,11 +80,15 @@ export default
         else
             this.$store.state.isPlaying=!this.$store.state.isPlaying;
     },
-    numberToTimeString:numberToTimeString
+    numberToTimeString:numberToTimeString,
+    async like()
+    {
+        this.song.liked=!this.song.liked;
+        if (this.song.liked) await likeSong(this.id);
+        else await dislikeSong(this.id);
+    }
   }
 }
-
-
 
 </script>
 
@@ -272,8 +278,9 @@ export default
 .song .songMenu
 {
     display:none;
-    gap:5px;
+    gap:10px;
     height:100%;
+    padding-right:10px;
     align-items: center;
 }
 
@@ -289,15 +296,15 @@ export default
 
 .songMenu .songButton
 {
-    display:inline;
+    display:flex;
     background:none;
     border:none;
     color: var(--text-color-secondary);
     cursor:pointer;
-    padding:0px;
+    padding:3px;
     margin:0px;
     transition:0.2s;
-    font-size:24px;
+    font-size:16px;
 }
 
 .songMenu .songButton:hover

@@ -50,8 +50,7 @@
       async created()
       {
         this.user = await getUserUsername(this.login);
-		this.followers = await getUserFollowers(this.login);
-		console.log(this.followers);
+		    this.followers = await getUserFollowers(this.login);
       }
     }
     </script>

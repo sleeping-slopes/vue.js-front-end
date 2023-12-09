@@ -277,3 +277,31 @@ export async function getUserFollowing(login)
     return [];
   }
 }
+
+export async function likeSong(songID)
+{
+    try
+    {
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const likeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/post");
+      return likeSongRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
+export async function dislikeSong(songID)
+{
+    try
+    {
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const dislikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/delete");
+      return dislikeSongRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}

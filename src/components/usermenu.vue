@@ -58,16 +58,16 @@ export default {
   },
   async created()
   {
-    const r = await getUserByToken();
-    if (r.status===200) this.user=r.values;
+    const userByToken = await getUserByToken();
+    if (userByToken.status===200) this.user=userByToken.values;
     else this.user=undefined;
   },
   watch:
   {
     async '$store.state.authJWT'(playlistSong)
     {
-      const r = await getUserByToken();
-      if (r.status===200) this.user=r.values;
+      const userByToken = await getUserByToken();
+      if (userByToken.status===200) this.user=userByToken.values;
       else this.user=undefined;
     }
   },

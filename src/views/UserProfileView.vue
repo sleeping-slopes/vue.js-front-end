@@ -31,9 +31,10 @@
             <router-link class="tablink" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
-            <button class="button-primary">Follow</button>
-            <button class="button-primary">Edit</button>
-            <button class="button-primary">Message</button>
+
+            <button class="button-primary" v-if="this.user.owner">Edit</button>
+            <button class="button-primary" v-if="!this.user.owner">Follow</button>
+            <button class="button-primary" v-if="!this.user.owner">Message</button>
           </div>
         </nav>
         <div class="row">
@@ -121,9 +122,23 @@ import glyphLink from "@/components/glyphLink.vue"
     async created()
     {
       this.user = await getUserProfile(this.login);
+      console.log(this.user.owner);
       this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
+
+      // const userByToken = await getUserByToken();
+      // if (userByToken.status===200) this.user=userByToken.values;
+      // else this.user=undefined;
     },
+    // watch:
+    // {
+    //   async '$store.state.authJWT'(playlistSong)
+    //   {
+    //     const userByToken = await getUserByToken();
+    //     if (userByToken.status===200) this.user=userByToken.values;
+    //     else this.user=undefined;
+    //   }
+    // },
     methods:
     {
       abbreviateNumber: abbreviateNumber

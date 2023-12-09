@@ -71,7 +71,6 @@ export default createStore({
     {
       state.authJWT=authJWT;
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
-      console.log("loggedin");
     },
     logOut(state)
     {
