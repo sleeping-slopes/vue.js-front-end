@@ -96,6 +96,6 @@ export default
 
 .playlist-empty i
 {
-  font-size:3em;
+  font-size:48px;
 }
 </style>

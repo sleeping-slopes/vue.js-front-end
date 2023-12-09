@@ -1,7 +1,7 @@
 <template>
     <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
         <div class = "wrapper-song-cover">
-            <img class = "song-cover" v-if="cover" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="cover=false" />
+            <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "song-cover bi bi-music-note" v-else/>
             <div class = "song-cover-shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
@@ -50,7 +50,7 @@ export default
   {
     return {
         song:{},
-        cover:true,
+        imageAvailable:true,
     }
   },
   async mounted()
@@ -182,7 +182,7 @@ export default
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:2em;
+    font-size:32px;
 }
 
 .song .song-cover-shade
@@ -297,7 +297,7 @@ export default
     padding:0px;
     margin:0px;
     transition:0.2s;
-    font-size:1.5em;
+    font-size:24px;
 }
 
 .songMenu .songButton:hover

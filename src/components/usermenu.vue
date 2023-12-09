@@ -10,7 +10,8 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "user-image s44x44" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`"/>
+      <img class = "user-image s44x44" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
+      <div class = "user-image s44x44 bi bi-person-fill" v-else/>
       <!-- <div class = "user-image s44x44"/> -->
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
@@ -52,6 +53,7 @@ export default {
     return {
       show:false,
       user:undefined,
+      imageAvailable: true
     }
   },
   async created()

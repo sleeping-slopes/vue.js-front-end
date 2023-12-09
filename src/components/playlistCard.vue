@@ -1,7 +1,7 @@
 <template>
     <div class = "playlistCard">
         <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
-            <img class = "playlist-cover" v-if="cover" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="cover=false"/>
+            <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
             <button class="playlist-button round-button large bi bi-play-fill"></button>
@@ -41,7 +41,7 @@ export default
       playlist:
       {
       },
-      cover:true
+      imageAvailable:true
     }
   },
   async mounted()
@@ -95,7 +95,7 @@ export default
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:4em;
+    font-size:64px;
 }
 
 .playlist-cover-wrapper:hover .playlist-cover-shade

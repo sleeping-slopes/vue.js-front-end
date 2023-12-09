@@ -13,7 +13,7 @@
         </template>
         <template v-slot:content v-else>
           <div class="playlist-header">
-            <img class = "playlist-modal-cover" v-if="cover" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="cover=false"/>
+            <img class = "playlist-modal-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
             <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
             <div class="playlist-info">
               <div class="primary-text">{{this.playlist.name}}</div>
@@ -79,7 +79,7 @@ export default
         artists:[]
       },
       songs: [],
-      cover:true,
+      imageAvailable:true,
     }
   },
   async mounted()
@@ -123,7 +123,7 @@ export default
   color:white;
   border:none;
   cursor:pointer;
-  font-size:3em;
+  font-size:48px;
 }
 
 .playlist-modal-cover
@@ -137,7 +137,7 @@ export default
   align-items: center;
   display:flex;
   justify-content:center;
-  font-size:4em;
+  font-size:64px;
 }
 
 .testbtn

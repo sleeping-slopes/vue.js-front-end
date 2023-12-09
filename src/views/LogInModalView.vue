@@ -3,7 +3,7 @@
   <div class="modal-shade" style="background-color:rgba(0,0,0,0.5)">
     <div class="modal">
       <div class="panel" style="width:400px;">
-          <div class ="panel-content" style="height:200px;font-size:2.5em;color:var(--text-color-primary)">
+          <div class ="panel-content" style="height:200px;font-size:40px;color:var(--text-color-primary)">
               Log in to SSS
           </div>
           <form @submit.prevent="logIn" class ="panel-content" style="gap:10px">

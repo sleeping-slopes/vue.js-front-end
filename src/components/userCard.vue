@@ -1,7 +1,8 @@
 <template>
   <div class = "user-card">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-    <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+    <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+    <div class = "user-image s180x180 bi bi-person-fill" v-else/>
   </router-link>
     <div class= "user-info">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="user-info-name primary-text-hoverable">{{this.user.username || this.login}}</router-link>
@@ -26,7 +27,8 @@ export default
   data()
   {
     return {
-        user:{}
+        user:{},
+        imageAvailable: true
     }
   },
   async mounted()

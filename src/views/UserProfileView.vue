@@ -5,7 +5,8 @@
   </div>
   <div class="scr" v-else>
     <div class="user-banner">
-      <img class = "user-image s200x200" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+      <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+      <div class = "user-image s200x200 bi bi-person-fill" v-else/>
         <div class="user-banner-info">
           <span class="user-banner-name" v-if="this.user.username || this.user.login">
             {{ this.user.username || this.user.login }}
@@ -114,6 +115,7 @@ import glyphLink from "@/components/glyphLink.vue"
           id:"[]"+this.login+' liked',
           songs:[]
         },
+        imageAvailable: true
       }
     },
     async created()

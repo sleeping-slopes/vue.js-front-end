@@ -220,8 +220,9 @@ nav
   border-radius:50%;
   width:200px;
   height:200px;
-  font-size:2em;
-  color:var(--light-gray);
+  font-size:150px;
+  background-color: var(--panel-border-color);
+  color:var(--text-color-secondary);
 }
 
 .s44x44
@@ -229,7 +230,7 @@ nav
   height:44px;
   width:44px;
   flex-shrink:0;
-  font-size:2em;
+  font-size:33px;
 }
 
 .s100x100
@@ -237,7 +238,7 @@ nav
   width:100px;
   height:100px;
   flex-shrink:0;
-  font-size:2em;
+  font-size:75px;
 }
 
 .s180x180
@@ -245,7 +246,7 @@ nav
   width:180px;
   height:180px;
   flex-shrink:0;
-  font-size:2em;
+  font-size:135px;
 }
 
 .s200x200
@@ -253,7 +254,7 @@ nav
   width:200px;
   height:200px;
   flex-shrink:0;
-  font-size:2em;
+  font-size:150px;
 }
 
 .primary-text

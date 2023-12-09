@@ -7,7 +7,7 @@
       <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
       <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
     </ul>
-    <div class="songs-empty" v-else>
+    <div class="playlist-empty" v-else>
       <i class="bi bi-music-note-list"></i>
         No playlists here yet
     </div>
