@@ -248,6 +248,36 @@ export async function getUserLikedPlaylists(login)
   }
 }
 
+export async function getUserPopularSongs(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/popular/songs");
+    return userLikedSongsRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}
+
+export async function getUserPopularPlaylists(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/popular/playlists");
+    return userLikedSongsRes.data.values;
+  }
+  catch(err)
+  {
+    console.log(err.response.data.values.message);
+    return [];
+  }
+}
+
 export async function getUserFollowers(login)
 {
   try

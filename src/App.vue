@@ -153,9 +153,16 @@ nav
   white-space:nowrap;
   background:none;
   box-sizing: border-box;
+  transition: 0.2s all
 }
 
-.button-secondary:hover
+.toggled
+{
+  color:var(--accent-color);
+  border-color:var(--accent-color);
+}
+
+.button-secondary:not(.toggled):hover
 {
   color: var(--text-color-primary);
   border-color: var(--text-color-primary);
@@ -190,6 +197,13 @@ nav
   cursor:pointer;
 }
 
+.round-button.huge
+{
+  font-size:60px;
+  height:58px;
+  width:58px;
+}
+
 .round-button.large
 {
   font-size:44px;
@@ -211,26 +225,56 @@ nav
   width:20px;
 }
 
+.song-cover-wrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+
+  overflow:hidden;
+  position:relative;
+}
+
+.playlist-cover-wrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border-radius:10px;
+
+  overflow:hidden;
+  position:relative;
+
+  box-sizing: border-box;
+  border:2px solid var(--panel-border-color);
+}
+
 .user-image
 {
   display:flex;
-  align-items: center;
   justify-content:center;
-  flex-shrink:0;
+  align-items: center;
   border-radius:50%;
-  width:200px;
-  height:200px;
-  font-size:150px;
+
   background-color: var(--panel-border-color);
   color:var(--text-color-secondary);
 }
 
 .s44x44
 {
-  height:44px;
   width:44px;
+  height:44px;
   flex-shrink:0;
   font-size:33px;
+}
+
+.s48x48
+{
+  width:48px;
+  height:48px;
+  flex-shrink:0;
+  font-size:36px;
 }
 
 .s100x100
@@ -239,6 +283,22 @@ nav
   height:100px;
   flex-shrink:0;
   font-size:75px;
+}
+
+.s128x128
+{
+  width:128px;
+  height:128px;
+  font-size:64px;
+  flex-shrink: 0;
+}
+
+.s160x160
+{
+  width:160px;
+  height:160px;
+  font-size:80px;
+  flex-shrink: 0;
 }
 
 .s180x180
@@ -256,6 +316,8 @@ nav
   flex-shrink:0;
   font-size:150px;
 }
+
+
 
 .primary-text
 {
@@ -340,7 +402,7 @@ nav
   gap:10px;
 }
 
-.user-banner-info span
+.user-banner-info h2, .user-banner-info h3
 {
   background-color:rgb(0,0,0,0.8);
   padding:5px;
@@ -349,13 +411,11 @@ nav
 
 .user-banner-name
 {
-  font-size:26px;
   color:var(--soft-white);
 }
 
 .user-banner-status
 {
-  font-size:20px;
   color:var(--light-gray);
 }
 

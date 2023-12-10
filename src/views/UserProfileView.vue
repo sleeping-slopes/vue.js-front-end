@@ -8,16 +8,16 @@
       <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
       <div class = "user-image s200x200 bi bi-person-fill" v-else/>
         <div class="user-banner-info">
-          <span class="user-banner-name" v-if="this.user.username || this.user.login">
+          <h2 class="user-banner-name" v-if="this.user.username || this.user.login">
             {{ this.user.username || this.user.login }}
             <i class="bi bi-patch-check-fill" v-if="this.user.verified"></i>
-          </span>
-          <span class="user-banner-status" v-if="this.user.status">
+          </h2>
+          <h3 class="user-banner-status" v-if="this.user.status">
             {{ this.user.status }}
-          </span>
-          <span class="user-banner-status" v-if="this.user.city || this.user.country">
+          </h3>
+          <h3 class="user-banner-status" v-if="this.user.city || this.user.country">
             {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
-          </span>
+          </h3>
       </div>
     </div>
     <div class="main">

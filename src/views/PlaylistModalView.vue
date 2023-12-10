@@ -4,7 +4,7 @@
   <teleport to=".app">
   <div class="modal-shade">
     <div class="modal">
-      <panel style="width:600px;">
+      <panel style="width:640px;">
         <template v-slot:content v-if="this.playlist.error">
           <div class="songs-empty">
             <i class="bi bi-emoji-frown"></i>
@@ -13,23 +13,46 @@
         </template>
         <template v-slot:content v-else>
           <div class="playlist-header">
-            <img class = "playlist-modal-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
-            <div class = "playlist-modal-cover bi bi-music-note-list" v-else/>
+            <div class="playlist-cover-wrapper s160x160">
+              <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+              <div class = "playlist-cover bi bi-music-note-list" v-else/>
+              <div class = "playlist-cover-shade"></div>
+              <button class="playlist-hover round-button huge bi bi-play-fill"></button>
+            </div>
+
             <div class="playlist-info">
-              <div class="primary-text">{{this.playlist.name}}</div>
-              <div class ="song-info-artist">
+              <h2 class="primary-text">{{this.playlist.name}}</h2>
+
+              <div class ="song-info h3">
+                <span class="primary-text">by&nbsp;</span>
                   <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink secondary-text" v-if="artist.login"
+                    <router-link class="artistlink primary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>
-                    <span class="secondary-text" v-else>{{artist.name}}</span>
-                    <span class="secondary-text" v-if="index+1 < this.playlist.artists.length">, </span>
+                    <span class="primary-text" v-else>{{artist.name}}</span>
+                    <span class="primary-text" v-if="index+1 < this.playlist.artists.length">, </span>
                   </div>
+                </div>
+                <div class ="song-info">
+                <h4 class="secondary-text">
+                  {{ abbreviateNumber(this.playlist.songs_count) }} song{{ this.playlist.songs_count!=1?'s':'' }}
+                  <span class="bi bi-dot"></span>
+                  {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
+                </h4>
               </div>
               <div class="playlist-button-row">
-                <button class="testbtn bi bi-suit-heart-fill" v-bind:style="this.playlist.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()">Like</button>
+                <button class="button-secondary" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                  <div class="icon-text">
+                    <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
+                  </div>
+                </button>
+                <button class="button-secondary">
+                  <div class="icon-text">
+                    <span class="bi bi-music-note-list"></span><span>Play next</span>
+                  </div>
+                </button>
               </div>
             </div>
           </div>
@@ -56,6 +79,7 @@ import playlist from "@/components/playlist.vue";
 import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
 import { postLikePlaylist } from "@/axios/getters"
 import { deleteLikePlaylist } from "@/axios/getters"
+import { abbreviateNumber } from "@/functions.js"
 
 export default
 {
@@ -94,9 +118,18 @@ export default
     async like()
     {
         this.playlist.liked=!this.playlist.liked;
-        if (this.playlist.liked) await postLikePlaylist(this.id);
-        else await deleteLikePlaylist(this.id);
-    }
+        if (this.playlist.liked)
+        {
+          await postLikePlaylist(this.id);
+          this.playlist.likes_count++;
+        }
+        else
+        {
+          await deleteLikePlaylist(this.id);
+          this.playlist.likes_count--;
+        }
+    },
+    abbreviateNumber:abbreviateNumber
   }
 }
 </script>
@@ -137,20 +170,6 @@ export default
   font-size:48px;
 }
 
-.playlist-modal-cover
-{
-  width:128px;
-  height:128px;
-  border-radius:5px;
-  overflow:hidden;
-  background-color:var(--panel-border-color);
-  color:var(--text-color-secondary);
-  align-items: center;
-  display:flex;
-  justify-content:center;
-  font-size:64px;
-}
-
 .testbtn
 {
   background:none;
@@ -161,7 +180,7 @@ export default
   transition:all 0.2s;
   white-space: nowrap;
   font-size:20px;
-
+  /* background-color:red; */
 }
 
 .testbtn:hover
@@ -174,21 +193,26 @@ export default
 {
   display:flex;
   box-sizing: border-box;
+  gap:5px;
 }
 
 .playlist-info
 {
-  padding:10px;
   display:flex;
   flex-direction: column;
-  position:relative;
+  width:100%;
+  gap:0px;
+  height:100%;
+  box-sizing: border-box;
+
 }
 
 .playlist-button-row
 {
   display:flex;
-  height:100%;
+  margin-top:auto;
   align-items:flex-end;
+  gap:5px;
 }
 </style>
 

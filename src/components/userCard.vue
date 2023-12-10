@@ -6,7 +6,7 @@
   </router-link>
     <div class= "user-info">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="user-info-name primary-text-hoverable">{{this.user.username || this.login}}</router-link>
-      <span class ="user-info-followers secondary-text" v-if="this.user.followers_count>0"><i class="bi bi-people-fill"></i>{{this.user.followers_count}} follower{{ this.user.followers_count>1?'s':'' }}</span>
+      <span class ="user-info-followers secondary-text" v-if="this.user.followers_count>0"><i class="bi bi-people-fill"></i>{{abbreviateNumber(this.user.followers_count)}} follower{{ this.user.followers_count>1?'s':'' }}</span>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
     <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
-        <div class = "wrapper-song-cover">
+        <div class = "song-cover-wrapper s48x48">
             <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "song-cover bi bi-music-note" v-else/>
             <div class = "song-cover-shade"></div>
@@ -11,9 +11,9 @@
                 <div class ="wave"></div>
             </div>
         </div>
-        <div class= "song-info">
-            <div class ="song-info-name">{{this.song.name}}</div>
-            <div class ="song-info-artist">
+        <div class= "song-info-wrapper">
+            <div class ="song-info primary-text">{{this.song.name}}</div>
+            <div class ="song-info">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -103,31 +103,7 @@ export default
     padding:5px;
     box-sizing: border-box;
     align-items: center;
-    height:58px;
 }
-
-
-
-.wrapper-song-cover
-{
-    position:relative;
-    border-radius: 20%;
-    overflow:hidden;
-    margin:auto;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.wrapper-song-cover
-{
-    min-width:48px;
-    min-height:48px;
-    max-width:48px;
-    max-height:48px;
-}
-
-
 
 .playlist .song
 {
@@ -227,7 +203,7 @@ export default
     color: var(--soft-white);
 }
 
-.song-info
+.song-info-wrapper
 {
     width:100%;
     overflow:hidden;
@@ -238,28 +214,13 @@ export default
     overflow:hidden;
 }
 
-.song-info-name
+.song-info
 {
     display: flex;
     align-items:center;
     width:100%;
-    height:50%;
     white-space: nowrap;
-    color: var(--text-color-primary);
     overflow:hidden;
-
-}
-
-.song-info-artist
-{
-    display: flex;
-    align-items:center;
-    width:100%;
-    height:50%;
-    white-space: nowrap;
-
-    overflow:hidden;
-
 }
 
 .artistlink

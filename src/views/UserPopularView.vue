@@ -24,8 +24,8 @@
   import playlist from '@/components/playlist.vue';
 
   import { getUserUsername } from '@/axios/getters';
-  import { getUserSongs } from '@/axios/getters'
-  import { getUserPlaylists } from '@/axios/getters'
+  import { getUserPopularSongs } from '@/axios/getters'
+  import { getUserPopularPlaylists } from '@/axios/getters'
 
   export default {
     name: 'UserLikesView',
@@ -55,8 +55,8 @@
     async created()
     {
       this.user = await getUserUsername(this.login);
-      this.userPopularSongs.songs = await getUserSongs(this.login);
-      this.userPopularPlaylists = await getUserPlaylists(this.login);
+      this.userPopularSongs.songs = await getUserPopularSongs(this.login);
+      this.userPopularPlaylists = await getUserPopularPlaylists(this.login);
     },
   }
   </script>

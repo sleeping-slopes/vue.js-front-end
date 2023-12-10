@@ -1,22 +1,22 @@
 <template>
     <div class = "playlistCard">
-        <div class="playlist-cover-wrapper" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
+        <div class="playlist-cover-wrapper s128x128" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
             <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
             <div class="playlist-hover playlist-stats">
                 <div class="icon-text">
-                    <span class="bi bi-list"></span><span>{{abbreviateNumber(40)}}</span>
+                    <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
                 </div>
                 <div class="icon-text">
-                    <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(4130)}}</span>
+                    <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
                 </div>
             </div>
             <button class="playlist-hover round-button large bi bi-play-fill"></button>
         </div>
-        <div class= "song-info">
-            <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
-            <div class ="song-info-artist">
+        <div class= "song-info-wrapper">
+            <div class ="song-info primary-text" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
+            <div class ="song-info">
                 <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -74,21 +74,6 @@ export default
     flex-shrink: 0;
 }
 
-.playlist-cover-wrapper
-{
-    display:flex;
-    border:2px solid var(--panel-border-color);
-    border-radius:10px;
-    flex-shrink: 0;
-    width:100%;
-    aspect-ratio: 1/1;
-    box-sizing: border-box;
-    overflow:hidden;
-    position:relative;
-    justify-content: center;
-    align-items: center;
-}
-
 .playlist-cover-shade
 {
     position:absolute;
@@ -108,8 +93,10 @@ export default
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:64px;
+
 }
+
+
 
 .playlist-cover-wrapper:hover .playlist-cover-shade
 {
@@ -122,7 +109,6 @@ export default
     opacity:0.0;
     transition: 0.2s all;
     color:var(--soft-white);
-    background-color:red;
 }
 
 .playlist-cover-wrapper:hover .playlist-hover
@@ -138,6 +124,7 @@ export default
     gap:20px;
     padding:0px 5px 0px 5px;
     box-sizing: border-box;
+    cursor:default;
 }
 
 </style>

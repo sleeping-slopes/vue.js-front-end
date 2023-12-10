@@ -1,11 +1,11 @@
 
 
 <template>
-    <a class="user-link secondary-text-hoverable"
+    <a class="icon-text secondary-text-hoverable"
         :href="'https://'+this.url"
         target=”_blank” rel="noopener noreferrer">
-        <i :class="'bi bi-'+this.glyph"></i>
-        {{this.description || this.url}}
+        <span :class="'bi bi-'+this.glyph"></span>
+        <span>{{this.description || this.url}}</span>
     </a>
 </template>
 
@@ -51,15 +51,5 @@ export default
 </script>
 
 <style>
-
-.user-link
-{
-    display:flex;
-    width:min-content;
-    white-space: nowrap;
-    gap:3px;
-    text-decoration: none;
-    align-items: center;
-}
 
 </style>
