@@ -278,13 +278,13 @@ export async function getUserFollowing(login)
   }
 }
 
-export async function likeSong(songID)
+export async function postLikeSong(songID)
 {
     try
     {
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const likeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/post");
-      return likeSongRes.data.values;
+      const postLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/post");
+      return postLikeSongRes.data.values;
     }
     catch(err)
     {
@@ -292,13 +292,41 @@ export async function likeSong(songID)
     }
 }
 
-export async function dislikeSong(songID)
+export async function deleteLikeSong(songID)
 {
     try
     {
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const dislikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/delete");
-      return dislikeSongRes.data.values;
+      const deleteLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/delete");
+      return deleteLikeSongRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
+export async function postLikePlaylist(songID)
+{
+    try
+    {
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const postLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/post");
+      return postLikePlaylistRes.data.values;
+    }
+    catch(err)
+    {
+        return err.response.data.values;
+    }
+}
+
+export async function deleteLikePlaylist(songID)
+{
+    try
+    {
+      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+      const deleteLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/delete");
+      return deleteLikePlaylistRes.data.values;
     }
     catch(err)
     {

@@ -29,7 +29,7 @@
                   </div>
               </div>
               <div class="playlist-button-row">
-                <button class="testbtn bi bi-plus-lg">Add to my library</button>
+                <button class="testbtn bi bi-suit-heart-fill" v-bind:style="this.playlist.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()">Like</button>
               </div>
             </div>
           </div>
@@ -54,6 +54,8 @@ import panel from "@/components/panel.vue";
 import playlist from "@/components/playlist.vue";
 
 import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
+import { postLikePlaylist } from "@/axios/getters"
+import { deleteLikePlaylist } from "@/axios/getters"
 
 export default
 {
@@ -86,6 +88,15 @@ export default
   {
     this.playlist = await getPlaylist(this.id);
     this.songs = await getPlaylistSongs(this.id);
+  },
+  methods:
+  {
+    async like()
+    {
+        this.playlist.liked=!this.playlist.liked;
+        if (this.playlist.liked) await postLikePlaylist(this.id);
+        else await deleteLikePlaylist(this.id);
+    }
   }
 }
 </script>
@@ -149,6 +160,8 @@ export default
   padding:0px;
   transition:all 0.2s;
   white-space: nowrap;
+  font-size:20px;
+
 }
 
 .testbtn:hover

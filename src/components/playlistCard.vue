@@ -4,7 +4,15 @@
             <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
-            <button class="playlist-button round-button large bi bi-play-fill"></button>
+            <div class="playlist-hover playlist-stats">
+                <div class="icon-text">
+                    <span class="bi bi-list"></span><span>{{abbreviateNumber(40)}}</span>
+                </div>
+                <div class="icon-text">
+                    <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(4130)}}</span>
+                </div>
+            </div>
+            <button class="playlist-hover round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info">
             <div class ="song-info-name" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
@@ -27,6 +35,7 @@
 <script>
 
 import { getPlaylist } from "@/axios/getters.js"
+import { abbreviateNumber } from "@/functions.js"
 
 export default
 {
@@ -43,6 +52,10 @@ export default
       },
       imageAvailable:true
     }
+  },
+  methods:
+  {
+    abbreviateNumber: abbreviateNumber
   },
   async mounted()
   {
@@ -100,23 +113,31 @@ export default
 
 .playlist-cover-wrapper:hover .playlist-cover-shade
 {
-    opacity:0.4;
+    opacity:0.5;
 }
 
-.playlist-button
+.playlist-hover
 {
     position:absolute;
     opacity:0.0;
-    padding-top:20px;
     transition: 0.2s all;
-    color:white;
+    color:var(--soft-white);
+    background-color:red;
 }
 
-.playlist-cover-wrapper:hover .playlist-button
+.playlist-cover-wrapper:hover .playlist-hover
 {
     opacity:1.0;
-    padding-top:0px;
 }
 
+.playlist-stats
+{
+    bottom:5px;
+    font-size:14px;
+    display:flex;
+    gap:20px;
+    padding:0px 5px 0px 5px;
+    box-sizing: border-box;
+}
 
 </style>

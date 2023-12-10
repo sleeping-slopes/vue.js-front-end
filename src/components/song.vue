@@ -36,8 +36,8 @@
 
 import { getSong } from "@/axios/getters.js"
 import { numberToTimeString } from "@/functions.js"
-import { likeSong } from "@/axios/getters"
-import { dislikeSong } from "@/axios/getters"
+import { postLikeSong } from "@/axios/getters"
+import { deleteLikeSong } from "@/axios/getters"
 
 export default
 {
@@ -73,6 +73,7 @@ export default
   },
   methods:
   {
+    numberToTimeString:numberToTimeString,
     setCurrentSong()
     {
         if (!this.current)
@@ -80,12 +81,11 @@ export default
         else
             this.$store.state.isPlaying=!this.$store.state.isPlaying;
     },
-    numberToTimeString:numberToTimeString,
     async like()
     {
         this.song.liked=!this.song.liked;
-        if (this.song.liked) await likeSong(this.id);
-        else await dislikeSong(this.id);
+        if (this.song.liked) await postLikeSong(this.id);
+        else await deleteLikeSong(this.id);
     }
   }
 }

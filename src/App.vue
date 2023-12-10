@@ -458,4 +458,17 @@ nav
   transition:0.1s all;
 }
 
+.icon-text
+{
+  display:flex;
+  gap:3px;
+  align-items: center;
+}
+
+.icon-text > *
+{
+  display: inline-flex;
+  align-items: center;
+}
+
 </style>
