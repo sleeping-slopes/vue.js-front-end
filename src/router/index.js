@@ -57,7 +57,7 @@ const routes = [
         name: "UserActivity",
         path: '',
         props:true,
-        // component:''
+        component:''
       },
       {
         name: "UserPopular",

@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class= "song-info-wrapper">
-            <div class ="song-info primary-text">{{this.song.name}}</div>
+            <span class ="song-info primary-text">{{this.song.name}}</span>
             <div class ="song-info">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"

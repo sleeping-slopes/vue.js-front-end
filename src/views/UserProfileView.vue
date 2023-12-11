@@ -1,16 +1,19 @@
 <template>
-  <div class="songs-empty" v-if="this.user.error">
+  <div class="error-message" v-if="this.user.error">
     <i class="bi bi-emoji-frown"></i>
-    404
+    {{ this.user.error.status }} {{ this.user.error.message }}
   </div>
   <div class="scr" v-else>
-    <div class="user-banner">
-      <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
-      <div class = "user-image s200x200 bi bi-person-fill" v-else/>
+    <div class="user-banner-wrapper">
+      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/banner`"/>
+      <div class = "user-banner-background gradient-bg-reverse" v-else/>
+      <div class="user-banner">
+        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+        <div class = "user-image s200x200 gradient-bg" v-else/>
         <div class="user-banner-info">
           <h2 class="user-banner-name" v-if="this.user.username || this.user.login">
             {{ this.user.username || this.user.login }}
-            <i class="bi bi-patch-check-fill" v-if="this.user.verified"></i>
+            <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
           </h2>
           <h3 class="user-banner-status" v-if="this.user.status">
             {{ this.user.status }}
@@ -19,6 +22,7 @@
             {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
           </h3>
       </div>
+    </div>
     </div>
     <div class="main">
       <div class="column">
@@ -46,22 +50,22 @@
               <template v-slot:content>
                 <div class="user-stats">
                   <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
-                    <span class="stat-name">Followers</span>
-                    <span class="stat-value">{{abbreviateNumber(this.user.followers_count,0)}}</span>
+                    <span class="h4">Followers</span>
+                    <span class="h2">{{abbreviateNumber(this.user.followers_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
-                    <span class="stat-name">Following</span>
-                    <span class="stat-value">{{abbreviateNumber(this.user.following_count,0)}}</span>
+                    <span class="h4">Following</span>
+                    <span class="h2">{{abbreviateNumber(this.user.following_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
-                    <span class="stat-name">Songs</span>
-                    <span class="stat-value">{{abbreviateNumber(this.user.songs_count,0)}}</span>
+                    <span class="h4">Songs</span>
+                    <span class="h2">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
-                <div class="primary-text">
+                <span class="primary-text" v-if="this.user.bio">
                   {{ this.user.bio }}
-                </div>
-                <ul class="user-link-list">
+                </span>
+                <ul class="user-link-list" v-if="this.user.links && this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
                     <glyphLink
                       :url=link.url
@@ -116,29 +120,16 @@ import glyphLink from "@/components/glyphLink.vue"
           id:"[]"+this.login+' liked',
           songs:[]
         },
-        imageAvailable: true
+        imageAvailable: true,
+        backgroundImageAvailable: true
       }
     },
     async created()
     {
       this.user = await getUserProfile(this.login);
-      console.log(this.user.owner);
       this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
-
-      // const userByToken = await getUserByToken();
-      // if (userByToken.status===200) this.user=userByToken.values;
-      // else this.user=undefined;
     },
-    // watch:
-    // {
-    //   async '$store.state.authJWT'(playlistSong)
-    //   {
-    //     const userByToken = await getUserByToken();
-    //     if (userByToken.status===200) this.user=userByToken.values;
-    //     else this.user=undefined;
-    //   }
-    // },
     methods:
     {
       abbreviateNumber: abbreviateNumber
@@ -147,6 +138,88 @@ import glyphLink from "@/components/glyphLink.vue"
   </script>
 
   <style>
+
+.user-banner-wrapper
+{
+  width:1240px;
+  height:260px;
+  flex-shrink:0;
+  position:relative;
+  overflow:hidden;
+  margin-left:auto;
+  margin-right:auto;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+}
+
+.user-banner-background
+{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+.user-banner
+{
+  position:absolute;
+  display:flex;
+  gap:20px;
+  padding:30px;
+  box-sizing:border-box;
+}
+
+.user-banner-info
+{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.user-banner-info h2, .user-banner-info h3
+{
+  background-color:rgb(0,0,0,0.8);
+  padding:5px;
+  width:fit-content;
+}
+
+.user-banner-name
+{
+  color:var(--soft-white);
+}
+
+.user-banner-status
+{
+  color:var(--light-gray);
+}
+
+.user-stats
+{
+  display:flex;
+  gap:5px;
+}
+
+.user-stat
+{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  color: var(--text-color-secondary);
+  cursor:pointer;
+  text-decoration: none;
+}
+
+.user-stat:hover
+{
+  color: var(--text-color-primary);
+}
+
+.user-link-list
+{
+  list-style: none;
+  padding:0px;
+  margin:0px;
+}
 
   </style>
 

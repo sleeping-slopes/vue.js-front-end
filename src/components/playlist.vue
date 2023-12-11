@@ -11,7 +11,7 @@
     />
     </li>
   </ul>
-  <div class="playlist-empty" v-else>
+  <div class="error-message" v-else>
     <i class="bi bi-music-note-beamed"></i>
     No audio here yet
   </div>
@@ -57,6 +57,7 @@ export default
 </script>
 
 <style>
+
 .playlist
 {
   width:100%;
@@ -82,20 +83,4 @@ export default
   scrollbar-width: none;
 }
 
-.playlist-empty
-{
-  color:var(--text-color-secondary);
-  width:100%;
-  padding-top:20px;
-  padding-bottom:20px;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.playlist-empty i
-{
-  font-size:48px;
-}
 </style>

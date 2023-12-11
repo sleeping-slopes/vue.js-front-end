@@ -6,9 +6,9 @@
     <div class="modal">
       <panel style="width:640px;">
         <template v-slot:content v-if="this.playlist.error">
-          <div class="songs-empty">
+          <div class="error-message">
             <i class="bi bi-emoji-frown"></i>
-            404
+            {{ this.playlist.error.status }} {{ this.playlist.error.message }}
           </div>
         </template>
         <template v-slot:content v-else>
@@ -135,6 +135,7 @@ export default
 </script>
 
 <style>
+
 .modal-shade
 {
   position:fixed;
@@ -170,29 +171,9 @@ export default
   font-size:48px;
 }
 
-.testbtn
-{
-  background:none;
-  border:none;
-  cursor:pointer;
-  color:var(--text-color-secondary);
-  padding:0px;
-  transition:all 0.2s;
-  white-space: nowrap;
-  font-size:20px;
-  /* background-color:red; */
-}
-
-.testbtn:hover
-{
-  color:var(--text-color-primary);
-
-}
-
 .playlist-header
 {
   display:flex;
-  box-sizing: border-box;
   gap:5px;
 }
 
@@ -201,10 +182,7 @@ export default
   display:flex;
   flex-direction: column;
   width:100%;
-  gap:0px;
   height:100%;
-  box-sizing: border-box;
-
 }
 
 .playlist-button-row

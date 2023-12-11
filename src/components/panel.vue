@@ -1,5 +1,5 @@
 <template>
-    <div class = "panel">
+    <article class = "panel">
         <div class = "panel-header" v-if="!!this.$slots.header">
             <h3 class="primary-text">
               <slot name="header"></slot>
@@ -11,7 +11,7 @@
         <div class = "panel-content">
             <slot name="content"></slot>
         </div>
-    </div>
+    </article>
 </template>
 
 <script>

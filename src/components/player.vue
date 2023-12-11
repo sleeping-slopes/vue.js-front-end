@@ -178,7 +178,6 @@ export default
   display:flex;
   justify-content: center;
   border-top:2px solid var(--panel-border-color);
-  /* box-shadow: 0 -6px 14px 0 rgba(0,0,0,.2); */
   z-index:1;
   margin-top:auto;
 }

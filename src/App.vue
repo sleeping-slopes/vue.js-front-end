@@ -1,7 +1,9 @@
 <template>
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
       <navbar/>
+      <!-- <main style="overflow:scroll; display:flex;"> -->
         <router-view :key="this.$route.params.login"/>
+      <!-- </main> -->
     <player/>
   </div>
 </template>
@@ -256,7 +258,6 @@ nav
   justify-content:center;
   align-items: center;
   border-radius:50%;
-
   background-color: var(--panel-border-color);
   color:var(--text-color-secondary);
 }
@@ -317,8 +318,6 @@ nav
   font-size:150px;
 }
 
-
-
 .primary-text
 {
   color:var(--text-color-primary);
@@ -357,67 +356,6 @@ nav
 	color:var(--text-color-primary);
 }
 
-.fixed-top
-{
-	display:flex;
-	font-size:32px;
-	gap: 20px;
-	color:var(--text-color-primary);
-	padding-top:10px;
-}
-
-.user-list
-{
-	list-style: none;
-	padding:0px;
-	margin:0px;
-	gap:20px;
-	display:flex;
-	flex-wrap:wrap;
-	width:100%;
-}
-
-.user-banner
-{
-  position:relative;
-  width:1240px;
-  height:260px;
-  background-color:green;
-  padding:30px;
-  box-sizing:border-box;
-  flex-shrink:0;
-  display:flex;
-  background-image: url(https://i1.sndcdn.com/visuals-000754706119-8swAvk-t1240x260.jpg);
-  gap:20px;
-  margin-left:auto;
-  margin-right:auto;
-  border-bottom-left-radius:10px;
-  border-bottom-right-radius:10px;
-}
-
-.user-banner-info
-{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.user-banner-info h2, .user-banner-info h3
-{
-  background-color:rgb(0,0,0,0.8);
-  padding:5px;
-  width:fit-content;
-}
-
-.user-banner-name
-{
-  color:var(--soft-white);
-}
-
-.user-banner-status
-{
-  color:var(--light-gray);
-}
 
 .nav-menu
 {
@@ -454,40 +392,27 @@ nav
   color: var(--accent-color);
 }
 
-.user-stats
+
+.fixed-top
 {
-  display:flex;
-  gap:5px;
+	display:flex;
+	font-size:32px;
+	gap: 20px;
+	color:var(--text-color-primary);
+	padding-top:10px;
 }
 
-
-.user-stat
+.user-list
 {
-  width:100%;
-  display:flex;
-  flex-direction: column;
-  justify-content:center;
-  color: var(--text-color-secondary);
-  cursor:pointer;
-  text-decoration: none;
+	list-style: none;
+	padding:0px;
+	margin:0px;
+	gap:20px;
+	display:flex;
+	flex-wrap:wrap;
+	width:100%;
 }
 
-.user-stat:hover
-{
-  color: var(--text-color-primary);
-}
-
-.stat-value
-{
-  font-size:22px;
-}
-
-.user-link-list
-{
-  list-style: none;
-  padding:0px;
-  margin:0px;
-}
 
 .label
 {
@@ -505,6 +430,23 @@ nav
 .error
 {
   color:red;
+}
+
+.error-message
+{
+  color:var(--text-color-secondary);
+  width:100%;
+  padding-top:20px;
+  padding-bottom:20px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message i
+{
+  font-size:48px;
 }
 
 .my-input
@@ -530,5 +472,21 @@ nav
   display: inline-flex;
   align-items: center;
 }
+
+.gradient-bg
+{
+  background:
+    linear-gradient(135deg, var(--panel-border-color) 10%, rgba(0,0,0,0) 45%, rgba(0,0,0,0) 55%, var(--panel-border-color) 90%),
+    linear-gradient(180deg,var(--accent-color) -70%, var(--main-background-color) 90%);
+}
+
+.gradient-bg-reverse
+{
+  background:
+    linear-gradient(315deg, var(--panel-border-color) 10%, rgba(0,0,0,0) 45%, rgba(0,0,0,0) 55%, var(--panel-border-color) 90%),
+    linear-gradient(0deg,var(--accent-color) -70%, var(--main-background-color) 90%);
+}
+
+
 
 </style>

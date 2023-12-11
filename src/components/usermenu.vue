@@ -12,7 +12,6 @@
     >
       <img class = "user-image s44x44" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s44x44 bi bi-person-fill" v-else/>
-      <!-- <div class = "user-image s44x44"/> -->
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
@@ -59,16 +58,16 @@ export default {
   async created()
   {
     const userByToken = await getUserByToken();
-    if (userByToken.status===200) this.user=userByToken.values;
-    else this.user=undefined;
+    if (userByToken.error) this.user=undefined;
+    else this.user=userByToken.values;
   },
   watch:
   {
     async '$store.state.authJWT'(playlistSong)
     {
       const userByToken = await getUserByToken();
-      if (userByToken.status===200) this.user=userByToken.values;
-      else this.user=undefined;
+      if (userByToken.error) this.user=undefined;
+      else this.user=userByToken.values;
     }
   },
   mounted()
@@ -110,7 +109,6 @@ export default {
   gap:10px;
   border-radius:10px;
   padding: 5px 5px 5px 5px;
-  font-size:16px;
 }
 
 .usermenu-button:hover
@@ -121,7 +119,7 @@ export default {
 .usermenu-button-icon
 {
   color:var(--accent-color);
-  padding-right:5px;
+  padding-right:7px;
 }
 
 .nav-loginmenu

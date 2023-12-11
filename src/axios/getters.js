@@ -12,7 +12,7 @@ export async function getPlaylists()
     }
     catch(err)
     {
-        console.log(err);
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -26,7 +26,7 @@ export async function getPlaylist(playlistID)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -40,7 +40,7 @@ export async function getPlaylistSongs(id)
     }
     catch(err)
     {
-      console.log(err);
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -54,7 +54,7 @@ export async function getSongs()
   }
   catch(err)
   {
-    console.log(err);
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -68,7 +68,7 @@ export async function getSong(id)
   }
   catch(err)
   {
-    console.log(err);
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -82,7 +82,7 @@ export async function getAudio(id)
   }
   catch(err)
   {
-    console.log(err);
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -96,7 +96,7 @@ export async function postUser(email,password,login)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -110,7 +110,7 @@ export async function logInUser(login,password)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -124,7 +124,7 @@ export async function getUserByToken()
     }
     catch(err)
     {
-        return err.response.data;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -139,7 +139,7 @@ export async function getUserUsername(login)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -154,7 +154,7 @@ export async function getUserProfile(login)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -169,7 +169,7 @@ export async function getUserShortProfile(login)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -184,7 +184,7 @@ export async function getUserLinks(login)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -198,8 +198,7 @@ export async function getUserSongs(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -213,8 +212,7 @@ export async function getUserPlaylists(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -228,8 +226,7 @@ export async function getUserLikedSongs(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -243,8 +240,7 @@ export async function getUserLikedPlaylists(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -258,8 +254,7 @@ export async function getUserPopularSongs(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -273,8 +268,7 @@ export async function getUserPopularPlaylists(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -288,8 +282,7 @@ export async function getUserFollowers(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -303,8 +296,7 @@ export async function getUserFollowing(login)
   }
   catch(err)
   {
-    console.log(err.response.data.values.message);
-    return [];
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
   }
 }
 
@@ -318,7 +310,7 @@ export async function postLikeSong(songID)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -332,7 +324,7 @@ export async function deleteLikeSong(songID)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -346,7 +338,7 @@ export async function postLikePlaylist(songID)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }
 
@@ -360,6 +352,6 @@ export async function deleteLikePlaylist(songID)
     }
     catch(err)
     {
-        return err.response.data.values;
+      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
     }
 }

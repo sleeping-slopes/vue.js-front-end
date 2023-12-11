@@ -4,18 +4,18 @@
             <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
             <div class = "playlist-cover bi bi-music-note-list" v-else/>
             <div class = "playlist-cover-shade"></div>
-            <div class="playlist-hover playlist-stats">
-                <div class="icon-text">
+            <div class="playlist-hover playlist-stats h5">
+                <span class="icon-text">
                     <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
-                </div>
-                <div class="icon-text">
+                </span>
+                <span class="icon-text">
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
-                </div>
+                </span>
             </div>
             <button class="playlist-hover round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info-wrapper">
-            <div class ="song-info primary-text" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</div>
+            <span class ="song-info primary-text" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
             <div class ="song-info">
                 <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
@@ -93,10 +93,7 @@ export default
     align-items: center;
     display:flex;
     justify-content:center;
-
 }
-
-
 
 .playlist-cover-wrapper:hover .playlist-cover-shade
 {
@@ -119,7 +116,6 @@ export default
 .playlist-stats
 {
     bottom:5px;
-    font-size:14px;
     display:flex;
     gap:20px;
     padding:0px 5px 0px 5px;
