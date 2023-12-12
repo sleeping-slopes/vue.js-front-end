@@ -1,12 +1,10 @@
 <template>
-  <teleport to=".app">
-  <div class="modal-shade" style="background-color:rgba(0,0,0,0.5)">
-    <div class="modal">
-      <div class="panel" style="width:400px;">
-          <div class ="panel-content" style="height:200px;font-size:40px;color:var(--text-color-primary)">
+  <modal :width="'400px'">
+    <template v-slot:content>
+          <div style="height:200px;font-size:40px;color:var(--text-color-primary)">
               Log in to SSS
           </div>
-          <form @submit.prevent="logIn" class ="panel-content" style="gap:10px">
+          <form @submit.prevent="logIn" style="gap:10px">
               <label class = "label">
                   Login or email
                   <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
@@ -28,26 +26,26 @@
                   </div>
               </label>
               <div class = "wrapper-button-main">
-                  <button type="submit" class = "button-primary">Log in</button>
+                  <button type="submit" class = "button-primary hoverable h5">Log in</button>
               </div>
             </form>
           <hr />
-          <div class ="panel-content" style="color:var(--text-color-primary)">
+          <div style="color:var(--text-color-primary)">
               <span>Don't have an account? <router-link to="signup" class="button-link">Sign up</router-link></span>
           </div>
-      </div>
-      <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
-    </div>
-  </div>
-</teleport>
+    </template>
+</modal>
 </template>
 
 <script>
 
 import {logInUser} from "@/axios/getters.js"
 
+import modal from "@/components/modal.vue"
+
 export default {
   name: 'logInModal',
+  components: { modal },
   data()
   {
     return {
@@ -77,8 +75,8 @@ export default {
         }
         else
         {
-          if (r.loginError) this.login.error = r.loginError;
-          if (r.passwordError) this.password.error = r.passwordError;
+          if (r.error.message.loginError) this.login.error = r.error.message.loginError;
+          if (r.error.message.passwordError) this.password.error = r.error.message.passwordError;
         }
       })();
     },

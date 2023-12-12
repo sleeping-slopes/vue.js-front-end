@@ -1,80 +1,74 @@
 
 
 <template>
-  <teleport to=".app">
-  <div class="modal-shade">
-    <div class="modal">
-      <panel style="width:640px;">
-        <template v-slot:content v-if="this.playlist.error">
-          <div class="error-message">
-            <i class="bi bi-emoji-frown"></i>
-            {{ this.playlist.error.status }} {{ this.playlist.error.message }}
-          </div>
-        </template>
-        <template v-slot:content v-else>
-          <div class="playlist-header">
-            <div class="playlist-cover-wrapper s160x160">
-              <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
-              <div class = "playlist-cover bi bi-music-note-list" v-else/>
-              <div class = "playlist-cover-shade"></div>
-              <button class="playlist-hover round-button huge bi bi-play-fill"></button>
-            </div>
+  <modal :width="'600px'">
+    <template v-slot:content v-if="this.playlist.error">
+      <div class="error-message">
+        <i class="bi bi-emoji-frown"></i>
+        {{ this.playlist.error.status }} {{ this.playlist.error.message }}
+      </div>
+    </template>
+    <template v-slot:content v-else>
+      <div class="playlist-header">
+        <div class="playlist-cover-wrapper s160x160">
+          <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+          <div class = "playlist-cover bi bi-music-note-list" v-else/>
+          <div class = "playlist-cover-shade"></div>
+          <button class="playlist-hover round-button huge bi bi-play-fill"></button>
+        </div>
 
-            <div class="playlist-info">
-              <h2 class="primary-text">{{this.playlist.name}}</h2>
+        <div class="playlist-info">
+          <h2 class="primary-text">{{this.playlist.name}}</h2>
 
-              <div class ="song-info h3">
-                <span class="primary-text">by&nbsp;</span>
-                  <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink primary-text" v-if="artist.login"
-                        :to="'/id/'+artist.login"
-                        @click.stop>
-                        {{artist.name}}
-                    </router-link>
-                    <span class="primary-text" v-else>{{artist.name}}</span>
-                    <span class="primary-text" v-if="index+1 < this.playlist.artists.length">, </span>
-                  </div>
-                </div>
-                <div class ="song-info">
-                <h4 class="secondary-text">
-                  {{ abbreviateNumber(this.playlist.songs_count) }} song{{ this.playlist.songs_count!=1?'s':'' }}
-                  <span class="bi bi-dot"></span>
-                  {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
-                </h4>
-              </div>
-              <div class="playlist-button-row">
-                <button class="button-secondary" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
-                  <div class="icon-text">
-                    <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
-                  </div>
-                </button>
-                <button class="button-secondary">
-                  <div class="icon-text">
-                    <span class="bi bi-music-note-list"></span><span>Play next</span>
-                  </div>
-                </button>
+          <div class ="song-info h3">
+            <span class="primary-text">by&nbsp;</span>
+              <div v-for="(artist,index) in this.playlist.artists">
+                <router-link class="artistlink primary-text" v-if="artist.login"
+                    :to="'/id/'+artist.login"
+                    @click.stop>
+                    {{artist.name}}
+                </router-link>
+                <span class="primary-text" v-else>{{artist.name}}</span>
+                <span class="primary-text" v-if="index+1 < this.playlist.artists.length">, </span>
               </div>
             </div>
+            <div class ="song-info">
+            <h4 class="secondary-text">
+              {{ abbreviateNumber(this.playlist.songs_count) }} song{{ this.playlist.songs_count!=1?'s':'' }}
+              <span class="bi bi-dot"></span>
+              {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
+            </h4>
           </div>
-          <hr/>
-          <div style="max-height:635px">
-            <playlist
-              :id="this.id"
-              :songs="this.songs"
-            />
+          <div class="playlist-button-row">
+            <button class="button-secondary h5" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+              <div class="icon-text">
+                <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
+              </div>
+            </button>
+            <button class="button-secondary h5">
+              <div class="icon-text">
+                <span class="bi bi-music-note-list"></span><span>Play next</span>
+              </div>
+            </button>
           </div>
-        </template>
-      </panel>
-      <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
-    </div>
-  </div>
-</teleport>
+        </div>
+      </div>
+      <hr/>
+      <div style="max-height:635px">
+        <playlist
+          :id="this.id"
+          :songs="this.songs"
+        />
+      </div>
+    </template>
+  </modal>
 </template>
 
 <script>
 
-import panel from "@/components/panel.vue";
+import modal from "@/components/modal.vue"
 import playlist from "@/components/playlist.vue";
+
 
 import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
 import { postLikePlaylist } from "@/axios/getters"
@@ -86,7 +80,7 @@ export default
   name: 'playlistModal',
   components:
   {
-    panel,playlist
+    modal,playlist
   },
   computed:
   {
@@ -136,41 +130,6 @@ export default
 
 <style>
 
-.modal-shade
-{
-  position:fixed;
-  top:0px;
-  left:0px;
-  right:0px;
-  bottom:0px;
-  display:flex;
-  justify-content: center;
-  background-color: rgba(0,0,0,0.5);
-  z-index:999;
-}
-
-.modal
-{
-  top:64px;
-  position:relative;
-  display:flex;
-  height:fit-content;
-}
-
-.modal-close-button
-{
-  position:absolute;
-  left:100%;
-  top:0;
-  padding:0px;
-  margin:0px;
-  background-color: transparent;
-  color:white;
-  border:none;
-  cursor:pointer;
-  font-size:48px;
-}
-
 .playlist-header
 {
   display:flex;
@@ -183,6 +142,7 @@ export default
   flex-direction: column;
   width:100%;
   height:100%;
+  gap:10px;
 }
 
 .playlist-button-row

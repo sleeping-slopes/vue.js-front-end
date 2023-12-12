@@ -5,6 +5,7 @@
       <playlist
         :id="this.userSongs.id"
         :songs="this.userSongs.songs"
+        :dynamicComponent="'songExtended'"
       />
     </template>
   </panel>

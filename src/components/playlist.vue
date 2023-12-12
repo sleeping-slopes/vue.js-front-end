@@ -2,13 +2,13 @@
 
   <ul class = "playlist" v-if="songs.length>0">
     <li v-for="(song,index) in this.getShortList">
-    <song
+    <component :is="dynamicComponent"
       :index = "index"
       :id = "song.id"
       :pos = "song.pos"
       :key = song.id
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
-    />
+    ></component>
     </li>
   </ul>
   <div class="error-message" v-else>
@@ -20,13 +20,14 @@
 <script>
 
 import song from './song.vue'
+import songExtended from './songExtended.vue'
 
 export default
 {
   name: 'playlist',
   components:
   {
-    song
+    song,songExtended
   },
   computed:
   {
@@ -51,7 +52,8 @@ export default
   {
     id: { default: "noid"},
     songs: {type: Array, default: []},
-    maxDisplay: {default:0}
+    maxDisplay: {default:0},
+    dynamicComponent: {default:"song"}
   }
 }
 </script>

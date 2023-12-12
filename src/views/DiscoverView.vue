@@ -5,7 +5,7 @@
         <template v-slot:header>Playlists</template>
         <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
-          <playlistCarousel :playlists="playlists"/>
+          <playlistCarousel :playlists="playlists" :maxDisplay="20"/>
         </template>
       </panel>
       <panel style="height:100%;">
@@ -14,6 +14,7 @@
           <playlist
           :id="discoverPlaylist.id"
           :songs="discoverPlaylist.songs"
+          :dynamicComponent="'songExtended'"
           />
         </template>
       </panel>

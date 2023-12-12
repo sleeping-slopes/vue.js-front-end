@@ -28,17 +28,17 @@
       <div class="column">
         <nav class="navtab">
           <div class="nav-menu">
-            <router-link class="tablink" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
-            <router-link class="tablink" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link>
-            <router-link class="tablink" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
-            <router-link class="tablink" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
-            <router-link class="tablink" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
+            <router-link class="tablink h3" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
+            <router-link class="tablink h3" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link>
+            <router-link class="tablink h3" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
+            <router-link class="tablink h3" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
+            <router-link class="tablink h3" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
 
-            <button class="button-primary" v-if="this.user.owner">Edit</button>
-            <button class="button-primary" v-if="!this.user.owner">Follow</button>
-            <button class="button-primary" v-if="!this.user.owner">Message</button>
+            <button class="button-primary h5" v-if="this.user.owner">Edit</button>
+            <button class="button-primary h5" v-if="!this.user.owner">Follow</button>
+            <button class="button-primary h5" v-if="!this.user.owner">Message</button>
           </div>
         </nav>
         <div class="row">
@@ -78,7 +78,7 @@
             <panel style="">
               <template v-slot:header>{{this.userLikedSongs.songs.length}} likes</template>
               <template v-slot:menu>
-                <router-link class="button-secondary" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
+                <router-link class="button-secondary h5" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
                 <playlist

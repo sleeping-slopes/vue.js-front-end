@@ -14,6 +14,7 @@
           <playlist
             :playlistID="myAudio.playlistID"
             :songs="myAudio.songs"
+            :dynamicComponent="'songExtended'"
           />
           </template>
         </panel>

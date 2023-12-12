@@ -1,12 +1,10 @@
 <template>
-  <teleport to=".app">
-  <div class="modal-shade" style="background-color:rgba(0,0,0,0.5)">
-    <div class="modal">
-      <div class="panel" style="width:400px; z-index:999">
-          <div class ="panel-content" style="height:200px;font-size:40px;color:var(--text-color-primary)">
+  <modal :width="'400px'">
+    <template v-slot:content>
+          <div style="height:200px;font-size:40px;color:var(--text-color-primary)">
               Sign up to SSS
           </div>
-          <form @submit.prevent="signUp" class ="panel-content" style="gap:10px">
+          <form @submit.prevent="signUp" style="gap:10px">
               <label class = "label">
                   Email
                   <input class="my-input" type="text" v-bind:style="email.error?{'border-color':'red'}:{}"
@@ -38,26 +36,26 @@
                   </div>
               </label>
               <div class = "wrapper-button-main">
-                  <button type="submit" class = "button-primary">Sign up</button>
+                  <button type="submit" class = "button-primary hoverable h5">Sign up</button>
               </div>
             </form>
           <hr />
-          <div class ="panel-content" style="color:var(--text-color-primary)">
+          <div style="color:var(--text-color-primary)">
               <span>Already have an account? <router-link to="login" class="button-link">Log in</router-link></span>
           </div>
-      </div>
-      <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
-    </div>
-  </div>
-  </teleport>
+        </template>
+    </modal>
 </template>
 
 <script>
 
 import {postUser} from "@/axios/getters.js"
 
+import modal from "@/components/modal.vue"
+
 export default {
   name: 'signUpModal',
+  components:{modal},
   data()
   {
     return {
@@ -95,8 +93,8 @@ export default {
         }
         else
         {
-          if (r.emailError) this.email.error = r.emailError;
-          if (r.loginError) this.login.error = r.loginError;
+          if (r.error.message.emailError) this.email.error = r.error.message.emailError;
+          if (r.error.message.loginError) this.login.error = r.error.message.loginError;
         }
       })();
     },

@@ -1,18 +1,17 @@
 <template>
     <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
-        <div class = "song-cover-wrapper s48x48">
+        <div class = "song-cover-wrapper s36x36">
             <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "song-cover bi bi-music-note" v-else/>
             <div class = "song-cover-shade"></div>
-            <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+            <button class="round-button small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
                 <div class ="wave"></div>
                 <div class ="wave"></div>
             </div>
         </div>
-        <div class= "song-info-wrapper">
-            <span class ="song-info primary-text">{{this.song.name}}</span>
+        <div class= "song-info-wrapper h5">
             <div class ="song-info">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
@@ -24,18 +23,20 @@
                     <span class="secondary-text" v-if="index+1 < this.song.artists.length">, </span>
                 </div>
             </div>
+            <span class ="song-info primary-text">{{this.song.name}}</span>
         </div>
         <div class="songMenu">
             <button class="songButton bi bi-suit-heart-fill" v-bind:style="this.song.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()"></button>
             <button id = "deleteSongButton" class="songButton bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
-        <div class = "song-duration" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
+        <div class = "song-duration h5" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
   </template>
+
 <script>
 
 import { getSong } from "@/axios/getters.js"
-import { numberToTimeString } from "@/functions.js"
+import { numberToTimeString,abbreviateNumber } from "@/functions.js"
 import { postLikeSong } from "@/axios/getters"
 import { deleteLikeSong } from "@/axios/getters"
 
@@ -74,6 +75,7 @@ export default
   methods:
   {
     numberToTimeString:numberToTimeString,
+    abbreviateNumber:abbreviateNumber,
     setCurrentSong()
     {
         if (!this.current)
@@ -84,8 +86,16 @@ export default
     async like()
     {
         this.song.liked=!this.song.liked;
-        if (this.song.liked) await postLikeSong(this.id);
-        else await deleteLikeSong(this.id);
+        if (this.song.liked)
+        {
+          await postLikeSong(this.id);
+          this.song.likes_count++;
+        }
+        else
+        {
+          await deleteLikeSong(this.id);
+          this.song.likes_count--;
+        }
     }
   }
 }
@@ -100,7 +110,7 @@ export default
     width:100%;
     gap:5px;
     border-radius:10px;
-    padding:5px;
+    padding:3px;
     box-sizing: border-box;
     align-items: center;
 }
@@ -113,8 +123,8 @@ export default
 .wrapper-wave
 {
     display:flex;
-    width: 25px;
-    height:25px;
+    width: 60%;
+    height:60%;
     flex-shrink: 0;
     justify-content: space-between;
     align-items:flex-end;
@@ -125,9 +135,9 @@ export default
 
 .wave
 {
-    width:5px;
-    height:5px;
-    border-radius: 5px;
+    width:20%;
+    height:20%;
+    border-radius: 50vh;
     background:var(--accent-color);
 
 }
@@ -164,7 +174,6 @@ export default
     align-items: center;
     display:flex;
     justify-content:center;
-    font-size:32px;
 }
 
 .song .song-cover-shade

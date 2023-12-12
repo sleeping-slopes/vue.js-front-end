@@ -12,6 +12,7 @@
           <playlist
           :id="userLikedSongs.id"
           :songs="userLikedSongs.songs"
+          :dynamicComponent="'songExtended'"
           />
         </template>
       </panel>

@@ -92,6 +92,7 @@ export async function postUser(email,password,login)
     {
       axios.defaults.headers.common['Authorization'] = store.state.authJWT;
       const postUserRes = await axios.post("http://localhost:5000/api/auth/signup",{ email:email, password:password, login:login});
+
       return postUserRes.data.values;
     }
     catch(err)

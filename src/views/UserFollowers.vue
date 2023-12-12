@@ -5,13 +5,13 @@
       <img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s100x100 gradient-bg" v-else/>
     </router-link>
-		<router-link class="primary-text-hoverable" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>
+		<router-link class="primary-text-hoverable h2" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>
 	</div>
 	<div class="column" style="gap:0px">
 		<nav class="navtab">
 			<div class="nav-menu">
-				<router-link class="tablink" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
-				<router-link class="tablink" :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link>
+				<router-link class="tablink h3" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
+				<router-link class="tablink h3" :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link>
 			</div>
 		</nav>
 		<div class="scr">

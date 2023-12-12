@@ -1,8 +1,8 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <router-link to="/signup" class="button-secondary dark">Sign up</router-link>
-    <router-link to="/login" class="button-primary">Log in</router-link>
+    <router-link to="/signup" class="button-secondary h5 dark">Sign up</router-link>
+    <router-link to="/login" class="button-primary hoverable h5">Log in</router-link>
   </template>
   <template v-else>
     <router-link class="navlink" to="/upload">Upload</router-link>

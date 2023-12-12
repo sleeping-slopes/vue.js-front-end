@@ -1,7 +1,7 @@
 <template>
   <div class="playlist-carousel">
     <ul id="carousel-content" ref="carousel" v-if="playlists.length>0">
-      <li v-for="(playlist) in playlists">
+      <li v-for="(playlist) in this.getShortList">
         <playlistCard :id="playlist.id"/>
       </li>
       <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
@@ -61,7 +61,16 @@ export default
   },
   props:
   {
-    playlists: {type:Array,default:[]}
+    playlists: {type:Array,default:[]},
+    maxDisplay: {default:0},
+  },
+  computed:
+  {
+    getShortList()
+    {
+      if (this.maxDisplay<1) return this.playlists;
+      return this.playlists.slice(0,this.maxDisplay);
+    }
   },
 }
 </script>

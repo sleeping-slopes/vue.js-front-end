@@ -5,19 +5,18 @@
       <img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s100x100 gradient-bg" v-else/>
     </router-link>
-		<router-link class="primary-text-hoverable" :to="{ name: 'User', params: { login: this.login }}">{{this.user.username || this.login}} is following</router-link>
+		<router-link class="primary-text-hoverable h2" :to="{ name: 'User', params: { login: this.login }}">{{this.user.username || this.login}} is following</router-link>
 	</div>
 	<div class="column" style="gap:0px">
 		<nav class="navtab">
 			<div class="nav-menu">
-				<router-link class="tablink" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
-				<router-link class="tablink" :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link>
+				<router-link class="tablink h3" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
+				<router-link class="tablink h3" :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link>
 			</div>
 		</nav>
 		<div class="scr">
 			<ul class="user-list">
 				<li v-for="following in this.followings"><userCard :login="following.login"></userCard></li>
-				<!-- <li><userCard :login="'norimyxxxo'"></userCard></li> -->
 			</ul>
 		</div>
 	</div>

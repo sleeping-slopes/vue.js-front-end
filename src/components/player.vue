@@ -52,7 +52,7 @@
       <panel class="current-playlist-popup" v-bind:class="this.show?'visible':'hidden'">
         <template v-slot:header>Current playlist</template>
         <template v-slot:menu>
-          <button class="button-secondary">Clear</button>
+          <button class="button-secondary h5">Clear</button>
           <button class="panel-header-button bi bi-x-lg"
             v-on:click="this.show=!this.show">
           </button>
@@ -180,6 +180,7 @@ export default
   border-top:2px solid var(--panel-border-color);
   z-index:1;
   margin-top:auto;
+  padding:3px 0px 3px 0px;
 }
 
 .player
