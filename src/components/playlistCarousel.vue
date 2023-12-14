@@ -6,7 +6,7 @@
   </errorMessage>
     <ul id="carousel-content" ref="carousel" v-else>
       <li v-for="(playlist) in this.getShortList">
-        <playlistCard :id="playlist.id"/>
+        <playlistCarouselCard :id="playlist.id"/>
       </li>
       <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
       <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
@@ -17,7 +17,7 @@
 
 <script>
 
-import playlistCard from '@/components/playlistCard.vue'
+import playlistCarouselCard from '@/components/playlistCarouselCard.vue'
 import errorMessage from "@/components/errorMessage.vue"
 
 export default
@@ -25,7 +25,7 @@ export default
   name: 'carousel',
   components:
   {
-    playlistCard,errorMessage
+    playlistCarouselCard,errorMessage
   },
   data()
   {
@@ -90,14 +90,11 @@ export default
 {
   display:flex;
   width:100%;
-  gap:5px;
+  gap:10px;
   box-sizing: border-box;
   overflow-x:scroll;
   scroll-behavior: smooth;
   align-items: center;
-  list-style: none;
-  padding:0px;
-  margin:0px;
 }
 
 #carousel-content::-webkit-scrollbar
