@@ -1,6 +1,9 @@
 <template>
-
-  <ul class = "playlist" v-if="songs.length>0">
+  <errorMessage  v-if="songs.length==0">
+    <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
+    <template v-slot:message>No audio here yet</template>
+  </errorMessage>
+  <ul class = "playlist" v-else>
     <li v-for="(song,index) in this.getShortList">
     <component :is="dynamicComponent"
       :index = "index"
@@ -11,23 +14,21 @@
     ></component>
     </li>
   </ul>
-  <div class="error-message" v-else>
-    <i class="bi bi-music-note-beamed"></i>
-    No audio here yet
-  </div>
 </template>
 
 <script>
 
 import song from './song.vue'
 import songExtended from './songExtended.vue'
+import songCard from './songCard.vue'
+import errorMessage from "@/components/errorMessage.vue"
 
 export default
 {
   name: 'playlist',
   components:
   {
-    song,songExtended
+    song,songExtended,songCard,errorMessage
   },
   computed:
   {
@@ -60,29 +61,36 @@ export default
 
 <style>
 
+.playlist::-webkit-scrollbar
+{
+    display: none !important;
+}
+
 .playlist
+{
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  list-style: none;
+	padding:0px;
+	margin:0px;
+  overflow-y:scroll;
+}
+
+.playlist-list
 {
   width:100%;
   display:flex;
   flex-direction: column;
-  box-sizing: border-box;
   height:100%;
-  overflow-y:scroll;
   gap:5px;
-  list-style: none;
-  padding:0px;
-  margin:0px;
 }
 
-.playlist::-webkit-scrollbar
+.playlist-grid
 {
-    display: none;
-}
-
-.playlist
-{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+	gap:20px;
 }
 
 </style>

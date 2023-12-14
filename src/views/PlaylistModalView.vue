@@ -3,10 +3,11 @@
 <template>
   <modal :width="'600px'">
     <template v-slot:content v-if="this.playlist.error">
-      <div class="error-message">
-        <i class="bi bi-emoji-frown"></i>
-        {{ this.playlist.error.status }} {{ this.playlist.error.message }}
-      </div>
+      <errorMessage>
+        <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+        <template v-slot:status>{{ this.playlist.error.status }}</template>
+        <template v-slot:message>{{ this.playlist.error.message }}</template>
+      </errorMessage>
     </template>
     <template v-slot:content v-else>
       <div class="playlist-header">
@@ -55,7 +56,7 @@
       </div>
       <hr/>
       <div style="max-height:635px">
-        <playlist
+        <playlist class="playlist-list"
           :id="this.id"
           :songs="this.songs"
         />
@@ -68,6 +69,7 @@
 
 import modal from "@/components/modal.vue"
 import playlist from "@/components/playlist.vue";
+import errorMessage from "@/components/errorMessage.vue"
 
 
 import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
@@ -80,7 +82,7 @@ export default
   name: 'playlistModal',
   components:
   {
-    modal,playlist
+    modal,playlist,errorMessage
   },
   computed:
   {
@@ -106,6 +108,7 @@ export default
   {
     this.playlist = await getPlaylist(this.id);
     this.songs = await getPlaylistSongs(this.id);
+    document.title=this.playlist.name;
   },
   methods:
   {

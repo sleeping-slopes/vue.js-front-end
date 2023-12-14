@@ -1,16 +1,16 @@
 <template>
   <div class="playlist-carousel">
-    <ul id="carousel-content" ref="carousel" v-if="playlists.length>0">
+    <errorMessage  v-if="playlists.length==0">
+    <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
+    <template v-slot:message>No playlists here yet</template>
+  </errorMessage>
+    <ul id="carousel-content" ref="carousel" v-else>
       <li v-for="(playlist) in this.getShortList">
         <playlistCard :id="playlist.id"/>
       </li>
       <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
       <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
     </ul>
-    <div class="error-message" v-else>
-      <i class="bi bi-music-note-list"></i>
-        No playlists here yet
-    </div>
   </div>
   <router-view></router-view>
 </template>
@@ -18,13 +18,14 @@
 <script>
 
 import playlistCard from '@/components/playlistCard.vue'
+import errorMessage from "@/components/errorMessage.vue"
 
 export default
 {
   name: 'carousel',
   components:
   {
-    playlistCard
+    playlistCard,errorMessage
   },
   data()
   {

@@ -1,8 +1,9 @@
 <template>
-  <div class="error-message" v-if="this.user.error">
-    <i class="bi bi-emoji-frown"></i>
-    {{ this.user.error.status }} {{ this.user.error.message }}
-  </div>
+    <errorMessage v-if="this.user.error">
+    <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+    <template v-slot:status>{{ this.user.error.status }}</template>
+    <template v-slot:message>{{ this.user.error.message }}</template>
+  </errorMessage>
   <div class="scr" v-else>
     <div class="user-banner-wrapper">
       <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/banner`"/>
@@ -51,21 +52,21 @@
                 <div class="user-stats">
                   <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
                     <span class="h4">Followers</span>
-                    <span class="h2">{{abbreviateNumber(this.user.followers_count,0)}}</span>
+                    <span class="h3">{{abbreviateNumber(this.user.followers_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
                     <span class="h4">Following</span>
-                    <span class="h2">{{abbreviateNumber(this.user.following_count,0)}}</span>
+                    <span class="h3">{{abbreviateNumber(this.user.following_count,0)}}</span>
                   </router-link>
                   <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
                     <span class="h4">Songs</span>
-                    <span class="h2">{{abbreviateNumber(this.user.songs_count,0)}}</span>
+                    <span class="h3">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
-                <span class="primary-text" v-if="this.user.bio">
+                <span class="primary-text h5" v-if="this.user.bio">
                   {{ this.user.bio }}
                 </span>
-                <ul class="user-link-list" v-if="this.user.links && this.user.links.length>0">
+                <ul class="user-link-list h5" v-if="this.user.links && this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
                     <glyphLink
                       :url=link.url
@@ -81,7 +82,7 @@
                 <router-link class="button-secondary h5" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
-                <playlist
+                <playlist class="playlist-list"
                   :id="this.userLikedSongs.id"
                   :songs="this.userLikedSongs.songs"
                   :maxDisplay="3"
@@ -103,10 +104,11 @@ import { abbreviateNumber } from "@/functions.js"
 import panel from "@/components/panel.vue"
 import playlist from "@/components/playlist.vue"
 import glyphLink from "@/components/glyphLink.vue"
+import errorMessage from "@/components/errorMessage.vue"
 
   export default {
     name: 'UserProfileView',
-    components:{panel,playlist,glyphLink},
+    components:{panel,playlist,glyphLink,errorMessage},
     props:
     {
       login: { default: "nologin" },
@@ -129,6 +131,8 @@ import glyphLink from "@/components/glyphLink.vue"
       this.user = await getUserProfile(this.login);
       this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
+
+      document.title=this.user.username || this.user.login;
     },
     methods:
     {

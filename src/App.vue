@@ -373,23 +373,6 @@ nav
   color:red;
 }
 
-.error-message
-{
-  color:var(--text-color-secondary);
-  width:100%;
-  padding-top:20px;
-  padding-bottom:20px;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.error-message i
-{
-  font-size:48px;
-}
-
 .my-input
 {
   outline-color: transparent;
