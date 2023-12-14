@@ -3,7 +3,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import discoverView from '@/views/DiscoverView.vue'
 
 import youView from '@/views/YouView.vue'
-import yourLibraryView from '@/views/YourLibraryView.vue'
 import yourSongsView from '@/views/YourSongsView.vue'
 import yourPlaylistsView from '@/views/YourPlaylistsView.vue'
 import yourHistoryView from '@/views/YourHistoryView.vue'
@@ -51,19 +50,9 @@ const routes = [
     name: 'You',
     path: '/you',
     component: youView,
-    redirect: {name:'YourLibrary'},
+    redirect: {name:'YourSongs'},
     children:
     [
-      {
-        path: 'playlist/:id',
-        component: playlistModal,
-        props:true,
-      },
-      {
-        path: 'library',
-        name: 'YourLibrary',
-        component: yourLibraryView,
-      },
       {
         path: 'songs',
         name: 'YourSongs',
@@ -73,6 +62,14 @@ const routes = [
         path: 'playlists',
         name: 'YourPlaylists',
         component: yourPlaylistsView,
+        children:
+        [
+          {
+            path: 'playlist/:id/',
+            component: playlistModal,
+            props:true,
+          },
+        ],
       },
       {
         path: 'following',
