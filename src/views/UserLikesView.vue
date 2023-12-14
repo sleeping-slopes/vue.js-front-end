@@ -9,7 +9,7 @@
       <panel>
         <template v-slot:header>Songs liked by {{ this.user.username }}</template>
         <template v-slot:content>
-          <playlist
+          <playlist class="playlist-list"
           :id="userLikedSongs.id"
           :songs="userLikedSongs.songs"
           :dynamicComponent="'songExtended'"
@@ -58,6 +58,7 @@
         this.user = await getUserUsername(this.login);
         this.userLikedSongs.songs = await getUserLikedSongs(this.login);
         this.userLikedPlaylists = await getUserLikedPlaylists(this.login);
+        document.title=(this.user.username || this.user.login)+" liked";
       },
     }
     </script>

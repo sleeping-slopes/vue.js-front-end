@@ -245,7 +245,7 @@ export default
 }
 
 
-.song .songMenu
+.songMenu
 {
     display:none;
     gap:10px;
@@ -254,17 +254,17 @@ export default
     align-items: center;
 }
 
-.playlist .song:hover .song-duration
+.song:hover .song-duration
 {
     display:none;
 }
 
-.playlist .song:hover .songMenu
+.song:hover .songMenu
 {
     display:flex;
 }
 
-.songMenu .songButton
+.songButton
 {
     display:flex;
     background:none;
@@ -277,7 +277,7 @@ export default
     font-size:16px;
 }
 
-.songMenu .songButton:hover
+.songButton:hover
 {
     color: var(--text-color-primary);
 }
@@ -290,7 +290,7 @@ export default
     color: var(--text-color-secondary);
 }
 
-.playlist .song-duration
+.song-duration
 {
     display:inline;
 }
@@ -310,7 +310,7 @@ export default
     visibility: hidden;
 }
 
-.playlist .song:hover
+.playlist-list .song:hover
 {
     background-color:var(--selected-item-background-color);
 }
@@ -325,7 +325,7 @@ export default
     opacity:0.4;
 }
 
-.song.active
+.playlist-list .song.active
 {
     background-color: var(--selected-item-background-color);
 }

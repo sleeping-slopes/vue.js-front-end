@@ -9,7 +9,7 @@
     <panel>
       <template v-slot:header>Popular songs by {{ this.user.username }}</template>
       <template v-slot:content>
-        <playlist
+        <playlist class="playlist-list"
         :id="userPopularSongs.id"
         :songs="userPopularSongs.songs"
         :dynamicComponent="'songExtended'"
@@ -58,6 +58,7 @@
       this.user = await getUserUsername(this.login);
       this.userPopularSongs.songs = await getUserPopularSongs(this.login);
       this.userPopularPlaylists = await getUserPopularPlaylists(this.login);
+      document.title=(this.user.username || this.user.login)+" popular songs";
     },
   }
   </script>

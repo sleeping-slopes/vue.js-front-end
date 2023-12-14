@@ -11,7 +11,7 @@
       <panel style="height:100%;">
         <template v-slot:header>Songs</template>
         <template v-slot:content>
-          <playlist
+          <playlist class="playlist-list"
           :id="discoverPlaylist.id"
           :songs="discoverPlaylist.songs"
           :dynamicComponent="'songExtended'"
@@ -51,6 +51,7 @@ export default {
   {
     this.playlists = await getPlaylists();
     this.discoverPlaylist.songs = await getSongs();
+    document.title="Discover";
   }
 }
 </script>

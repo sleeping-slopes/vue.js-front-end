@@ -2,7 +2,7 @@
   <panel>
     <template v-slot:header>Songs by {{ this.user.username }}</template>
     <template v-slot:content>
-      <playlist
+      <playlist class="playlist-list"
         :id="this.userSongs.id"
         :songs="this.userSongs.songs"
         :dynamicComponent="'songExtended'"
@@ -47,6 +47,7 @@
     {
       this.user = await getUserUsername(this.login);
       this.userSongs.songs = await getUserSongs(this.login);
+      document.title=(this.user.username || this.user.login)+" songs";
     },
   }
   </script>
