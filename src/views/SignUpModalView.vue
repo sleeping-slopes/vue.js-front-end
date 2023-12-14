@@ -1,48 +1,39 @@
 <template>
   <modal :width="'400px'">
     <template v-slot:content>
-          <div style="height:200px;font-size:40px;color:var(--text-color-primary)">
-              Sign up to SSS
-          </div>
-          <form @submit.prevent="signUp" style="gap:10px">
+          <h2 class="primary-text" style="height:200px">Sign up to 3V3R51NC3</h2>
+          <form @submit.prevent="signUp" class="h4">
               <label class = "label">
-                  Email
+                  <span>Email</span>
                   <input class="my-input" type="text" v-bind:style="email.error?{'border-color':'red'}:{}"
                   placeholder="Enter email"
                   v-model="email.data"/>
-                  <div class="error" v-if=email.error>
-                    <span class="bi bi-exclamation-circle-fill"></span>
-                    {{ email.error }}
-                  </div>
+                  <span class="icon-text error" v-if=email.error>
+                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
+                  </span>
               </label>
               <label class = "label">
-                  Password
+                <span>Password</span>
                   <input class="my-input" type="password" v-bind:style="password.error?{'border-color':'red'}:{}"
                   placeholder="Enter password"
                   v-model="password.data"/>
-                  <div class="error" v-if=password.error>
-                    <span class="bi bi-exclamation-circle-fill"></span>
-                    {{ password.error }}
-                  </div>
+                  <span class="icon-text error" v-if=password.error>
+                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
+                  </span>
               </label>
               <label class = "label">
-                  Login
+                <span>Login</span>
                   <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
                   placeholder="What should we call you?"
                   v-model="login.data"/>
-                  <div class="error" v-if=login.error>
-                    <span class="bi bi-exclamation-circle-fill"></span>
-                    {{ login.error }}
-                  </div>
+                  <span class="icon-text error" v-if=login.error>
+                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
+                  </span>
               </label>
-              <div class = "wrapper-button-main">
-                  <button type="submit" class = "button-primary hoverable h5">Sign up</button>
-              </div>
+              <button type="submit" class = "button-primary hoverable h5">Sign up</button>
             </form>
           <hr />
-          <div style="color:var(--text-color-primary)">
-              <span>Already have an account? <router-link to="login" class="button-link">Log in</router-link></span>
-          </div>
+          <span class="primary-text h5">Already have an account? <router-link to="login" class="button-link">Log in</router-link></span>
         </template>
     </modal>
 </template>

@@ -67,7 +67,7 @@ export default
   background-color: transparent;
   text-decoration: none;
   cursor:pointer;
-  padding:5px 10px 5px 10px;
+  padding:5px 5px 5px 5px;
   box-sizing: border-box;
 }
 

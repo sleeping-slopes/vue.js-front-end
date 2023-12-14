@@ -54,7 +54,6 @@ export default
     gap:10px;
     width:180px;
     height:250px;
-    padding-top:20px;
 }
 
 .user-info

@@ -28,9 +28,9 @@
       </div>
 
       <div class="player-slider">
-        <span class="song-time"> {{ numberToTimeString(this.currentTime) }}</span>
+        <span class="song-time h5"> {{ numberToTimeString(this.currentTime) }}</span>
         <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="seek()">
-        <span class="song-time"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
+        <span class="song-time h5"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
       </div>
       <div class="player-menu">
         <button class="round-button small bi bi-volume-up-fill">
@@ -53,12 +53,12 @@
         <template v-slot:header>Current playlist</template>
         <template v-slot:menu>
           <button class="button-secondary h5">Clear</button>
-          <button class="panel-header-button bi bi-x-lg"
+          <button class="panel-header-button h2 bi bi-x-lg"
             v-on:click="this.show=!this.show">
           </button>
         </template>
         <template v-slot:content>
-          <playlist
+          <playlist class="playlist-list"
             :id="this.$store.state.currentPlaylist.id"
             :songs="this.$store.state.currentPlaylist.songs"
           />
@@ -180,7 +180,7 @@ export default
   border-top:2px solid var(--panel-border-color);
   z-index:1;
   margin-top:auto;
-  padding:3px 0px 3px 0px;
+
 }
 
 .player
@@ -189,8 +189,7 @@ export default
   width:1240px;
   gap:40px;
   position:relative;
-  padding-left:10px;
-  padding-right:10px;
+  padding: 3px 10px 3px 10px;
   box-sizing: border-box;
   background-color:var(--panel-background-color);
 }

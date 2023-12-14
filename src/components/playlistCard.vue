@@ -15,8 +15,8 @@
             <button class="playlist-hover round-button large bi bi-play-fill"></button>
         </div>
         <div class= "song-info-wrapper">
-            <span class ="song-info primary-text" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
-            <div class ="song-info">
+            <span class ="song-info primary-text h4" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
+            <div class ="song-info h4">
                 <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -72,6 +72,7 @@ export default
     flex-direction: column;
     width:128px;
     flex-shrink: 0;
+    gap:3px;
 }
 
 .playlist-cover-shade
