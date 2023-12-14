@@ -4,7 +4,7 @@
       <span class="h3 secondary-text">Hear the songs you’ve played:</span>
       <div style="display:flex; margin-left:auto; align-items: center; gap:20px;">
         <div style="display:flex; margin-left:auto; align-items: center; gap:5px;">
-          <span class="secondary-text">View</span>
+          <span class="secondary-text h4">View</span>
           <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button-secondary bi bi-grid-fill h3" style="height:auto;padding:5px;"></button>
           <button v-bind:class="{'toggled': this.currentViewStyle==0}" @click="this.currentViewStyle=0" class="button-secondary bi bi-list h3" style="height:auto;padding:5px;"></button>
         </div>
@@ -19,13 +19,13 @@
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <playlist :class="'playlist-list'"
+        <playlist :class="'ul-list'"
           :id="playlist.id"
           :songs="playlist.songs"
           :dynamicComponent="'songExtended'"/>
       </template>
     </panel>
-    <playlist :class="'playlist-grid'" v-else
+    <playlist :class="'ul-grid'" v-else
       :id="playlist.id"
       :songs="playlist.songs"
       :dynamicComponent="'songCard'"/>

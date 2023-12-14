@@ -1,9 +1,9 @@
 <template>
     <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
-        <div class = "song-cover-wrapper s36x36">
-            <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
-            <div class = "song-cover bi bi-music-note" v-else/>
-            <div class = "song-cover-shade"></div>
+        <div class = "cover-wrapper s36x36">
+            <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <div class = "cover bi bi-music-note" v-else/>
+            <div class = "shade"></div>
             <button class="round-button small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
@@ -11,8 +11,8 @@
                 <div class ="wave"></div>
             </div>
         </div>
-        <div class= "song-info-wrapper h5">
-            <div class ="song-info">
+        <div class= "song-info-wrapper">
+            <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -23,7 +23,7 @@
                     <span class="secondary-text" v-if="index+1 < this.song.artists.length">, </span>
                 </div>
             </div>
-            <span class ="song-info primary-text">{{this.song.name}}</span>
+            <span class ="song-info primary-text h4">{{this.song.name}}</span>
         </div>
         <div class="songMenu">
             <button class="songButton bi bi-suit-heart-fill" v-bind:style="this.song.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()"></button>
@@ -115,11 +115,6 @@ export default
     align-items: center;
 }
 
-.playlist .song
-{
-    cursor:pointer;
-}
-
 .wrapper-wave
 {
     display:flex;
@@ -139,7 +134,6 @@ export default
     height:20%;
     border-radius: 50vh;
     background:var(--accent-color);
-
 }
 
 .wrapper-wave.playing .wave
@@ -164,44 +158,32 @@ export default
     100% {height:50%;}
 }
 
-.song-cover
+.ul-list .song:hover .shade,
+.ul-grid .cover-wrapper:hover .shade,
+.song.active .shade
 {
-    position: absolute;
-    height:100%;
-    width:100%;
-    background-color:var(--panel-border-color);
-    color:var(--text-color-secondary);
-    align-items: center;
-    display:flex;
-    justify-content:center;
+    opacity:0.5;
 }
 
-.song .song-cover-shade
+.song .wrapper-wave,
+.song.active:hover .wrapper-wave
 {
     visibility:hidden;
 }
 
-.song.active .song-cover-shade
+.song.active .wrapper-wave
 {
     visibility:visible;
 }
 
-.song.active #deleteSongButton
+.ul-list .song:hover
 {
-    display:none;
+    background-color:var(--selected-item-background-color);
 }
 
-.playlist .song:hover .song-cover-shade
+.ul-list .song.active
 {
-    visibility:visible;
-}
-
-.song-cover-shade
-{
-    position:absolute;
-    background-color: black;
-    width:100%;
-    height:100%;
+    background-color: var(--selected-item-background-color);
 }
 
 .song .round-button
@@ -210,6 +192,12 @@ export default
     visibility: hidden;
     background-color: var(--soft-black);
     color: var(--soft-white);
+}
+
+.playlist .song:hover .round-button,
+.playlist .song.card.active .round-button
+{
+    visibility: visible;
 }
 
 .song-info-wrapper
@@ -244,7 +232,6 @@ export default
     text-decoration: underline;
 }
 
-
 .songMenu
 {
     display:none;
@@ -254,12 +241,25 @@ export default
     align-items: center;
 }
 
+.song-duration
+{
+    display:none;
+    margin: auto;
+    text-align: center;
+    color: var(--text-color-secondary);
+}
+
+.playlist .song .song-duration
+{
+    display:inline;
+}
+
 .song:hover .song-duration
 {
     display:none;
 }
 
-.song:hover .songMenu
+.playlist .song:hover .songMenu
 {
     display:flex;
 }
@@ -282,52 +282,10 @@ export default
     color: var(--text-color-primary);
 }
 
-.song-duration
+.song.active #deleteSongButton
 {
     display:none;
-    margin: auto;
-    text-align: center;
-    color: var(--text-color-secondary);
 }
 
-.song-duration
-{
-    display:inline;
-}
-
-.song .wrapper-wave
-{
-    visibility:hidden;
-}
-
-.song.active .wrapper-wave
-{
-    visibility:visible;
-}
-
-.song.active:hover .wrapper-wave
-{
-    visibility: hidden;
-}
-
-.playlist-list .song:hover
-{
-    background-color:var(--selected-item-background-color);
-}
-
-.playlist .song:hover .round-button
-{
-    visibility: visible;
-}
-
-.song .song-cover-shade
-{
-    opacity:0.4;
-}
-
-.playlist-list .song.active
-{
-    background-color: var(--selected-item-background-color);
-}
 
 </style>

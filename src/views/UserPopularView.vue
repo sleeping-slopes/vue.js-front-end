@@ -9,7 +9,7 @@
     <panel>
       <template v-slot:header>Popular songs by {{ this.user.username }}</template>
       <template v-slot:content>
-        <playlist class="playlist-list"
+        <playlist class="ul-list"
         :id="userPopularSongs.id"
         :songs="userPopularSongs.songs"
         :dynamicComponent="'songExtended'"

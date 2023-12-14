@@ -11,10 +11,10 @@
     </template>
     <template v-slot:content v-else>
       <div class="playlist-header">
-        <div class="playlist-cover-wrapper s160x160">
-          <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
-          <div class = "playlist-cover bi bi-music-note-list" v-else/>
-          <div class = "playlist-cover-shade"></div>
+        <div class="cover-wrapper s160x160">
+          <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+          <div class = "cover bi bi-music-note-list" v-else/>
+          <div class = "cover-shade"></div>
           <button class="playlist-hover round-button huge bi bi-play-fill"></button>
         </div>
 
@@ -56,7 +56,7 @@
       </div>
       <hr/>
       <div style="max-height:635px">
-        <playlist class="playlist-list"
+        <playlist class="ul-list"
           :id="this.id"
           :songs="this.songs"
         />

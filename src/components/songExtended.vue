@@ -1,10 +1,10 @@
 
 <template>
     <div class = "song" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
-        <div class = "song-cover-wrapper s60x60">
-            <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
-            <div class = "song-cover bi bi-music-note" v-else/>
-            <div class = "song-cover-shade"></div>
+        <div class = "cover-wrapper s52x52">
+            <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <div class = "cover bi bi-music-note" v-else/>
+            <div class = "shade"></div>
             <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
@@ -12,8 +12,8 @@
                 <div class ="wave"></div>
             </div>
         </div>
-        <div class= "song-info-wrapper h5">
-            <div class ="song-info">
+        <div class= "song-info-wrapper">
+            <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"

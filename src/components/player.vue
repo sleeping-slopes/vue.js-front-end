@@ -58,7 +58,7 @@
           </button>
         </template>
         <template v-slot:content>
-          <playlist class="playlist-list"
+          <playlist class="ul-list"
             :id="this.$store.state.currentPlaylist.id"
             :songs="this.$store.state.currentPlaylist.songs"
           />

@@ -1,9 +1,9 @@
 <template>
-  <div class = "user-card">
+  <div class = "card">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-    <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
-    <div class = "user-image s180x180 gradient-bg" v-else/>
-  </router-link>
+      <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+      <div class = "user-image s180x180 gradient-bg" v-else/>
+    </router-link>
     <div class= "user-info">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text-hoverable">{{this.user.username || this.login}}</router-link>
       <span class ="h5 icon-text secondary-text" v-if="this.user.followers_count>0">
@@ -46,15 +46,6 @@ export default
 </script>
 
 <style>
-
-.user-card
-{
-    display:flex;
-    flex-direction: column;
-    gap:10px;
-    width:180px;
-    height:250px;
-}
 
 .user-info
 {

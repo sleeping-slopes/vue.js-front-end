@@ -1,10 +1,10 @@
 <template>
-    <div class = "playlistCard">
-        <div class="playlist-cover-wrapper s128x128" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
-            <img class = "playlist-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
-            <div class = "playlist-cover bi bi-music-note-list" v-else/>
-            <div class = "playlist-cover-shade"></div>
-            <div class="playlist-hover playlist-stats h5">
+    <div class = "playlist card">
+        <div class="cover-wrapper s180x180" v-on:click="$router.push($route.path+'/playlist/'+this.id)">
+            <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+            <div class = "cover bi bi-music-note-list" v-else/>
+            <div class = "shade"></div>
+            <div class="playlist-hover playlist-stats h4">
                 <span class="icon-text">
                     <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
                 </span>
@@ -12,11 +12,10 @@
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
                 </span>
             </div>
-            <button class="playlist-hover round-button large bi bi-play-fill"></button>
+            <button class="playlist-hover round-button huge bi bi-play-fill"></button>
         </div>
         <div class= "song-info-wrapper">
-            <span class ="song-info primary-text h4" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
-            <div class ="song-info h4">
+            <div class ="song-info h5">
                 <div v-for="(artist,index) in this.playlist.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -27,9 +26,9 @@
                     <span class="secondary-text" v-if="index+1 < this.playlist.artists.length">, </span>
                 </div>
             </div>
+            <span class ="song-info primary-text h4" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -66,39 +65,14 @@ export default
 
 <style>
 
-.playlistCard
-{
-    display:flex;
-    flex-direction: column;
-    width:128px;
-    flex-shrink: 0;
-    gap:3px;
-}
-
-.playlist-cover-shade
-{
-    position:absolute;
-    background-color: black;
-    width:100%;
-    height:100%;
-    opacity:0.0;
-    transition: 0.2s all;
-}
-
-.playlist-cover
-{
-    width:100%;
-    height:100%;
-    background-color:var(--panel-border-color);
-    color:var(--text-color-secondary);
-    align-items: center;
-    display:flex;
-    justify-content:center;
-}
-
-.playlist-cover-wrapper:hover .playlist-cover-shade
+.playlist.card .cover-wrapper:hover .shade
 {
     opacity:0.5;
+}
+
+.playlist-carousel .playlist.card
+{
+    width:128px;
 }
 
 .playlist-hover
@@ -109,7 +83,7 @@ export default
     color:var(--soft-white);
 }
 
-.playlist-cover-wrapper:hover .playlist-hover
+.cover-wrapper:hover .playlist-hover
 {
     opacity:1.0;
 }
@@ -121,7 +95,8 @@ export default
     gap:20px;
     padding:0px 5px 0px 5px;
     box-sizing: border-box;
-    cursor:default;
 }
+
+
 
 </style>

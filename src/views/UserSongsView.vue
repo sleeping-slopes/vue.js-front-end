@@ -2,7 +2,7 @@
   <panel>
     <template v-slot:header>Songs by {{ this.user.username }}</template>
     <template v-slot:content>
-      <playlist class="playlist-list"
+      <playlist class="ul-list"
         :id="this.userSongs.id"
         :songs="this.userSongs.songs"
         :dynamicComponent="'songExtended'"

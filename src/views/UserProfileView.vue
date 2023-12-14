@@ -66,7 +66,7 @@
                 <span class="primary-text h5" v-if="this.user.bio">
                   {{ this.user.bio }}
                 </span>
-                <ul class="user-link-list h5" v-if="this.user.links && this.user.links.length>0">
+                <ul class="h5" v-if="this.user.links && this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
                     <glyphLink
                       :url=link.url
@@ -82,7 +82,7 @@
                 <router-link class="button-secondary h5" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
-                <playlist class="playlist-list"
+                <playlist class="ul-list"
                   :id="this.userLikedSongs.id"
                   :songs="this.userLikedSongs.songs"
                   :maxDisplay="3"
@@ -216,13 +216,6 @@ import errorMessage from "@/components/errorMessage.vue"
 .user-stat:hover
 {
   color: var(--text-color-primary);
-}
-
-.user-link-list
-{
-  list-style: none;
-  padding:0px;
-  margin:0px;
 }
 
   </style>

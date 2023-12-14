@@ -15,11 +15,15 @@
 			</div>
 		</nav>
 		<div class="scr">
-			<ul class="user-list">
+			<ul class="ul-grid" v-if="this.followers.length>0">
 				<li v-for="follower in this.followers"><userCard :login="follower.login"></userCard></li>
-				<!-- <li><userCard :login="'user'"></userCard></li> -->
 			</ul>
+      <errorMessage  v-else>
+          <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
+          <template v-slot:message>No one is following {{(this.user.username || this.user.login)}} yet</template>
+        </errorMessage>
 		</div>
+
 	</div>
 </div>
 </template>
@@ -31,10 +35,11 @@
 
   import panel from "@/components/panel.vue"
   import userCard from "@/components/userCard.vue"
+  import errorMessage from "@/components/errorMessage.vue";
 
     export default {
       name: 'UserFollowersView',
-      components:{panel,userCard},
+      components:{panel,userCard,errorMessage},
       props:
       {
         login: { default: "nologin" },

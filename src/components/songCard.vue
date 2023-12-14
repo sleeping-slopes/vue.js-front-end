@@ -1,19 +1,14 @@
 
 <template>
-    <div class = "song songCard" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
-        <div class = "song-cover-wrapper s180x180">
-            <img class = "song-cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
-            <div class = "song-cover bi bi-music-note" v-else/>
-            <div class = "song-cover-shade"></div>
+    <div class = "song card" v-bind:class="{'active': current}">
+        <div class = "cover-wrapper s180x180" v-on:click="setCurrentSong">
+            <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <div class = "cover bi bi-music-note" v-else/>
+            <div class = "shade"></div>
             <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
-            <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
-                <div class ="wave"></div>
-                <div class ="wave"></div>
-                <div class ="wave"></div>
-            </div>
         </div>
-        <div class= "song-info-wrapper h5">
-            <div class ="song-info">
+        <div class= "song-info-wrapper">
+            <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
                     <router-link class="artistlink secondary-text" v-if="artist.login"
                         :to="'/id/'+artist.login"
@@ -30,9 +25,6 @@
   </template>
 <script>
 
-
-import { abbreviateNumber, numberToTimeString } from "@/functions.js"
-
 import song  from "./song.vue"
 
 export default
@@ -44,13 +36,5 @@ export default
 </script>
 
 <style>
-
-.songCard
-{
-    display:flex;
-    flex-direction: column;
-    width:180px;
-    padding:0px;
-}
 
 </style>

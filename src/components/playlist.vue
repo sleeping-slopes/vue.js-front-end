@@ -63,34 +63,14 @@ export default
 
 .playlist::-webkit-scrollbar
 {
-    display: none !important;
+    display: none;
 }
 
 .playlist
 {
-  -ms-overflow-style: none !important;
-  scrollbar-width: none !important;
-  list-style: none;
-	padding:0px;
-	margin:0px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   overflow-y:scroll;
-}
-
-.playlist-list
-{
-  width:100%;
-  display:flex;
-  flex-direction: column;
-  height:100%;
-  gap:5px;
-}
-
-.playlist-grid
-{
-  width:100%;
-  display:flex;
-  flex-wrap:wrap;
-	gap:20px;
 }
 
 </style>

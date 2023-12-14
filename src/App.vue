@@ -34,6 +34,39 @@ export default
 
 <style>
 
+ul
+{
+  list-style: none;
+	padding:0px;
+	margin:0px;
+}
+
+.ul-list
+{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  height:100%;
+  gap:5px;
+}
+
+.ul-grid
+{
+	gap:20px;
+	display:flex;
+	flex-wrap:wrap;
+	width:100%;
+}
+
+.card
+{
+  display:flex;
+  flex-direction: column;
+  width:180px;
+  padding:0px;
+  gap:3px;
+}
+
 .app
 {
   height:100%;
@@ -224,32 +257,40 @@ nav
   height:20px;
   width:20px;
 }
-
-.song-cover-wrapper
+/* /// */
+.cover-wrapper
 {
   display:flex;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-
   overflow:hidden;
   position:relative;
 }
 
-.playlist-cover-wrapper
+.cover
 {
-  display:flex;
-  justify-content: center;
+  position: absolute;
+  height:100%;
+  width:100%;
+  background-color:var(--panel-border-color);
+  color:var(--text-color-secondary);
   align-items: center;
-  border-radius:10px;
-
-  overflow:hidden;
-  position:relative;
-
-  box-sizing: border-box;
-  border:2px solid var(--panel-border-color);
+  display:flex;
+  justify-content:center;
 }
 
+.shade
+{
+    position:absolute;
+    background-color: black;
+    width:100%;
+    height:100%;
+    opacity:0.0;
+    transition: 0.2s all;
+}
+
+/* /// */
 .user-image
 {
   display:flex;
@@ -335,6 +376,7 @@ nav
 }
 
 
+
 .fixed-top
 {
 	display:flex;
@@ -343,16 +385,6 @@ nav
 	padding-top:10px;
 }
 
-.user-list
-{
-	list-style: none;
-	padding:0px;
-	margin:0px;
-	gap:20px;
-	display:flex;
-	flex-wrap:wrap;
-	width:100%;
-}
 
 
 .label
