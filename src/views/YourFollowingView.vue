@@ -48,8 +48,6 @@
             else this.user=userByToken.values;
             // this.followings = await getUserFollowing(this.user.login);
             this.followings = Array(15).fill({login:"admin"})
-
-            // document.title=(this.user.username || this.user.login)+" follows";
           }
         }
         </script>

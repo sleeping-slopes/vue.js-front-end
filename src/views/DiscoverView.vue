@@ -51,7 +51,6 @@ export default {
   {
     this.playlists = await getPlaylists();
     this.discoverPlaylist.songs = await getSongs();
-    document.title="Discover";
   }
 }
 </script>

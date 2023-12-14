@@ -15,9 +15,9 @@ import userLikesView from '@/views/UserLikesView.vue'
 import userFollowersView from '@/views/UserFollowersView.vue'
 import userFollowingView from '@/views/UserFollowingView.vue'
 
-import playlistModal from '@/views/PlaylistModalView.vue'
-import logInModal from '@/views/LogInModalView.vue'
-import signUpModal from '@/views/SignUpModalView.vue'
+import modalPlaylist from '@/views/ModalPlaylistView.vue'
+import modalLogIn from '@/views/ModalLogInView.vue'
+import modalSignUp from '@/views/ModalSignUpView.vue'
 
 
 
@@ -36,7 +36,7 @@ const routes = [
     [
       {
         path: 'playlist/:id/',
-        component: playlistModal,
+        component: modalPlaylist,
         props:true,
       },
     ],
@@ -66,7 +66,7 @@ const routes = [
         [
           {
             path: 'playlist/:id/',
-            component: playlistModal,
+            component: modalPlaylist,
             props:true,
           },
         ],
@@ -105,7 +105,7 @@ const routes = [
         [
           {
             path: 'playlist/:id/',
-            component: playlistModal,
+            component: modalPlaylist,
             props:true,
           }
         ]
@@ -130,7 +130,7 @@ const routes = [
         [
           {
             path: 'playlist/:id/',
-            component: playlistModal,
+            component: modalPlaylist,
             props:true,
           }
         ]
@@ -152,11 +152,11 @@ const routes = [
   },
   {
     path: '/signup',
-    component: signUpModal
+    component: modalSignUp
   },
   {
     path: '/login',
-    component: logInModal
+    component: modalLogIn
   }
 ]
 

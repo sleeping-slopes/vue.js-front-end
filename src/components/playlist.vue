@@ -18,9 +18,9 @@
 
 <script>
 
-import song from './song.vue'
-import songExtended from './songExtended.vue'
-import songCard from './songCard.vue'
+import song from '@/components/song/song.vue'
+import songExtended from '@/components/song/songExtended.vue'
+import songCard from '@/components/song/songCard.vue'
 import errorMessage from "@/components/errorMessage.vue"
 
 export default

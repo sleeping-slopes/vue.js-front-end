@@ -36,7 +36,7 @@
 
   import panel from '@/components/panel.vue';
   import playlist from '@/components/playlist.vue';
-  import songCard from '@/components/songCard.vue'
+  import songCard from '@/components/song/songCard.vue'
 
   import {getSongs} from "@/axios/getters.js"
 

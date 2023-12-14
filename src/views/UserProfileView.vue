@@ -131,8 +131,6 @@ import errorMessage from "@/components/errorMessage.vue"
       this.user = await getUserProfile(this.login);
       this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
-
-      document.title=this.user.username || this.user.login;
     },
     methods:
     {

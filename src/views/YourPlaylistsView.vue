@@ -28,7 +28,7 @@
 
   <script>
 
-  import playlistCard from '@/components/playlistCard.vue'
+  import playlistCard from '@/components/playlist/playlistCard.vue'
   import errorMessage from '@/components/errorMessage.vue'
 
   import {getPlaylists} from "@/axios/getters.js"

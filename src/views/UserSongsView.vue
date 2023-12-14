@@ -47,7 +47,6 @@
     {
       this.user = await getUserUsername(this.login);
       this.userSongs.songs = await getUserSongs(this.login);
-      document.title=(this.user.username || this.user.login)+" songs";
     },
   }
   </script>

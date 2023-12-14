@@ -58,7 +58,6 @@
         this.user = await getUserUsername(this.login);
         this.userLikedSongs.songs = await getUserLikedSongs(this.login);
         this.userLikedPlaylists = await getUserLikedPlaylists(this.login);
-        document.title=(this.user.username || this.user.login)+" liked";
       },
     }
     </script>

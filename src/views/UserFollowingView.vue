@@ -55,7 +55,6 @@
       {
         this.user = await getUserUsername(this.login);
         this.followings = await getUserFollowing(this.login);
-        document.title=(this.user.username || this.user.login)+" follows";
       }
     }
     </script>
