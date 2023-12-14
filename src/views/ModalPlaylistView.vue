@@ -108,7 +108,6 @@ export default
   {
     this.playlist = await getPlaylist(this.id);
     this.songs = await getPlaylistSongs(this.id);
-    document.title=this.playlist.name;
   },
   methods:
   {
