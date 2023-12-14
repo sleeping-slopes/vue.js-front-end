@@ -7,7 +7,7 @@
     </router-link>
 		<router-link class="primary-text-hoverable h2" :to="{ name: 'User', params: { login: this.login }}">{{this.user.username || this.login}} is following</router-link>
 	</div>
-	<div class="column" style="gap:0px">
+	<div class="column" style="gap:30px">
 		<nav class="navtab">
 			<div class="nav-menu">
 				<router-link class="tablink h3" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
@@ -32,7 +32,7 @@
   import userCard from "@/components/userCard.vue"
 
     export default {
-      name: 'UserFollowersView',
+      name: 'UserFollowingView',
       components:{panel,userCard},
       props:
       {
@@ -50,6 +50,7 @@
       {
         this.user = await getUserUsername(this.login);
         this.followings = await getUserFollowing(this.login);
+        document.title=(this.user.username || this.user.login)+" follows";
       }
     }
     </script>
