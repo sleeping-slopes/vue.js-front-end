@@ -3,11 +3,11 @@
     <nav>
       <div class="nav-mainmenu">
         <div class = "logo" v-on:click="this.$store.dispatch('toggleTheme')"></div>
-        <router-link class="navlink" to="/discover">Discover</router-link>
-        <router-link class="navlink" to="/feed">Feed</router-link>
-        <router-link class="navlink" to="/library">Library</router-link>
+        <router-link class="navlink h4" to="/discover">Discover</router-link>
+        <router-link class="navlink h4" to="/feed">Feed</router-link>
+        <router-link class="navlink h4" to="/you">Library</router-link>
       </div>
-      <div class="wrapper-search">
+      <div class="wrapper-search h4">
         <div class="search-panel">
           <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
           <i class="fa fa-search"></i>
@@ -120,6 +120,8 @@
     justify-content:left;
     flex-direction: row-reverse;
     align-items: center;
+    border: 2px solid var(--panel-border-color);
+    box-sizing: border-box;
   }
 
   ::placeholder
@@ -143,7 +145,7 @@
 
   .search:not(:placeholder-shown) + i
   {
-    color: var(--light-gray);
+    color: var(--dark-gray);
   }
 
   </style>
