@@ -189,7 +189,7 @@ export async function getUserLinks(login)
     }
 }
 
-export async function getUserSongs(login)
+export async function getUserAllSongs(login)
 {
   try
   {
@@ -203,7 +203,49 @@ export async function getUserSongs(login)
   }
 }
 
-export async function getUserPlaylists(login)
+export async function getUserCreatedSongs(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/songs/created");
+    return userSongsRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getUserCreatedPopularSongs(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/songs/created/popular");
+    return userLikedSongsRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getUserLikedSongs(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/songs/liked");
+    return userLikedSongsRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getUserAllPlaylists(login)
 {
   try
   {
@@ -217,12 +259,26 @@ export async function getUserPlaylists(login)
   }
 }
 
-export async function getUserLikedSongs(login)
+export async function getUserCreatedPlaylists(login)
 {
   try
   {
     axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/likes/songs");
+    const userPlaylists = await axios.get("http://localhost:5000/api/user/"+login+"/playlists/created");
+    return userPlaylists.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getUserCreatedPopularPlaylists(login)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/playlists/created/popular");
     return userLikedSongsRes.data.values;
   }
   catch(err)
@@ -236,35 +292,7 @@ export async function getUserLikedPlaylists(login)
   try
   {
     axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/likes/playlists");
-    return userLikedSongsRes.data.values;
-  }
-  catch(err)
-  {
-    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-  }
-}
-
-export async function getUserPopularSongs(login)
-{
-  try
-  {
-    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/popular/songs");
-    return userLikedSongsRes.data.values;
-  }
-  catch(err)
-  {
-    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-  }
-}
-
-export async function getUserPopularPlaylists(login)
-{
-  try
-  {
-    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/popular/playlists");
+    const userLikedSongsRes = await axios.get("http://localhost:5000/api/user/"+login+"/playlists/liked");
     return userLikedSongsRes.data.values;
   }
   catch(err)
