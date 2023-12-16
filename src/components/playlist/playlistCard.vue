@@ -12,7 +12,7 @@
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
                 </span>
             </div>
-            <button class="playlist-hover round-button huge bi bi-play-fill"></button>
+            <button class="playlist-hover round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
         </div>
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
@@ -34,7 +34,10 @@
 <script>
 
 import { getPlaylist } from "@/axios/getters.js"
+import { getPlaylistSongs } from "@/axios/getters.js"
 import { abbreviateNumber } from "@/functions.js"
+import { postLikePlaylist } from "@/axios/getters"
+import { deleteLikePlaylist } from "@/axios/getters"
 
 export default
 {
@@ -46,19 +49,55 @@ export default
   data()
   {
     return {
-      playlist:
-      {
-      },
-      imageAvailable:true
+      playlist: {},
+      songs: [],
+      imageAvailable:true,
     }
   },
   methods:
   {
+    async like()
+    {
+        this.playlist.liked=!this.playlist.liked;
+        if (this.playlist.liked)
+        {
+          await postLikePlaylist(this.id);
+          this.playlist.likes_count++;
+        }
+        else
+        {
+          await deleteLikePlaylist(this.id);
+          this.playlist.likes_count--;
+        }
+    },
+    playPlaylist()
+    {
+        if (this.songs.length>0)
+        {
+            if (!this.current)
+                this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: 0}));
+            else
+                this.$store.state.isPlaying=!this.$store.state.isPlaying;
+        }
+    },
     abbreviateNumber: abbreviateNumber
   },
   async mounted()
   {
     this.playlist = await getPlaylist(this.id);
+    this.songs = await getPlaylistSongs(this.id);
+  },
+  computed:
+  {
+    current()
+    {
+      return this.$store.state.currentPlaylist.id===this.id;
+    },
+    isPlaying()
+    {
+        if (this.current) return this.$store.state.isPlaying;
+        return false;
+    }
   }
 }
 </script>
