@@ -14,8 +14,8 @@
         <div class="cover-wrapper s160x160">
           <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
           <div class = "cover bi bi-music-note-list" v-else/>
-          <div class = "cover-shade"></div>
-          <button class="playlist-hover round-button huge bi bi-play-fill"></button>
+          <div class = "shade"></div>
+          <button class="playlist-hover round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
         </div>
 
         <div class="playlist-info">
@@ -56,7 +56,7 @@
       </div>
       <hr/>
       <div style="max-height:635px">
-        <playlist class="ul-list"
+        <playlist class="ul-list hidden-scroll"
           :id="this.id"
           :songs="this.songs"
         />
@@ -71,11 +71,7 @@ import modal from "@/components/modal.vue"
 import playlist from "@/components/playlist.vue";
 import errorMessage from "@/components/errorMessage.vue"
 
-
-import { getPlaylist, getPlaylistSongs} from "@/axios/getters.js"
-import { postLikePlaylist } from "@/axios/getters"
-import { deleteLikePlaylist } from "@/axios/getters"
-import { abbreviateNumber } from "@/functions.js"
+import playlistCard from "@/components/playlist/playlistCard.vue";
 
 export default
 {
@@ -84,49 +80,7 @@ export default
   {
     modal,playlist,errorMessage
   },
-  computed:
-  {
-
-  },
-  props:
-  {
-    id:{default:"noid"}
-  },
-  data()
-  {
-    return {
-      playlist:
-      {
-        data:{},
-        artists:[]
-      },
-      songs: [],
-      imageAvailable:true,
-    }
-  },
-  async mounted()
-  {
-    this.playlist = await getPlaylist(this.id);
-    this.songs = await getPlaylistSongs(this.id);
-  },
-  methods:
-  {
-    async like()
-    {
-        this.playlist.liked=!this.playlist.liked;
-        if (this.playlist.liked)
-        {
-          await postLikePlaylist(this.id);
-          this.playlist.likes_count++;
-        }
-        else
-        {
-          await deleteLikePlaylist(this.id);
-          this.playlist.likes_count--;
-        }
-    },
-    abbreviateNumber:abbreviateNumber
-  }
+  extends: playlistCard
 }
 </script>
 
