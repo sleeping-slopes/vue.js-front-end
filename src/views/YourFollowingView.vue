@@ -21,7 +21,7 @@
 
     <script>
 
-      import { getUserByToken, getUserFollowing } from "@/axios/getters";
+      import { getUserFollowing } from "@/axios/getters";
 
       import panel from "@/components/panel.vue"
       import userCard from "@/components/userCard.vue"
@@ -43,11 +43,11 @@
           },
           async created()
           {
-            const userByToken = await getUserByToken();
-            if (userByToken.error) this.user=undefined;
-            else this.user=userByToken.values;
-            // this.followings = await getUserFollowing(this.user.login);
-            this.followings = Array(15).fill({login:"admin"})
+            this.followings = await getUserFollowing(this.login);
+          },
+          props:
+          {
+            login:{default:"nologin"}
           }
         }
         </script>
