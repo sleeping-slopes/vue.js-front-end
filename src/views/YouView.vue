@@ -9,7 +9,7 @@
         <router-link class="tablink h3" :to="{ name: 'YourHistory'}">History</router-link>
       </div>
     </nav>
-    <router-view></router-view>
+    <router-view :login="'admin'"></router-view>
   </div>
 </div>
 </template>
