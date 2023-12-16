@@ -82,14 +82,4 @@ export default
   gap:5px;
 }
 
-.panel hr
-{
-  border: none;
-  width:100%;
-  border-top: 2px solid var(--panel-border-color);
-  height: 0px;
-  box-sizing: border-box;
-  margin:0px;
-}
-
 </style>

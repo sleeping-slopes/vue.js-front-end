@@ -11,7 +11,7 @@
       <panel style="height:100%;">
         <template v-slot:header>Songs</template>
         <template v-slot:content>
-          <playlist class="ul-list"
+          <playlist class="ul-list hidden-scroll"
           :id="discoverPlaylist.id"
           :songs="discoverPlaylist.songs"
           :dynamicComponent="'songExtended'"

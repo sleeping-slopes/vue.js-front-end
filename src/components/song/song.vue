@@ -64,7 +64,9 @@ export default
   {
     current()
     {
-        return this.$parent.current && this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos;
+        return this.$parent.current &&
+        this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
+        // && this.id === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].id;
     },
     isPlaying()
     {
@@ -160,6 +162,7 @@ export default
 
 .ul-list .song:hover .shade,
 .ul-grid .cover-wrapper:hover .shade,
+.playlist-header .cover-wrapper:hover .shade,
 .song.active .shade
 {
     opacity:0.5;
@@ -194,8 +197,8 @@ export default
     color: var(--soft-white);
 }
 
-.playlist .song:hover .round-button,
-.playlist .song.card.active .round-button
+.song-container .song:hover .round-button,
+.song-container .song.card.active .round-button
 {
     visibility: visible;
 }
@@ -249,7 +252,7 @@ export default
     color: var(--text-color-secondary);
 }
 
-.playlist .song .song-duration
+.song-container .song .song-duration
 {
     display:inline;
 }
@@ -259,7 +262,7 @@ export default
     display:none;
 }
 
-.playlist .song:hover .songMenu
+.song-container .song:hover .songMenu
 {
     display:flex;
 }

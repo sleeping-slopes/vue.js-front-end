@@ -9,7 +9,7 @@
       <panel>
         <template v-slot:header>Songs liked by {{ this.user.username }}</template>
         <template v-slot:content>
-          <playlist class="ul-list"
+          <playlist class="ul-list hidden-scroll"
           :id="userLikedSongs.id"
           :songs="userLikedSongs.songs"
           :dynamicComponent="'songExtended'"

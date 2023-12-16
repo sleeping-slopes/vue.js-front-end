@@ -15,7 +15,6 @@
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
-
           <div class = "usermenu">
             <router-link class="usermenu-button"
               :to="'/id/'+this.user.login">

@@ -89,6 +89,7 @@ a
 {
   overflow-y:scroll;
   width:100%;
+  height:100%;
 }
 
 .scr
@@ -443,6 +444,14 @@ nav
     linear-gradient(0deg,var(--accent-color) -70%, var(--main-background-color) 90%);
 }
 
-
+hr
+{
+  border: none;
+  width:100%;
+  border-top: 2px solid var(--panel-border-color);
+  height: 0px;
+  box-sizing: border-box;
+  margin:0px;
+}
 
 </style>

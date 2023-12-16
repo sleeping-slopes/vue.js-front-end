@@ -3,7 +3,7 @@
     <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
     <template v-slot:message>No audio here yet</template>
   </errorMessage>
-  <ul class = "playlist" v-else>
+  <ul class = "song-container" v-else>
     <li v-for="(song,index) in this.getShortList">
     <component :is="dynamicComponent"
       :index = "index"
@@ -61,15 +61,19 @@ export default
 
 <style>
 
-.playlist::-webkit-scrollbar
+.hidden-scroll
+{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hidden-scroll::-webkit-scrollbar
 {
     display: none;
 }
 
-.playlist
+.song-container
 {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   overflow-y:scroll;
 }
 

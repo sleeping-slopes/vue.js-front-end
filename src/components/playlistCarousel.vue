@@ -4,7 +4,7 @@
     <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
     <template v-slot:message>No playlists here yet</template>
   </errorMessage>
-    <ul id="carousel-content" ref="carousel" v-else>
+    <ul class="carousel-content hidden-scroll" ref="carousel" v-else>
       <li v-for="(playlist) in this.getShortList">
         <playlistCarouselCard :id="playlist.id"/>
       </li>
@@ -86,7 +86,7 @@ export default
   width:100%;
 }
 
-#carousel-content
+.carousel-content
 {
   display:flex;
   width:100%;
@@ -95,17 +95,6 @@ export default
   overflow-x:scroll;
   scroll-behavior: smooth;
   align-items: center;
-}
-
-#carousel-content::-webkit-scrollbar
-{
-  display: none;
-}
-
-#carousel-content
-{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .carousel-button

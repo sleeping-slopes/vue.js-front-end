@@ -1,6 +1,6 @@
 <template>
   <div class="column">
-    <div style="display:flex; align-items: center;" v-if="this.playlist.songs.length>0">
+    <div style="display:flex; align-items: center;">
       <span class="h3 secondary-text">Hear the songs you’ve played:</span>
       <div style="display:flex; margin-left:auto; align-items: center; gap:20px;">
         <div style="display:flex; margin-left:auto; align-items: center; gap:5px;">
@@ -19,13 +19,13 @@
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <playlist :class="'ul-list'"
+        <playlist :class="'ul-list hidden-scroll'"
           :id="playlist.id"
           :songs="playlist.songs"
           :dynamicComponent="'songExtended'"/>
       </template>
     </panel>
-    <playlist :class="'ul-grid'" v-else
+    <playlist :class="'ul-grid hidden-scroll'" v-else
       :id="playlist.id"
       :songs="playlist.songs"
       :dynamicComponent="'songCard'"/>
