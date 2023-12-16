@@ -41,7 +41,7 @@
 
 import {getUserByToken} from "@/axios/getters.js"
 
-import panel from "@/components/panel.vue"
+import panel from "@/components/containers/panel.vue"
 
 export default {
   name: 'usermenu',

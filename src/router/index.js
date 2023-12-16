@@ -14,6 +14,7 @@ import userSongsView from '@/views/UserSongsView.vue'
 import userLikesView from '@/views/UserLikesView.vue'
 import userFollowersView from '@/views/UserFollowersView.vue'
 import userFollowingView from '@/views/UserFollowingView.vue'
+import userPlaylistsView from '@/views/UserPlaylistsView.vue'
 
 import modalPlaylist from '@/views/ModalPlaylistView.vue'
 import modalLogIn from '@/views/ModalLogInView.vue'
@@ -119,7 +120,16 @@ const routes = [
       {
         name: "UserPlaylists",
         path: 'playlists',
-        component: '',
+        component: userPlaylistsView,
+        props:true,
+        children:
+        [
+          {
+            path: 'playlist/:id/',
+            component: modalPlaylist,
+            props:true,
+          }
+        ]
       },
       {
         name: "UserLikes",

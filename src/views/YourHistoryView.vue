@@ -34,9 +34,9 @@
 
   <script>
 
-  import panel from '@/components/panel.vue';
+  import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
-  import songCard from '@/components/song/songCard.vue'
+  import songCard from '@/components/songs/songCard.vue'
 
   import {getSongs} from "@/axios/getters.js"
 

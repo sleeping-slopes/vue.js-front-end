@@ -71,9 +71,9 @@
 
 <script>
 
-import panel from "@/components/panel.vue"
+import panel from "@/components/containers/panel.vue"
 import playlist from "@/components/playlist.vue"
-import song from "@/components/song/song.vue"
+import song from "@/components/songs/song.vue"
 
 import { numberToTimeString } from "@/functions.js"
 

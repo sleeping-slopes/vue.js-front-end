@@ -41,7 +41,7 @@
 
 import { abbreviateNumber, numberToTimeString } from "@/functions.js"
 
-import song from "@/components/song/song.vue"
+import song from "@/components/songs/song.vue"
 
 export default
 {

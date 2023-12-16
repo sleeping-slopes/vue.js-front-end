@@ -33,7 +33,7 @@
 
 <script>
 
-import playlistCard from "@/components/playlist/playlistCard.vue"
+import playlistCard from "@/components/playlists/playlistCard.vue"
 
 export default
 {

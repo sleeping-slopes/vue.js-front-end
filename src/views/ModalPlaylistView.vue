@@ -67,11 +67,11 @@
 
 <script>
 
-import modal from "@/components/modal.vue"
+import modal from "@/components/containers/modal.vue"
 import playlist from "@/components/playlist.vue";
-import errorMessage from "@/components/errorMessage.vue"
+import errorMessage from "@/components/containers/errorMessage.vue"
 
-import playlistCard from "@/components/playlist/playlistCard.vue";
+import playlistCard from "@/components/playlists/playlistCard.vue";
 
 export default
 {

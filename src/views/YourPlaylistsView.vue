@@ -41,9 +41,9 @@
 
   <script>
 
-  import playlistCard from '@/components/playlist/playlistCard.vue'
-  import playlistExpansible from '@/components/playlist/playlistExpansible.vue'
-  import errorMessage from '@/components/errorMessage.vue'
+  import playlistCard from '@/components/playlists/playlistCard.vue'
+  import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
+  import errorMessage from '@/components/containers/errorMessage.vue'
 
   import {getUserAllPlaylists, getUserCreatedPlaylists, getUserLikedPlaylists} from "@/axios/getters.js"
 

@@ -38,9 +38,9 @@
 
   <script>
 
-  import panel from '@/components/panel.vue';
+  import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
-  import songCard from '@/components/song/songCard.vue'
+  import songCard from '@/components/songs/songCard.vue'
 
   import { getUserAllSongs, getUserCreatedSongs, getUserLikedSongs} from "@/axios/getters.js"
 
@@ -74,9 +74,9 @@
         {
           switch (value)
           {
-            case "All": this.playlist.id="[]YouAll";this.playlist.songs = await getUserAllSongs(this.login); break;
-            case "Created": this.playlist.id="[]YouCreated";this.playlist.songs = await getUserCreatedSongs(this.login); break;
-            case "Liked": this.playlist.id="[]YouLiked";this.playlist.songs = await getUserLikedSongs(this.login); break;
+            case "All": this.playlist.id="[]"+this.login+" all";this.playlist.songs = await getUserAllSongs(this.login); break;
+            case "Created": this.playlist.id="[]"+this.login+" created";this.playlist.songs = await getUserCreatedSongs(this.login); break;
+            case "Liked": this.playlist.id="[]"+this.login+" liked";this.playlist.songs = await getUserLikedSongs(this.login); break;
           }
         },
         immediate: true

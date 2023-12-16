@@ -20,7 +20,7 @@
 
   <script>
 
-  import panel from '@/components/panel.vue';
+  import panel from '@/components/containers/panel.vue';
   import playlistCarousel from '@/components/playlistCarousel.vue';
   import playlist from '@/components/playlist.vue';
 

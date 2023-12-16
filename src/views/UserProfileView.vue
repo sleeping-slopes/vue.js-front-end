@@ -101,10 +101,10 @@
 import { getUserProfile,getUserLinks, getUserLikedSongs } from "@/axios/getters";
 import { abbreviateNumber } from "@/functions.js"
 
-import panel from "@/components/panel.vue"
+import panel from "@/components/containers/panel.vue"
 import playlist from "@/components/playlist.vue"
 import glyphLink from "@/components/glyphLink.vue"
-import errorMessage from "@/components/errorMessage.vue"
+import errorMessage from "@/components/containers/errorMessage.vue"
 
   export default {
     name: 'UserProfileView',

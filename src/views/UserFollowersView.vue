@@ -33,9 +33,9 @@
   import { getUserUsername } from "@/axios/getters";
   import { getUserFollowers } from "@/axios/getters";
 
-  import panel from "@/components/panel.vue"
+  import panel from "@/components/containers/panel.vue"
   import userCard from "@/components/userCard.vue"
-  import errorMessage from "@/components/errorMessage.vue";
+  import errorMessage from "@/components/containers/errorMessage.vue";
 
     export default {
       name: 'UserFollowersView',

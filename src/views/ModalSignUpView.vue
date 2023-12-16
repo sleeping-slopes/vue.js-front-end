@@ -42,7 +42,7 @@
 
 import {postUser} from "@/axios/getters.js"
 
-import modal from "@/components/modal.vue"
+import modal from "@/components/containers/modal.vue"
 
 export default {
   name: 'signUpModal',

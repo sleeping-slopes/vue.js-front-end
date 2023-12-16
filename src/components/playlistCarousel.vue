@@ -17,8 +17,8 @@
 
 <script>
 
-import playlistCarouselCard from '@/components/playlist/playlistCarouselCard.vue'
-import errorMessage from "@/components/errorMessage.vue"
+import playlistCarouselCard from '@/components/playlists/playlistCarouselCard.vue'
+import errorMessage from "@/components/containers/errorMessage.vue"
 
 export default
 {

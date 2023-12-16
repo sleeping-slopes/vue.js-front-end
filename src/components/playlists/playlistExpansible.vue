@@ -6,13 +6,11 @@
                     <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
                     <div class = "cover bi bi-music-note-list" v-else/>
                 </div>
-                <div>
-                    <button class="button-secondary h5" style="margin:auto" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                    <button class="button-secondary h6" style="margin:auto" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                         <div class="icon-text">
                             <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
                         </div>
                     </button>
-                </div>
             </div>
             <div class="empty-column-panel">
                 <div class="empty-column-main"></div>
@@ -50,9 +48,8 @@
 
 <script>
 
-import playlistCard from "@/components/playlist/playlistCard.vue"
+import playlistCard from "@/components/playlists/playlistCard.vue"
 import playlist from "@/components/playlist.vue"
-import { getPlaylistSongs } from "@/axios/getters"
 
 export default
 {
@@ -65,10 +62,6 @@ export default
         expanded:false
     }
   },
-  async mounted()
-  {
-    this.songs = await getPlaylistSongs(this.id);
-  }
 }
 </script>
 
