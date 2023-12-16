@@ -12,7 +12,7 @@
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
                 </span>
             </div>
-            <button class="playlist-hover round-button large bi bi-play-fill"></button>
+            <button class="playlist-hover round-button large" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
         </div>
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
