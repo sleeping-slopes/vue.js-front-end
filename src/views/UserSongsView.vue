@@ -2,7 +2,7 @@
   <panel>
     <template v-slot:header>Songs by {{ this.user.username }}</template>
     <template v-slot:content>
-      <playlist class="ul-list"
+      <playlist class="ul-list hidden-scroll"
         :id="this.userSongs.id"
         :songs="this.userSongs.songs"
         :dynamicComponent="'songExtended'"
@@ -17,7 +17,7 @@
   import playlist from '@/components/playlist.vue';
 
   import { getUserUsername } from '@/axios/getters';
-  import { getUserSongs } from '@/axios/getters'
+  import { getUserCreatedSongs } from '@/axios/getters'
 
   export default {
     name: 'UserSongsView',
@@ -46,7 +46,7 @@
     async created()
     {
       this.user = await getUserUsername(this.login);
-      this.userSongs.songs = await getUserSongs(this.login);
+      this.userSongs.songs = await getUserCreatedSongs(this.login);
     },
   }
   </script>

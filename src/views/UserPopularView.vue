@@ -9,7 +9,7 @@
     <panel>
       <template v-slot:header>Popular songs by {{ this.user.username }}</template>
       <template v-slot:content>
-        <playlist class="ul-list"
+        <playlist class="ul-list hidden-scroll"
         :id="userPopularSongs.id"
         :songs="userPopularSongs.songs"
         :dynamicComponent="'songExtended'"
@@ -25,8 +25,8 @@
   import playlist from '@/components/playlist.vue';
 
   import { getUserUsername } from '@/axios/getters';
-  import { getUserPopularSongs } from '@/axios/getters'
-  import { getUserPopularPlaylists } from '@/axios/getters'
+  import { getUserCreatedPopularSongs } from '@/axios/getters'
+  import { getUserCreatedPopularPlaylists } from '@/axios/getters'
 
   export default {
     name: 'UserLikesView',
@@ -56,8 +56,8 @@
     async created()
     {
       this.user = await getUserUsername(this.login);
-      this.userPopularSongs.songs = await getUserPopularSongs(this.login);
-      this.userPopularPlaylists = await getUserPopularPlaylists(this.login);
+      this.userPopularSongs.songs = await getUserCreatedPopularSongs(this.login);
+      this.userPopularPlaylists = await getUserCreatedPopularPlaylists(this.login);
     },
   }
   </script>
