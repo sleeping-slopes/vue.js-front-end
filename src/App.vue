@@ -454,4 +454,45 @@ hr
   margin:0px;
 }
 
+.select-wrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border:2px solid var(--accent-color);
+  border-radius:10px;
+  overflow:hidden;
+  height:32px;
+  box-sizing: border-box;
+}
+
+select
+{
+  background-color: var(--soft-white);
+  color: var(--accent-color);
+  height:100%;
+  outline-color: transparent;
+  padding-left:5px;
+  padding-right:15px;
+  border:none;
+}
+
+select:hover
+{
+  background-color:var(--accent-color);
+  color:var(--soft-white);
+}
+
+option
+{
+  background-color: var(--soft-white);
+  color:var(--soft-black);
+}
+
+option:checked
+{
+  background-color: var(--accent-color);
+  color:var(--soft-white);
+}
+
 </style>

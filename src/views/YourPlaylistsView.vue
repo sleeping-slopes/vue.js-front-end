@@ -14,11 +14,13 @@
             <i class="fa fa-search"></i>
           </div>
         </div>
-        <select v-model="selected">
-          <option>All</option>
-          <option>Created</option>
-          <option>Liked</option>
-        </select>
+        <div class="select-wrapper">
+          <select v-model="selected" class="h4">
+            <option>All</option>
+            <option>Created</option>
+            <option>Liked</option>
+          </select>
+        </div>
       </div>
     </div>
     <errorMessage  v-if="this.playlists.length==0">
