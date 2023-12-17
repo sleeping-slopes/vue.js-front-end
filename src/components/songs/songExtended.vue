@@ -38,9 +38,6 @@
   </template>
 <script>
 
-
-import { abbreviateNumber, numberToTimeString } from "@/functions.js"
-
 import song from "@/components/songs/song.vue"
 
 export default
