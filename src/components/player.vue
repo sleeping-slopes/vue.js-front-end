@@ -19,7 +19,7 @@
           v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
         </button>
         <button class="round-button small bi bi-shuffle"
-          v-bind:style="this.$store.state.shuffle?{'color':'var(--accent-color)'}:{}"
+          v-bind:class="{'toggled':this.$store.state.shuffle}"
           v-on:click = "this.$store.dispatch('shuffle')">
         </button>
         <button class="round-button small bi bi-repeat">
@@ -41,12 +41,12 @@
         <song ref="song" style="width:360px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
         <div class="player-menu">
           <button class="round-button small bi bi-suit-heart-fill"
-            v-bind:style="this.liked?{'color':'var(--accent-color)'}:{}"
+            v-bind:class="{'toggled':this.liked}"
             @click="likeCurrentSong">
 
           </button>
           <button class="round-button small bi bi-music-note-list"
-            v-bind:style="this.show?{'color':'var(--accent-color)'}:{}"
+            v-bind:class="{'toggled':this.show}"
             v-on:click="this.show=!this.show">
           </button>
         </div>
@@ -55,7 +55,7 @@
         <template v-slot:header>Current playlist</template>
         <template v-slot:menu>
           <button class="button-secondary h5">Clear</button>
-          <button class="panel-header-button h2 bi bi-x-lg"
+          <button class="panel-header-button h4 bi bi-x-lg"
             v-on:click="this.show=!this.show">
           </button>
         </template>

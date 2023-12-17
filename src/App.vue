@@ -176,7 +176,6 @@ nav
 {
   display:flex;
   align-items: center;
-  background-color:none;
   color: var(--text-color-secondary);
   border: 1px solid var(--text-color-secondary);
   height:30px;
@@ -190,7 +189,7 @@ nav
   transition: 0.2s all
 }
 
-.toggled
+.button-secondary.toggled
 {
   color:var(--accent-color);
   border-color:var(--accent-color);
@@ -229,35 +228,25 @@ nav
   margin:0px;
   border-radius:50%;
   cursor:pointer;
+  transition:0.2s;
 }
 
-.round-button.huge
+.round-button.toggled
 {
-  font-size:60px;
-  height:58px;
-  width:58px;
+    color: var(--accent-color);
 }
 
-.round-button.large
-{
-  font-size:44px;
-  height:42px;
-  width:42px;
-}
+.round-button.huge { font-size:60px; }
 
-.round-button.medium
-{
-  font-size:30px;
-  height:28px;
-  width:28px;
-}
+.round-button.large { font-size:44px; }
 
-.round-button.small
-{
-  font-size:22px;
-  height:20px;
-  width:20px;
-}
+.round-button.medium { font-size:30px; }
+
+.round-button.small { font-size:22px; }
+
+.round-button.tiny { font-size:14px; }
+
+
 /* /// */
 .cover-wrapper
 {

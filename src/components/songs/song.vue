@@ -26,8 +26,8 @@
             <span class ="song-info primary-text h4">{{this.song.name}}</span>
         </div>
         <div class="songMenu">
-            <button class="songButton bi bi-suit-heart-fill" v-bind:style="this.song.liked?{'color':'var(--accent-color)'}:{}" v-on:click.stop="this.like()"></button>
-            <button id = "deleteSongButton" class="songButton bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
+            <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
+            <button id = "deleteSongButton" class="round-button tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
         <div class = "song-duration h5" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
@@ -178,26 +178,24 @@ export default
     visibility:visible;
 }
 
-.ul-list .song:hover
+.ul-list .song:hover, .ul-list .song.active
 {
     background-color:var(--selected-item-background-color);
 }
 
-.ul-list .song.active
-{
-    background-color: var(--selected-item-background-color);
-}
-
-.song .round-button
+.song .cover-wrapper .round-button
 {
     position:absolute;
     visibility: hidden;
     background-color: var(--soft-black);
     color: var(--soft-white);
+    transition: none;
 }
 
-.song-container .song:hover .round-button,
-.song-container .song.card.active .round-button
+
+
+.song-container .song:hover .cover-wrapper .round-button,
+.song-container .song.card.active .cover-wrapper .round-button
 {
     visibility: visible;
 }
@@ -266,20 +264,12 @@ export default
     display:flex;
 }
 
-.songButton
+.songMenu .round-button
 {
-    display:flex;
-    background:none;
-    border:none;
     color: var(--text-color-secondary);
-    cursor:pointer;
-    padding:3px;
-    margin:0px;
-    transition:0.2s;
-    font-size:16px;
 }
 
-.songButton:hover
+.songMenu .round-button:not(.toggled):hover
 {
     color: var(--text-color-primary);
 }
