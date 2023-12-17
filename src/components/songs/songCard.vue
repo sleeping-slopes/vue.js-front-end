@@ -1,11 +1,11 @@
 
 <template>
     <div class = "song card" v-bind:class="{'active': current}">
-        <div class = "cover-wrapper s180x180" v-on:click="setCurrentSong">
+        <div class = "cover-wrapper s180x180" >
             <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
-            <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+            <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
         </div>
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
