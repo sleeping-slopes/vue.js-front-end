@@ -40,7 +40,9 @@
       <div style="display:flex; gap:10px;">
         <song ref="song" style="width:360px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
         <div class="player-menu">
-          <button class="round-button small bi bi-suit-heart-fill">
+          <button class="round-button small bi bi-suit-heart-fill"
+            v-bind:style="this.liked?{'color':'var(--accent-color)'}:{}"
+            @click="likeCurrentSong">
 
           </button>
           <button class="round-button small bi bi-music-note-list"
@@ -100,6 +102,10 @@ export default
       this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
     }
   },
+  computed:
+  {
+    liked(){ return this.$store.getters.getSong(this.currentSongID).liked; },
+  },
   watch:
   {
     '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
@@ -112,14 +118,8 @@ export default
     },
     '$store.state.isPlaying'(playing)
     {
-      if (playing)
-      {
-        this.$refs.audio.play();
-      }
-      else
-      {
-        this.$refs.audio.pause();
-      }
+      if (playing) this.$refs.audio.play();
+      else this.$refs.audio.pause();
     }
   },
   methods:
@@ -128,6 +128,10 @@ export default
     {
       this.$refs.audio.currentTime=this.$refs.slider.value;
       this.$store.state.isPlaying=true;
+    },
+    likeCurrentSong()
+    {
+      this.$refs.song.like();
     },
     numberToTimeString:numberToTimeString
   }
@@ -170,7 +174,6 @@ export default
   border-top:2px solid var(--panel-border-color);
   z-index:1;
   margin-top:auto;
-
 }
 
 .player
