@@ -83,7 +83,7 @@ export default
         if (!this.current)
             this.$emit('setCurrentSong');
         else
-            this.$store.state.isPlaying=!this.$store.state.isPlaying;
+            this.$store.dispatch('togglePlayingState');
     },
     async like()
     {

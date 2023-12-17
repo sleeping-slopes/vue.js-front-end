@@ -27,21 +27,29 @@ export default createStore({
   {
     setCurrentPlaylistAndSong(state,playlistSong)
     {
-        if (JSON.stringify(JSON.parse(playlistSong).playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
+      state.isPlaying=false;
 
-        state.currentPlaylist=JSON.parse(playlistSong).playlist;
-        localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
+      if (JSON.stringify(JSON.parse(playlistSong).playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
 
-        state.currentSongIndex=JSON.parse(playlistSong).songIndex;
-        localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
+      state.currentPlaylist=JSON.parse(playlistSong).playlist;
+      localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
+
+      state.currentSongIndex=JSON.parse(playlistSong).songIndex;
+      localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
+
+      setTimeout(()=>{state.isPlaying=true}, 0);
     },
 
     shiftCurrentSong(state,shift)
     {
+      state.isPlaying=false;
+
       state.currentSongIndex+=shift;
       if (state.currentSongIndex>=state.currentPlaylist.songs.length) state.currentSongIndex=0;
       if (state.currentSongIndex<0) state.currentSongIndex=state.currentPlaylist.songs.length-1;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
+
+      setTimeout(()=>{state.isPlaying=true}, 0);
     },
     toggleTheme(state)
     {
@@ -76,6 +84,10 @@ export default createStore({
     {
       state.authJWT=null;
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
+    },
+    togglePlayingState(state)
+    {
+      state.isPlaying=!state.isPlaying;
     }
   },
   actions:
@@ -83,6 +95,7 @@ export default createStore({
     setCurrentPlaylistAndSong({commit}, playlistSong)
     {
       commit("setCurrentPlaylistAndSong",playlistSong);
+
     },
     shiftCurrentSong({commit}, shift)
     {
@@ -103,6 +116,10 @@ export default createStore({
     logOut({commit})
     {
       commit("logOut");
+    },
+    togglePlayingState({commit})
+    {
+      commit("togglePlayingState");
     }
   },
   modules: {

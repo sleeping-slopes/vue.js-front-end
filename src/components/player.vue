@@ -13,7 +13,7 @@
         </button>
         <button class="round-button small"
           v-bind:class="this.$store.state.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'"
-          v-on:click="this.$store.state.isPlaying=!this.$store.state.isPlaying">
+          v-on:click="this.$store.dispatch('togglePlayingState');">
         </button>
         <button class="round-button small bi bi-skip-end-fill"
           v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
@@ -102,24 +102,14 @@ export default
   },
   watch:
   {
-    '$store.getters.getCurrentSong'(id)
-    {
-      this.currentSongID = id;
-    },
-
     '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
     {
-      this.$store.state.isPlaying=false;
-
       this.currentSongID = this.$store.getters.getCurrentSong;
       if (this.currentSongID!=undefined)
       {
         this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
-
-        setTimeout(()=>{this.$store.state.isPlaying=true}, 0);
       }
     },
-
     '$store.state.isPlaying'(playing)
     {
       if (playing)

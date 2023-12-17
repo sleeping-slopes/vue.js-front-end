@@ -77,7 +77,7 @@ export default
             if (!this.current)
                 this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: 0}));
             else
-                this.$store.state.isPlaying=!this.$store.state.isPlaying;
+            this.$store.dispatch('togglePlayingState');
         }
     },
     abbreviateNumber: abbreviateNumber
