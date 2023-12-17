@@ -35,7 +35,6 @@
 
 <script>
 
-import { getSong } from "@/axios/getters.js"
 import { numberToTimeString,abbreviateNumber } from "@/functions.js"
 import { postLikeSong } from "@/axios/getters"
 import { deleteLikeSong } from "@/axios/getters"
@@ -52,21 +51,21 @@ export default
   data()
   {
     return {
-        song:{},
-        imageAvailable:true,
+        imageAvailable:true
     }
   },
   async mounted()
   {
-    this.song = await getSong(this.id);
+    await this.$store.dispatch('loadSong',this.id);
   },
   computed:
   {
+    song(){ return this.$store.getters.getSong(this.id) },
     current()
     {
         return this.$parent.current &&
         this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
-        // && this.id === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].id;
+        && this.id === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].id;
     },
     isPlaying()
     {
@@ -87,7 +86,7 @@ export default
     },
     async like()
     {
-        this.song.liked=!this.song.liked;
+        this.$store.state.songs[this.id].liked=!this.$store.state.songs[this.id].liked;
         if (this.song.liked)
         {
           await postLikeSong(this.id);

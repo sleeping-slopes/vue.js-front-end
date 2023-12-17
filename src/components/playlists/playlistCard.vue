@@ -33,7 +33,6 @@
 
 <script>
 
-import { getPlaylist } from "@/axios/getters.js"
 import { getPlaylistSongs } from "@/axios/getters.js"
 import { abbreviateNumber } from "@/functions.js"
 import { postLikePlaylist } from "@/axios/getters"
@@ -49,7 +48,6 @@ export default
   data()
   {
     return {
-      playlist: {},
       songs: [],
       imageAvailable:true,
     }
@@ -58,11 +56,11 @@ export default
   {
     async like()
     {
-        this.playlist.liked=!this.playlist.liked;
+        this.$store.state.playlists[this.id].liked=!this.$store.state.playlists[this.id].liked;
         if (this.playlist.liked)
         {
           await postLikePlaylist(this.id);
-          this.playlist.likes_count++;
+          this.playlist.likes_count++; //need fix?
         }
         else
         {
@@ -74,29 +72,30 @@ export default
     {
         if (this.songs.length>0)
         {
-            if (!this.current)
-                this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: 0}));
-            else
-            this.$store.dispatch('togglePlayingState');
+          if (!this.current)
+              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: 0}));
+          else
+          this.$store.dispatch('togglePlayingState');
         }
     },
     abbreviateNumber: abbreviateNumber
   },
   async mounted()
   {
-    this.playlist = await getPlaylist(this.id);
+    await this.$store.dispatch('loadPlaylist',this.id);
     this.songs = await getPlaylistSongs(this.id);
   },
   computed:
   {
+    playlist(){ return this.$store.getters.getPlaylist(this.id); },
     current()
     {
       return this.$store.state.currentPlaylist.id===this.id;
     },
     isPlaying()
     {
-        if (this.current) return this.$store.state.isPlaying;
-        return false;
+      if (this.current) return this.$store.state.isPlaying;
+      return false;
     }
   }
 }

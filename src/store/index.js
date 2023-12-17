@@ -1,14 +1,19 @@
 import { createStore } from 'vuex'
+import { getPlaylist } from "@/axios/getters.js"
+import { getSong } from "@/axios/getters.js"
 
 
 export default createStore({
-  state: {
+  state:
+  {
     currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') ||'{}'),
     currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') ||'-1'),
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
     authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null' ),
     isPlaying: false,
+    songs:{},
+    playlists:{}, //memory leak
   },
   getters:
   {
@@ -21,6 +26,12 @@ export default createStore({
     {
       if (state.currentPlaylist.songs)
       return state.currentPlaylist.songs[state.currentSongIndex].id;
+    },
+    getPlaylist: (state) => (id) => {
+      return state.playlists[id] || {};
+    },
+    getSong: (state) => (id) => {
+      return state.songs[id] || {};
     }
   },
   mutations:
@@ -88,6 +99,14 @@ export default createStore({
     togglePlayingState(state)
     {
       state.isPlaying=!state.isPlaying;
+    },
+    loadSong(state,song)
+    {
+      state.songs[song.id]=song;
+    },
+    loadPlaylist(state,playlist)
+    {
+      state.playlists[playlist.id]=playlist;
     }
   },
   actions:
@@ -95,7 +114,6 @@ export default createStore({
     setCurrentPlaylistAndSong({commit}, playlistSong)
     {
       commit("setCurrentPlaylistAndSong",playlistSong);
-
     },
     shiftCurrentSong({commit}, shift)
     {
@@ -120,6 +138,16 @@ export default createStore({
     togglePlayingState({commit})
     {
       commit("togglePlayingState");
+    },
+    async loadSong({commit},id)
+    {
+      const song = await getSong(id);
+      commit("loadSong",song);
+    },
+    async loadPlaylist({commit},id)
+    {
+      const playlist = await getPlaylist(id);
+      commit("loadPlaylist",playlist);
     }
   },
   modules: {
