@@ -34,6 +34,13 @@ export default
 
 <style>
 
+input[type=range][orient=vertical] {
+    appearance: slider-vertical;
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
+
 ul
 {
   list-style: none;

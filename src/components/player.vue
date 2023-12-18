@@ -5,8 +5,8 @@
     preload="none">
   </audio>
   <div class="player-wrapper" v-if="this.currentSongID!=undefined">
-    <div class="player" >
-
+    <div style="background-color:var(--panel-background-color);width:100%;"></div>
+    <div class="player">
       <div class="player-menu">
         <button class="round-button small bi bi-skip-start-fill"
           v-on:click="this.$store.dispatch('shiftCurrentSong',-1)">
@@ -22,52 +22,54 @@
           v-bind:class="{'toggled':this.$store.state.shuffle}"
           v-on:click = "this.$store.dispatch('shuffle')">
         </button>
-        <button class="round-button small bi bi-repeat">
-
-        </button>
+        <button class="round-button small bi bi-repeat"></button>
       </div>
-
       <div class="player-slider">
         <span class="song-time h5"> {{ numberToTimeString(this.currentTime) }}</span>
         <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step="0.1" v-model="currentTime" @change="seek()">
         <span class="song-time h5"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
       </div>
-      <div class="player-menu">
-        <button class="round-button small bi bi-volume-up-fill">
-
-        </button>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <song ref="song" style="width:360px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
-        <div class="player-menu">
-          <button class="round-button small bi bi-suit-heart-fill"
-            v-bind:class="{'toggled':this.liked}"
-            @click="likeCurrentSong">
-
-          </button>
-          <button class="round-button small bi bi-music-note-list"
-            v-bind:class="{'toggled':this.show}"
-            v-on:click="this.show=!this.show">
-          </button>
+      <div style="display:flex;gap: 20px;">
+        <div class="popup-wrapper">
+          <div class="player-menu">
+            <button class="round-button small bi bi-volume-up-fill"
+              v-on:click="this.showVolume=!this.showVolume">
+            </button>
+          </div>
+          <panel class="popup volume-popup" v-bind:class="this.showVolume?'visible':'hidden'">
+            <template v-slot:content> <input type="range" orient="vertical" /> </template>
+          </panel>
+        </div>
+        <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
+        <div class="popup-wrapper">
+          <div class="player-menu">
+            <button class="round-button small bi bi-suit-heart-fill"
+              v-bind:class="{'toggled':this.liked}"
+              @click="likeCurrentSong">
+            </button>
+            <button class="round-button small bi bi-music-note-list"
+              v-bind:class="{'toggled':this.showCurrentPlaylist}"
+              v-on:click="this.showCurrentPlaylist=!this.showCurrentPlaylist">
+            </button>
+          </div>
+          <panel class="popup current-playlist-popup" v-bind:class="this.showCurrentPlaylist?'visible':'hidden'">
+            <template v-slot:header>Current playlist</template>
+            <template v-slot:menu>
+              <button class="button-secondary h5">Clear</button>
+              <button class="panel-header-button h4 bi bi-x-lg"
+                v-on:click="this.showCurrentPlaylist=!this.showCurrentPlaylist">
+              </button>
+            </template>
+            <template v-slot:content>
+              <playlist class="ul-list hidden-scroll"
+                :id="this.$store.state.currentPlaylist.id"
+                :songs="this.$store.state.currentPlaylist.songs"/>
+            </template>
+          </panel>
         </div>
       </div>
-      <panel class="current-playlist-popup" v-bind:class="this.show?'visible':'hidden'">
-        <template v-slot:header>Current playlist</template>
-        <template v-slot:menu>
-          <button class="button-secondary h5">Clear</button>
-          <button class="panel-header-button h4 bi bi-x-lg"
-            v-on:click="this.show=!this.show">
-          </button>
-        </template>
-        <template v-slot:content>
-          <playlist class="ul-list hidden-scroll"
-            :id="this.$store.state.currentPlaylist.id"
-            :songs="this.$store.state.currentPlaylist.songs"
-          />
-        </template>
-      </panel>
-
     </div>
+    <div style="background-color:var(--panel-background-color);width:100%;"></div>
   </div>
 </template>
 
@@ -91,7 +93,8 @@ export default
     return {
       currentSongID: undefined,
       currentTime:0,
-      show:false
+      showCurrentPlaylist:false,
+      showVolume:false
     }
   },
   async mounted()
@@ -141,6 +144,22 @@ export default
 
 <style>
 
+.popup-wrapper
+{
+  position:relative;
+  display:flex;
+  justify-content: center;
+}
+
+.popup
+{
+  position:absolute;
+  top:0px;
+  transition:transform 0.35s cubic-bezier(0,0,0,1.2),opacity 0.1s ease;
+  max-height: calc(100vh - 140px);
+  box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
+}
+
 .visible
 {
   opacity:1.0;
@@ -149,20 +168,20 @@ export default
 
 .hidden
 {
-  transform:translateY(0%);
   opacity:0.0;
+}
+
+.volume-popup
+{
+  z-index:-1;
 }
 
 .current-playlist-popup
 {
-  position:absolute;
   width:480px;
   height:640px;
-  max-height: calc(100vh - 140px);
-  right:0px;
-  transition:transform 0.35s cubic-bezier(0,0,0,1.2),opacity 0.1s ease;
-  box-shadow: 0 0 20px 5px rgba(0,0,0,.2);
-  z-index:-1;
+  right:-10px;
+  z-index:-2;
 }
 
 .player-wrapper
@@ -179,12 +198,15 @@ export default
 .player
 {
   display:flex;
-  width:1240px;
+  max-width:1240px;
+  width:100%;
+  flex-shrink: 0;
   gap:40px;
   position:relative;
   padding: 3px 10px 3px 10px;
   box-sizing: border-box;
   background-color:var(--panel-background-color);
+
 }
 
 .player-menu
@@ -192,13 +214,14 @@ export default
   display:flex;
   align-items: center;
   gap:20px;
+  height:100%;
 }
 
 .song-time
 {
   display:inline-flex;
   color: var(--text-color-primary);
-  width:80px;
+  width:60px;
   align-items: center;
   justify-content: center;
 }
