@@ -15,7 +15,7 @@
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink secondary-text" v-if="artist.login"
+                    <router-link class="artistlink secondary-text hoverable" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
@@ -25,9 +25,10 @@
                 </div>
             </div>
             <span class ="song-info primary-text h4">{{this.song.name}}</span>
-            <span class ="icon-text secondary-text h6">
-                <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.song.likes_count)}}</span>
-            </span>
+            <router-link class="icon-text secondary-text hoverable h6" :to="'/song/'+this.id" @click.stop>
+                <span class="bi bi-suit-heart-fill"></span>
+                <span>{{abbreviateNumber(this.song.likes_count)}}</span>
+            </router-link>
         </div>
         <div class="songMenu">
             <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
