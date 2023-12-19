@@ -47,7 +47,7 @@ export default {
       },
     }
   },
-  async mounted()
+  async created()
   {
     this.playlists = await getPlaylists();
     this.discoverPlaylist.songs = await getSongs();

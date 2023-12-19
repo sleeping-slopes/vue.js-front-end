@@ -80,7 +80,7 @@ export default
     },
     abbreviateNumber: abbreviateNumber
   },
-  async mounted()
+  async created()
   {
     await this.$store.dispatch('loadPlaylist',this.id);
     this.songs = await getPlaylistSongs(this.id);

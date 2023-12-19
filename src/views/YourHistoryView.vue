@@ -57,7 +57,7 @@
         currentViewStyle:1,
       }
     },
-    async mounted()
+    async created()
     {
       this.playlist.songs = await getSongs();
     }
