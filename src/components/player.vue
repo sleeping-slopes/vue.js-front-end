@@ -2,6 +2,7 @@
   <audio ref="audio"
     @timeupdate="this.currentTime = $event.target.currentTime"
     @ended="this.$store.dispatch('shiftCurrentSong',1)"
+    :volume="volume"
     preload="none">
   </audio>
   <div class="player-wrapper" v-if="this.currentSongID!=undefined">
@@ -32,12 +33,12 @@
       <div style="display:flex;gap: 20px;">
         <div class="popup-wrapper">
           <div class="player-menu">
-            <button class="round-button small bi bi-volume-up-fill"
+            <button class="round-button small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill' :volume<0.5,'bi-volume-mute-fill': volume==0}"
               v-on:click="this.showVolume=!this.showVolume">
             </button>
           </div>
           <panel class="popup volume-popup" v-bind:class="this.showVolume?'visible':'hidden'">
-            <template v-slot:content> <input type="range" orient="vertical" /> </template>
+            <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical" /> </template>
           </panel>
         </div>
         <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
@@ -108,6 +109,11 @@ export default
   computed:
   {
     liked(){ return this.$store.getters.getSong(this.currentSongID).liked; },
+    volume:
+    {
+      get () { return this.$store.state.volume; },
+      set (value) { this.$store.commit('setVolume', value); }
+    }
   },
   watch:
   {

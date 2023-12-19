@@ -11,6 +11,7 @@ export default createStore({
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
     authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null' ),
+    volume: JSON.parse(localStorage.getItem('volume') || 0.75 ),
     isPlaying: false,
     songs:{},
     playlists:{}, //memory leak
@@ -107,6 +108,11 @@ export default createStore({
     loadPlaylist(state,playlist)
     {
       state.playlists[playlist.id]=playlist;
+    },
+    setVolume(state,volume)
+    {
+      state.volume=volume;
+      localStorage.setItem('volume', JSON.stringify(state.volume));
     }
   },
   actions:
@@ -138,6 +144,10 @@ export default createStore({
     togglePlayingState({commit})
     {
       commit("togglePlayingState");
+    },
+    setVolume({commit},volume)
+    {
+      commit("setVolume",volume);
     },
     async loadSong({commit},id)
     {
