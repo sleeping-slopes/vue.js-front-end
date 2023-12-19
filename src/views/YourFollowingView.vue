@@ -1,6 +1,6 @@
 <template>
     <div class="column">
-        <div style="display:flex; justify-content: space-between; align-items: center;" v-if="this.followings.length>0">
+        <div style="display:flex; justify-content: space-between; align-items: center;">
             <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
             <div class="wrapper-search h4">
                 <div class="search-panel">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <errorMessage  v-else>
+        <errorMessage  v-if="this.followings.length==0">
           <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
           <template v-slot:message>You aren’t following anyone</template>
         </errorMessage>

@@ -42,7 +42,6 @@
 
   import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
-  import songCard from '@/components/songs/songCard.vue'
 
   import { getUserAllSongs, getUserCreatedSongs, getUserLikedSongs} from "@/axios/getters.js"
 
@@ -50,7 +49,7 @@
     name: 'YourSongsView',
     components:
     {
-      panel,playlist,songCard
+      panel,playlist
     },
     data()
     {
