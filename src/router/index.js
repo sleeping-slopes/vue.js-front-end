@@ -16,9 +16,15 @@ import userFollowersView from '@/views/UserFollowersView.vue'
 import userFollowingView from '@/views/UserFollowingView.vue'
 import userPlaylistsView from '@/views/UserPlaylistsView.vue'
 
+import songView from '@/views/SongView.vue'
+import songLikesView from '@/views/SongLikesView.vue'
+import songPlaylistsView from '@/views/SongPlaylistsView.vue'
+import songRelatedView from '@/views/SongRelatedView.vue'
+
 import modalPlaylist from '@/views/ModalPlaylistView.vue'
 import modalLogIn from '@/views/ModalLogInView.vue'
 import modalSignUp from '@/views/ModalSignUpView.vue'
+
 
 
 
@@ -146,7 +152,6 @@ const routes = [
         ]
       },
     ],
-
   },
   {
     name: "UserFollowers",
@@ -167,6 +172,42 @@ const routes = [
   {
     path: '/login',
     component: modalLogIn
+  },
+  {
+    name: "Song",
+    path: '/song/:id',
+    component: songView,
+    props:true,
+    redirect: {name:'SongLikes'},
+    children:
+    [
+      {
+        name: "SongLikes",
+        path: 'likes',
+        props:true,
+        component: songLikesView
+      },
+      {
+        name: "SongPlaylists",
+        path: 'playlists',
+        component: songPlaylistsView,
+        props:true,
+        // children:
+        // [
+        //   {
+        //     path: 'playlist/:id/',
+        //     component: modalPlaylist,
+        //     props:true,
+        //   }
+        // ]
+      },
+      {
+        name: "SongRelated",
+        path: 'related',
+        component: songRelatedView,
+        props:true
+      }
+    ]
   }
 ]
 
