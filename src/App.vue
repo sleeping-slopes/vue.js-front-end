@@ -1,8 +1,5 @@
 <template>
-  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}" :key="this.$route.params">
-    <ModalLogInView v-if="showLogin"></ModalLogInView>
-    <ModalSignUpView v-if="showSignup"></ModalSignUpView>
-    <ModalPlaylistView :id = 'this.$route.query.playlist' v-if="showPlaylist"></ModalPlaylistView>
+  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
       <navbar/>
       <!-- <main style="overflow:scroll; display:flex;"> -->
         <router-view :key="this.$route.params.login"/>
@@ -15,42 +12,15 @@
 
 import navbar from "@/components/navbar.vue"
 import player from "@/components/player.vue"
-import ModalLogInView from "./views/ModalLogInView.vue";
-import ModalPlaylistView from "./views/ModalPlaylistView.vue";
-import ModalSignUpView from "./views/ModalSignUpView.vue";
+
 
 export default
 {
   name: 'app',
   components:
   {
-    navbar, player,
-    ModalLogInView,ModalPlaylistView,ModalSignUpView
+    navbar, player
 },
-  async mounted()
-  {
-    await this.$router.isReady();
-    if (this.$route.query.login)
-    {
-      this.showLogin=true;
-    }
-    if (this.$route.query.signup)
-    {
-      this.showSignup=true;
-    }
-    if (this.$route.query.playlist)
-    {
-      this.showPlaylist=true;
-    }
-  },
-  data()
-  {
-    return {
-      showLogin:false,
-      showPlaylist:false,
-      showSignup:false,
-    }
-  }
 }
 
 </script>
