@@ -14,7 +14,7 @@
             <i class="fa fa-search"></i>
           </div>
         </div>
-        <button class="button-secondary h5">Clear all history</button>
+        <button class="button-secondary h5" @click="this.$store.dispatch('clearSongHistory');playlist.songs=[]">Clear all history</button>
       </div>
     </div>
     <panel v-if="this.currentViewStyle==0">
@@ -33,18 +33,14 @@
 </template>
 
   <script>
-
   import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
-  import songCard from '@/components/songs/songCard.vue'
-
-  import {getSongs} from "@/axios/getters.js"
 
   export default {
     name: 'YourHistoryView',
     components:
     {
-      panel,playlist,songCard
+      panel,playlist
     },
     data()
     {
@@ -52,14 +48,10 @@
         playlist:
         {
           id:'[]RENAME',
-          songs:[],
+          songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory))
         },
         currentViewStyle:1,
       }
-    },
-    async created()
-    {
-      this.playlist.songs = await getSongs();
     }
   }
   </script>

@@ -15,6 +15,7 @@ export default createStore({
     isPlaying: false,
     songs:{},
     playlists:{}, //memory leak
+    songHistory: JSON.parse(localStorage.getItem('songHistory') ||'[]'),
   },
   getters:
   {
@@ -33,6 +34,10 @@ export default createStore({
     },
     getSong: (state) => (id) => {
       return state.songs[id] || {};
+    },
+    getSongHistory(state)
+    {
+      return state.songHistory.map((song, index) => { return {id:song,pos:index} });
     }
   },
   mutations:
@@ -113,17 +118,36 @@ export default createStore({
     {
       state.volume=volume;
       localStorage.setItem('volume', JSON.stringify(state.volume));
-    }
+    },
+    clearSongHistory(state)
+    {
+      state.songHistory=[];
+      localStorage.setItem('songHistory', JSON.stringify(state.songHistory));
+    },
+    updateSongHistory(state)
+    {
+      const currentSong = state.currentPlaylist.songs[state.currentSongIndex].id;
+      const found = state.songHistory.findIndex((song) => song == currentSong);
+      if (found!=-1) state.songHistory.splice(found,1);
+
+      state.songHistory.unshift(currentSong);
+
+      if (state.songHistory.length>15) state.songHistory.pop();
+
+      localStorage.setItem('songHistory', JSON.stringify(state.songHistory));
+    },
   },
   actions:
   {
     setCurrentPlaylistAndSong({commit}, playlistSong)
     {
       commit("setCurrentPlaylistAndSong",playlistSong);
+      commit("updateSongHistory");
     },
     shiftCurrentSong({commit}, shift)
     {
       commit("shiftCurrentSong", shift);
+      commit("updateSongHistory");
     },
     toggleTheme({commit})
     {
@@ -148,6 +172,10 @@ export default createStore({
     setVolume({commit},volume)
     {
       commit("setVolume",volume);
+    },
+    clearSongHistory({commit})
+    {
+      commit("clearSongHistory");
     },
     async loadSong({commit},id)
     {
