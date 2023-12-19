@@ -14,7 +14,7 @@
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink secondary-text" v-if="artist.login"
+                    <router-link class="artistlink secondary-text hoverable" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
@@ -45,8 +45,7 @@ export default
   props:
   {
     id: { type: Number, default: 0},
-    pos: { type: Number, default: 0},
-    index: { type: Number, default:0},
+    pos: { type: Number, default: 0}
   },
   data()
   {
@@ -54,7 +53,7 @@ export default
         imageAvailable:true
     }
   },
-  async mounted()
+  async created()
   {
     await this.$store.dispatch('loadSong',this.id);
   },

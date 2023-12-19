@@ -10,7 +10,7 @@
         <div class= "song-info-wrapper">
             <div class ="song-info h5">
                 <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink secondary-text" v-if="artist.login"
+                    <router-link class="artistlink secondary-text hoverable" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}

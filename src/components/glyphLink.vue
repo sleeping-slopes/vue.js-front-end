@@ -1,7 +1,7 @@
 
 
 <template>
-    <a class="icon-text secondary-text-hoverable"
+    <a class="icon-text secondary-text hoverable"
         :href="'https://'+this.url"
         target=”_blank” rel="noopener noreferrer">
         <span :class="'bi bi-'+this.glyph"></span>

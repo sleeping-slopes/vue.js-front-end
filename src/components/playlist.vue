@@ -6,10 +6,9 @@
   <ul class = "song-container" v-else>
     <li v-for="(song,index) in this.getShortList">
     <component :is="dynamicComponent"
-      :index = "index"
       :id = "song.id"
       :pos = "song.pos"
-      :key = song.id
+      :key = "song.id"
       @setCurrentSong="setCurrentPlaylistAndSong(index)"
     ></component>
     </li>

@@ -5,7 +5,7 @@
       <div class = "user-image s180x180 gradient-bg" v-else/>
     </router-link>
     <div class= "user-info">
-      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text-hoverable">{{this.user.username || this.login}}</router-link>
+      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">{{this.user.username || this.login}}</router-link>
       <span class ="h5 icon-text secondary-text" v-if="this.user.followers_count>0">
         <span class="bi bi-people-fill"></span>
         <span>{{abbreviateNumber(this.user.followers_count)}} follower{{ this.user.followers_count>1?'s':'' }}</span>
@@ -34,7 +34,7 @@ export default
         imageAvailable: true
     }
   },
-  async mounted()
+  async created()
   {
     this.user = await getUserShortProfile(this.login);
   },

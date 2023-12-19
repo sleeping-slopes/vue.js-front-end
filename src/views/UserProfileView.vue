@@ -76,7 +76,7 @@
                 </ul>
               </template>
             </panel>
-            <panel style="">
+            <panel>
               <template v-slot:header>{{this.userLikedSongs.songs.length}} likes</template>
               <template v-slot:menu>
                 <router-link class="button-secondary h5" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
