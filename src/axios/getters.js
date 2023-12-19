@@ -331,56 +331,84 @@ export async function getUserFollowing(login)
 
 export async function postLikeSong(songID)
 {
-    try
-    {
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const postLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/post");
-      return postLikeSongRes.data.values;
-    }
-    catch(err)
-    {
-      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-    }
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const postLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/post");
+    return postLikeSongRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
 }
 
 export async function deleteLikeSong(songID)
 {
-    try
-    {
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const deleteLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/delete");
-      return deleteLikeSongRes.data.values;
-    }
-    catch(err)
-    {
-      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-    }
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const deleteLikeSongRes = await axios.post("http://localhost:5000/api/songs/"+songID+"/action/like/delete");
+    return deleteLikeSongRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
 }
 
 export async function postLikePlaylist(songID)
 {
-    try
-    {
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const postLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/post");
-      return postLikePlaylistRes.data.values;
-    }
-    catch(err)
-    {
-      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-    }
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const postLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/post");
+    return postLikePlaylistRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
 }
 
 export async function deleteLikePlaylist(songID)
 {
-    try
-    {
-      axios.defaults.headers.common['Authorization'] = store.state.authJWT;
-      const deleteLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/delete");
-      return deleteLikePlaylistRes.data.values;
-    }
-    catch(err)
-    {
-      return ({"error":{"status":err.response.status,"message":err.response.data.values}});
-    }
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const deleteLikePlaylistRes = await axios.post("http://localhost:5000/api/playlists/"+songID+"/action/like/delete");
+    return deleteLikePlaylistRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getSongLikedUsers(songID)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const songLikedUsersRes = await axios.get("http://localhost:5000/api/songs/"+songID+"/likes");
+    return songLikedUsersRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
+}
+
+export async function getSongPlaylists(songID)
+{
+  try
+  {
+    axios.defaults.headers.common['Authorization'] = store.state.authJWT;
+    const songPlaylistsRes = await axios.get("http://localhost:5000/api/songs/"+songID+"/playlists");
+    return songPlaylistsRes.data.values;
+  }
+  catch(err)
+  {
+    return ({"error":{"status":err.response.status,"message":err.response.data.values}});
+  }
 }
