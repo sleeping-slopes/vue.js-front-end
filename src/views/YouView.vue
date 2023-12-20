@@ -9,16 +9,29 @@
         <router-link class="tablink h3" :to="{ name: 'YourHistory'}">History</router-link>
       </div>
     </nav>
-    <router-view :login="'admin'"></router-view>
+    <router-view :login="login" :key="login"></router-view>
   </div>
 </div>
 </template>
 
 <script>
 
+import { getUserByToken } from '@/axios/getters';
+
 export default
 {
-  name: 'YouView'
+  name: 'YouView',
+  async created()
+  {
+    const user = await getUserByToken();
+    if (!user.error) this.login = user.values.login;
+  },
+  data()
+  {
+    return{
+      login:undefined
+    }
+  }
 }
 </script>
 
