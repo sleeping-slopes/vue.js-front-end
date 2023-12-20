@@ -1,27 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import discoverView from '@/views/DiscoverView.vue'
-
-import youView from '@/views/YouView.vue'
-import yourSongsView from '@/views/YourSongsView.vue'
-import yourPlaylistsView from '@/views/YourPlaylistsView.vue'
-import yourHistoryView from '@/views/YourHistoryView.vue'
-import yourFollowingView from '@/views/YourFollowingView.vue'
-
-import userProfileView from '@/views/UserProfileView.vue'
-import userPopularView from '@/views/UserPopularView.vue'
-import userSongsView from '@/views/UserSongsView.vue'
-import userLikesView from '@/views/UserLikesView.vue'
-import userFollowersView from '@/views/UserFollowersView.vue'
-import userFollowingView from '@/views/UserFollowingView.vue'
-import userPlaylistsView from '@/views/UserPlaylistsView.vue'
-
-import songView from '@/views/SongView.vue'
-import songLikesView from '@/views/SongLikesView.vue'
-import songPlaylistsView from '@/views/SongPlaylistsView.vue'
-import songRelatedView from '@/views/SongRelatedView.vue'
-
-const routes = [
+const routes =
+[
   {
     path:'',
     redirect: {name:'Discover'}
@@ -29,117 +9,121 @@ const routes = [
   {
     name: 'Discover',
     path: '/discover',
-    component: discoverView,
+    component: () => import('@/views/DiscoverView.vue')
   },
   {
     name: 'Feed',
     path: '/feed',
     component: '',
+    meta: { authRequired:true }
   },
   {
     name: 'You',
     path: '/you',
-    component: youView,
+    component: () => import('@/views/YouView.vue'),
     redirect: {name:'YourSongs'},
+    meta: { authRequired:true },
     children:
     [
       {
         path: 'songs',
         name: 'YourSongs',
-        component: yourSongsView,
+        component: () => import('@/views/YourSongsView.vue')
       },
       {
         path: 'playlists',
         name: 'YourPlaylists',
-        component: yourPlaylistsView,
+        component: () => import('@/views/YourPlaylistsView.vue')
       },
       {
         path: 'following',
         name: 'YourFollowing',
-        component: yourFollowingView,
+        component: () => import('@/views/YourFollowingView.vue')
       },
       {
         path: 'history',
         name: 'YourHistory',
-        component: yourHistoryView,
+        component: () => import('@/views/YourHistoryView.vue')
       },
     ]
   },
   {
     name: "User",
     path: '/id/:login',
-    component: userProfileView,
+    component: () => import('@/views/UserProfileView.vue'),
     props:true,
+    redirect: {name:'UserActivity'},
     children:
     [
       {
         name: "UserActivity",
         path: '',
-        props:true,
-        component:''
+        component: () => import('@/views/UserPopularView.vue'),
+        props:true
       },
       {
         name: "UserPopular",
         path: 'popular',
-        component: userPopularView,
+        component: () => import('@/views/UserPopularView.vue'),
         props:true,
       },
       {
         name: "UserSongs",
         path: 'songs',
-        component: userSongsView,
+        component: () => import('@/views/UserSongsView.vue'),
         props:true
       },
       {
         name: "UserPlaylists",
         path: 'playlists',
-        component: userPlaylistsView,
-        props:true,
+        component: () => import('@/views/UserPlaylistsView.vue'),
+        props:true
       },
       {
         name: "UserLikes",
         path: 'likes',
-        component: userLikesView,
-        props:true,
+        component:() => import('@/views/UserLikesView.vue'),
+        props:true
       },
     ],
   },
   {
     name: "UserFollowers",
     path: '/id/:login/followers',
-    component: userFollowersView,
+    component: () => import('@/views/UserFollowersView.vue'),
     props:true
   },
   {
     name: "UserFollowing",
     path: '/id/:login/following',
-    component: userFollowingView,
+    component: () => import('@/views/UserFollowingView.vue'),
     props:true
   },
   {
     name: "Song",
     path: '/song/:id',
-    component: songView,
-    props:true,
+    component: () => import('@/views/SongView.vue'),
     redirect: {name:'SongLikes'},
+    props:true,
     children:
     [
       {
         name: "SongLikes",
         path: 'likes',
-        props:true,
-        component: songLikesView
+        component: () => import('@/views/SongLikesView.vue'),
+        props:true
+
       },
       {
         name: "SongPlaylists",
         path: 'playlists',
-        component: songPlaylistsView,
+        component: () => import('@/views/SongPlaylistsView.vue'),
         props:true
       },
       {
         name: "SongRelated",
         path: 'related',
-        component: songRelatedView,
+        component: () => import('@/views/SongRelatedView.vue'),
         props:true
       }
     ]
@@ -148,10 +132,22 @@ const routes = [
 
 const router = createRouter({ history: createWebHistory(process.env.BASE_URL), routes })
 
-router.beforeEach((to, from) => {
+import { getUserByToken } from '@/axios/getters';
 
+router.beforeEach(async (to, from, next) =>
+{
   document.title = to.meta?.title ?? '3V3R51NC3'
-
+  if (to.matched.some(route=>route.meta?.authRequired))
+  {
+    const user = await getUserByToken();
+    if (user.error)
+    {
+      const redirectLogIn = {name: from.name,query:{action:'login',to:to.name}};
+      return next(redirectLogIn);
+    }
+    return next();
+  }
+  return next();
 });
 
 export default router
