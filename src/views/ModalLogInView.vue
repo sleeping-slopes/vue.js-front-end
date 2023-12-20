@@ -25,7 +25,7 @@
             </form>
           <hr />
           <span class="primary-text h5">Don't have an account?
-            <button class="button-link" v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})">Sign up</button>
+            <button class="button-link" v-on:click="this.$router.replace({query:{action:'signup',to:this.$route.query.to}});">Sign up</button>
           </span>
     </template>
 </modal>
@@ -65,7 +65,8 @@ export default {
         if (r.token)
         {
           this.$store.dispatch('logIn',r.token);
-          this.$router.push(`/`);
+          if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
+          else this.$router.replace({query:null});
         }
         else
         {

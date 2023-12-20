@@ -10,14 +10,13 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "user-image s44x44" :src="`http://192.168.100.7:5000/api/user/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s44x44" :src="`http://192.168.100.7:5000/api/users/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s44x44 bi bi-person-fill" v-else/>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
           <div class = "usermenu">
-            <router-link class="usermenu-button"
-              :to="'/id/'+this.user.login">
+            <router-link class="usermenu-button" :to="{ name: 'User', params: { login: this.user.login }}">
               <span class="bi-person-fill usermenu-button-icon"></span>
               <span>Profile</span>
             </router-link>
@@ -25,7 +24,7 @@
               <span class="bi bi-palette usermenu-button-icon"></span>
               <span>Mode</span>
             </button>
-            <button class ="usermenu-button" v-on:click="this.$store.dispatch('logOut')">
+            <button class ="usermenu-button" v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Discover'});">
               <span class="bi bi-box-arrow-right usermenu-button-icon"></span>
               <span>Sign out</span>
             </button>
