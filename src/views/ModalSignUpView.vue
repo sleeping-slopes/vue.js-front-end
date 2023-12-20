@@ -33,7 +33,9 @@
               <button type="submit" class = "button-primary hoverable h5">Sign up</button>
             </form>
           <hr />
-          <span class="primary-text h5">Already have an account? <router-link to="login" class="button-link">Log in</router-link></span>
+          <span class="primary-text h5">Already have an account?
+            <button class="button-link" v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})">Log in</button>
+          </span>
         </template>
     </modal>
 </template>

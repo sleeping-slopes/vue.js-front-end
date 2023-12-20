@@ -12,7 +12,6 @@
       <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
     </ul>
   </div>
-  <router-view></router-view>
 </template>
 
 <script>

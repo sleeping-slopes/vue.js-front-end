@@ -1,5 +1,9 @@
 <template>
+
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <ModalPlaylistView :id="this.$route.query.playlist" v-if="this.$route.query.playlist"></ModalPlaylistView>
+    <ModalLogInView v-if="this.$route.query.action=='login'"></ModalLogInView>
+    <ModalSignUpView v-if="this.$route.query.action=='signup'"></ModalSignUpView>
       <navbar/>
       <!-- <main style="overflow:scroll; display:flex;"> -->
         <router-view :key="this.$route.params.login"/>
@@ -12,15 +16,17 @@
 
 import navbar from "@/components/navbar.vue"
 import player from "@/components/player.vue"
-
+import ModalPlaylistView from "@/views/ModalPlaylistView.vue";
+import ModalLogInView from "./views/ModalLogInView.vue";
+import ModalSignUpView from "./views/ModalSignUpView.vue";
 
 export default
 {
   name: 'app',
   components:
   {
-    navbar, player
-},
+    navbar, player, ModalPlaylistView, ModalLogInView, ModalSignUpView
+  }
 }
 
 </script>
@@ -33,8 +39,6 @@ input[type=range][orient=vertical] {
     height: 175px;
     padding: 0 5px;
 }
-
-
 
 ul
 {

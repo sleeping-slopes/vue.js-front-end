@@ -21,15 +21,6 @@ import songLikesView from '@/views/SongLikesView.vue'
 import songPlaylistsView from '@/views/SongPlaylistsView.vue'
 import songRelatedView from '@/views/SongRelatedView.vue'
 
-import modalPlaylist from '@/views/ModalPlaylistView.vue'
-import modalLogIn from '@/views/ModalLogInView.vue'
-import modalSignUp from '@/views/ModalSignUpView.vue'
-
-
-
-
-
-
 const routes = [
   {
     path:'',
@@ -39,14 +30,6 @@ const routes = [
     name: 'Discover',
     path: '/discover',
     component: discoverView,
-    children:
-    [
-      {
-        path: 'playlist/:id/',
-        component: modalPlaylist,
-        props:true,
-      },
-    ],
   },
   {
     name: 'Feed',
@@ -69,14 +52,6 @@ const routes = [
         path: 'playlists',
         name: 'YourPlaylists',
         component: yourPlaylistsView,
-        children:
-        [
-          {
-            path: 'playlist/:id/',
-            component: modalPlaylist,
-            props:true,
-          },
-        ],
       },
       {
         path: 'following',
@@ -108,14 +83,6 @@ const routes = [
         path: 'popular',
         component: userPopularView,
         props:true,
-        children:
-        [
-          {
-            path: 'playlist/:id/',
-            component: modalPlaylist,
-            props:true,
-          }
-        ]
       },
       {
         name: "UserSongs",
@@ -128,28 +95,12 @@ const routes = [
         path: 'playlists',
         component: userPlaylistsView,
         props:true,
-        children:
-        [
-          {
-            path: 'playlist/:id/',
-            component: modalPlaylist,
-            props:true,
-          }
-        ]
       },
       {
         name: "UserLikes",
         path: 'likes',
         component: userLikesView,
         props:true,
-        children:
-        [
-          {
-            path: 'playlist/:id/',
-            component: modalPlaylist,
-            props:true,
-          }
-        ]
       },
     ],
   },
@@ -164,14 +115,6 @@ const routes = [
     path: '/id/:login/following',
     component: userFollowingView,
     props:true
-  },
-  {
-    path: '/signup',
-    component: modalSignUp
-  },
-  {
-    path: '/login',
-    component: modalLogIn
   },
   {
     name: "Song",
@@ -191,15 +134,7 @@ const routes = [
         name: "SongPlaylists",
         path: 'playlists',
         component: songPlaylistsView,
-        props:true,
-        // children:
-        // [
-        //   {
-        //     path: 'playlist/:id/',
-        //     component: modalPlaylist,
-        //     props:true,
-        //   }
-        // ]
+        props:true
       },
       {
         name: "SongRelated",

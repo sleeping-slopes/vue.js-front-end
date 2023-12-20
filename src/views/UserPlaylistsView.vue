@@ -15,7 +15,6 @@
             <playlistExpansible :id="playlist.id" :key="playlist.id"/>
         </li>
     </ul>
-    <router-view></router-view>
 </template>
 
     <script>

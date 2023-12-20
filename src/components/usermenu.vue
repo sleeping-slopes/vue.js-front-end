@@ -1,8 +1,8 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <router-link to="/signup" class="button-secondary h5 dark">Sign up</router-link>
-    <router-link to="/login" class="button-primary hoverable h5">Log in</router-link>
+    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button-secondary h5 dark">Sign up</button>
+    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button-primary hoverable h5">Log in</button>
   </template>
   <template v-else>
     <router-link class="navlink" to="/upload">Upload</router-link>
@@ -10,7 +10,7 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "user-image s44x44" :src="`http://localhost:5000/api/user/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s44x44" :src="`http://192.168.100.7:5000/api/user/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s44x44 bi bi-person-fill" v-else/>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">

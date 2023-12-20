@@ -7,7 +7,7 @@
                     <slot name="content"></slot>
                 </template>
             </panel>
-            <button class="bi bi-x modal-close-button" v-on:click="$router.back(-1)"/>
+            <button class="bi bi-x modal-close-button" v-on:click="$router.replace({query:null})"/>
         </div>
     </div>
 </teleport>
