@@ -1,7 +1,7 @@
 <template>
 
   <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <ModalPlaylistView :id="this.$route.query.playlist" v-if="this.$route.query.playlist"></ModalPlaylistView>
+    <ModalPlaylistView v-if="this.$route.query.playlist" :id="this.$route.query.playlist"></ModalPlaylistView>
     <ModalLogInView v-if="this.$route.query.action=='login'"></ModalLogInView>
     <ModalSignUpView v-if="this.$route.query.action=='signup'"></ModalSignUpView>
       <navbar/>
@@ -71,6 +71,7 @@ ul
   width:180px;
   padding:0px;
   gap:3px;
+  align-items: center;
 }
 
 .app
@@ -93,7 +94,7 @@ a
 
 .scr
 {
-  overflow-y:scroll;
+  overflow-y:auto;
   width:100%;
   height:100%;
 }
@@ -192,7 +193,7 @@ nav
   white-space:nowrap;
   background:none;
   box-sizing: border-box;
-  transition: 0.2s all
+  transition: color 0.2s, border 0.2s;
 }
 
 .button-secondary.toggled
@@ -234,7 +235,7 @@ nav
   margin:0px;
   border-radius:50%;
   cursor:pointer;
-  transition:0.2s;
+  transition: color 0.2s;
 }
 
 .round-button.toggled
@@ -335,8 +336,8 @@ nav
 .tablink
 {
   display:flex;
-  align-items: center;
-  height:100%;
+  height:32px;
+  align-items: flex-end;
   color: var(--text-color-primary);
   cursor:pointer;
   text-decoration: none;
@@ -356,16 +357,12 @@ nav
   color: var(--accent-color);
 }
 
-
-
 .fixed-top
 {
 	display:flex;
 	gap: 20px;
 	padding-top:10px;
 }
-
-
 
 .label
 {
