@@ -6,14 +6,14 @@
   </errorMessage>
   <div class="scr" v-else>
     <div class="user-banner-wrapper">
-      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/banner`"/>
+      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/banner`"/>
       <div class = "user-banner-background gradient-bg-reverse" v-else/>
       <div class="user-banner">
-        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/picture`"/>
+        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"/>
         <div class = "user-image s200x200 gradient-bg" v-else/>
         <div class="user-banner-info">
-          <h2 class="user-banner-name" v-if="this.user.username || this.user.login">
-            {{ this.user.username || this.user.login }}
+          <h2 class="user-banner-name icon-text" v-if="this.user.username || this.user.login">
+            <span>{{ this.user.username || this.user.login }}</span>
             <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
           </h2>
           <h3 class="user-banner-status" v-if="this.user.status">
@@ -37,9 +37,17 @@
           </div>
           <div class="nav-menu" style="margin-left:auto">
 
-            <button class="button-primary h5" v-if="this.user.owner">Edit</button>
-            <button class="button-primary h5" v-if="!this.user.owner">Follow</button>
-            <button class="button-primary h5" v-if="!this.user.owner">Message</button>
+            <button class="button-secondary h6" v-if="this.user.me">Edit</button>
+            <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+              <span class="bi bi-person-plus"></span><span>Follow</span>
+            </button>
+            <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+              <span class="bi bi-person-plus"></span><span>Follow back</span>
+            </button>
+            <button class="button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
+              <span class="bi bi bi-person-check-fill"></span><span>Following</span>
+            </button>
+            <button class="button-primary h6" v-if="!this.user.me">Message</button>
           </div>
         </nav>
         <div class="row">
@@ -79,7 +87,7 @@
             <panel>
               <template v-slot:header>{{this.userLikedSongs.songs.length}} likes</template>
               <template v-slot:menu>
-                <router-link class="button-secondary h5" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
+                <router-link class="button-secondary h6" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
                 <playlist class="ul-list hidden-scroll"
@@ -98,7 +106,8 @@
 
   <script>
 
-import { getUserProfile,getUserLinks, getUserLikedSongs } from "@/axios/getters";
+import { getUser,getUserLinks, getUserLikedSongs } from "@/axios/getters";
+import { postFollowUser, deleteFollowUser } from "@/axios/getters";
 import { abbreviateNumber } from "@/functions.js"
 
 import panel from "@/components/containers/panel.vue"
@@ -128,13 +137,33 @@ import errorMessage from "@/components/containers/errorMessage.vue"
     },
     async created()
     {
-      this.user = await getUserProfile(this.login);
+      this.user = await getUser(this.login);
       this.user.links = await getUserLinks(this.login);
       this.userLikedSongs.songs = await getUserLikedSongs(this.login);
     },
     methods:
     {
-      abbreviateNumber: abbreviateNumber
+      abbreviateNumber: abbreviateNumber,
+      async follow()
+      {
+        const response = await postFollowUser(this.login);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
+        else
+        {
+          this.user.followers_count++;
+          this.user.youFollow=true;
+        }
+      },
+      async unfollow()
+      {
+        const response = await deleteFollowUser(this.login);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
+        else
+        {
+          this.user.followers_count--;
+          this.user.youFollow=false;
+        }
+      }
     }
   }
   </script>
@@ -152,6 +181,7 @@ import errorMessage from "@/components/containers/errorMessage.vue"
   margin-right:auto;
   border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
+
 }
 
 .user-banner-background
@@ -159,6 +189,7 @@ import errorMessage from "@/components/containers/errorMessage.vue"
   position:absolute;
   width:100%;
   height:100%;
+  object-fit: cover;
 }
 
 .user-banner
@@ -187,6 +218,7 @@ import errorMessage from "@/components/containers/errorMessage.vue"
 .user-banner-name
 {
   color:var(--soft-white);
+  gap:10px;
 }
 
 .user-banner-status
