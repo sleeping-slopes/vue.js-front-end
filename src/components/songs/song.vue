@@ -44,7 +44,7 @@ export default
   name: 'song',
   props:
   {
-    id: { type: Number, default: 0},
+    id: { default: "noid"},
     pos: { type: Number, default: 0}
   },
   data()
@@ -85,17 +85,26 @@ export default
     },
     async like()
     {
-        this.$store.state.songs[this.id].liked=!this.$store.state.songs[this.id].liked;
-        if (this.song.liked)
-        {
-          await postLikeSong(this.id);
-          this.song.likes_count++;
-        }
+      if (!this.song.liked)
+      {
+        const response = await postLikeSong(this.id);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
-          await deleteLikeSong(this.id);
-          this.song.likes_count--;
+          this.song.likes_count++;
+          this.song.liked=true;
         }
+      }
+      else
+      {
+        const response = await deleteLikeSong(this.id);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
+        else
+        {
+          this.song.likes_count--;
+          this.song.liked=false;
+        }
+      }
     }
   }
 }
@@ -188,7 +197,6 @@ export default
     visibility: hidden;
     background-color: var(--soft-black);
     color: var(--soft-white);
-    transition: none;
 }
 
 

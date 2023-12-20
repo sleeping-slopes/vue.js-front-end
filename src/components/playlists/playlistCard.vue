@@ -56,17 +56,26 @@ export default
   {
     async like()
     {
-        this.$store.state.playlists[this.id].liked=!this.$store.state.playlists[this.id].liked;
-        if (this.playlist.liked)
-        {
-          await postLikePlaylist(this.id);
-          this.playlist.likes_count++; //need fix?
-        }
+      if (!this.playlist.liked)
+      {
+        const response = await postLikePlaylist(this.id);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
-          await deleteLikePlaylist(this.id);
-          this.playlist.likes_count--;
+          this.playlist.likes_count++;
+          this.playlist.liked=true;
         }
+      }
+      else
+      {
+        const response = await deleteLikePlaylist(this.id);
+        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
+        else
+        {
+          this.playlist.likes_count--;
+          this.playlist.liked=false;
+        }
+      }
     },
     playPlaylist()
     {
