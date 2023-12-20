@@ -2,7 +2,7 @@
 
 <template>
     <panel v-if="this.playlists.length==0">
-        <template v-slot:header>Playlists by oxxymiron</template>
+        <template v-slot:header>Playlists by {{ this.user.username || this.login }}</template>
         <template v-slot:content>
             <errorMessage  >
                 <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>

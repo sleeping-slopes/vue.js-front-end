@@ -1,6 +1,6 @@
 <template>
   <panel>
-    <template v-slot:header>Songs by {{ this.user.username }}</template>
+    <template v-slot:header>Songs by {{ this.user.username || this.login }}</template>
     <template v-slot:content>
       <playlist class="ul-list hidden-scroll"
         :id="this.userSongs.id"

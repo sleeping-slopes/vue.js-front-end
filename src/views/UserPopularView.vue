@@ -1,13 +1,13 @@
 <template>
   <panel style="height:max-content;flex-shrink:0;">
-      <template v-slot:header>Popular playlists by {{ this.user.username }}</template>
+      <template v-slot:header>Popular playlists by {{ this.user.username || this.login }}</template>
       <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
       <template v-slot:content>
         <playlistCarousel :playlists="userPopularPlaylists"/>
       </template>
     </panel>
     <panel>
-      <template v-slot:header>Popular songs by {{ this.user.username }}</template>
+      <template v-slot:header>Popular songs by {{ this.user.username || this.login }}</template>
       <template v-slot:content>
         <playlist class="ul-list hidden-scroll"
         :id="userPopularSongs.id"

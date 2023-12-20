@@ -1,13 +1,13 @@
 <template>
     <panel style="height:max-content;flex-shrink:0;">
-        <template v-slot:header>Playlists liked by {{ this.user.username }}</template>
+        <template v-slot:header>Playlists liked by {{ this.user.username || this.login }}</template>
         <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
           <playlistCarousel :playlists="userLikedPlaylists"/>
         </template>
       </panel>
       <panel>
-        <template v-slot:header>Songs liked by {{ this.user.username }}</template>
+        <template v-slot:header>Songs liked by {{ this.user.username || this.login }}</template>
         <template v-slot:content>
           <playlist class="ul-list hidden-scroll"
           :id="userLikedSongs.id"

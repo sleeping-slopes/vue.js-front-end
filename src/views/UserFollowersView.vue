@@ -4,7 +4,7 @@
     <div class="column">
       <div class="row">
         <router-link :to="{ name: 'User', params: { login: this.login }}">
-          <img class = "user-image s100x100" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+          <img class = "user-image s100x100" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
           <div class = "user-image s100x100 gradient-bg" v-else/>
         </router-link>
         <router-link class="primary-text hoverable h2" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>
@@ -23,7 +23,7 @@
     </ul>
     <errorMessage  v-else>
       <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
-      <template v-slot:message>No one is following {{(this.user.username || this.user.login)}} yet</template>
+      <template v-slot:message>No one is following {{ this.user.username || this.login }} yet</template>
     </errorMessage>
   </div>
 </div>
@@ -56,7 +56,9 @@
       async created()
       {
         this.user = await getUserUsername(this.login);
+        if (this.user.error) this.$router.push({name:"User",params:{login:this.login}});
 		    this.followers = await getUserFollowers(this.login);
+        // this.followers = Array(30).fill({login:'norimyxxxo'})
       }
     }
     </script>
