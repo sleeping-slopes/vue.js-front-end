@@ -4,7 +4,7 @@
     <div class="column">
       <div class="row">
         <router-link :to="{ name: 'User', params: { login: this.login }}">
-          <img class = "user-image s100x100" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+          <img class = "user-image s100x100" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
           <div class = "user-image s100x100 gradient-bg" v-else/>
         </router-link>
         <router-link class="primary-text hoverable h2" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>

@@ -1,7 +1,7 @@
 <template>
   <div class = "card">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-      <img class = "user-image s180x180" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s180x180" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s180x180 gradient-bg" v-else/>
     </router-link>
     <div class= "user-info">

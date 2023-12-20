@@ -6,10 +6,10 @@
   </errorMessage>
   <div class="scr" v-else>
     <div class="user-banner-wrapper">
-      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/banner`"/>
+      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/banner`"/>
       <div class = "user-banner-background gradient-bg-reverse" v-else/>
       <div class="user-banner">
-        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://localhost:5000/api/user/`+this.login+`/picture`"/>
+        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://192.168.100.7:5000/api/user/`+this.login+`/picture`"/>
         <div class = "user-image s200x200 gradient-bg" v-else/>
         <div class="user-banner-info">
           <h2 class="user-banner-name" v-if="this.user.username || this.user.login">

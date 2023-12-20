@@ -2,7 +2,7 @@
 <template>
     <div class="row">
         <div class = "cover-wrapper s128x128" >
-            <img class = "cover" v-if="imageAvailable" :src="`http://localhost:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
         </div>
         <div class="column">
