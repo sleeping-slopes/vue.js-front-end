@@ -1,6 +1,6 @@
 <template>
   <audio ref="audio"
-    @timeupdate="this.currentTime = $event.target.currentTime/this.$refs.audio.duration"
+    @timeupdate="this.currentTime = $event.target.currentTime"
     @ended="this.$store.dispatch('shiftCurrentSong',1)"
     :volume="volume"
     preload="none">
@@ -26,8 +26,8 @@
         <button class="round-button small bi bi-repeat"></button>
       </div>
       <div class="player-slider">
-        <span class="song-time h5"> {{ numberToTimeString(this.currentTime*this.$refs.audio.duration) }}</span>
-        <input class="song-slider" ref="slider" type="range" min=0 max=1 step=0.01 v-model="currentTime" @change="seek()">
+        <span class="song-time h5"> {{ numberToTimeString(this.currentTime) }}</span>
+        <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step=0.1 v-model="currentTime" @change="seek()">
         <span class="song-time h5"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
       </div>
       <div style="display:flex;gap: 20px;">
@@ -38,7 +38,7 @@
             </button>
           </div>
           <panel class="popup volume-popup" v-bind:class="this.showVolume?'visible':'hidden'">
-            <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.001 orient="vertical" /> </template>
+            <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical" /> </template>
           </panel>
         </div>
         <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
@@ -103,7 +103,7 @@ export default
     this.currentSongID = this.$store.getters.getCurrentSong;
     if (this.currentSongID!=undefined)
     {
-      this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
+      this.$refs.audio.src = "http://192.168.100.7:5000/api/songs/"+this.currentSongID+"/audio";
     }
   },
   computed:
@@ -122,7 +122,7 @@ export default
       this.currentSongID = this.$store.getters.getCurrentSong;
       if (this.currentSongID!=undefined)
       {
-        this.$refs.audio.src = "http://localhost:5000/api/songs/"+this.currentSongID+"/audio";
+        this.$refs.audio.src = "http://192.168.100.7:5000/api/songs/"+this.currentSongID+"/audio";
       }
     },
     '$store.state.isPlaying'(playing)
@@ -135,7 +135,7 @@ export default
   {
     seek()
     {
-      this.$refs.audio.currentTime=Math.floor(this.$refs.slider.value*this.$refs.audio.duration);
+      this.$refs.audio.currentTime=this.$refs.slider.value;
       this.$store.state.isPlaying=true;
     },
     likeCurrentSong()
