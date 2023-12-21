@@ -1,7 +1,5 @@
 import { createStore } from 'vuex'
-import { getPlaylist } from "@/axios/getters.js"
-import { getSong } from "@/axios/getters.js"
-
+import { getSong, getPlaylist } from "@/axios/getters.js"
 
 export default createStore({
   state:
@@ -13,6 +11,7 @@ export default createStore({
     authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null' ),
     volume: JSON.parse(localStorage.getItem('volume') || 0.75 ),
     isPlaying: false,
+    loggedIn: false,
     songs:{},
     playlists:{}, //memory leak
     songHistory: JSON.parse(localStorage.getItem('songHistory') ||'[]'),
@@ -95,11 +94,13 @@ export default createStore({
     logIn(state,authJWT)
     {
       state.authJWT=authJWT;
+      state.loggedIn=true;
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
     },
     logOut(state)
     {
       state.authJWT=null;
+      state.loggedIn=false;
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
     },
     togglePlayingState(state)

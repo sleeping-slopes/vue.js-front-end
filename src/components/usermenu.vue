@@ -38,7 +38,7 @@
 
 <script>
 
-import {getUserByToken} from "@/axios/getters.js"
+import { getUserByToken } from "@/axios/getters.js"
 
 import panel from "@/components/containers/panel.vue"
 
@@ -56,16 +56,32 @@ export default {
   async created()
   {
     const userByToken = await getUserByToken();
-    if (userByToken.error) this.user=undefined;
-    else this.user=userByToken.values;
+    if (userByToken.error)
+    {
+      this.user=undefined;
+      this.$store.state.loggedIn = false;
+    }
+    else
+    {
+      this.user=userByToken.values;
+      this.$store.state.loggedIn = true;
+    }
   },
   watch:
   {
     async '$store.state.authJWT'(playlistSong)
     {
       const userByToken = await getUserByToken();
-      if (userByToken.error) this.user=undefined;
-      else this.user=userByToken.values;
+      if (userByToken.error)
+      {
+        this.user=undefined;
+        this.$store.state.loggedIn = false;
+      }
+      else
+      {
+        this.user=userByToken.values;
+        this.$store.state.loggedIn = true;
+      }
     }
   },
   mounted()

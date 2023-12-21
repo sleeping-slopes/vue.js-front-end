@@ -57,6 +57,12 @@ export default {
       login:{data:null,error:null}
     }
   },
+  created()
+  {
+    if (this.$store.state.loggedIn)
+    if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
+    else this.$router.replace({query:null});
+  },
   methods:
   {
     signUp()
@@ -105,7 +111,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
