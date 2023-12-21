@@ -5,17 +5,17 @@
             <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
         </div>
-        <div class="column">
-            <div class ="h3" style="width:100%;white-space: nowrap; display:flex;">
-                <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink secondary-text hoverable" v-if="artist.login"
+        <div class="info-wrapper">
+            <div class ="h3 secondary-text text-overflow">
+                <template v-for="(artist,index) in this.song.artists">
+                    <router-link class="artistlink" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>
-                    <span class="secondary-text" v-else>{{artist.name}}</span>
-                    <span class="secondary-text" v-if="index+1 < this.song.artists.length">, </span>
-                </div>
+                    <span v-else>{{artist.name}}</span>
+                    <span v-if="index+1 < this.song.artists.length">, </span>
+                </template>
             </div>
             <h2 class ="primary-text">{{this.song.name}}</h2>
         </div>
@@ -32,7 +32,3 @@ export default
 }
 
 </script>
-
-<style>
-
-</style>

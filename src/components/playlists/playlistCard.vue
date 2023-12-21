@@ -1,42 +1,42 @@
 <template>
-    <div class = "playlist card">
+    <div class = "playlist card" v-bind:class="{'active': current}">
         <div class="cover-wrapper s180x180" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-            <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
-            <div class = "cover bi bi-music-note-list" v-else/>
-            <div class = "shade"></div>
-            <div class="playlist-hover playlist-stats h4">
-                <span class="icon-text">
-                    <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
-                </span>
-                <span class="icon-text">
-                    <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
-                </span>
-            </div>
-            <button class="playlist-hover round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+          <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+          <div class = "cover bi bi-music-note-list" v-else/>
+          <div class = "shade"></div>
+          <div class="cover-menu">
+            <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+          </div>
+          <div class="cover-menu playlist-stats h4">
+            <span class="icon-text">
+              <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
+            </span>
+            <span class="icon-text">
+              <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
+            </span>
+          </div>
         </div>
-        <div class= "song-info-wrapper">
-            <div class ="song-info h5">
-                <div v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink secondary-text" v-if="artist.login"
+        <div class= "info-wrapper">
+            <div class ="h5 secondary-text text-overflow">
+                <template v-for="(artist,index) in this.playlist.artists">
+                    <router-link class="artistlink" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>
-                    <span class="secondary-text" v-else>{{artist.name}}</span>
-                    <span class="secondary-text" v-if="index+1 < this.playlist.artists.length">, </span>
-                </div>
+                    <span v-else>{{artist.name}}</span>
+                    <span v-if="index+1 < this.playlist.artists.length">, </span>
+                </template>
             </div>
-            <span class ="song-info primary-text h4" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
+            <span class ="h4 primary-text text-overflow" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
         </div>
     </div>
 </template>
 
 <script>
 
-import { getPlaylistSongs } from "@/axios/getters.js"
+import { getPlaylistSongs,postLikePlaylist,deleteLikePlaylist } from "@/axios/getters.js"
 import { abbreviateNumber } from "@/functions.js"
-import { postLikePlaylist } from "@/axios/getters"
-import { deleteLikePlaylist } from "@/axios/getters"
 
 export default
 {
@@ -109,46 +109,3 @@ export default
   }
 }
 </script>
-
-<style>
-
-.playlist.card .cover-wrapper:hover .shade
-{
-    opacity:0.5;
-}
-
-.playlist-carousel .playlist.card
-{
-    width:128px;
-}
-
-.playlist-hover
-{
-    position:absolute;
-    opacity:0.0;
-    transition: 0.2s all;
-    color:var(--soft-white);
-}
-
-.playlist-hover.round-button
-{
-  color:var(--soft-white);
-}
-
-.cover-wrapper:hover .playlist-hover
-{
-    opacity:1.0;
-}
-
-.playlist-stats
-{
-    bottom:5px;
-    display:flex;
-    gap:20px;
-    padding:0px 5px 0px 5px;
-    box-sizing: border-box;
-}
-
-
-
-</style>

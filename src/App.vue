@@ -68,10 +68,27 @@ ul
 {
   display:flex;
   flex-direction: column;
-  width:180px;
   padding:0px;
   gap:3px;
   align-items: center;
+  max-width:180px;
+}
+
+.info-wrapper
+{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.text-overflow
+{
+  max-width: 100%;
+  display:inline;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .app
@@ -149,7 +166,6 @@ a
 nav
 {
   display:flex;
-  height:min-content;
   gap:10px;
   width:100%;
 }
@@ -236,12 +252,10 @@ nav
   border-radius:50%;
   cursor:pointer;
   transition: color 0.2s;
+  overflow:hidden;
 }
 
-.round-button.toggled
-{
-    color: var(--accent-color);
-}
+.round-button.toggled { color: var(--accent-color);}
 
 .round-button.huge { font-size:60px; }
 

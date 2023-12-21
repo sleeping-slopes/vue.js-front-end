@@ -6,11 +6,11 @@
                     <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
                     <div class = "cover bi bi-music-note-list" v-else/>
                 </div>
-                    <button class="button-secondary h6" style="margin:auto" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
-                        <div class="icon-text">
-                            <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
-                        </div>
-                    </button>
+                <button class="button-secondary h6" style="margin:auto" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                    <div class="icon-text">
+                        <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
+                    </div>
+                </button>
             </div>
             <div class="empty-column-panel">
                 <div class="empty-column-main"></div>
@@ -19,19 +19,19 @@
         <div class="right-column">
             <div style="display:flex;flex-direction: row; gap:10px; align-items: center;">
                 <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
-                <div class= "song-info-wrapper">
-                    <div class ="song-info h4">
-                        <div v-for="(artist,index) in this.playlist.artists">
-                            <router-link class="artistlink secondary-text" v-if="artist.login"
+                <div class= "info-wrapper">
+                    <div class ="h4 secondary-text text-overflow">
+                        <template v-for="(artist,index) in this.playlist.artists">
+                            <router-link class="artistlink" v-if="artist.login"
                                 :to="'/id/'+artist.login"
                                 @click.stop>
                                 {{artist.name}}
                             </router-link>
-                            <span class="secondary-text" v-else>{{artist.name}}</span>
-                            <span class="secondary-text" v-if="index+1 < this.playlist.artists.length">, </span>
-                        </div>
+                            <span v-else>{{artist.name}}</span>
+                            <span v-if="index+1 < this.playlist.artists.length">, </span>
+                        </template>
                     </div>
-                    <span class ="song-info primary-text h3" v-on:click="$router.push($route.path+'/playlist/'+this.id)">{{this.playlist.name}}</span>
+                    <span class ="h3 primary-text text-overflow" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
                 </div>
             </div>
             <hr>
@@ -65,7 +65,7 @@ export default
 }
 </script>
 
-<style>
+<style scoped>
 
 .playlist-expansible
 {

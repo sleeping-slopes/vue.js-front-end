@@ -5,21 +5,27 @@
             <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
-            <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+            <div class="cover-menu">
+                <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+            </div>
+            <div class="cover-menu song-options">
+                <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
+                <button class="round-button tiny bi bi-three-dots"></button>
+            </div>
         </div>
-        <div class= "song-info-wrapper">
-            <div class ="song-info h5">
-                <div v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink secondary-text hoverable" v-if="artist.login"
+        <div class= "info-wrapper">
+            <div class ="h5 secondary-text text-overflow">
+                <template v-for="(artist,index) in this.song.artists">
+                    <router-link class="artistlink" v-if="artist.login"
                         :to="'/id/'+artist.login"
                         @click.stop>
                         {{artist.name}}
                     </router-link>
-                    <span class="secondary-text" v-else>{{artist.name}}</span>
-                    <span class="secondary-text" v-if="index+1 < this.song.artists.length">, </span>
-                </div>
+                    <span v-else>{{artist.name}}</span>
+                    <span v-if="index+1 < this.song.artists.length">, </span>
+                </template>
             </div>
-            <span class ="song-info primary-text h4">{{this.song.name}}</span>
+            <span class ="h4 primary-text text-overflow">{{this.song.name}}</span>
         </div>
     </div>
   </template>
@@ -34,7 +40,3 @@ export default
 }
 
 </script>
-
-<style>
-
-</style>

@@ -4,10 +4,9 @@
       <img class = "user-image s180x180" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s180x180 gradient-bg" v-else/>
     </router-link>
-    <div class= "user-info">
-      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable icon-text">
-        <span>{{this.user.username || this.login}}</span>
-        <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
+    <div class= "info-wrapper">
+      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable text-overflow">
+        {{this.user.username || this.login}}
       </router-link>
       <span class ="h5 icon-text secondary-text" v-if="this.user.followers_count>0">
         <span class="bi bi-people-fill"></span>
@@ -23,16 +22,12 @@
     <button class="button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
       <span class="bi bi bi-person-check-fill"></span><span>Following</span>
     </button>
-
   </div>
 </template>
 
 <script>
 
-import { getUser } from "@/axios/getters.js"
-import { postFollowUser } from "@/axios/getters.js";
-import { deleteFollowUser } from "@/axios/getters.js";
-
+import { getUser, postFollowUser, deleteFollowUser } from "@/axios/getters.js"
 import { abbreviateNumber } from "@/functions.js";
 
 export default
@@ -82,13 +77,6 @@ export default
 
 <style>
 
-.user-info
-{
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .user-card .button-secondary
 {
   height:min-content;
@@ -99,12 +87,9 @@ export default
   visibility: hidden;
 }
 
-.name
+.user-card .info-wrapper
 {
-  max-width:100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  align-items: center;
 }
-
 
 </style>
