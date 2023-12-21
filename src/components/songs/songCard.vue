@@ -6,7 +6,7 @@
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
             <div class="cover-menu">
-                <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+                <button class="round-button filled huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
             </div>
             <div class="cover-menu song-options">
                 <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>

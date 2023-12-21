@@ -5,7 +5,7 @@
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
             <div class="cover-menu">
-                <button class="round-button small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+                <button class="round-button filled small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             </div>
             <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
                 <div class ="wave"></div>
@@ -260,7 +260,7 @@ div:not(.song-container) > .song .cover-menu
     transition:none;
 }
 
-.song .cover-menu > .round-button
+.cover-menu > .round-button.filled
 {
   background-color:var(--soft-black);
 }
