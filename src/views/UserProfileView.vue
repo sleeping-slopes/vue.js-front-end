@@ -106,69 +106,40 @@
 
   <script>
 
-import { getUser,getUserLinks, getUserLikedSongs } from "@/axios/getters";
-import { postFollowUser, deleteFollowUser } from "@/axios/getters";
-import { abbreviateNumber } from "@/functions.js"
+import { getUserLinks, getUserLikedSongs } from "@/axios/getters";
 
+import userCard from "@/components/userCard.vue";
 import panel from "@/components/containers/panel.vue"
 import playlist from "@/components/playlist.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
 
-  export default {
-    name: 'UserProfileView',
-    components:{panel,playlist,glyphLink,errorMessage},
-    props:
-    {
-      login: { default: "nologin" },
-    },
-    data()
-    {
-      return {
-        user:{},
-        userLikedSongs:
-        {
-          id:"[]"+this.login+' liked',
-          songs:[]
-        },
-        imageAvailable: true,
-        backgroundImageAvailable: true
-      }
-    },
-    async created()
-    {
-      this.user = await getUser(this.login);
-      this.user.links = await getUserLinks(this.login);
-      this.userLikedSongs.songs = await getUserLikedSongs(this.login);
-    },
-    methods:
-    {
-      abbreviateNumber: abbreviateNumber,
-      async follow()
+export default
+{
+  name: 'UserProfileView',
+  components:{panel,playlist,glyphLink,errorMessage},
+  extends: userCard,
+  data()
+  {
+    return {
+      userLikedSongs:
       {
-        const response = await postFollowUser(this.login);
-        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-        else
-        {
-          this.user.followers_count++;
-          this.user.youFollow=true;
-        }
+        id:"[]"+this.login+' liked',
+        songs:[]
       },
-      async unfollow()
-      {
-        const response = await deleteFollowUser(this.login);
-        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-        else
-        {
-          this.user.followers_count--;
-          this.user.youFollow=false;
-        }
-      }
+
+      backgroundImageAvailable: true
     }
-  }
+  },
+  async created()
+  {
+    this.user.links = await getUserLinks(this.login);
+    this.userLikedSongs.songs = await getUserLikedSongs(this.login);
+  },
+}
   </script>
 
-  <style>
+  <style scoped>
 
 .user-banner-wrapper
 {
@@ -181,7 +152,6 @@ import errorMessage from "@/components/containers/errorMessage.vue"
   margin-right:auto;
   border-bottom-left-radius:10px;
   border-bottom-right-radius:10px;
-
 }
 
 .user-banner-background
