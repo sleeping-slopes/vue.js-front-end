@@ -15,32 +15,30 @@
           <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
           <div class = "cover bi bi-music-note-list" v-else/>
           <div class = "shade"></div>
-          <button class="playlist-hover round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+          <div class="cover-menu">
+          <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+          </div>
         </div>
-
-        <div class="playlist-info">
-          <h2 class="primary-text">{{this.playlist.name}}</h2>
-
-          <div class ="song-info h3">
-            <span class="primary-text">by&nbsp;</span>
-              <div v-for="(artist,index) in this.playlist.artists">
-                <router-link class="artistlink primary-text" v-if="artist.login"
-                    :to="'/id/'+artist.login"
-                    @click.stop>
-                    {{artist.name}}
-                </router-link>
-                <span class="primary-text" v-else>{{artist.name}}</span>
-                <span class="primary-text" v-if="index+1 < this.playlist.artists.length">, </span>
-              </div>
-            </div>
-            <div class ="song-info">
-            <h4 class="secondary-text">
+          <div class="info-wrapper">
+          <h2 class="primary-text text-overflow">{{this.playlist.name}}</h2>
+          <div class ="h3 primary-text text-overflow">
+            <span>by&nbsp;</span>
+            <template v-for="(artist,index) in this.playlist.artists">
+              <router-link class="artistlink" v-if="artist.login"
+                  :to="'/id/'+artist.login"
+                  @click.stop>
+                  {{artist.name}}
+              </router-link>
+              <span v-else>{{artist.name}}</span>
+              <span v-if="index+1 < this.playlist.artists.length">, </span>
+            </template>
+          </div>
+            <div class="h4 secondary-text text-overflow">
               {{ abbreviateNumber(this.playlist.songs_count) }} song{{ this.playlist.songs_count!=1?'s':'' }}
               <span class="bi bi-dot"></span>
               {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
-            </h4>
-          </div>
-          <div class="playlist-button-row">
+            </div>
+            <div class="playlist-button-row">
             <button class="button-secondary h5" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
               <div class="icon-text">
                 <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
@@ -84,21 +82,18 @@ export default
 }
 </script>
 
-<style>
+<style scoped>
 
 .playlist-header
 {
   display:flex;
   gap:5px;
+  width:100%;
 }
 
-.playlist-info
+.playlist-header .info-wrapper > *:nth-child(2)
 {
-  display:flex;
-  flex-direction: column;
-  width:100%;
-  height:100%;
-  gap:10px;
+  margin-bottom:10px;
 }
 
 .playlist-button-row
