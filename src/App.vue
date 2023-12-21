@@ -252,7 +252,6 @@ nav
   border-radius:50%;
   cursor:pointer;
   transition: color 0.2s;
-  overflow:hidden;
 }
 
 .round-button.toggled { color: var(--accent-color);}

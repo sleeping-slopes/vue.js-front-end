@@ -91,6 +91,16 @@ export default
   width:100%;
 }
 
+.playlist-header .cover-wrapper:hover .shade
+{
+  opacity:0.5;
+}
+
+.playlist-header .cover-wrapper:hover .cover-menu
+{
+  opacity:1.0;
+}
+
 .playlist-header .info-wrapper > *:nth-child(2)
 {
   margin-bottom:10px;

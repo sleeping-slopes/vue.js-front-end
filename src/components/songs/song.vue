@@ -138,29 +138,37 @@ export default
   position: relative;
 }
 
-.ul-list .item:hover .shade,
-.card .cover-wrapper:hover .shade,
-.playlist-header .cover-wrapper:hover .shade,
-
-.song.active .shade
-{
-  opacity:0.5;
-}
-
-.song .wrapper-wave,
-.song.active:hover .wrapper-wave
+.song .wrapper-wave
 {
   visibility:hidden;
 }
 
-.song.active .wrapper-wave
+.song.active:not(:hover) .wrapper-wave
 {
   visibility:visible;
 }
 
-.ul-list .song:hover, .ul-list .song.active
+.song-container .song.item:hover,
+.song-container .song.item.active
 {
   background-color:var(--selected-item-background-color);
+}
+
+.song-container .song:hover .shade,
+.song-container .song.active .shade
+{
+  opacity:0.5;
+}
+
+.song-container .song:hover .cover-menu,
+.song-container .song.active .cover-menu
+{
+  opacity:1.0;
+}
+
+div:not(.song-container) > .song .cover-menu
+{
+  display:none;
 }
 
 .artistlink
@@ -233,13 +241,7 @@ export default
   box-sizing: border-box;
 }
 
-.card > .cover-wrapper:hover > .cover-menu,
-.playlist-header > .cover-wrapper:hover > .cover-menu,
-.song.card.active .cover-menu,
-.item:hover .cover-menu
-{
-  opacity:1.0;
-}
+
 
 .cover-menu.playlist-stats
 {
