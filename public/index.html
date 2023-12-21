@@ -1,185 +1,182 @@
 <!DOCTYPE html>
 <html lang="" style="height:100%">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body style="height:100%; margin:0px;">
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app" style="height:100%"></div>
+  <script>
 
+  </script>
 
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body style="height:100%; margin:0px;">
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app" style="height:100%"></div>
-    <!-- built files will be auto injected -->
+  <style>
 
-    <script>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-    </script>
+  html
+  {
+    font-size:16px;
+    font-weight:400;
+  }
 
-    <style>
+  *
+  {
+    font-family: 'Inter', sans-serif;
+    font-size:inherit;
+  }
 
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  h2, .h2
+  {
+    margin:0;
+    font-size:30px;
+    font-weight:700;
+    /* background-color:red !important; */
+  }
 
-      html
-      {
-        font-size:16px;
-        font-weight:400;
-      }
+  h3, .h3
+  {
+    margin:0;
+    font-size:20px;
+    font-weight:500;
+    /* background-color:green !important; */
+  }
 
-      *
-      {
-        font-family: 'Inter', sans-serif;
-        font-size:inherit;
-      }
+  h4, .h4
+  {
+    margin:0;
+    font-size:16px;
+    font-weight:500;
+    /* background-color:blue !important; */
+  }
 
-      h2, .h2
-      {
-        margin:0;
-        font-size:30px;
-        font-weight:700;
-        /* background-color:red !important; */
-      }
+  h5, .h5
+  {
+    margin:0;
+    font-size:14px;
+    font-weight:400;
+    /* background-color:darkslateblue !important; */
+  }
 
-      h3, .h3
-      {
-        margin:0;
-        font-size:20px;
-        font-weight:500;
-        /* background-color:green !important; */
-      }
+  h6, .h6
+  {
+    margin:0;
+    font-size:12px;
+    font-weight:400;
+    /* background-color:plum !important; */
+  }
 
-      h4, .h4
-      {
-        margin:0;
-        font-size:16px;
-        font-weight:500;
-        /* background-color:blue !important; */
-      }
+  .s36x36
+  {
+    width:36px;
+    height:36px;
+    flex-shrink:0;
+    font-size:27px;
+  }
 
-      h5, .h5
-      {
-        margin:0;
-        font-size:14px;
-        font-weight:400;
-        /* background-color:darkslateblue !important; */
-      }
+  .s44x44
+  {
+    width:44px;
+    height:44px;
+    flex-shrink:0;
+    font-size:33px;
+  }
 
-      h6, .h6
-      {
-        margin:0;
-        font-size:12px;
-        font-weight:400;
-        /* background-color:plum !important; */
-      }
+  .s52x52
+  {
+    width:52px;
+    height:52px;
+    flex-shrink:0;
+    font-size:39px;
+  }
 
-.s36x36
-{
-  width:36px;
-  height:36px;
-  flex-shrink:0;
-  font-size:27px;
-}
+  .s100x100
+  {
+    width:100px;
+    height:100px;
+    flex-shrink:0;
+    font-size:75px;
+  }
 
-.s44x44
-{
-  width:44px;
-  height:44px;
-  flex-shrink:0;
-  font-size:33px;
-}
+  .s128x128
+  {
+    width:128px;
+    height:128px;
+    font-size:64px;
+    flex-shrink: 0;
+  }
 
-.s52x52
-{
-  width:52px;
-  height:52px;
-  flex-shrink:0;
-  font-size:39px;
-}
+  .s160x160
+  {
+    width:160px;
+    height:160px;
+    font-size:80px;
+    flex-shrink: 0;
+  }
 
-.s100x100
-{
-  width:100px;
-  height:100px;
-  flex-shrink:0;
-  font-size:75px;
-}
+  .s180x180
+  {
+    width:180px;
+    height:180px;
+    flex-shrink:0;
+    font-size:135px;
+  }
 
-.s128x128
-{
-  width:128px;
-  height:128px;
-  font-size:64px;
-  flex-shrink: 0;
-}
+  .s200x200
+  {
+    width:200px;
+    height:200px;
+    flex-shrink:0;
+    font-size:150px;
+  }
 
-.s160x160
-{
-  width:160px;
-  height:160px;
-  font-size:80px;
-  flex-shrink: 0;
-}
+  .app
+  {
+    --accent-color: cornflowerblue;
+    --nav-color: #1d232f;
+    --soft-white: #eeeeee;
+    --soft-black: #111111;
+    --light-gray: #808080;
+    --dark-gray: #404040;
+  }
 
-.s180x180
-{
-  width:180px;
-  height:180px;
-  flex-shrink:0;
-  font-size:135px;
-}
+  .app
+  {
+    --main-background-color: #edeae2;
+    --panel-background-color: #e2e2e2;
+    --panel-border-color: #d3d2c3;
+    --selected-item-background-color: #d2d3db;
+    --text-color-primary: #303030;
+    --text-color-primary-hover: #111111;
+    --text-color-secondary: #808080;
+  }
 
-.s200x200
-{
-  width:200px;
-  height:200px;
-  flex-shrink:0;
-  font-size:150px;
-}
+  .app.dark
+  {
+    --main-background-color: #12151d;
+    --panel-background-color: #1d232f;
+    --panel-border-color: #2c2d3c;
+    --selected-item-background-color: #32363f;
+    --text-color-primary: #cfcfcf;
+    --text-color-primary-hover: #eeeeee;
+    --text-color-secondary: #808080;
+  }
 
-      .app
-      {
-        --accent-color: cornflowerblue;
-        --nav-color: #1d232f;
-        --soft-white: #eeeeee;
-        --soft-black: #111111;
-        --light-gray: #808080;
-        --dark-gray: #404040;
-      }
+  .button-secondary.dark
+  {
+    --text-color-primary: #e5e5e5;
+  }
 
-      .app
-      {
-        --main-background-color: #edeae2;
-        --panel-background-color: #e2e2e2;
-        --panel-border-color: #d3d2c3;
-        --selected-item-background-color: #d2d3db;
-        --text-color-primary: #303030;
-        --text-color-primary-hover: #111111;
-        --text-color-secondary: #808080;
-      }
-
-      .app.dark
-      {
-        --main-background-color: #12151d;
-        --panel-background-color: #1d232f;
-        --panel-border-color: #2c2d3c;
-        --selected-item-background-color: #32363f;
-        --text-color-primary: #cfcfcf;
-        --text-color-primary-hover: #eeeeee;
-        --text-color-secondary: #808080;
-      }
-
-      .button-secondary.dark
-      {
-        --text-color-primary: #e5e5e5;
-      }
-    </style>
-  </body>
+  </style>
+</body>
 </html>

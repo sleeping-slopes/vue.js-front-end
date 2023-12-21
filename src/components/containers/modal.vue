@@ -28,7 +28,8 @@
   }
   </script>
 
-  <style>
+  <style scoped>
+
 .modal-shade
 {
   position:fixed;

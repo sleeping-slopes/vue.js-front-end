@@ -24,9 +24,7 @@
   import playlistCarousel from '@/components/playlistCarousel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserUsername } from '@/axios/getters';
-  import { getUserCreatedPopularSongs } from '@/axios/getters'
-  import { getUserCreatedPopularPlaylists } from '@/axios/getters'
+  import { getUserUsername, getUserCreatedPopularSongs, getUserCreatedPopularPlaylists } from '@/axios/getters'
 
   export default {
     name: 'UserLikesView',
@@ -61,7 +59,3 @@
     },
   }
   </script>
-
-  <style>
-
-  </style>

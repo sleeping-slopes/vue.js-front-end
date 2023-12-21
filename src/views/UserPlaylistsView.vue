@@ -21,10 +21,10 @@
 
     import panel from '@/components/containers/panel.vue';
     import playlistExpansible from '@/components/playlists/playlistExpansible.vue';
+    import errorMessage from '@/components/containers/errorMessage.vue';
 
-    import { getUserUsername } from '@/axios/getters';
-    import { getUserCreatedPlaylists } from '@/axios/getters'
-import errorMessage from '@/components/containers/errorMessage.vue';
+    import { getUserUsername, getUserCreatedPlaylists } from '@/axios/getters'
+
 
     export default {
       name: 'UserPlaylistsView',
@@ -54,7 +54,3 @@ import errorMessage from '@/components/containers/errorMessage.vue';
       },
     }
     </script>
-
-    <style>
-
-    </style>

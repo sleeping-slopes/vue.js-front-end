@@ -34,7 +34,3 @@ import { getSongLikedUsers } from "@/axios/getters";
   }
   </script>
 
-  <style>
-
-  </style>
-

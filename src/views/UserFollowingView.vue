@@ -31,8 +31,7 @@
 
 <script>
 
-  import { getUserUsername } from "@/axios/getters";
-  import { getUserFollowing } from "@/axios/getters";
+  import { getUserUsername, getUserFollowing } from "@/axios/getters";
 
   import panel from "@/components/containers/panel.vue"
   import userCard from "@/components/userCard.vue"
@@ -61,8 +60,3 @@
       }
     }
     </script>
-
-    <style>
-
-    </style>
-

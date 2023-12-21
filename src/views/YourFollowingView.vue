@@ -51,8 +51,3 @@
           }
         }
         </script>
-
-        <style>
-
-        </style>
-

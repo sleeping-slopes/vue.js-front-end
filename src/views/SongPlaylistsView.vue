@@ -33,7 +33,3 @@ import { getSongPlaylists } from "@/axios/getters";
     }
   }
   </script>
-
-  <style>
-
-  </style>

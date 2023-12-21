@@ -16,8 +16,7 @@
   import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserUsername } from '@/axios/getters';
-  import { getUserCreatedSongs } from '@/axios/getters'
+  import { getUserUsername, getUserCreatedSongs } from '@/axios/getters'
 
   export default {
     name: 'UserSongsView',
@@ -50,7 +49,3 @@
     },
   }
   </script>
-
-  <style>
-
-  </style>

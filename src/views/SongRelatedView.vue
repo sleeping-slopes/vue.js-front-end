@@ -18,7 +18,3 @@ import errorMessage from "@/components/containers/errorMessage.vue";
     }
   }
   </script>
-
-  <style>
-
-  </style>
