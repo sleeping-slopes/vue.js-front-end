@@ -25,7 +25,7 @@
 
 <script>
 
-  import { getSong } from "@/axios/getters";
+import API from "@/axios/API";
   import songLarge from "@/components/songs/songLarge.vue";
   import errorMessage from "@/components/containers/errorMessage.vue";
 
@@ -44,7 +44,7 @@
       },
       async created()
       {
-        this.song = await getSong(this.id);
+        this.songs = await API.get('songs/'+this.id);
       }
     }
     </script>

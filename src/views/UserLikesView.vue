@@ -23,8 +23,7 @@
     import panel from '@/components/containers/panel.vue';
     import playlistCarousel from '@/components/playlistCarousel.vue';
     import playlist from '@/components/playlist.vue';
-
-    import { getUserUsername, getUserLikedSongs, getUserLikedPlaylists } from '@/axios/getters'
+    import API from '@/axios/API';
 
     export default {
       name: 'UserLikesView',
@@ -53,9 +52,9 @@
       },
       async created()
       {
-        this.user = await getUserUsername(this.login);
-        this.userLikedSongs.songs = await getUserLikedSongs(this.login);
-        this.userLikedPlaylists = await getUserLikedPlaylists(this.login);
+        this.user = await API.get('users/'+this.login+'/username');
+        this.userLikedSongs.songs = await API.get('users/'+this.login+'/songs/liked');
+        this.userLikedPlaylists = await API.get('users/'+this.login+'/playlists/liked');
       },
     }
     </script>

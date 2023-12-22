@@ -132,14 +132,14 @@ const routes =
 
 const router = createRouter({ history: createWebHistory(process.env.BASE_URL), routes })
 
-import { getUserByToken } from '@/axios/getters';
+import API from '@/axios/API';
 
 router.beforeEach(async (to, from, next) =>
 {
   document.title = to.meta?.title ?? '3V3R51NC3'
   if (to.matched.some(route=>route.meta?.authRequired))
   {
-    const user = await getUserByToken();
+    const user = await API.get('me');
     if (user.error)
     {
       const redirectLogIn = {name: from.name,query:{action:'login',to:to.name}};

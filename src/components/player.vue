@@ -82,6 +82,8 @@ import song from "@/components/songs/song.vue"
 
 import { numberToTimeString } from "@/functions.js"
 
+import API from "@/axios/API"
+
 export default
 {
   name: 'player',
@@ -103,7 +105,8 @@ export default
     this.currentSongID = this.$store.getters.getCurrentSong;
     if (this.currentSongID!=undefined)
     {
-      this.$refs.audio.src = "http://192.168.100.7:5000/api/songs/"+this.currentSongID+"/audio";
+
+      this.$refs.audio.src = API.defaults.baseURL+`songs/`+this.currentSongID+`/audio`;
     }
   },
   computed:
@@ -122,7 +125,7 @@ export default
       this.currentSongID = this.$store.getters.getCurrentSong;
       if (this.currentSongID!=undefined)
       {
-        this.$refs.audio.src = "http://192.168.100.7:5000/api/songs/"+this.currentSongID+"/audio";
+        this.$refs.audio.src = API.defaults.baseURL+`songs/`+this.currentSongID+`/audio`;
       }
     },
     '$store.state.isPlaying'(playing)

@@ -43,7 +43,7 @@
   import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserAllSongs, getUserCreatedSongs, getUserLikedSongs} from "@/axios/getters.js"
+import API from '@/axios/API';
 
   export default {
     name: 'YourSongsView',
@@ -75,9 +75,9 @@
         {
           switch (value)
           {
-            case "All": this.playlist.id="[]"+this.login+" all";this.playlist.songs = await getUserAllSongs(this.login); break;
-            case "Created": this.playlist.id="[]"+this.login+" created";this.playlist.songs = await getUserCreatedSongs(this.login); break;
-            case "Liked": this.playlist.id="[]"+this.login+" liked";this.playlist.songs = await getUserLikedSongs(this.login); break;
+            case "All": this.playlist.id="[]"+this.login+" all";this.playlist.songs = await API.get("users/"+this.login+"/songs"); break;
+            case "Created": this.playlist.id="[]"+this.login+" created";this.playlist.songs = await API.get("users/"+this.login+"/songs/created"); break;
+            case "Liked": this.playlist.id="[]"+this.login+" liked";this.playlist.songs = await API.get("users/"+this.login+"/songs/liked"); break;
           }
         },
         immediate: true

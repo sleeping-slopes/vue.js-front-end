@@ -1,7 +1,7 @@
 <template>
     <div class = "playlist card" v-bind:class="{'active': current}">
         <div class="cover-wrapper s180x180" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-          <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+          <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
           <div class = "cover bi bi-music-note-list" v-else/>
           <div class = "shade"></div>
           <div class="cover-menu">
@@ -35,7 +35,7 @@
 
 <script>
 
-import { getPlaylistSongs,postLikePlaylist,deleteLikePlaylist } from "@/axios/getters.js"
+import API from "@/axios/API.js"
 import { abbreviateNumber } from "@/functions.js"
 
 export default
@@ -49,6 +49,7 @@ export default
   {
     return {
       songs: [],
+      coversrc: API.defaults.baseURL+`playlists/`+this.id+`/cover`,
       imageAvailable:true,
     }
   },
@@ -58,7 +59,7 @@ export default
     {
       if (!this.playlist.liked)
       {
-        const response = await postLikePlaylist(this.id);
+        const response = await API.post("playlists/"+this.id+"/action/like/post");
         if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
@@ -68,7 +69,7 @@ export default
       }
       else
       {
-        const response = await deleteLikePlaylist(this.id);
+        const response = await API.post("playlists/"+this.id+"/action/like/delete");
         if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
@@ -92,7 +93,8 @@ export default
   async created()
   {
     await this.$store.dispatch('loadPlaylist',this.id);
-    this.songs = await getPlaylistSongs(this.id);
+
+    this.songs = await API.get("playlists/"+this.id+"/songs");
   },
   computed:
   {

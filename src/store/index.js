@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { getSong, getPlaylist } from "@/axios/getters.js"
+import API from '@/axios/API';
 
 export default createStore({
   state:
@@ -9,7 +9,7 @@ export default createStore({
     darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false' ),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
     authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null' ),
-    volume: JSON.parse(localStorage.getItem('volume') || 0.75 ),
+    volume: JSON.parse(localStorage.getItem('volume') || '0.75' ),
     isPlaying: false,
     loggedIn: false,
     songs:{},
@@ -180,12 +180,12 @@ export default createStore({
     },
     async loadSong({commit},id)
     {
-      const song = await getSong(id);
+      const song = await API.get('songs/'+id);
       commit("loadSong",song);
     },
     async loadPlaylist({commit},id)
     {
-      const playlist = await getPlaylist(id);
+      const playlist = await API.get('playlists/'+id);
       commit("loadPlaylist",playlist);
     }
   },

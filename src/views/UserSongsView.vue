@@ -16,7 +16,7 @@
   import panel from '@/components/containers/panel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserUsername, getUserCreatedSongs } from '@/axios/getters'
+import API from '@/axios/API';
 
   export default {
     name: 'UserSongsView',
@@ -44,8 +44,8 @@
     },
     async created()
     {
-      this.user = await getUserUsername(this.login);
-      this.userSongs.songs = await getUserCreatedSongs(this.login);
+      this.user = await API.get('users/'+this.login+'/username');
+      this.userSongs.songs = await API.get('users/'+this.login+'/songs/created');
     },
   }
   </script>

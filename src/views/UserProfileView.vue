@@ -6,10 +6,10 @@
   </errorMessage>
   <div class="scr" v-else>
     <div class="user-banner-wrapper">
-      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/banner`"/>
+      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
       <div class = "user-banner-background gradient-bg-reverse" v-else/>
       <div class="user-banner">
-        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"/>
+        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
         <div class = "user-image s200x200 gradient-bg" v-else/>
         <div class="user-banner-info">
           <h2 class="user-banner-name icon-text" v-if="this.user.username || this.user.login">
@@ -106,7 +106,7 @@
 
   <script>
 
-import { getUserLinks, getUserLikedSongs } from "@/axios/getters";
+import API from "@/axios/API";
 
 import userCard from "@/components/userCard.vue";
 import panel from "@/components/containers/panel.vue"
@@ -127,14 +127,14 @@ export default
         id:"[]"+this.login+' liked',
         songs:[]
       },
-
+      bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
     }
   },
   async created()
   {
-    this.user.links = await getUserLinks(this.login);
-    this.userLikedSongs.songs = await getUserLikedSongs(this.login);
+    this.user.links = await API.get('users/'+this.login+'/links');
+    this.userLikedSongs.songs = await API.get('users/'+this.login+'/songs/liked');
   },
 }
   </script>

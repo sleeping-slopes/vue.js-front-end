@@ -12,7 +12,7 @@
 
 import errorMessage from "@/components/containers/errorMessage.vue";
 import userCard from "@/components/userCard.vue";
-import { getSongLikedUsers } from "@/axios/getters";
+import API from "@/axios/API";
 
   export default {
     name: 'SongLikesView',
@@ -29,7 +29,7 @@ import { getSongLikedUsers } from "@/axios/getters";
     },
     async created()
     {
-      this.users = await getSongLikedUsers(this.id);
+      this.users = await API.get('songs/'+this.id+'/likes');
     }
   }
   </script>

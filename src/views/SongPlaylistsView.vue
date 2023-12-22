@@ -12,7 +12,7 @@
 
 import errorMessage from "@/components/containers/errorMessage.vue";
 import playlistExpansible from "@/components/playlists/playlistExpansible.vue";
-import { getSongPlaylists } from "@/axios/getters";
+import API from "@/axios/API";
 
   export default {
     name: 'SongLikesView',
@@ -29,7 +29,7 @@ import { getSongPlaylists } from "@/axios/getters";
     },
     async created()
     {
-      this.playlists = await getSongPlaylists(this.id);
+      this.playlists = await API.get('songs/'+this.id+'/playlists');
     }
   }
   </script>

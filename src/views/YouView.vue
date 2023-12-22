@@ -16,15 +16,15 @@
 
 <script>
 
-import { getUserByToken } from '@/axios/getters';
+import API from '@/axios/API';
 
 export default
 {
   name: 'YouView',
   async created()
   {
-    const user = await getUserByToken();
-    if (!user.error) this.login = user.values.login;
+    const user = await API.get('me');
+    if (!user.error) this.login = user.login;
   },
   data()
   {

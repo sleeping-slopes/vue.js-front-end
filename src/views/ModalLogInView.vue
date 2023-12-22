@@ -33,7 +33,7 @@
 
 <script>
 
-import {logInUser} from "@/axios/getters.js"
+import API from "@/axios/API";
 
 import modal from "@/components/containers/modal.vue"
 
@@ -67,7 +67,7 @@ export default {
 
       (async () =>
       {
-        const r = await logInUser(this.login.data,this.password.data);
+        const r = await API.post('auth/login',{ login:this.login.data, password:this.password.data});
         if (r.token)
         {
           this.$store.dispatch('logIn',r.token);

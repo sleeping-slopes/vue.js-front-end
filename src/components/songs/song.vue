@@ -1,7 +1,7 @@
 <template>
     <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
         <div class = "cover-wrapper s36x36">
-            <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
             <div class="cover-menu">
@@ -38,7 +38,7 @@
 <script>
 
 import { numberToTimeString,abbreviateNumber } from "@/functions.js"
-import { postLikeSong, deleteLikeSong } from "@/axios/getters"
+import API from "@/axios/API.js"
 
 export default
 {
@@ -51,7 +51,8 @@ export default
   data()
   {
     return {
-        imageAvailable:true
+      coversrc: API.defaults.baseURL+`songs/`+this.id+`/cover`,
+      imageAvailable:true
     }
   },
   async created()
@@ -88,7 +89,7 @@ export default
     {
       if (!this.song.liked)
       {
-        const response = await postLikeSong(this.id);
+        const response = await API.post("songs/"+this.id+"/action/like/post");
         if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
@@ -98,7 +99,7 @@ export default
       }
       else
       {
-        const response = await deleteLikeSong(this.id);
+        const response = await API.post("songs/"+this.id+"/action/like/delete");
         if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
         else
         {
@@ -161,7 +162,7 @@ export default
 }
 
 .song-container .song:hover .cover-menu,
-.song-container .song.active .cover-menu
+.song-container .song.card.active .cover-menu
 {
   opacity:1.0;
 }

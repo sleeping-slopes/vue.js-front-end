@@ -12,7 +12,7 @@
     <template v-slot:content v-else>
       <div class="playlist-header">
         <div class="cover-wrapper s160x160">
-          <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+          <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
           <div class = "cover bi bi-music-note-list" v-else/>
           <div class = "shade"></div>
           <div class="cover-menu">

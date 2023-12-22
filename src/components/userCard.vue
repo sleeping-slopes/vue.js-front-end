@@ -1,7 +1,7 @@
 <template>
   <div class = "card user-card">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-      <img class = "user-image s180x180" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s180x180" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s180x180 gradient-bg" v-else/>
     </router-link>
     <div class= "info-wrapper">
@@ -27,7 +27,7 @@
 
 <script>
 
-import { getUser, postFollowUser, deleteFollowUser } from "@/axios/getters.js"
+import API from "@/axios/API";
 import { abbreviateNumber } from "@/functions.js";
 
 export default
@@ -41,19 +41,20 @@ export default
   {
     return {
       user:{},
+      picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       imageAvailable: true
     }
   },
   async created()
   {
-    this.user = await getUser(this.login);
+    this.user = await API.get('users/'+this.login+"/profile");
   },
   methods:
   {
     abbreviateNumber: abbreviateNumber,
     async follow()
     {
-      const response = await postFollowUser(this.login);
+      const response = await API.post('users/'+this.login+"/action/follow/post");
       if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
       else
       {
@@ -63,7 +64,7 @@ export default
     },
     async unfollow()
     {
-      const response = await deleteFollowUser(this.login);
+      const response = await API.post('users/'+this.login+"/action/follow/delete");
       if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
       else
       {

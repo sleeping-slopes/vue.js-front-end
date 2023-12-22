@@ -46,7 +46,7 @@
   import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
   import errorMessage from '@/components/containers/errorMessage.vue'
 
-  import {getUserAllPlaylists, getUserCreatedPlaylists, getUserLikedPlaylists} from "@/axios/getters.js"
+  import API from '@/axios/API'
 
   export default {
     name: 'YourPlaylistsView',
@@ -74,9 +74,9 @@
         {
           switch (value)
           {
-            case "All": this.playlists = await getUserAllPlaylists(this.login); break;
-            case "Created": this.playlists = await getUserCreatedPlaylists(this.login); break;
-            case "Liked": this.playlists = await getUserLikedPlaylists(this.login); break;
+            case "All": this.playlists = await API.get("users/"+this.login+"/playlists"); break;
+            case "Created": this.playlists = await API.get("users/"+this.login+"/playlists/created"); break;
+            case "Liked": this.playlists = await API.get("users/"+this.login+"/playlists/liked"); break;
           }
         },
         immediate: true

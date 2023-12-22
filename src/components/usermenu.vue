@@ -10,13 +10,13 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "user-image s44x44" :src="`http://192.168.100.7:5000/api/users/`+this.user.login+`/picture`" v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s44x44" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s44x44 bi bi-person-fill" v-else/>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
           <div class = "usermenu">
-            <router-link class="usermenu-button" :to="{ name: 'User', params: { login: this.user.login }}">
+            <router-link class="usermenu-button" :to="{ name: 'User', params: { login: this.user }}">
               <span class="bi-person-fill usermenu-button-icon"></span>
               <span>Profile</span>
             </router-link>
@@ -38,9 +38,8 @@
 
 <script>
 
-import { getUserByToken } from "@/axios/getters.js"
-
 import panel from "@/components/containers/panel.vue"
+import API from "@/axios/API";
 
 export default {
   name: 'usermenu',
@@ -50,12 +49,17 @@ export default {
     return {
       show:false,
       user:undefined,
+
       imageAvailable: true
     }
   },
+  computed:
+  {
+    picturesrc() { return API.defaults.baseURL+`users/`+this.user+`/picture` }
+  },
   async created()
   {
-    const userByToken = await getUserByToken();
+    const userByToken = await API.get('me');
     if (userByToken.error)
     {
       this.user=undefined;
@@ -63,7 +67,7 @@ export default {
     }
     else
     {
-      this.user=userByToken.values;
+      this.user=userByToken.login;
       this.$store.state.loggedIn = true;
     }
   },
@@ -71,7 +75,7 @@ export default {
   {
     async '$store.state.authJWT'(playlistSong)
     {
-      const userByToken = await getUserByToken();
+      const userByToken = await API.get('me');
       if (userByToken.error)
       {
         this.user=undefined;
@@ -79,7 +83,7 @@ export default {
       }
       else
       {
-        this.user=userByToken.values;
+        this.user=userByToken.login;
         this.$store.state.loggedIn = true;
       }
     }

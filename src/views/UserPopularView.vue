@@ -24,7 +24,7 @@
   import playlistCarousel from '@/components/playlistCarousel.vue';
   import playlist from '@/components/playlist.vue';
 
-  import { getUserUsername, getUserCreatedPopularSongs, getUserCreatedPopularPlaylists } from '@/axios/getters'
+  import API from '@/axios/API';
 
   export default {
     name: 'UserLikesView',
@@ -53,9 +53,10 @@
     },
     async created()
     {
-      this.user = await getUserUsername(this.login);
-      this.userPopularSongs.songs = await getUserCreatedPopularSongs(this.login);
-      this.userPopularPlaylists = await getUserCreatedPopularPlaylists(this.login);
+      this.user = await API.get('users/'+this.login+'/username');
+        this.userPopularSongs.songs = await API.get('users/'+this.login+'/songs/created/popular');
+        this.userPopularPlaylists = await API.get('users/'+this.login+'/playlists/created/popular');
+
     },
   }
   </script>

@@ -27,8 +27,7 @@
 import panel from '@/components/containers/panel.vue';
 import playlistCarousel from '@/components/playlistCarousel.vue';
 import playlist from '@/components/playlist.vue';
-
-import {getSongs, getPlaylists} from "@/axios/getters.js"
+import API from '@/axios/API';
 
 export default {
   name: 'DiscoverView',
@@ -49,8 +48,8 @@ export default {
   },
   async created()
   {
-    this.playlists = await getPlaylists();
-    this.discoverPlaylist.songs = await getSongs();
+    this.playlists = await API.get('playlists');
+    this.discoverPlaylist.songs = await API.get('songs');
   }
 }
 </script>

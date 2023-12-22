@@ -21,11 +21,11 @@
 
     <script>
 
-      import { getUserFollowing } from "@/axios/getters";
 
       import panel from "@/components/containers/panel.vue"
       import userCard from "@/components/userCard.vue"
       import errorMessage from "@/components/containers/errorMessage.vue";
+      import API from "@/axios/API";
 
         export default {
           name: 'YourFollowersView',
@@ -43,7 +43,7 @@
           },
           async created()
           {
-            this.followings = await getUserFollowing(this.login);
+            this.followings = await API.get('users/'+this.login+'/following');
           },
           props:
           {

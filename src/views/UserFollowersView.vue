@@ -4,7 +4,7 @@
     <div class="column">
       <div class="row">
         <router-link :to="{ name: 'User', params: { login: this.login }}">
-          <img class = "user-image s100x100" :src="`http://192.168.100.7:5000/api/users/`+this.login+`/picture`"  v-if="imageAvailable" @error="imageAvailable=false"/>
+          <img class = "user-image s100x100" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
           <div class = "user-image s100x100 gradient-bg" v-else/>
         </router-link>
         <router-link class="primary-text hoverable h2" :to="{ name: 'User', params: { login: this.login }}">Followers of {{this.user.username || this.login}}</router-link>
@@ -31,8 +31,7 @@
 
 <script>
 
-  import { getUserUsername, getUserFollowers } from "@/axios/getters";
-  import {  } from "@/axios/getters";
+  import API from "@/axios/API";
 
   import panel from "@/components/containers/panel.vue"
   import userCard from "@/components/userCard.vue"
@@ -49,16 +48,16 @@
       {
         return {
           user:{},
-		  followers:[],
-      imageAvailable:true
+		      followers:[],
+          picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
+          imageAvailable:true
         }
       },
       async created()
       {
-        this.user = await getUserUsername(this.login);
+        this.user = await API.get('users/'+this.login+'/username');
         if (this.user.error) this.$router.push({name:"User",params:{login:this.login}});
-		    this.followers = await getUserFollowers(this.login);
-        // this.followers = Array(30).fill({login:'norimyxxxo'})
+        this.followers = await API.get('users/'+this.login+'/followers');
       }
     }
     </script>

@@ -42,7 +42,7 @@
 
 <script>
 
-import {postUser} from "@/axios/getters.js"
+import API from "@/axios/API";
 
 import modal from "@/components/containers/modal.vue"
 
@@ -84,7 +84,7 @@ export default {
 
       (async () =>
       {
-        const r = await postUser(this.email.data,this.password.data,this.login.data);
+        const r = await API.post('auth/signup',{ email:this.email.data, password:this.password.data, login:this.login.data });
         if (r.token)
         {
           this.$store.dispatch('logIn',r.token);

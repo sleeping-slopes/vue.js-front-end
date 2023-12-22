@@ -23,7 +23,7 @@
     import playlistExpansible from '@/components/playlists/playlistExpansible.vue';
     import errorMessage from '@/components/containers/errorMessage.vue';
 
-    import { getUserUsername, getUserCreatedPlaylists } from '@/axios/getters'
+    import API from '@/axios/API';
 
 
     export default {
@@ -49,8 +49,8 @@
       },
       async created()
       {
-        this.user = await getUserUsername(this.login);
-        this.playlists = await getUserCreatedPlaylists(this.login);
+        this.user = await API.get('users/'+this.login+'/username');
+        this.playlists = await API.get('users/'+this.login+'/playlists/created');
       },
     }
     </script>
