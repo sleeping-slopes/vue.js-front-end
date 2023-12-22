@@ -16,6 +16,7 @@
 
 import navbar from "@/components/navbar.vue"
 import player from "@/components/player.vue"
+
 import ModalPlaylistView from "@/views/ModalPlaylistView.vue";
 import ModalLogInView from "./views/ModalLogInView.vue";
 import ModalSignUpView from "./views/ModalSignUpView.vue";
@@ -266,8 +267,6 @@ nav
 
 .round-button.tiny { font-size:14px; }
 
-
-/* /// */
 .cover-wrapper
 {
   display:flex;
@@ -288,6 +287,7 @@ nav
   align-items: center;
   display:flex;
   justify-content:center;
+  object-fit: cover;
 }
 
 .shade
@@ -308,6 +308,7 @@ nav
   border-radius:50%;
   background-color: var(--panel-border-color);
   color:var(--text-color-secondary);
+  object-fit: cover;
 }
 
 .primary-text

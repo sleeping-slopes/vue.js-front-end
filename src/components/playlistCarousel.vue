@@ -37,7 +37,6 @@ export default
     shift(i)
     {
       this.scrollPosition += i*Math.floor(this.$refs.carousel.offsetWidth/133)/2*133;
-      // Math.floor(this.$refs.carousel.offsetWidth/128)/2;
       if (this.scrollPosition<=0)
       {
         this.scrollPosition=0;
