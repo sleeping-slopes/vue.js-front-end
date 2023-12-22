@@ -2,7 +2,7 @@
 <template>
     <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
         <div class = "cover-wrapper s52x52">
-            <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/songs/`+this.id+`/cover`" @error="imageAvailable=false" />
+            <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
             <div class = "shade"></div>
             <div class="cover-menu">

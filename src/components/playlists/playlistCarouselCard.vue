@@ -1,7 +1,7 @@
 <template>
     <div class = "playlist card">
         <div class="cover-wrapper s128x128" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-            <img class = "cover" v-if="imageAvailable" :src="`http://192.168.100.7:5000/api/playlists/`+this.id+`/cover`" @error="imageAvailable=false"/>
+            <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
             <div class = "cover bi bi-music-note-list" v-else/>
             <div class = "shade"></div>
             <div class="cover-menu">
