@@ -28,16 +28,9 @@ export default createStore({
       if (state.currentPlaylist.songs)
       return state.currentPlaylist.songs[state.currentSongIndex].id;
     },
-    getPlaylist: (state) => (id) => {
-      return state.playlists[id] || {};
-    },
-    getSong: (state) => (id) => {
-      return state.songs[id] || {};
-    },
-    getSongHistory(state)
-    {
-      return state.songHistory.map((song, index) => { return {id:song,pos:index} });
-    }
+    getPlaylist: (state) => (id) => { return state.playlists[id] || {}; },
+    getSong: (state) => (id) => { return state.songs[id] || {}; },
+    getSongHistory(state) { return state.songHistory.map((song, index) => { return {id:song,pos:index} }); }
   },
   mutations:
   {

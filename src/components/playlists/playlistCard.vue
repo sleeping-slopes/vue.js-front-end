@@ -93,7 +93,6 @@ export default
   async created()
   {
     await this.$store.dispatch('loadPlaylist',this.id);
-
     this.songs = await API.get("playlists/"+this.id+"/songs");
   },
   computed:

@@ -5,6 +5,7 @@
     <ModalLogInView v-if="this.$route.query.action=='login'"></ModalLogInView>
     <ModalSignUpView v-if="this.$route.query.action=='signup'"></ModalSignUpView>
       <navbar/>
+
       <!-- <main style="overflow:scroll; display:flex;"> -->
         <router-view :key="this.$route.params.login"/>
       <!-- </main> -->
