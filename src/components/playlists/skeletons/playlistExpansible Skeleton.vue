@@ -5,11 +5,7 @@
       <div class="cover-wrapper s160x160">
         <div class = "cover"/>
       </div>
-      <button class="button-secondary h6" style="margin:auto">
-        <div class="icon-text">
-          <span class="bi bi-suit-heart-fill"></span><span>TEST</span>
-        </div>
-      </button>
+      <skeleton class="button-secondary h6" style="margin:auto" :exactwidth="100"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
@@ -17,10 +13,9 @@
   </div>
   <div class="right-column">
     <div style="display:flex;flex-direction: row; gap:10px; align-items: center;">
-      <button class="round-button medium"></button>
       <div class= "info-wrapper">
-        <span class ="h4 secondary-text text-overflow">TEST</span>
-        <span class ="h3 primary-text text-overflow">TEST</span>
+        <skeleton class="h4"/>
+        <skeleton class="h3"/>
       </div>
     </div>
     <hr>
@@ -37,11 +32,12 @@
 <script>
 
 import songSkeleton from "@/components/songs/skeletons/song Skeleton.vue";
+import skeleton from "@/components/skeleton.vue";
 
 export default
 {
   name: 'playlistCarouselCardSkeleton',
-  components: {songSkeleton}
+  components: {songSkeleton, skeleton}
 }
 </script>
 

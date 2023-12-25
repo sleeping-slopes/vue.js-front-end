@@ -4,17 +4,20 @@
     <div class = "cover"></div>
   </div>
   <div class= "info-wrapper">
-    <span class ="h5 secondary-text text-overflow">PLAYLISTCAROUSELCARD SKELETON</span>
-    <span class ="h4 primary-text text-overflow">PLAYLISTCAROUSELCARD SKELETON</span>
+    <skeleton class="h5"/>
+    <skeleton class="h4"/>
   </div>
 </div>
 </template>
 
 <script>
 
+import skeleton from '@/components/skeleton.vue';
+
 export default
 {
-  name: 'playlistCarouselCardSkeleton'
+  name: 'playlistCarouselCardSkeleton',
+  components: { skeleton }
 }
 
 </script>
