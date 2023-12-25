@@ -27,23 +27,18 @@
       <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
       <template v-slot:message>No playlists here yet</template>
     </errorMessage>
-    <ul class="column" v-if="this.currentViewStyle==0">
-      <li v-for="playlist in this.playlists">
-        <playlistExpansible :id="playlist.id" :key="playlist.id"/>
-      </li>
-    </ul>
-    <ul class="ul-grid" v-else>
-      <li v-for="playlist in this.playlists">
-        <playlistCard :id="playlist.id" :key="playlist.id"/>
-      </li>
-    </ul>
+    <playlistContainer class="column" v-if="this.currentViewStyle==0"
+      :playlists="this.playlists" :dynamicComponent="'playlistExpansible'">
+    </playlistContainer>
+    <playlistContainer class="ul-grid" v-else
+      :playlists="this.playlists" :dynamicComponent="'playlistCard'">
+    </playlistContainer>
   </div>
 </template>
 
   <script>
 
-  import playlistCard from '@/components/playlists/playlistCard.vue'
-  import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
+  import playlistContainer from '@/components/playlistContainer.vue'
   import errorMessage from '@/components/containers/errorMessage.vue'
 
   import API from '@/axios/API'
@@ -52,7 +47,7 @@
     name: 'YourPlaylistsView',
     components:
     {
-      playlistCard,playlistExpansible,errorMessage
+      playlistContainer,errorMessage
     },
     data()
     {

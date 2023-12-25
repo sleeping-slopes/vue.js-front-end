@@ -1,30 +1,24 @@
 <template>
   <div class="playlist-carousel">
-    <errorMessage  v-if="playlists.length==0">
-    <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
-    <template v-slot:message>No playlists here yet</template>
-  </errorMessage>
-    <ul class="carousel-content hidden-scroll" ref="carousel" v-else>
-      <li v-for="(playlist) in this.getShortList">
-        <playlistCarouselCard :id="playlist.id"/>
-      </li>
-      <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
-      <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
-    </ul>
+    <playlistContainer class="carousel-content hidden-scroll" ref="carousel"
+      :playlists="this.playlists"
+      :dynamicComponent="'playlistCarouselCard'">
+    </playlistContainer>
+    <button class="carousel-button round-button medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
+    <button class="carousel-button round-button medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
   </div>
 </template>
 
 <script>
 
-import playlistCarouselCard from '@/components/playlists/playlistCarouselCard.vue'
-import errorMessage from "@/components/containers/errorMessage.vue"
+import playlistContainer from '@/components/playlistContainer.vue'
 
 export default
 {
   name: 'carousel',
   components:
   {
-    playlistCarouselCard,errorMessage
+    playlistContainer
   },
   data()
   {
@@ -61,16 +55,7 @@ export default
   props:
   {
     playlists: {type:Array,default:[]},
-    maxDisplay: {default:0},
-  },
-  computed:
-  {
-    getShortList()
-    {
-      if (this.maxDisplay<1) return this.playlists;
-      return this.playlists.slice(0,this.maxDisplay);
-    }
-  },
+  }
 }
 </script>
 
