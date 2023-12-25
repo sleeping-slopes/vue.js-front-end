@@ -34,7 +34,7 @@
             </template>
           </div>
             <div class="h4 secondary-text text-overflow">
-              {{ abbreviateNumber(this.playlist.songs_count) }} song{{ this.playlist.songs_count!=1?'s':'' }}
+              {{ abbreviateNumber(this.playlist.songs.length) }} song{{ this.playlist.songs.length!=1?'s':'' }}
               <span class="bi bi-dot"></span>
               {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
             </div>
@@ -56,7 +56,7 @@
       <div style="max-height:635px">
         <playlist class="ul-list hidden-scroll"
           :id="this.id"
-          :songs="this.songs"
+          :songs="this.playlist.songs"
         />
       </div>
     </template>
