@@ -173,11 +173,13 @@ export default createStore({
     },
     async loadSong({commit},id)
     {
+      // await new Promise(r => setTimeout(r, 500));
       const song = await API.get('songs/'+id);
       commit("loadSong",song);
     },
     async loadPlaylist({commit},id)
     {
+      // await new Promise(r => setTimeout(r, 500));
       const playlist = await API.get('playlists/'+id);
       commit("loadPlaylist",playlist);
     }

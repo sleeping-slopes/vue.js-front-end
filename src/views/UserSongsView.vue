@@ -28,7 +28,7 @@ import API from '@/axios/API';
     {
       login:
       {
-        default: -1,
+        default: "nologin",
       },
     },
     data()

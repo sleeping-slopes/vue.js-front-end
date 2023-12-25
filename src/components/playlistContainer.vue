@@ -22,7 +22,7 @@
   <script>
 
   import playlistCard from '@/components/playlists/playlistCard.vue'
-  import playlistCarouselCard from '@/components/playlists/playlistExpansible.vue'
+  import playlistCarouselCard from '@/components/playlists/playlistCarouselCard.vue'
   import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
 
   import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue'
