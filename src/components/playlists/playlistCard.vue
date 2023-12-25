@@ -9,7 +9,7 @@
           </div>
           <div class="cover-menu playlist-stats h4">
             <span class="icon-text">
-              <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
+              <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs.length)}}</span>
             </span>
             <span class="icon-text">
               <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
@@ -36,6 +36,7 @@
 <script>
 
 import API from "@/axios/API.js"
+import store from "@/store";
 import { abbreviateNumber } from "@/functions.js"
 
 export default
@@ -45,10 +46,13 @@ export default
   {
     id: { default:"noid"},
   },
+  async setup(props)
+  {
+    await store.dispatch('loadPlaylist',props.id);
+  },
   data()
   {
     return {
-      songs: [],
       coversrc: API.defaults.baseURL+`playlists/`+this.id+`/cover`,
       imageAvailable:true,
     }
@@ -80,33 +84,21 @@ export default
     },
     playPlaylist()
     {
-        if (this.songs.length>0)
+        if (this.playlist.songs.length>0)
         {
           if (!this.current)
-              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: 0}));
+              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.playlist.songs}, songIndex: 0}));
           else
           this.$store.dispatch('togglePlayingState');
         }
     },
     abbreviateNumber: abbreviateNumber
   },
-  async created()
-  {
-    await this.$store.dispatch('loadPlaylist',this.id);
-    this.songs = await API.get("playlists/"+this.id+"/songs");
-  },
   computed:
   {
-    playlist(){ return this.$store.getters.getPlaylist(this.id); },
-    current()
-    {
-      return this.$store.state.currentPlaylist.id===this.id;
-    },
-    isPlaying()
-    {
-      if (this.current) return this.$store.state.isPlaying;
-      return false;
-    }
+    playlist() { return this.$store.getters.getPlaylist(this.id); },
+    current() { return this.$store.state.currentPlaylist.id===this.id; },
+    isPlaying() { return this.current?this.$store.state.isPlaying:false; }
   }
 }
 </script>

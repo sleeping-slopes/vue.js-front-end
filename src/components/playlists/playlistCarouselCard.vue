@@ -9,7 +9,7 @@
             </div>
             <div class="cover-menu playlist-stats h5">
                 <span class="icon-text">
-                    <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs_count)}}</span>
+                    <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs.length)}}</span>
                 </span>
                 <span class="icon-text">
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
@@ -36,12 +36,18 @@
 <script>
 
 import playlistCard from "@/components/playlists/playlistCard.vue"
+import store from "@/store";
 
 export default
 {
   name: 'playlistCarouselCard',
-  extends: playlistCard
+  extends: playlistCard,
+  async setup(props)
+  {
+    await store.dispatch('loadPlaylist',props.id);
+  },
 }
+
 </script>
 
 <style scoped>

@@ -37,9 +37,9 @@
             <hr>
             <playlist class="ul-list" style="overflow-y:auto"
             :id="this.id"
-            :songs="this.songs"
+            :songs="this.playlist.songs"
             :dynamicComponent="'song'"/>
-            <div v-if="this.songs.length>4">
+            <div v-if="this.playlist.songs.length>4">
                 <button class="button-secondary h6" style="margin:auto" v-on:click="this.expanded=!this.expanded">{{this.expanded?"Hide":"Expand"}}</button>
             </div>
         </div>
@@ -50,12 +50,17 @@
 
 import playlistCard from "@/components/playlists/playlistCard.vue"
 import playlist from "@/components/playlist.vue"
+import store from "@/store";
 
 export default
 {
   name: 'playlistExpansible',
   components: {playlist},
   extends: playlistCard,
+  async setup(props)
+  {
+    await store.dispatch('loadPlaylist',props.id);
+  },
   data()
   {
     return {
