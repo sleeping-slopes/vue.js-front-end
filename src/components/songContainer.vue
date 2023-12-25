@@ -3,7 +3,7 @@
     <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
     <template v-slot:message>No audio here yet</template>
   </errorMessage>
-  <ul class = "song-container"  v-else>
+  <ul class = "song-container" v-else>
     <Suspense>
       <template #default>
         <li v-for="(song,index) in getShortList">
@@ -24,7 +24,6 @@
 </template>
 
 <script>
-
 
 import song from '@/components/songs/song.vue';
 import songExtended from '@/components/songs/songExtended.vue';

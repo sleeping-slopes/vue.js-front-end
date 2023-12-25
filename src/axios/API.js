@@ -24,10 +24,12 @@ API.interceptors.response.use
     response =>
     {
         return response.data.values;
+        // return {"status": response.data.status,"values": response.data.values};
     },
     error =>
     {
         return {"error":{"status":error.response.status,"message":error.response.data.values}};
+        // return {"status":error.response.status,"error":error.response.data.values};
     }
 );
 
