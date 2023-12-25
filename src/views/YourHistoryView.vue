@@ -19,13 +19,13 @@
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <playlist :class="'ul-list hidden-scroll'"
+        <songContainer :class="'ul-list hidden-scroll'"
           :id="playlist.id"
           :songs="playlist.songs"
           :dynamicComponent="'songExtended'"/>
       </template>
     </panel>
-    <playlist :class="'ul-grid hidden-scroll'" v-else
+    <songContainer :class="'ul-grid hidden-scroll'" v-else
       :id="playlist.id"
       :songs="playlist.songs"
       :dynamicComponent="'songCard'"/>
@@ -34,13 +34,13 @@
 
   <script>
   import panel from '@/components/containers/panel.vue';
-  import playlist from '@/components/playlist.vue';
+  import songContainer from '@/components/songContainer.vue';
 
   export default {
     name: 'YourHistoryView',
     components:
     {
-      panel,playlist
+      panel,songContainer
     },
     data()
     {

@@ -75,7 +75,7 @@
               </button>
             </template>
             <template v-slot:content>
-              <playlist class="ul-list hidden-scroll"
+              <songContainer class="ul-list hidden-scroll"
                 :id="this.$store.state.currentPlaylist.id"
                 :songs="this.$store.state.currentPlaylist.songs"/>
             </template>
@@ -90,7 +90,7 @@
 <script>
 
 import panel from "@/components/containers/panel.vue"
-import playlist from "@/components/playlist.vue"
+import songContainer from "@/components/songContainer.vue"
 import song from "@/components/songs/song.vue"
 import songSkeleton from "./songs/skeletons/song Skeleton.vue"
 
@@ -103,7 +103,7 @@ export default
   name: 'player',
   components:
   {
-    panel,playlist,song,songSkeleton
+    panel,songContainer,song,songSkeleton
   },
   data()
   {

@@ -35,7 +35,7 @@
                 </div>
             </div>
             <hr>
-            <playlist class="ul-list" style="overflow-y:auto"
+            <songContainer class="ul-list" style="overflow-y:auto"
             :id="this.id"
             :songs="this.playlist.songs"
             :dynamicComponent="'song'"/>
@@ -49,13 +49,13 @@
 <script>
 
 import playlistCard from "@/components/playlists/playlistCard.vue"
-import playlist from "@/components/playlist.vue"
+import songContainer from "@/components/songContainer.vue"
 import store from "@/store";
 
 export default
 {
   name: 'playlistExpansible',
-  components: {playlist},
+  components: {songContainer},
   extends: playlistCard,
   async setup(props)
   {

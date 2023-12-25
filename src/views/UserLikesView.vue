@@ -9,7 +9,7 @@
       <panel>
         <template v-slot:header>Songs liked by {{ this.user.username || this.login }}</template>
         <template v-slot:content>
-          <playlist class="ul-list hidden-scroll"
+          <songContainer class="ul-list hidden-scroll"
           :id="userLikedSongs.id"
           :songs="userLikedSongs.songs"
           :dynamicComponent="'songExtended'"
@@ -22,14 +22,14 @@
 
     import panel from '@/components/containers/panel.vue';
     import playlistCarousel from '@/components/playlistCarousel.vue';
-    import playlist from '@/components/playlist.vue';
+    import songContainer from '@/components/songContainer.vue';
     import API from '@/axios/API';
 
     export default {
       name: 'UserLikesView',
       components:
       {
-        panel,playlistCarousel,playlist
+        panel,playlistCarousel,songContainer
       },
       props:
       {

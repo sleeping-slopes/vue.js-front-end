@@ -36,7 +36,6 @@
 
 <script>
 
-import playlist from "@/components/playlist.vue"
 import songSkeleton from "@/components/songs/skeletons/song Skeleton.vue";
 
 export default

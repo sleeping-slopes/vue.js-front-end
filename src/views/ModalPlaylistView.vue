@@ -54,10 +54,9 @@
       </div>
       <hr/>
       <div style="max-height:635px">
-        <playlist class="ul-list hidden-scroll"
+        <songContainer class="ul-list hidden-scroll"
           :id="this.id"
-          :songs="this.playlist.songs"
-        />
+          :songs="this.playlist.songs"/>
       </div>
     </template>
   </modal>
@@ -66,7 +65,7 @@
 <script>
 
 import modal from "@/components/containers/modal.vue"
-import playlist from "@/components/playlist.vue";
+import songContainer from "@/components/songContainer.vue";
 import errorMessage from "@/components/containers/errorMessage.vue"
 
 import playlistCard from "@/components/playlists/playlistCard.vue";
@@ -76,7 +75,7 @@ export default
   name: 'playlistModal',
   components:
   {
-    modal,playlist,errorMessage
+    modal,songContainer,errorMessage
   },
   extends: playlistCard
 }

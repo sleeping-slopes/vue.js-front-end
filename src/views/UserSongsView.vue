@@ -2,7 +2,7 @@
   <panel>
     <template v-slot:header>Songs by {{ this.user.username || this.login }}</template>
     <template v-slot:content>
-      <playlist class="ul-list hidden-scroll"
+      <songContainer class="ul-list hidden-scroll"
         :id="this.userSongs.id"
         :songs="this.userSongs.songs"
         :dynamicComponent="'songExtended'"
@@ -14,7 +14,7 @@
   <script>
 
   import panel from '@/components/containers/panel.vue';
-  import playlist from '@/components/playlist.vue';
+  import songContainer from '@/components/songContainer.vue';
 
 import API from '@/axios/API';
 
@@ -22,7 +22,7 @@ import API from '@/axios/API';
     name: 'UserSongsView',
     components:
     {
-      panel,playlist
+      panel,songContainer
     },
     props:
     {

@@ -11,7 +11,7 @@
       <panel style="height:100%;">
         <template v-slot:header>Songs</template>
         <template v-slot:content>
-          <playlist class="ul-list hidden-scroll"
+          <songContainer class="ul-list hidden-scroll"
           :id="discoverPlaylist.id"
           :songs="discoverPlaylist.songs"
           :dynamicComponent="'songExtended'"
@@ -26,14 +26,14 @@
 
 import panel from '@/components/containers/panel.vue';
 import playlistCarousel from '@/components/playlistCarousel.vue';
-import playlist from '@/components/playlist.vue';
+import songContainer from '@/components/songContainer.vue';
 import API from '@/axios/API';
 
 export default {
   name: 'DiscoverView',
   components:
   {
-    panel,playlistCarousel,playlist
+    panel,playlistCarousel,songContainer
   },
   data()
   {

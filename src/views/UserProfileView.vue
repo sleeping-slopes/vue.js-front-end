@@ -90,7 +90,7 @@
                 <router-link class="button-secondary h6" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
-                <playlist class="ul-list hidden-scroll"
+                <songContainer class="ul-list hidden-scroll"
                   :id="this.userLikedSongs.id"
                   :songs="this.userLikedSongs.songs"
                   :maxDisplay="3"
@@ -110,14 +110,14 @@ import API from "@/axios/API";
 
 import userCard from "@/components/userCard.vue";
 import panel from "@/components/containers/panel.vue"
-import playlist from "@/components/playlist.vue"
+import songContainer from "@/components/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
 
 export default
 {
   name: 'UserProfileView',
-  components:{panel,playlist,glyphLink,errorMessage},
+  components:{panel,songContainer,glyphLink,errorMessage},
   extends: userCard,
   data()
   {

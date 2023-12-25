@@ -3,7 +3,6 @@
     <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
     <template v-slot:message>No audio here yet</template>
   </errorMessage>
-
   <ul class = "song-container"  v-else>
     <Suspense>
       <template #default>
