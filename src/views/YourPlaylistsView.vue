@@ -23,10 +23,6 @@
         </div>
       </div>
     </div>
-    <errorMessage  v-if="this.playlists.length==0">
-      <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
-      <template v-slot:message>No playlists here yet</template>
-    </errorMessage>
     <playlistContainer class="column" v-if="this.currentViewStyle==0"
       :playlists="this.playlists" :dynamicComponent="'playlistExpansible'">
     </playlistContainer>
@@ -39,7 +35,6 @@
   <script>
 
   import playlistContainer from '@/components/playlistContainer.vue'
-  import errorMessage from '@/components/containers/errorMessage.vue'
 
   import API from '@/axios/API'
 
@@ -47,7 +42,7 @@
     name: 'YourPlaylistsView',
     components:
     {
-      playlistContainer,errorMessage
+      playlistContainer
     },
     data()
     {
