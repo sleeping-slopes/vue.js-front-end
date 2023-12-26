@@ -14,7 +14,7 @@ const routes =
   {
     name: 'Feed',
     path: '/feed',
-    component: '',
+    component: () => import('@/views/FeedView.vue'),
     meta: { authRequired:true }
   },
   {
