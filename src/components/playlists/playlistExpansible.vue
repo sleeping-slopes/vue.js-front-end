@@ -38,7 +38,7 @@
             <songContainer class="ul-list" style="overflow-y:auto"
             :playlist="this.playlist.songs"
             :dynamicComponent="'song'"/>
-            <div v-if="this.playlist.songs.length>4">
+            <div v-if="this.playlist.songs.songs?.length>4">
                 <button class="button-secondary h6" style="margin:auto" v-on:click="this.expanded=!this.expanded">{{this.expanded?"Hide":"Expand"}}</button>
             </div>
         </div>

@@ -24,8 +24,8 @@
       <songSkeleton/>
       <songSkeleton/>
       <songSkeleton/>
+    </div>
   </div>
-</div>
 </div>
 </template>
 
@@ -40,8 +40,8 @@ export default
   name: 'playlistCarouselCardSkeleton',
   components: { songSkeleton },
   extends: playlistCardSkeleton
-
 }
+
 </script>
 
 <style scoped>
@@ -101,6 +101,5 @@ export default
     background-color: var(--main-background-color);
     border-top-right-radius: 10px;
 }
-
 
 </style>
