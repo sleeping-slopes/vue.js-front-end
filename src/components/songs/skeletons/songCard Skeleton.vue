@@ -14,10 +14,17 @@
 
 import skeleton from '@/components/skeleton.vue';
 
+
 export default
 {
-  name: 'songCardSkeleton',
-  components: { skeleton }
+  name: 'songSkeleton',
+  components: { skeleton },
+  props: { id: { default: "noid"} },
+  async created()
+  {
+    await this.$store.dispatch('loadSong',this.id);
+    this.$emit('loaded');
+  }
 }
 
 </script>

@@ -20,11 +20,17 @@
 
 import skeleton from '@/components/skeleton.vue';
 
-  export default
+export default
+{
+  name: 'songSkeleton',
+  components: { skeleton },
+  props: { id: { default: "noid"} },
+  async created()
   {
-    name: 'songExtendedSkeleton',
-    components: { skeleton }
+    await this.$store.dispatch('loadSong',this.id);
+    this.$emit('loaded');
   }
+}
 
 </script>
 

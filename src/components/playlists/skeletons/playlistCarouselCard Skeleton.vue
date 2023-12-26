@@ -12,12 +12,13 @@
 
 <script>
 
-import skeleton from '@/components/skeleton.vue';
+
+import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue';
 
 export default
 {
   name: 'playlistCarouselCardSkeleton',
-  components: { skeleton }
+  extends: playlistCardSkeleton
 }
 
 </script>
