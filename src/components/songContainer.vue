@@ -1,25 +1,15 @@
 <template>
-  <errorMessage  v-if="songs.length==0">
+  <errorMessage  v-if="this.playlist.error">
     <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
-    <template v-slot:message>No audio here yet</template>
+    <template v-slot:message>{{ this.playlist.error.message }}</template>
   </errorMessage>
   <ul class = "song-container" v-else>
-    <Suspense>
-      <template #default>
-        <li v-for="(song,index) in getShortList">
-          <component :is="dynamicComponent"
-            :id = "song.id"
-            :pos = "song.pos"
-            :key = "song.id"
-            @setCurrentSong="setCurrentPlaylistAndSong(index)"/>
-        </li>
-      </template>
-      <template #fallback>
-        <li v-for="(song) in getShortList">
-          <component :is="dynamicComponent+'Skeleton'"></component>
-        </li>
-      </template>
-    </Suspense>
+    <li v-for="(song,index) in getShortList">
+      <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
+      :id = "song.id" :pos = "song.pos" :key = "song.id"
+        @setCurrentSong="setCurrentPlaylistAndSong(index)"
+        @loaded="this.counter++"/>
+    </li>
   </ul>
 </template>
 
@@ -46,23 +36,28 @@ export default
   },
   props:
   {
-    id: { default: "noid"},
-    songs: {type: Array, default: []},
+    playlist: { default: {} },
     maxDisplay: {default:0},
     dynamicComponent: {default:"song"}
   },
-
+  data()
+  {
+    return {
+      counter:0
+    }
+  },
   methods:
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.songs}, songIndex: songIndex}));
+      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this.playlist, songIndex: songIndex}));
     }
   },
   computed:
   {
-    current() { return this.$store.state.currentPlaylist.id===this.id; },
-    getShortList() { return this.maxDisplay<1?this.songs:this.songs.slice(0,this.maxDisplay); }
+    current() { return this.$store.state.currentPlaylist.id===this.playlist.id; },
+    loaded() { return this.counter==this.playlist.songs.length },
+    getShortList() { return this.maxDisplay<1?this.playlist.songs:this.playlist.songs.slice(0,this.maxDisplay); }
   }
 }
 

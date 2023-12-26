@@ -36,7 +36,6 @@
 <script>
 
 import API from "@/axios/API.js"
-import store from "@/store";
 import { abbreviateNumber } from "@/functions.js"
 
 export default
@@ -45,10 +44,6 @@ export default
   props:
   {
     id: { default:"noid"},
-  },
-  async setup(props)
-  {
-    await store.dispatch('loadPlaylist',props.id);
   },
   data()
   {
@@ -84,10 +79,10 @@ export default
     },
     playPlaylist()
     {
-        if (this.playlist.songs.length>0)
+        if (this.playlist.songs.songs?.length>0)
         {
           if (!this.current)
-              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.playlist.songs}, songIndex: 0}));
+              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.playlist.songs.songs}, songIndex: 0}));
           else
           this.$store.dispatch('togglePlayingState');
         }

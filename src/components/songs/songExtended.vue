@@ -48,16 +48,11 @@
 <script>
 
 import song from "@/components/songs/song.vue"
-import store from '@/store';
 
 export default
 {
   name: 'songExtended',
-  extends: song,
-  async setup(props)
-  {
-    await store.dispatch('loadSong',props.id);
-  },
+  extends: song
 }
 
 </script>

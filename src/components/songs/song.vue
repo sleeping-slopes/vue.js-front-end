@@ -35,7 +35,6 @@
 
 import API from '@/axios/API';
 import { numberToTimeString,abbreviateNumber } from "@/functions.js"
-import store from '@/store';
 
 export default
 {
@@ -44,10 +43,6 @@ export default
   {
     id: { default: "noid"},
     pos: { type: Number, default: 0}
-  },
-  async setup(props)
-  {
-    await store.dispatch('loadSong',props.id);
   },
   data()
   {

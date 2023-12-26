@@ -43,14 +43,7 @@
         </div>
         <!-- <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/> -->
 
-        <Suspense>
-      <template #default>
         <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
-      </template>
-      <template #fallback>
-        <songSkeleton style="width:320px;"/>
-      </template>
-    </Suspense>
 
 
 
@@ -76,8 +69,7 @@
             </template>
             <template v-slot:content>
               <songContainer class="ul-list hidden-scroll"
-                :id="this.$store.state.currentPlaylist.id"
-                :songs="this.$store.state.currentPlaylist.songs"/>
+                :playlist="this.$store.state.currentPlaylist"/>
             </template>
           </panel>
         </div>

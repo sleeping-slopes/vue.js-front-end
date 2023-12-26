@@ -1,21 +1,13 @@
 <template>
-    <errorMessage  v-if="playlists.length==0">
-      <template v-slot:errorIcon><span class="bi bi-music-note-list"></span></template>
-      <template v-slot:message>No playlists here yet</template>
-    </errorMessage>
+  <errorMessage  v-if="this.playlists.error">
+    <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
+    <template v-slot:message>{{ this.playlist.error.message }}</template>
+  </errorMessage>
     <ul class="playlist-container" v-else>
-        <Suspense>
-          <template #default>
-            <li v-for="(playlist) in this.playlists">
-              <component :is="dynamicComponent" :id="playlist.id"/>
-            </li>
-          </template>
-          <template #fallback>
-            <li v-for="(playlist) in this.playlists">
-              <component :is="dynamicComponent+'Skeleton'"/>
-            </li>
-          </template>
-        </Suspense>
+      <li v-for="(playlist) in this.playlists">
+        <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
+        @loaded="this.counter++"/>
+      </li>
     </ul>
   </template>
 
@@ -33,7 +25,7 @@
 
   export default
   {
-    name: 'carousel',
+    name: 'playlistContainer',
     components:
     {
         playlistCard, playlistCarouselCard, playlistExpansible,
@@ -44,6 +36,16 @@
     {
       playlists: {type:Array,default:[]},
       dynamicComponent: {default:"playlistExpansible"}
+    },
+    data()
+    {
+      return {
+        counter:0
+      }
+    },
+    computed:
+    {
+      loaded() { return this.counter==this.playlists.length },
     }
   }
   </script>

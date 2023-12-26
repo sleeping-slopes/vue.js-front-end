@@ -36,16 +36,12 @@
 <script>
 
 import playlistCard from "@/components/playlists/playlistCard.vue"
-import store from "@/store";
+
 
 export default
 {
   name: 'playlistCarouselCard',
   extends: playlistCard,
-  async setup(props)
-  {
-    await store.dispatch('loadPlaylist',props.id);
-  },
 }
 
 </script>
