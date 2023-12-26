@@ -10,8 +10,7 @@
         <template v-slot:header>Songs liked by {{ this.user.username || this.login }}</template>
         <template v-slot:content>
           <songContainer class="ul-list hidden-scroll"
-          :id="userLikedSongs.id"
-          :songs="userLikedSongs.songs"
+          :playlist="userLikedSongs"
           :dynamicComponent="'songExtended'"
           />
         </template>
@@ -42,18 +41,14 @@
       {
         return{
           userLikedPlaylists:[],
-          userLikedSongs:
-          {
-            id:"[]"+this.login+" liked",
-            songs:[]
-          },
+          userLikedSongs: {},
           user:{},
         }
       },
       async created()
       {
         this.user = await API.get('users/'+this.login+'/username');
-        this.userLikedSongs.songs = await API.get('users/'+this.login+'/songs/liked');
+        this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
         this.userLikedPlaylists = await API.get('users/'+this.login+'/playlists/liked');
       },
     }

@@ -5,15 +5,14 @@
         <template v-slot:header>Playlists</template>
         <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
-          <playlistCarousel :playlists="playlists" :maxDisplay="20"/>
+          <playlistCarousel :playlists="this.playlists"/>
         </template>
       </panel>
       <panel style="height:100%;">
         <template v-slot:header>Songs</template>
         <template v-slot:content>
           <songContainer class="ul-list hidden-scroll"
-          :id="discoverPlaylist.id"
-          :songs="discoverPlaylist.songs"
+          :playlist="discoverPlaylist"
           :dynamicComponent="'songExtended'"
           />
         </template>
@@ -33,23 +32,19 @@ export default {
   name: 'DiscoverView',
   components:
   {
-    panel,playlistCarousel,songContainer
+    panel, playlistCarousel, songContainer
   },
   data()
   {
     return {
       playlists:[],
-      discoverPlaylist:
-      {
-        id:'[]discover',
-        songs:[]
-      },
+      discoverPlaylist: {},
     }
   },
   async created()
   {
     this.playlists = await API.get('playlists');
-    this.discoverPlaylist.songs = await API.get('songs');
+    this.discoverPlaylist = await API.get('songs');
   }
 }
 </script>

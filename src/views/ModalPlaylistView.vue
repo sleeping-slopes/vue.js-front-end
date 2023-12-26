@@ -55,8 +55,7 @@
       <hr/>
       <div style="max-height:635px">
         <songContainer class="ul-list hidden-scroll"
-          :id="this.id"
-          :songs="this.playlist.songs"/>
+        :playlist="this.playlist.songs"/>
       </div>
     </template>
   </modal>

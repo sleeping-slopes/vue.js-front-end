@@ -85,15 +85,13 @@
               </template>
             </panel>
             <panel>
-              <template v-slot:header>{{this.userLikedSongs.songs.length}} likes</template>
+              <template v-slot:header>{{this.userLikedSongs.songs?.length}} likes</template>
               <template v-slot:menu>
                 <router-link class="button-secondary h6" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
               </template>
               <template v-slot:content>
                 <songContainer class="ul-list hidden-scroll"
-                  :id="this.userLikedSongs.id"
-                  :songs="this.userLikedSongs.songs"
-                  :maxDisplay="3"
+                  :playlist="this.userLikedSongs"
                 />
               </template>
             </panel>
@@ -122,11 +120,7 @@ export default
   data()
   {
     return {
-      userLikedSongs:
-      {
-        id:"[]"+this.login+' liked',
-        songs:[]
-      },
+      userLikedSongs: {},
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
     }
@@ -134,7 +128,7 @@ export default
   async created()
   {
     this.user.links = await API.get('users/'+this.login+'/links');
-    this.userLikedSongs.songs = await API.get('users/'+this.login+'/songs/liked');
+    this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
   },
 }
   </script>

@@ -20,6 +20,10 @@ export default
   {
     playlistContainer
   },
+  props:
+  {
+    playlists:{default: []}
+  },
   data()
   {
     return {

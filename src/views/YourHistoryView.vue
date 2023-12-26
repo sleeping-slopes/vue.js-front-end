@@ -20,14 +20,12 @@
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
         <songContainer :class="'ul-list hidden-scroll'"
-          :id="playlist.id"
-          :songs="playlist.songs"
+          :playlist="playlist"
           :dynamicComponent="'songExtended'"/>
       </template>
     </panel>
     <songContainer :class="'ul-grid hidden-scroll'" v-else
-      :id="playlist.id"
-      :songs="playlist.songs"
+      :playlist="playlist"
       :dynamicComponent="'songCard'"/>
   </div>
 </template>

@@ -26,14 +26,12 @@
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
         <songContainer :class="'ul-list hidden-scroll'"
-          :id="playlist.id"
-          :songs="playlist.songs"
+          :playlist="playlist"
           :dynamicComponent="'songExtended'"/>
       </template>
     </panel>
     <songContainer :class="'ul-grid hidden-scroll'" v-else
-      :id="playlist.id"
-      :songs="playlist.songs"
+      :playlist="playlist"
       :dynamicComponent="'songCard'"/>
   </div>
 </template>
@@ -54,11 +52,7 @@ import API from '@/axios/API';
     data()
     {
       return {
-        playlist:
-        {
-          id:'[]RENAME',
-          songs:[],
-        },
+        playlist: {},
         currentViewStyle:1,
         selected:'All',
       }
@@ -75,9 +69,9 @@ import API from '@/axios/API';
         {
           switch (value)
           {
-            case "All": this.playlist.id="[]"+this.login+" all";this.playlist.songs = await API.get("users/"+this.login+"/songs"); break;
-            case "Created": this.playlist.id="[]"+this.login+" created";this.playlist.songs = await API.get("users/"+this.login+"/songs/created"); break;
-            case "Liked": this.playlist.id="[]"+this.login+" liked";this.playlist.songs = await API.get("users/"+this.login+"/songs/liked"); break;
+            case "All": this.playlist.id="[]"+this.login+" all"; this.playlist = await API.get("users/"+this.login+"/songs"); break;
+            case "Created": this.playlist.id="[]"+this.login+" created"; this.playlist = await API.get("users/"+this.login+"/songs/created"); break;
+            case "Liked": this.playlist.id="[]"+this.login+" liked"; this.playlist = await API.get("users/"+this.login+"/songs/liked"); break;
           }
         },
         immediate: true
