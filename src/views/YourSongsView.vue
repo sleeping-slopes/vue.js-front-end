@@ -69,9 +69,9 @@ import API from '@/axios/API';
         {
           switch (value)
           {
-            case "All": this.playlist.id="[]"+this.login+" all"; this.playlist = await API.get("users/"+this.login+"/songs"); break;
-            case "Created": this.playlist.id="[]"+this.login+" created"; this.playlist = await API.get("users/"+this.login+"/songs/created"); break;
-            case "Liked": this.playlist.id="[]"+this.login+" liked"; this.playlist = await API.get("users/"+this.login+"/songs/liked"); break;
+            case "All": this.playlist = await API.get("users/"+this.login+"/songs"); break;
+            case "Created": this.playlist = await API.get("users/"+this.login+"/songs/created"); break;
+            case "Liked": this.playlist = await API.get("users/"+this.login+"/songs/liked"); break;
           }
         },
         immediate: true

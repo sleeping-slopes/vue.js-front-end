@@ -1,7 +1,7 @@
 <template>
   <errorMessage  v-if="this.playlists.error">
     <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
-    <template v-slot:message>{{ this.playlist.error.message }}</template>
+    <template v-slot:message>{{ this.playlists.error.message }}</template>
   </errorMessage>
     <ul class="playlist-container" v-else>
       <li v-for="(playlist) in this.playlists">

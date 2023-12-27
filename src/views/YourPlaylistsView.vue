@@ -24,10 +24,10 @@
       </div>
     </div>
     <playlistContainer class="column" v-if="this.currentViewStyle==0"
-      :playlists="this.playlists" :dynamicComponent="'playlistExpansible'">
+      :playlists="this.playlists" :dynamicComponent="'playlistExpansible'" :key="{'selected':selected}">
     </playlistContainer>
     <playlistContainer class="ul-grid" v-else
-      :playlists="this.playlists" :dynamicComponent="'playlistCard'">
+      :playlists="this.playlists" :dynamicComponent="'playlistCard'"  :key="{'selected':selected}">
     </playlistContainer>
   </div>
 </template>
