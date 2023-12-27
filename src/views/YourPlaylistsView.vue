@@ -23,11 +23,8 @@
         </div>
       </div>
     </div>
-    <playlistContainer class="column" v-if="this.currentViewStyle==0"
-      :playlists="this.playlists" :dynamicComponent="'playlistExpansible'" :key="{'selected':selected}">
-    </playlistContainer>
-    <playlistContainer class="ul-grid" v-else
-      :playlists="this.playlists" :dynamicComponent="'playlistCard'"  :key="{'selected':selected}">
+    <playlistContainer v-bind:class="{'ul-grid': this.currentViewStyle==0,'column':this.currentViewStyle==1}"
+      :playlists="this.playlists" :dynamicComponent="this.currentViewStyle?'playlistExpansible':'playlistCard'">
     </playlistContainer>
   </div>
 </template>

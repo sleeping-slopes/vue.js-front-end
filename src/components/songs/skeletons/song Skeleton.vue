@@ -1,11 +1,9 @@
 <template>
   <div class = "song item">
-    <div class = "cover-wrapper s36x36">
-      <div class = "cover"/>
-    </div>
+    <div class = "cover-wrapper s36x36 shimmer"/>
     <div class= "info-wrapper">
-      <skeleton class="h5"/>
-      <skeleton class="h4"/>
+      <skeleton class="h5 shimmer"/>
+      <skeleton class="h4 shimmer"/>
     </div>
   </div>
 </template>

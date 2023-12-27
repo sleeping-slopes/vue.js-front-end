@@ -1,15 +1,13 @@
 <template>
 
 <div class = "song item">
-  <div class = "cover-wrapper s52x52">
-    <div class = "cover"/>
-  </div>
+  <div class = "cover-wrapper s52x52 shimmer"/>
   <div class= "info-wrapper">
-    <skeleton class="h5"/>
-    <skeleton class="h4"/>
+    <skeleton class="h5 shimmer"/>
+    <skeleton class="h4 shimmer"/>
     <div class="row">
-      <skeleton class="h6" :exactwidth="50"/>
-      <skeleton class="h6" :exactwidth="50"/>
+      <skeleton class="h6 shimmer" :exactwidth="50"/>
+      <skeleton class="h6 shimmer" :exactwidth="50"/>
     </div>
   </div>
 </div>

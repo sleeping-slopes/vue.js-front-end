@@ -2,10 +2,8 @@
 <div class = "playlist-expansible">
   <div style="display:flex;flex-direction: column;">
     <div class="left-column">
-      <div class="cover-wrapper s160x160">
-        <div class = "cover"/>
-      </div>
-      <skeleton class="button-secondary h6" style="margin:auto" :exactwidth="100"/>
+      <div class="cover-wrapper s160x160 shimmer"/>
+      <skeleton class="button-secondary h6 shimmer" style="margin:auto" :exactwidth="100"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
@@ -14,8 +12,8 @@
   <div class="right-column">
     <div style="display:flex;flex-direction: row; gap:10px; align-items: center;">
       <div class= "info-wrapper">
-        <skeleton class="h4"/>
-        <skeleton class="h3"/>
+        <skeleton class="h4 shimmer"/>
+        <skeleton class="h3 shimmer"/>
       </div>
     </div>
     <hr>

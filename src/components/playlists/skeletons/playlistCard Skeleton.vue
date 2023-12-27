@@ -1,11 +1,9 @@
 <template>
 <div class = "playlist card">
-  <div class="cover-wrapper s180x180">
-    <div class = "cover"></div>
-  </div>
+  <div class="cover-wrapper s180x180 shimmer"/>
   <div class= "info-wrapper">
-    <skeleton class="h5"/>
-    <skeleton class="h4"/>
+    <skeleton class="h5 shimmer"/>
+    <skeleton class="h4 shimmer"/>
   </div>
 </div>
 </template>
