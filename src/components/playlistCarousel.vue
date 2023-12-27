@@ -56,10 +56,6 @@ export default
       this.$refs.carousel.scroll(this.scrollPosition,0);
     }
   },
-  props:
-  {
-    playlists: {type:Array,default:[]},
-  }
 }
 </script>
 
