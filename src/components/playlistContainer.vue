@@ -5,8 +5,10 @@
   </errorMessage>
     <ul class="playlist-container" v-else>
       <li v-for="(playlist) in this.playlists">
-        <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
-        @loaded="this.counter++"/>
+        <Transition name="fade">
+          <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
+          @loaded="this.counter++"/>
+        </Transition>
       </li>
     </ul>
   </template>
@@ -34,7 +36,7 @@
     },
     props:
     {
-      playlists: {type:Array,default:[]},
+      playlists: { default: {} },
       dynamicComponent: {default:"playlistExpansible"}
     },
     data()
@@ -49,3 +51,10 @@
     }
   }
   </script>
+
+<style>
+.playlist-container
+{
+  position:relative;
+}
+</style>

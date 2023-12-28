@@ -56,21 +56,19 @@ export default
 .shimmer::before
 {
   content:'';
-  width:100%;
-  height:100%;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
   position:absolute;
   background-image: repeating-linear-gradient(45deg,
     rgba(0,0,0,0) 0px,
-    rgba(255,255,255,0.5) 10px,
-    rgba(0,0,0,0) 30px,
+    rgba(255,255,255,0.1) 10px,
+    rgba(0,0,0,0) 40px,
     rgba(0,0,0,0) 600px);
   background-attachment: fixed;
   background-size: 848px 848px;
-  animation-duration: 4s;
-  animation-fill-mode: forwards;
-  animation-iteration-count: infinite;
-  animation-name: shimmer;
-  animation-timing-function: linear;
+  animation: shimmer linear infinite 1s;
 }
 
 .shimmer

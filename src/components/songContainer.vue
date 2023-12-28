@@ -5,10 +5,12 @@
   </errorMessage>
   <ul class = "song-container" v-else>
     <li v-for="(song,index) in getShortList">
-      <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
-      :id = "song.id" :pos = "song.pos" :key = "song.id"
-        @setCurrentSong="setCurrentPlaylistAndSong(index)"
-        @loaded="this.counter++"/>
+      <Transition name="fade">
+        <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
+        :id = "song.id" :pos = "song.pos" :key = "song.id"
+          @setCurrentSong="setCurrentPlaylistAndSong(index)"
+          @loaded="this.counter++"/>
+      </Transition>
     </li>
   </ul>
 </template>
@@ -79,6 +81,21 @@ export default
 .song-container
 {
   overflow-y:scroll;
+  position:relative;
+}
+
+.fade-enter-active,
+.fade-leave-active
+{
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to
+{
+  position:absolute;
+  opacity: 0;
+  width:100%;
 }
 
 </style>

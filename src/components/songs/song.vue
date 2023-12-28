@@ -56,8 +56,7 @@ export default
     song(){ return this.$store.getters.getSong(this.id) },
     current()
     {
-        return this.$parent.current &&
-        this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
+        return this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
         && this.id === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].id;
     },
     isPlaying()
