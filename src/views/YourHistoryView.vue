@@ -34,7 +34,8 @@
   import panel from '@/components/containers/panel.vue';
   import songContainer from '@/components/songContainer.vue';
 
-  export default {
+  export default
+  {
     name: 'YourHistoryView',
     components:
     {
@@ -46,7 +47,8 @@
         playlist:
         {
           id:'[]RENAME',
-          songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory))
+          songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)),
+          ...(JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)).length<1) && {error:{"status":404,"message":"No HISTORY songs"}}
         },
         currentViewStyle:1,
       }
