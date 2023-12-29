@@ -177,6 +177,7 @@ nav
 {
   display:flex;
   align-items: center;
+  justify-content: center;
   background-color: var(--accent-color);
   color: var(--soft-white);
   height:30px;
@@ -202,6 +203,7 @@ nav
 {
   display:flex;
   align-items: center;
+  justify-content: center;
   color: var(--text-color-secondary);
   border: 1px solid var(--text-color-secondary);
   height:30px;

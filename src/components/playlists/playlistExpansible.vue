@@ -6,7 +6,7 @@
                     <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
                     <div class = "cover bi bi-music-note-list" v-else/>
                 </div>
-                <button class="button-secondary h6" style="margin:auto" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                <button class="button-secondary h6" style="margin:auto; width:90px" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                     <div class="icon-text">
                         <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
                     </div>

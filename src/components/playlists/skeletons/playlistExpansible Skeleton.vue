@@ -3,7 +3,7 @@
   <div style="display:flex;flex-direction: column;">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"/>
-      <skeleton class="button-secondary h6 shimmer" style="margin:auto" :exactwidth="100"/>
+      <skeleton class="button-secondary h6 shimmer" style="margin:auto" :exactwidth="90"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
