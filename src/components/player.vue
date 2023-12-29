@@ -41,13 +41,7 @@
             <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical" /> </template>
           </panel>
         </div>
-        <!-- <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/> -->
-
         <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
-
-
-
-
         <div class="popup-wrapper">
           <div class="player-menu">
             <button class="round-button small bi bi-suit-heart-fill"
@@ -69,7 +63,7 @@
             </template>
             <template v-slot:content>
               <songContainer class="ul-list hidden-scroll"
-                :playlist="this.$store.state.currentPlaylist"/>
+                :playlist="this.$store.state.currentPlaylist" :key="this.$store.state.currentPlaylist.id"/>
             </template>
           </panel>
         </div>
