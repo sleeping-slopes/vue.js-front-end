@@ -32,10 +32,14 @@
                 <span class="bi bi-suit-heart-fill"></span>
                 <span>{{abbreviateNumber(this.song.likes_count)}}</span>
             </router-link>
-            <router-link class="icon-text secondary-text hoverable h6" :to="'/song/'+this.id" @click.stop>
+            <button class="round-button icon-text secondary-text hoverable h6" v-on:click.stop="this.addToCurrentPlaylistNext()" style="border-radius: 0px; background-color:darkgrey">
                 <span class="bi bi-music-note-list"></span>
                 <span>Play next</span>
-            </router-link>
+            </button>
+            <button class="round-button icon-text secondary-text hoverable h6" v-on:click.stop="this.addToCurrentPlaylistEnd()" style="border-radius: 0px; background-color:darkgrey">
+                <span class="bi bi-music-note-list"></span>
+                <span>Add to current playlist</span>
+            </button>
             </div>
         </div>
         <div class="songMenu">

@@ -42,7 +42,7 @@ export default
   props:
   {
     id: { default: "noid"},
-    pos: { type: Number, default: 0}
+    pos: { type: Number, default: -1}
   },
   data()
   {
@@ -56,8 +56,9 @@ export default
     song(){ return this.$store.getters.getSong(this.id) },
     current()
     {
-        return this.pos === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
-        && this.id === this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].id;
+        return this.id == this.$store.getters.getCurrentSong && this.pos!=-1;
+        // this.pos == this.$store.state.currentPlaylist.songs[this.$store.state.currentSongIndex].pos
+        // parent?
     },
     isPlaying()
     {
@@ -95,6 +96,14 @@ export default
           this.song.liked=false;
         }
       }
+    },
+    addToCurrentPlaylistEnd()
+    {
+      this.$store.dispatch('addSongToCurrentPlaylistEnd',this.id);
+    },
+    addToCurrentPlaylistNext()
+    {
+      this.$store.dispatch('addSongToCurrentPlaylistNext',this.id);
     }
   }
 }

@@ -1,11 +1,11 @@
 <template>
   <audio ref="audio"
     @timeupdate="this.currentTime = $event.target.currentTime"
-    @ended="this.$store.dispatch('shiftCurrentSong',1)"
+    @ended="this.$store.dispatch('playNextSong')"
     :volume="volume"
     preload="none">
   </audio>
-  <div class="player-wrapper" v-if="this.currentSongID!=undefined">
+  <div class="player-wrapper" v-if="this.currentSongID!=null">
     <div style="background-color:var(--panel-background-color);width:100%;"></div>
     <div class="player">
       <div class="player-menu">
@@ -23,7 +23,9 @@
           v-bind:class="{'toggled':this.$store.state.shuffle}"
           v-on:click = "this.$store.dispatch('shuffle')">
         </button>
-        <button class="round-button small bi bi-repeat"></button>
+        <button class="round-button small" v-bind:class="{ 'bi bi-repeat': $store.state.repeatMode==0, 'bi bi-repeat toggled': $store.state.repeatMode==1,'bi bi-repeat-1 toggled': $store.state.repeatMode==2}"
+            v-on:click="this.$store.dispatch('toggleRepeatMode')">
+        </button>
       </div>
       <div class="player-slider">
         <span class="song-time h5"> {{ numberToTimeString(this.currentTime) }}</span>
@@ -33,7 +35,7 @@
       <div style="display:flex;gap: 20px;">
         <div class="popup-wrapper">
           <div class="player-menu">
-            <button class="round-button small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill' :volume<0.5,'bi-volume-mute-fill': volume==0}"
+            <button class="round-button small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill': volume>0 && volume<0.5,'bi-volume-mute-fill': volume==0}"
               v-on:click="this.showVolume=!this.showVolume">
             </button>
           </div>
@@ -56,14 +58,17 @@
           <panel class="popup current-playlist-popup" v-bind:class="this.showCurrentPlaylist?'visible':'hidden'">
             <template v-slot:header>Current playlist</template>
             <template v-slot:menu>
-              <button class="button-secondary h5">Clear</button>
+              <button class="button-secondary h5"
+                v-on:click="this.$store.dispatch('clearCurrentPlaylist')">
+                Clear
+              </button>
               <button class="panel-header-button h4 bi bi-x-lg"
                 v-on:click="this.showCurrentPlaylist=!this.showCurrentPlaylist">
               </button>
             </template>
             <template v-slot:content>
               <songContainer class="ul-list hidden-scroll"
-                :playlist="this.$store.state.currentPlaylist" :key="this.$store.state.currentPlaylist.id"/>
+                :playlist="this.$store.state.currentPlaylist" :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()"/>
             </template>
           </panel>
         </div>
@@ -94,7 +99,7 @@ export default
   data()
   {
     return {
-      currentSongID: undefined,
+      currentSongID: null,
       currentTime:0,
       showCurrentPlaylist:false,
       showVolume:false
@@ -103,7 +108,7 @@ export default
   async mounted()
   {
     this.currentSongID = this.$store.getters.getCurrentSong;
-    if (this.currentSongID!=undefined)
+    if (this.currentSongID!=null)
     {
 
       this.$refs.audio.src = API.defaults.baseURL+`songs/`+this.currentSongID+`/audio`;
@@ -120,10 +125,12 @@ export default
   },
   watch:
   {
-    '$store.getters.getCurrentPlaylistSongPos'(playlistSong)
+    '$store.getters.getCurrentPlaylistSongPos'(newPlaylistSong,oldPlaylistSong)
     {
+
+      if (newPlaylistSong.edited && oldPlaylistSong && (newPlaylistSong.edited != oldPlaylistSong.edited) ) return;
       this.currentSongID = this.$store.getters.getCurrentSong;
-      if (this.currentSongID!=undefined)
+      if (this.currentSongID!=null)
       {
         this.$refs.audio.src = API.defaults.baseURL+`songs/`+this.currentSongID+`/audio`;
       }
