@@ -1,6 +1,6 @@
 <template>
     <div class = "playlist-expansible" v-bind:class="{'expanded': this.expanded}">
-        <div style="display:flex;flex-direction: column;">
+        <div class="column" style="gap:0px; flex-shrink: 0;">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
                     <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="right-column">
-            <div style="display:flex;flex-direction: row; gap:10px; align-items: center;">
+            <div class="row" style = "gap:10px; align-items: center; flex-shrink: 0;">
                 <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
                 <div class= "info-wrapper">
                     <div class ="h4 secondary-text text-overflow">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <hr>
-            <songContainer class="ul-list" style="overflow-y:auto"
+            <songContainer class="ul-list"
             :playlist="this.playlist.songs"
             :dynamicComponent="'song'"/>
             <div v-if="this.playlist.songs.songs?.length>4">
@@ -92,6 +92,7 @@ export default
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: var(--panel-background-color);
+
 }
 
 .right-column

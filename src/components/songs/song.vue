@@ -27,7 +27,7 @@
     <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
     <button id = "deleteSongButton" class="round-button tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
   </div>
-  <div class = "song-duration h5" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
+  <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
 </div>
 </template>
 
@@ -172,7 +172,6 @@ div:not(.song-container) > .song .cover-menu
 .artistlink
 {
   text-decoration: none;
-  overflow:hidden;
   color:inherit;
 }
 

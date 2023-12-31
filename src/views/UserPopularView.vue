@@ -1,5 +1,5 @@
 <template>
-  <panel style="height:max-content;flex-shrink:0;">
+  <panel>
       <template v-slot:header>Popular playlists by {{ this.user.username || this.login }}</template>
       <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
       <template v-slot:content>

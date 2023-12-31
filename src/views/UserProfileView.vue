@@ -4,8 +4,8 @@
     <template v-slot:status>{{ this.user.error.status }}</template>
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
-  <div class="scr" v-else>
-    <div class="user-banner-wrapper">
+  <template v-else>
+    <div class="user-banner-wrapper banner">
       <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
       <div class = "user-banner-background gradient-bg-reverse" v-else/>
       <div class="user-banner">
@@ -25,7 +25,7 @@
       </div>
     </div>
     </div>
-    <div class="main">
+    <div class="content">
       <div class="column">
         <nav class="navtab">
           <div class="nav-menu">
@@ -36,7 +36,6 @@
             <router-link class="tablink h3" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
           </div>
           <div class="nav-menu" style="margin-left:auto">
-
             <button class="button-secondary h6" v-if="this.user.me">Edit</button>
             <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow</span>
@@ -50,12 +49,13 @@
             <button class="button-primary h6" v-if="!this.user.me">Message</button>
           </div>
         </nav>
+
         <div class="row">
-          <div class="column" style="width:100%;">
+          <div class="column" style="width:100%">
             <router-view></router-view>
           </div>
-          <div class="column" style="width:360px;flex-shrink:0;">
-            <panel style="flex-shrink: 0;">
+          <div class="column" style="width:360px; flex-shrink: 0;">
+            <panel>
               <template v-slot:content>
                 <div class="user-stats">
                   <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
@@ -99,7 +99,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </template>
   </template>
 
   <script>

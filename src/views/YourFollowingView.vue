@@ -1,8 +1,8 @@
 <template>
     <div class="column">
-        <div style="display:flex; justify-content: space-between; align-items: center;">
+        <div class="row" style="align-items: center;">
             <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
-            <div class="wrapper-search h4">
+            <div class="wrapper-search h4" style="margin-left:auto;">
                 <div class="search-panel">
                     <input class="search" type="text" placeholder="Filter" autocomplete="off">
                     <i class="fa fa-search"></i>

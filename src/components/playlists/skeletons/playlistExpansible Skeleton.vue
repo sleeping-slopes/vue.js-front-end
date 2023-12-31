@@ -1,6 +1,6 @@
 <template>
 <div class = "playlist-expansible">
-  <div style="display:flex;flex-direction: column;">
+  <div class="column" style="gap:0px; flex-shrink: 0;">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"/>
       <skeleton class="button-secondary h6 shimmer" style="margin:auto" :exactwidth="90"/>
@@ -10,14 +10,14 @@
     </div>
   </div>
   <div class="right-column">
-    <div style="display:flex;flex-direction: row; gap:10px; align-items: center;">
+    <div class="row" style = "gap:10px; align-items: center; flex-shrink: 0;">
       <div class= "info-wrapper">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>
       </div>
     </div>
     <hr>
-    <div class="ul-list" style="overflow-y:auto">
+    <div class="ul-list">
       <songSkeleton/>
       <songSkeleton/>
       <songSkeleton/>

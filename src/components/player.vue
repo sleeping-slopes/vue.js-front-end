@@ -222,7 +222,6 @@ export default
   padding: 3px 10px 3px 10px;
   box-sizing: border-box;
   background-color:var(--panel-background-color);
-
 }
 
 .player-menu

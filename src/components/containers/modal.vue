@@ -1,6 +1,6 @@
 <template>
 <teleport to=".app">
-    <div class="modal-shade" style="background-color:rgba(0,0,0,0.5)">
+    <div class="modal-shade">
         <div class="modal">
             <panel :style="'width:'+this.width+';height:'+this.height+';'">
                 <template v-slot:content>

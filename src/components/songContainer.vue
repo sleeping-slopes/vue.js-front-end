@@ -80,8 +80,7 @@ export default
 
 .song-container
 {
-  overflow-y:scroll;
-  position:relative;
+  overflow-y:auto;
 }
 
 .fade-enter-active,

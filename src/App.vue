@@ -4,11 +4,10 @@
     <ModalPlaylistView v-if="this.$route.query.playlist" :id="this.$route.query.playlist"></ModalPlaylistView>
     <ModalLogInView v-if="this.$route.query.action=='login'"></ModalLogInView>
     <ModalSignUpView v-if="this.$route.query.action=='signup'"></ModalSignUpView>
-      <navbar/>
-
-      <!-- <main style="overflow:scroll; display:flex;"> -->
-        <router-view :key="this.$route.params.login"/>
-      <!-- </main> -->
+    <navbar/>
+    <main>
+      <router-view :key="this.$route.params.login"/>
+    </main>
     <player/>
   </div>
 </template>
@@ -34,6 +33,31 @@ export default
 </script>
 
 <style>
+
+main
+{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height:100%;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  width: 100%;
+  align-items: center;
+  padding-left: 16px;
+  box-sizing: border-box;
+}
+
+main > .banner
+{
+  width:1240px;
+}
+
+main > .content
+{
+  width:1180px;
+  padding: 5px 0px 5px 0px;
+}
 
 input[type=range][orient=vertical] {
     appearance: slider-vertical;
@@ -112,53 +136,20 @@ a
   text-decoration: none;
 }
 
-.scr
-{
-  overflow-y:auto;
-  width:100%;
-  height:100%;
-}
-
-.scr
-{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scr::-webkit-scrollbar
-{
-  display: none;
-}
-
-.main
-{
-  padding:10px 0px 10px 0px;
-  gap:20px;
-  width:1180px;
-  display:flex;
-  flex-direction: column;
-  margin-left:auto;
-  margin-right:auto;
-  overflow:hidden;
-  z-index:1;
-}
-
 .row
 {
   display:flex;
   flex-direction:row;
-  overflow:hidden;
   gap:10px;
-  height:100%;
+  overflow:hidden;
 }
 
 .column
 {
   display:flex;
   flex-direction:column;
-  overflow:hidden;
   gap:10px;
-  width:100%;
+  overflow:hidden;
 }
 
 .display-none
@@ -375,11 +366,14 @@ nav
   color: var(--accent-color);
 }
 
-.fixed-top
+.sticky-top
 {
-	display:flex;
-	gap: 20px;
-	padding-top:10px;
+  background-color: var(--main-background-color);
+  position:sticky;
+  position: -webkit-sticky;
+  top:0px;
+  padding-top:20px;
+  width:100%;
 }
 
 .label
