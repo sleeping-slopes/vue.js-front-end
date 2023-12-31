@@ -51,7 +51,57 @@ main
 main > .banner
 {
   width:1240px;
+  display:flex;
+  gap:20px;
+  padding:20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+  overflow:hidden;
+  z-index: 1;
 }
+
+.banner-bg
+{
+  top:0px;
+  left:0px;
+  right:0px;
+  bottom:0px;
+  width:100%;
+  height:100%;
+  position:absolute;
+  z-index:-1;
+  padding:0px;
+  object-fit: cover;
+}
+
+.banner-info-wrapper
+{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.banner-info-primary, .banner-info-secondary
+{
+  background-color:rgb(0,0,0,0.8);
+  padding:5px;
+  width:fit-content;
+  display:flex;
+}
+
+.banner-info-primary
+{
+  color:var(--soft-white);
+}
+
+.banner-info-secondary
+{
+  color:var(--light-gray);
+}
+
+
 
 main > .content
 {
@@ -370,6 +420,7 @@ nav
 {
   background-color: var(--main-background-color);
   position:sticky;
+  z-index:1;
   position: -webkit-sticky;
   top:0px;
   padding-top:20px;
@@ -482,6 +533,74 @@ option:checked
 {
   background-color: var(--accent-color);
   color:var(--soft-white);
+}
+
+.wrapper-search
+  {
+    display:inline-flex;
+    height:100%;
+  }
+
+  .wrapper-search i
+  {
+    padding-left: 12px;
+    padding-right: 6px;
+    color: var(--light-gray);
+    transition: color 0.2s;
+  }
+
+  .search-panel
+  {
+    height:32px;
+    background-color: var(--soft-white);
+    border-radius: 8px;
+    overflow:hidden;
+    width:300px;
+    min-width:200px;
+    max-width:400px;
+    white-space: nowrap;
+    margin:auto;
+    display:flex;
+    justify-content:left;
+    flex-direction: row-reverse;
+    align-items: center;
+    border: 2px solid var(--panel-border-color);
+    box-sizing: border-box;
+  }
+
+  ::placeholder
+  {
+    color: var(--light-gray);
+  }
+
+  .search
+  {
+    height:100%;
+    width:100%;
+    background-color: transparent;
+    color: var(--dark-gray);
+    border-style:none;
+  }
+
+  .search:focus
+  {
+    outline-color: transparent;
+  }
+
+  .search:not(:placeholder-shown) + i
+  {
+    color: var(--dark-gray);
+  }
+
+  .hidden-scroll
+{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hidden-scroll::-webkit-scrollbar
+{
+    display: none;
 }
 
 </style>

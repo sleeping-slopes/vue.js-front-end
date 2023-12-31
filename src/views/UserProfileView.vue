@@ -5,25 +5,23 @@
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
   <template v-else>
-    <div class="user-banner-wrapper banner">
-      <img class="user-banner-background" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
-      <div class = "user-banner-background gradient-bg-reverse" v-else/>
-      <div class="user-banner">
-        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
-        <div class = "user-image s200x200 gradient-bg" v-else/>
-        <div class="user-banner-info">
-          <h2 class="user-banner-name icon-text" v-if="this.user.username || this.user.login">
-            <span>{{ this.user.username || this.user.login }}</span>
-            <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
-          </h2>
-          <h3 class="user-banner-status" v-if="this.user.status">
-            {{ this.user.status }}
-          </h3>
-          <h3 class="user-banner-status" v-if="this.user.city || this.user.country">
-            {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
-          </h3>
+    <div class="banner" style="position:relative">
+      <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
+      <div class = "banner-bg gradient-bg-reverse" v-else/>
+      <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
+      <div class = "user-image s200x200 gradient-bg" v-else/>
+      <div class="banner-info-wrapper">
+        <h2 class="banner-info-primary" style="gap:10px" v-if="this.user.username || this.user.login">
+          <span>{{ this.user.username || this.user.login }}</span>
+          <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
+        </h2>
+        <h3 class="banner-info-secondary" v-if="this.user.status">
+          {{ this.user.status }}
+        </h3>
+        <h3 class="banner-info-secondary" v-if="this.user.city || this.user.country">
+          {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
+        </h3>
       </div>
-    </div>
     </div>
     <div class="content">
       <div class="column">
@@ -134,61 +132,6 @@ export default
   </script>
 
   <style scoped>
-
-.user-banner-wrapper
-{
-  width:1240px;
-  height:260px;
-  flex-shrink:0;
-  position:relative;
-  overflow:hidden;
-  margin-left:auto;
-  margin-right:auto;
-  border-bottom-left-radius:10px;
-  border-bottom-right-radius:10px;
-}
-
-.user-banner-background
-{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit: cover;
-}
-
-.user-banner
-{
-  position:absolute;
-  display:flex;
-  gap:20px;
-  padding:30px;
-  box-sizing:border-box;
-}
-
-.user-banner-info
-{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.user-banner-info h2, .user-banner-info h3
-{
-  background-color:rgb(0,0,0,0.8);
-  padding:5px;
-  width:fit-content;
-}
-
-.user-banner-name
-{
-  color:var(--soft-white);
-  gap:10px;
-}
-
-.user-banner-status
-{
-  color:var(--light-gray);
-}
 
 .user-stats
 {
