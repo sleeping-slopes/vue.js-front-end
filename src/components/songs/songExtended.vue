@@ -28,35 +28,52 @@
             </div>
             <span class ="h4 primary-text text-overflow">{{this.song.name}}</span>
             <div class="row">
-            <router-link class="icon-text secondary-text hoverable h6" :to="'/song/'+this.id" @click.stop>
-                <span class="bi bi-suit-heart-fill"></span>
-                <span>{{abbreviateNumber(this.song.likes_count)}}</span>
-            </router-link>
-            <button class="round-button icon-text secondary-text hoverable h6" v-on:click.stop="this.addToCurrentPlaylistNext()" style="border-radius: 0px; background-color:darkgrey">
-                <span class="bi bi-music-note-list"></span>
-                <span>Play next</span>
-            </button>
-            <button class="round-button icon-text secondary-text hoverable h6" v-on:click.stop="this.addToCurrentPlaylistEnd()" style="border-radius: 0px; background-color:darkgrey">
-                <span class="bi bi-music-note-list"></span>
-                <span>Add to current playlist</span>
-            </button>
+                <span class="icon-text secondary-text h6">
+                    <span class="bi bi-play-fill"></span>
+                    <span>{{abbreviateNumber(53252)}}</span>
+                </span>
+                <router-link class="icon-text secondary-text hoverable h6" :to="'/song/'+this.id" @click.stop>
+                    <span class="bi bi-suit-heart-fill"></span>
+                    <span>{{abbreviateNumber(this.song.likes_count)}}</span>
+                </router-link>
             </div>
         </div>
         <div class="songMenu">
+            <dropdown>
+                <template v-slot:label class="bi bi-suit-heart-fill">
+                    <button class="button-secondary bi bi-three-dots tiny" style="height:auto;padding:5px;"></button>
+                    </template>
+                <template v-slot:dropdown>
+                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistNext()">
+                        <span class="bi bi-music-note-list"></span>
+                        <span>Play next</span>
+                    </button>
+                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistEnd()">
+                        <span class="bi bi-music-note-list"></span>
+                        <span>Add to current playlist</span>
+                    </button>
+                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistEnd()">
+                        <span class="bi bi-link"></span>
+                        <span>Copy link</span>
+                    </button>
+                </template>
+            </dropdown>
             <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
             <button id = "deleteSongButton" class="round-button tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
-        <div class = "song-duration h5" style="float:right;">{{ numberToTimeString(this.song.duration) }}</div>
+        <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
   </template>
 <script>
 
 import song from "@/components/songs/song.vue"
+import dropdown from "../containers/dropdown.vue";
 
 export default
 {
   name: 'songExtended',
-  extends: song
+  extends: song,
+  components: { dropdown }
 }
 
 </script>
