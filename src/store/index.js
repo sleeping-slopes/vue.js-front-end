@@ -133,6 +133,8 @@ export default createStore({
     {
       state.authJWT=null;
       state.loggedIn=false;
+      // state.songs={}; //memory leak
+      // state.playlsts={}; //memory leak
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
     },
     togglePlayingState(state)
