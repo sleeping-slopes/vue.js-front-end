@@ -52,9 +52,12 @@
   }
   </script>
 
-<style>
+<style scoped>
+
 .playlist-container
 {
   position:relative;
+  overflow:hidden;
 }
+
 </style>

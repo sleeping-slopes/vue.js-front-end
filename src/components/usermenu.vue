@@ -10,8 +10,8 @@
       @click="this.show=!this.show"
       v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
     >
-      <img class = "user-image s44x44" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
-      <div class = "user-image s44x44 bi bi-person-fill" v-else/>
+      <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
+      <div class = "user-image s36x36 bi bi-person-fill" v-else/>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
@@ -106,7 +106,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .usermenu
 {

@@ -85,4 +85,18 @@ export default
   100% { background-position: -848px 0px; }
 }
 
+.fade-enter-active,
+.fade-leave-active
+{
+  transition: opacity 0.1s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to
+{
+  position:absolute;
+  opacity: 0;
+  width:100%;
+}
+
 </style>

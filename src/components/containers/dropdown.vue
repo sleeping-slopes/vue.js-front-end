@@ -44,7 +44,7 @@ methods:
 
 </script>
 
-<style>
+<style scoped>
 
 .my-dropdown
 {
@@ -68,7 +68,7 @@ methods:
 
 .dropdown-menu
 {
-    z-index: 3333;
+    z-index: 999;
     display:flex;
     flex-direction: column;
 }

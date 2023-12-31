@@ -65,36 +65,11 @@ export default
 
 </script>
 
-<style>
-
-.hidden-scroll
-{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hidden-scroll::-webkit-scrollbar
-{
-    display: none;
-}
+<style scoped>
 
 .song-container
 {
   overflow-y:auto;
-}
-
-.fade-enter-active,
-.fade-leave-active
-{
-  transition: opacity 0.1s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to
-{
-  position:absolute;
-  opacity: 0;
-  width:100%;
 }
 
 </style>
