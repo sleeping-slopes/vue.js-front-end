@@ -5,20 +5,9 @@
     <template v-slot:message>{{ this.song.error.message }}</template>
 </errorMessage>
 <template v-else>
-    <div class="banner">
-        <div class="column" style="overflow:visible">
-            <div class="sticky-top">
-                <div class="column">
-                    <songLarge :id="this.id"></songLarge>
-                    <nav class="navtab">
-                        <div class="nav-menu">
-                            <router-link class="tablink h3" :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link>
-                            <router-link class="tablink h3" :to="{ name: 'SongPlaylists', params: { id: this.id }}">In playlists</router-link>
-                            <router-link class="tablink h3" :to="{ name: 'SongRelated', params: { id: this.id }}">Related songs</router-link>
-                        </div>
-                    </nav>
-                </div>
-            </div>
+    <songLarge :id="this.id" />
+    <div class="content">
+        <div class="column">
             <panel>
                     <template v-slot:header>Related</template>
                     <template v-slot:menu>

@@ -1,31 +1,36 @@
-
 <template>
-
-    <div class="row">
-        <div class = "cover-wrapper s128x128" >
+    <div class="banner sticky-top">
+        <div class="banner-bg gradient-bg-reverse"/>
+        <div class = "cover-wrapper s200x200" >
             <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
             <div class = "cover bi bi-music-note" v-else/>
         </div>
         <div class="column">
-            <div class="info-wrapper">
-                <div class ="h3 secondary-text text-overflow">
-                    <template v-for="(artist,index) in this.song.artists">
-                        <router-link class="artistlink" v-if="artist.login"
-                            :to="'/id/'+artist.login"
-                            @click.stop>
-                            {{artist.name}}
-                        </router-link>
-                        <span v-else>{{artist.name}}</span>
-                        <span v-if="index+1 < this.song.artists.length">, </span>
-                    </template>
+            <div class="row">
+                <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+                <div class="banner-info-wrapper">
+                    <h3 class="banner-info-secondary">
+                        <template v-for="(artist,index) in this.song.artists">
+                            <router-link class="artistlink" v-if="artist.login"
+                                :to="'/id/'+artist.login"
+                                @click.stop>
+                                {{artist.name}}
+                            </router-link>
+                            <span v-else>{{artist.name}}</span>
+                            <span v-if="index+1 < this.song.artists.length">, </span>
+                        </template>
+                    </h3>
+                    <h2 class="banner-info-primary">
+                        <span>{{ this.song.name }}</span>
+                    </h2>
                 </div>
-                <h2 class ="primary-text">{{this.song.name}}</h2>
             </div>
-            <div class="row" style="height:min-content">    <button class="button-secondary">Like</button>
-                <button class="button-secondary">Copy link</button>
-                <button class="button-secondary">Add to playlist</button>
-                <button class="button-secondary">Play next</button>
-                <button class="button-secondary">Download</button>
+            <div class="row" style="margin-top:auto">
+                <button class="button-secondary h5">Like</button>
+                <button class="button-secondary h5">Copy link</button>
+                <button class="button-secondary h5">Add to playlist</button>
+                <button class="button-secondary h5">Play next</button>
+                <button class="button-secondary h5">Download</button>
             </div>
         </div>
     </div>
