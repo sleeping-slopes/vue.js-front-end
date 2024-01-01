@@ -1,20 +1,40 @@
 <template>
+  <header class="header-wrapper" v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <nav>
+      <div class="nav-mainmenu">
+        <router-link class="logo" to="/discover">
+          <img src="@/assets/images/logo.png" class = "logo" v-on:click="this.$store.dispatch('toggleTheme')">
+        </router-link>
+        <router-link class="navlink h4" to="/discover">Discover</router-link>
+        <router-link class="navlink h4" to="/feed">Feed</router-link>
+        <router-link class="navlink h4" to="/you">Library</router-link>
+      </div>
+      <div class="wrapper-search h4">
+        <div class="search-panel">
+          <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
+          <i class="fa fa-search"></i>
+        </div>
+      </div>
+      <usermenu style="margin-left:auto"/>
+    </nav>
+  </header>
+  <main v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <router-view :key="this.$route.params.login"/>
+  </main>
+  <footer style = "width:100%; z-index:1;" v-bind:class="{'dark': this.$store.state.darkTheme}"><player/> </footer>
 
-  <div class="app" v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <ModalPlaylistView v-if="this.$route.query.playlist" :id="this.$route.query.playlist"></ModalPlaylistView>
-    <ModalLogInView v-if="this.$route.query.action=='login'"></ModalLogInView>
-    <ModalSignUpView v-if="this.$route.query.action=='signup'"></ModalSignUpView>
-    <navbar/>
-    <main>
-      <router-view :key="this.$route.params.login"/>
-    </main>
-    <player/>
+  <div v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <ModalPlaylistView  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
+    <ModalLogInView  v-if="this.$route.query.action=='login'"/>
+    <ModalSignUpView  v-if="this.$route.query.action=='signup'"/>
   </div>
+
 </template>
 
 <script>
 
-import navbar from "@/components/navbar.vue"
+
+import usermenu from "@/components/usermenu.vue"
 import player from "@/components/player.vue"
 
 import ModalPlaylistView from "@/views/ModalPlaylistView.vue";
@@ -26,7 +46,7 @@ export default
   name: 'app',
   components:
   {
-    navbar, player, ModalPlaylistView, ModalLogInView, ModalSignUpView
+    usermenu, player, ModalPlaylistView, ModalLogInView, ModalSignUpView
   }
 }
 
