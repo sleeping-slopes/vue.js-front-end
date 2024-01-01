@@ -1,6 +1,5 @@
 <template>
-<div class="content" style="padding-top:0px;">
-  <div class="column" style="overflow:visible">
+<div class="content column" style="padding-top:0px; overflow:visible">
     <div class="sticky-top">
       <div class="column">
         <div class="row">
@@ -25,7 +24,6 @@
       <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
       <template v-slot:message>No one is following {{ this.user.username || this.login }} yet</template>
     </errorMessage>
-  </div>
 </div>
 </template>
 

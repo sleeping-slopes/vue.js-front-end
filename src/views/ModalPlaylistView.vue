@@ -33,11 +33,11 @@
               <span v-if="index+1 < this.playlist.artists.length">, </span>
             </template>
           </div>
-            <div class="h4 secondary-text text-overflow">
+            <span class="h4 secondary-text text-overflow">
               {{ abbreviateNumber(this.playlist.songs.length) }} song{{ this.playlist.songs.length!=1?'s':'' }}
               <span class="bi bi-dot"></span>
               {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
-            </div>
+            </span>
             <div class="playlist-button-row">
             <button class="button-secondary h5" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
               <div class="icon-text">
@@ -53,10 +53,10 @@
         </div>
       </div>
       <hr/>
-      <div style="max-height:635px">
+
         <songContainer class="ul-list hidden-scroll"
         :playlist="this.playlist.songs"/>
-      </div>
+
     </template>
   </modal>
 </template>

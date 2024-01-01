@@ -1,23 +1,21 @@
 <template>
-  <div class="content">
-    <div class="column">
-      <panel>
-        <template v-slot:header>Playlists</template>
-        <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
-        <template v-slot:content>
-          <playlistCarousel :playlists="this.playlists"/>
-        </template>
-      </panel>
-      <panel>
-        <template v-slot:header>Songs</template>
-        <template v-slot:content>
-          <songContainer class="ul-list hidden-scroll"
-          :playlist="discoverPlaylist"
-          :dynamicComponent="'songExtended'"
-          />
-        </template>
-      </panel>
-    </div>
+  <div class="content column">
+    <panel>
+      <template v-slot:header>Playlists</template>
+      <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
+      <template v-slot:content>
+        <playlistCarousel :playlists="this.playlists"/>
+      </template>
+    </panel>
+    <panel>
+      <template v-slot:header>Songs</template>
+      <template v-slot:content>
+        <songContainer class="ul-list hidden-scroll"
+        :playlist="playlist"
+        :dynamicComponent="'songExtended'"
+        />
+      </template>
+    </panel>
   </div>
 </template>
 
@@ -38,13 +36,13 @@ export default {
   {
     return {
       playlists:[],
-      discoverPlaylist: {},
+      playlist: {},
     }
   },
   async created()
   {
     this.playlists = await API.get('playlists');
-    this.discoverPlaylist = await API.get('songs');
+    this.playlist = await API.get('songs');
   }
 }
 </script>

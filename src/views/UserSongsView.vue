@@ -3,7 +3,7 @@
     <template v-slot:header>Songs by {{ this.user.username || this.login }}</template>
     <template v-slot:content>
       <songContainer class="ul-list hidden-scroll"
-        :playlist="this.userSongs"
+        :playlist="this.playlist"
         :dynamicComponent="'songExtended'"
       />
     </template>
@@ -33,14 +33,14 @@ import API from '@/axios/API';
     data()
     {
       return{
-        userSongs: {},
+        playlist: {},
         user:{}
       }
     },
     async created()
     {
       this.user = await API.get('users/'+this.login+'/username');
-      this.userSongs = await API.get('users/'+this.login+'/songs/created');
+      this.playlist = await API.get('users/'+this.login+'/songs/created');
     },
   }
   </script>

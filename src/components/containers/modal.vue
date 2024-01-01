@@ -1,16 +1,14 @@
 <template>
-<teleport to=".app">
-    <div class="modal-shade">
-        <div class="modal">
-            <panel :style="'width:'+this.width+';height:'+this.height+';'">
-                <template v-slot:content>
-                    <slot name="content"></slot>
-                </template>
-            </panel>
-            <button class="bi bi-x modal-close-button" v-on:click="$router.replace({query:null})"/>
-        </div>
+  <div class="modal-shade">
+    <div class="modal">
+      <panel :style="'width:'+this.width+';height:'+this.height+';'">
+        <template v-slot:content>
+          <slot name="content"></slot>
+        </template>
+      </panel>
+      <button class="bi bi-x modal-close-button" v-on:click="$router.replace({query:null})"/>
     </div>
-</teleport>
+  </div>
 </template>
 
   <script>

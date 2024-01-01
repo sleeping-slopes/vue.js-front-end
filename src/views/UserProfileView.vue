@@ -23,8 +23,7 @@
         </h3>
       </div>
     </div>
-    <div class="content">
-      <div class="column">
+    <div class="content column">
         <nav class="navtab">
           <div class="nav-menu">
             <router-link class="tablink h3" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
@@ -95,7 +94,6 @@
             </panel>
           </div>
         </div>
-      </div>
     </div>
   </template>
   </template>

@@ -5,11 +5,10 @@
   <template v-slot:message>{{ this.song.error.message }}</template>
 </errorMessage>
 
-<div class="content" style="padding-top:0px;" v-else>
-  <div class="column" style="overflow:visible">
+<div class="content column" style="padding-top:0px; overflow:visible" v-else>
     <div class="sticky-top">
       <div class="column">
-        <songLarge :id="this.id"></songLarge>
+        <songBanner :id="this.id"></songBanner>
         <nav class="navtab">
           <div class="nav-menu">
             <router-link class="tablink h3" :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link>
@@ -20,19 +19,18 @@
       </div>
     </div>
     <router-view></router-view>
-  </div>
 </div>
 </template>
 
 <script>
 
 import API from "@/axios/API";
-  import songLarge from "@/components/songs/songLarge.vue";
+  import songBanner from "@/components/songs/songBanner.vue";
   import errorMessage from "@/components/containers/errorMessage.vue";
 
     export default {
       name: 'SongView',
-      components:{songLarge,errorMessage},
+      components:{songBanner,errorMessage},
       props:
       {
         id: { default: "noid" },
@@ -42,10 +40,6 @@ import API from "@/axios/API";
         return {
           song:{},
         }
-      },
-      async created()
-      {
-        this.songs = await API.get('songs/'+this.id);
       }
     }
     </script>

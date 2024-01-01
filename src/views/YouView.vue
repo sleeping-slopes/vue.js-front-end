@@ -1,6 +1,5 @@
 <template>
-<div class="content">
-  <div class="column">
+<div class="content column">
     <nav class="navtab" style="margin:20px 0px 20px 0px;">
       <div class="nav-menu">
         <router-link class="tablink h3" :to="{ name: 'YourSongs'}">Songs</router-link>
@@ -10,7 +9,6 @@
       </div>
     </nav>
     <router-view :login="login" :key="login"></router-view>
-  </div>
 </div>
 </template>
 
