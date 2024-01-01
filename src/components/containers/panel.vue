@@ -23,7 +23,7 @@ export default
 
 </script>
 
-<style>
+<style scoped>
 
 .panel
 {
@@ -56,21 +56,6 @@ export default
   align-items: center;
   gap:20px;
 }
-
-.panel-header-button
-{
-  height:100%;
-  display:flex;
-  align-items: center;
-  color: var(--text-color-primary);
-  border: none;
-  background-color: transparent;
-  text-decoration: none;
-  cursor:pointer;
-  padding:5px 5px 5px 5px;
-  box-sizing: border-box;
-}
-
 .panel-content
 {
   display:flex;

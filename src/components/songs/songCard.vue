@@ -40,17 +40,3 @@ export default
 }
 
 </script>
-
-<style>
-
-.card .cover-wrapper:hover .shade
-{
-    opacity:0.5;
-}
-
-.card .cover-wrapper:hover .cover-menu
-{
-    opacity:1.0;
-}
-
-</style>

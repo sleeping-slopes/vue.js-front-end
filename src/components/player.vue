@@ -207,7 +207,7 @@ export default
   display:flex;
   justify-content: center;
   border-top:2px solid var(--panel-border-color);
-  z-index:1;
+
   margin-top:auto;
 }
 

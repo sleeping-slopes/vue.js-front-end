@@ -72,4 +72,37 @@ export default
   overflow-y:auto;
 }
 
+.song-container .song.item:hover,
+.song-container .song.item.active
+{
+  background-color:var(--selected-item-background-color);
+}
+
+.song-container .song:hover .shade,
+.song-container .song.active .shade
+{
+  opacity:0.5;
+}
+
+.song-container .song:hover .cover-menu,
+.song-container .song.card.active .cover-menu
+{
+  opacity:1.0;
+}
+
+.card .cover-wrapper:hover .shade
+{
+    opacity:0.5;
+}
+
+.card .cover-wrapper:hover .cover-menu
+{
+    opacity:1.0;
+}
+
+div:not(.song-container) > .song .cover-menu
+{
+  display:none;
+}
+
 </style>

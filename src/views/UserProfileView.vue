@@ -147,7 +147,6 @@ export default
   justify-content:center;
   color: var(--text-color-secondary);
   cursor:pointer;
-  text-decoration: none;
 }
 
 .user-stat:hover

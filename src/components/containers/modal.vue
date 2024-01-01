@@ -39,16 +39,17 @@
   bottom:0px;
   display:flex;
   justify-content: center;
+  padding: 64px;
   background-color: rgba(0,0,0,0.5);
   z-index:999;
 }
 
 .modal
 {
-  top:64px;
   position:relative;
   display:flex;
   height:fit-content;
+  max-height: 100%;
 }
 
 .modal-close-button

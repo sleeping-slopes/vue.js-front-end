@@ -1,7 +1,7 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button-secondary h5 dark">Sign up</button>
+    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button-secondary dark hoverable h5 ">Sign up</button>
     <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button-primary hoverable h5">Log in</button>
   </template>
   <template v-else>
@@ -122,7 +122,6 @@ export default {
   text-align: left;
   border:none;
   cursor:pointer;
-  text-decoration: none;
   align-items: center;
   gap:10px;
   border-radius:10px;
