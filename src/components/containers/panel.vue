@@ -34,6 +34,7 @@ export default
   flex-direction: column;
   overflow:hidden;
   box-sizing: border-box;
+  height:fit-content;
 }
 
 .panel-header

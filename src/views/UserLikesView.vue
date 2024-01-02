@@ -1,7 +1,6 @@
 <template>
-    <panel style="max-width:100%">
+    <panel>
         <template v-slot:header>Playlists liked by {{ this.user.username || this.login }}</template>
-        <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
         <template v-slot:content>
           <playlistCarousel :playlists="userLikedPlaylists"/>
         </template>

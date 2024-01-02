@@ -67,6 +67,7 @@ export default
   position:relative;
   box-sizing: border-box;
   width:100%;
+  overflow:hidden;
 }
 
 .carousel-content

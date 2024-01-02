@@ -1,12 +1,12 @@
 <template>
     <div class = "playlist-expansible" v-bind:class="{'expanded': this.expanded}">
-        <div class="column" style="gap:0px; flex-shrink: 0;">
+        <div class="column" style="gap:0px;">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
                     <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
                     <div class = "cover bi bi-music-note-list" v-else/>
                 </div>
-                <button class="button-secondary h6" style="margin:auto; width:90px" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                <button class="button-secondary h6" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                     <div class="icon-text">
                         <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
                     </div>
@@ -17,30 +17,24 @@
             </div>
         </div>
         <div class="right-column">
-            <div class="row" style = "gap:10px; align-items: center; flex-shrink: 0;">
+            <div class="row" style="gap:10px; align-items: center; width:100%">
                 <button class="round-button medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
                 <div class= "info-wrapper">
                     <div class ="h4 secondary-text text-overflow">
                         <template v-for="(artist,index) in this.playlist.artists">
-                            <router-link class="artistlink" v-if="artist.login"
-                                :to="'/id/'+artist.login"
-                                @click.stop>
-                                {{artist.name}}
-                            </router-link>
+                            <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                             <span v-else>{{artist.name}}</span>
                             <span v-if="index+1 < this.playlist.artists.length">, </span>
                         </template>
                     </div>
-                    <span class ="h3 primary-text text-overflow" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+                    <span class ="h3 primary-text text-overflow hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
                 </div>
             </div>
             <hr>
             <songContainer class="ul-list"
             :playlist="this.playlist.songs"
             :dynamicComponent="'song'"/>
-            <div v-if="this.playlist.songs.songs?.length>4">
-                <button class="button-secondary h6" style="margin:auto" v-on:click="this.expanded=!this.expanded">{{this.expanded?"Hide":"Expand"}}</button>
-            </div>
+            <button class="button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songs.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>
     </div>
 </template>
@@ -88,16 +82,17 @@ export default
     height:min-content;
     padding:5px;
     box-sizing: border-box;
-    gap:5px;
+    gap: 5px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: var(--panel-background-color);
-
+    align-items: center;
+    justify-content: space-between;
 }
 
 .right-column
 {
-    display:flex;
+    display:flex;align-items: center;
     flex-direction: column;
     width:100%;
     gap:5px;

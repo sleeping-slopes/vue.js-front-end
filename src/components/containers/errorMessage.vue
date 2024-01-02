@@ -1,7 +1,7 @@
 
 
 <template>
-  <div style="width:100%;">
+  <div>
     <div class="error-message">
       <div class="errorIcon secondary-text" v-if="!!this.$slots.errorIcon"><slot name="errorIcon"></slot></div>
       <span class="h2 secondary-text" v-if="!!this.$slots.status"><slot name="status"></slot></span>

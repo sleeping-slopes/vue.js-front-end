@@ -1,16 +1,16 @@
 <template>
 <div class = "playlist-expansible">
-  <div class="column" style="gap:0px; flex-shrink: 0;">
+  <div class="column" style="gap:0px;">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"/>
-      <skeleton class="button-secondary h6 shimmer" style="margin:auto" :exactwidth="90"/>
+      <skeleton class="button-secondary h2 shimmer" :exactwidth="90"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
     </div>
   </div>
   <div class="right-column">
-    <div class="row" style = "gap:10px; align-items: center; flex-shrink: 0;">
+    <div class="row" style="gap:10px; align-items: center; width:100%">
       <div class= "info-wrapper">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>
@@ -23,6 +23,7 @@
       <songSkeleton/>
       <songSkeleton/>
     </div>
+    <skeleton class="button-secondary h2 shimmer" :exactwidth="90">123</skeleton>
   </div>
 </div>
 </template>
@@ -66,15 +67,17 @@ export default
     height:min-content;
     padding:5px;
     box-sizing: border-box;
-    gap:5px;
+    gap: 5px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: var(--panel-background-color);
+    align-items: center;
+    justify-content: space-between;
 }
 
 .right-column
 {
-    display:flex;
+    display:flex;align-items: center;
     flex-direction: column;
     width:100%;
     gap:5px;

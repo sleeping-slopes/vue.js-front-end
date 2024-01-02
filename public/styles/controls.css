@@ -28,19 +28,118 @@ a
   color: var(--soft-white);
 }
 
+.navlink.router-link-active
+{
+  color: var(--soft-white);
+  background-color: var(--soft-black);
+}
+
+.hoverable
+{
+  cursor:pointer;
+}
+
+.button
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  white-space: nowrap;
+  box-sizing: border-box;
+  height:min-content;
+  width:min-content;
+}
+
+.compact
+{
+  padding:3px;
+/* ??? */
+}
+
 .button-primary
 {
   display:flex;
-  align-items: center;
   justify-content: center;
-  background-color: var(--accent-color);
-  color: var(--soft-white);
-  height:30px;
-  padding:0px 20px 0px 20px;
-  border: none;
-  border-radius:5px;
+  align-items: center;
   cursor:pointer;
   white-space: nowrap;
+  box-sizing: border-box;
+  height:min-content;
+  width:min-content;
+
+  padding:5px 20px 5px 20px;
+  border: none;
+  border-radius:5px;
+
+  background-color: var(--accent-color);
+  color: var(--soft-white);
+}
+
+.button-secondary
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  white-space:nowrap;
+  box-sizing: border-box;
+  height:min-content;
+  width:min-content;
+
+  padding:5px 20px 5px 20px;
+  border: 1px solid var(--text-color-secondary);
+  border-radius:5px;
+  background-color: transparent;
+  color: var(--text-color-secondary);
+
+  transition: color 0.2s, border 0.2s;
+}
+
+.round-button
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  white-space:nowrap;
+  box-sizing: border-box;
+  height:min-content;
+  width:min-content;
+
+  padding:0px;
+  border:none;
+  border-radius:50%;
+  background-color: transparent;
+  color: var(--text-color-primary);
+
+  transition: color 0.2s;
+}
+
+.panel-header-button
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+  white-space:nowrap;
+  box-sizing: border-box;
+  height:min-content;
+  width:min-content;
+
+  padding:5px 5px 5px 5px;
+  border: none;
+  background-color: transparent;
+  color: var(--text-color-primary);
+}
+
+.button-link
+{
+  color: var(--text-color-primary);
+  border: none;
+  background-color: transparent;
+  cursor:pointer;
+  text-decoration: underline;
 }
 
 .button-primary.hoverable:hover
@@ -51,23 +150,6 @@ a
 .button-primary.hoverable:active
 {
   transform: scale(1.0);
-}
-
-.button-secondary
-{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color-secondary);
-  border: 1px solid var(--text-color-secondary);
-  height:30px;
-  padding:0px 20px 0px 20px;
-  border-radius:5px;
-  cursor:pointer;
-  white-space:nowrap;
-  background:none;
-  box-sizing: border-box;
-  transition: color 0.2s, border 0.2s;
 }
 
 .button-secondary.toggled
@@ -82,20 +164,7 @@ a
   border-color: var(--text-color-primary);
 }
 
-.round-button
-{
-  display:flex;
-  justify-content:center;
-  align-items: center;
-  background:none;
-  border:none;
-  color: var(--text-color-primary);
-  padding:0px;
-  margin:0px;
-  border-radius:50%;
-  cursor:pointer;
-  transition: color 0.2s;
-}
+
 
 .round-button.toggled { color: var(--accent-color);}
 
@@ -109,27 +178,7 @@ a
 
 .round-button.tiny { font-size:14px; }
 
-.panel-header-button
-{
-  height:100%;
-  display:flex;
-  align-items: center;
-  color: var(--text-color-primary);
-  border: none;
-  background-color: transparent;
-  cursor:pointer;
-  padding:5px 5px 5px 5px;
-  box-sizing: border-box;
-}
 
-.button-link
-{
-  color: var(--text-color-primary);
-  border: none;
-  background-color: transparent;
-  cursor:pointer;
-  text-decoration: underline;
-}
 
 .button-link:active
 {

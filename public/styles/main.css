@@ -12,6 +12,28 @@
     font-size:inherit;
   }
 
+  .top
+  {
+    margin-bottom:auto;
+  }
+
+  .right
+  {
+    margin-left:auto;
+  }
+
+  .bottom
+  {
+    margin-top:auto;
+  }
+
+  .left
+  {
+    margin-right:auto;
+  }
+
+
+
   #app
   {
     --accent-color: cornflowerblue;
@@ -192,6 +214,11 @@ ul
   width: 100%;
   overflow: hidden;
   align-self: normal;
+}
+
+.info-wrapper > *
+{
+  width: min-content;
 }
 
 .text-overflow

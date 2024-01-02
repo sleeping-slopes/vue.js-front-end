@@ -1,10 +1,10 @@
 .skeleton
 {
-    background-color: var(--panel-border-color);
-    color: var(--panel-border-color);
-    height:1.0em;
-    border-radius: 5px;
-    max-width:100%;
+  background-color: var(--panel-border-color);
+  color: var(--panel-border-color);
+  height:1.0em;
+  border-radius: 5px;
+  max-width:100%;
 }
 
 .skeleton.button-secondary

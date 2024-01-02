@@ -32,7 +32,7 @@
         <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step=0.1 v-model="currentTime" @change="seek()">
         <span class="song-time h5"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
       </div>
-      <div style="display:flex;gap: 20px;">
+      <div class="row" style="gap:20px">
         <div class="popup-wrapper">
           <div class="player-menu">
             <button class="round-button small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill': volume>0 && volume<0.5,'bi-volume-mute-fill': volume==0}"
@@ -207,8 +207,6 @@ export default
   display:flex;
   justify-content: center;
   border-top:2px solid var(--panel-border-color);
-
-  margin-top:auto;
 }
 
 .player
