@@ -1,13 +1,13 @@
 <template>
-  <header class="header-wrapper" v-bind:class="{'dark': this.$store.state.darkTheme}">
+  <header v-bind:class="{'dark': this.$store.state.darkTheme}">
     <nav>
       <div class="nav-mainmenu">
-        <router-link class="logo" to="/discover">
+        <router-link :to="{ name: 'Discover'}">
           <img src="@/assets/images/logo.png" class = "logo" v-on:click="this.$store.dispatch('toggleTheme')">
         </router-link>
-        <router-link class="navlink h4" to="/discover">Discover</router-link>
-        <router-link class="navlink h4" to="/feed">Feed</router-link>
-        <router-link class="navlink h4" to="/you">Library</router-link>
+        <router-link :to="{ name: 'Discover'}" class="navlink h4">Discover</router-link>
+        <router-link :to="{ name: 'Feed'}" class="navlink h4">Feed</router-link>
+        <router-link :to="{ name: 'You'}" class="navlink h4">Library</router-link>
       </div>
       <div class="wrapper-search h4">
         <div class="search-panel">
@@ -15,13 +15,13 @@
           <i class="fa fa-search"></i>
         </div>
       </div>
-      <usermenu style="margin-left:auto"/>
+      <usermenu class="right"/>
     </nav>
   </header>
   <main v-bind:class="{'dark': this.$store.state.darkTheme}">
     <router-view :key="this.$route.params.login"/>
   </main>
-  <footer style = "width:100%; z-index:1;" v-bind:class="{'dark': this.$store.state.darkTheme}"><player/> </footer>
+  <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/> </footer>
 
   <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <ModalPlaylistView  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
@@ -54,42 +54,43 @@ export default
 
 <style scoped>
 
-.header-wrapper
-  {
-    width:100%;
-    display:flex;
-    justify-content: center;
-    background-color: var(--nav-color);
-  }
+header
+{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color: var(--nav-color);
+}
 
-  .header-wrapper nav
-  {
-    width:1240px;
-    height: 48px;
-  }
+header nav
+{
+  width:1240px;
+  height: 48px;
+}
 
-  .logo
-  {
-    width:100px;
-    height:100%;
-    object-fit: scale-down;
-    background-color: var(--soft-black);
-  }
+.logo
+{
+  width:100px;
+  height:100%;
+  object-fit: scale-down;
+  background-color: var(--soft-black);
+}
 
-  .nav-mainmenu
-  {
-    display:flex;
-  }
+.nav-mainmenu
+{
+  display:flex;
+}
 
-  .nav-mainmenu > *
-  {
-    border-right:1px solid var(--soft-black);
-  }
+.nav-mainmenu > *
+{
+  border-right:1px solid var(--soft-black);
+}
 
-  .navlink.router-link-active
-  {
-    color: var(--soft-white);
-    background-color: var(--soft-black);
-  }
+footer
+{
+  width:100%;
+  position:sticky;
+  bottom:0px;
+}
 
 </style>

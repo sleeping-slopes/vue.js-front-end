@@ -1,5 +1,5 @@
 <template>
-<div class="content column" style="padding-top:0px; overflow:visible">
+<div class="content column" style="padding-top:0px;">
   <div class="sticky-top">
     <div class="column">
       <div class="row">
@@ -7,12 +7,12 @@
           <img class = "user-image s100x100" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
           <div class = "user-image s100x100 gradient-bg" v-else/>
         </router-link>
-        <router-link class="primary-text hoverable h2" :to="{ name: 'User', params: { login: this.login }}">{{this.user.username || this.login}} is following</router-link>
+        <router-link :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable h2">{{this.user.username || this.login}} is following</router-link>
       </div>
       <nav class="navtab">
         <div class="nav-menu">
-          <router-link class="tablink h3" :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link>
-          <router-link class="tablink h3" :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link>
+          <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="tablink h3">Following</router-link>
+          <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="tablink h3">Followers</router-link>
         </div>
       </nav>
     </div>

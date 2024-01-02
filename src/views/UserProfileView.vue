@@ -26,13 +26,13 @@
     <div class="content column">
         <nav class="navtab">
           <div class="nav-menu">
-            <router-link class="tablink h3" :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link>
-            <router-link class="tablink h3" :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link>
-            <router-link class="tablink h3" :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link>
-            <router-link class="tablink h3" :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link>
-            <router-link class="tablink h3" :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link>
+            <router-link :to="{ name: 'UserActivity', params: { login: this.login }}" class="tablink h3">All</router-link>
+            <router-link :to="{ name: 'UserPopular', params: { login: this.login }}" class="tablink h3">Popular</router-link>
+            <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="tablink h3">Songs</router-link>
+            <router-link :to="{ name: 'UserPlaylists', params: { login: this.login }}" class="tablink h3">Playlists</router-link>
+            <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="tablink h3">Likes</router-link>
           </div>
-          <div class="nav-menu" style="margin-left:auto">
+          <div class="nav-menu right">
             <button class="button-secondary h6" v-if="this.user.me">Edit</button>
             <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow</span>
@@ -48,22 +48,22 @@
         </nav>
 
         <div class="row">
-          <div class="column" style="width:100%">
+          <div class="column" style="overflow:hidden;width:100%">
             <router-view></router-view>
           </div>
           <div class="column" style="width:360px; flex-shrink: 0;">
             <panel>
               <template v-slot:content>
                 <div class="user-stats">
-                  <router-link class="user-stat" :to="{ name: 'UserFollowers', params: { login: this.login }}">
+                  <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="user-stat">
                     <span class="h4">Followers</span>
                     <span class="h3">{{abbreviateNumber(this.user.followers_count,0)}}</span>
                   </router-link>
-                  <router-link class="user-stat" :to="{ name: 'UserFollowing', params: { login: this.login }}">
+                  <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="user-stat">
                     <span class="h4">Following</span>
                     <span class="h3">{{abbreviateNumber(this.user.following_count,0)}}</span>
                   </router-link>
-                  <router-link class="user-stat" :to="{ name: 'UserSongs', params: { login: this.login }}">
+                  <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="user-stat">
                     <span class="h4">Songs</span>
                     <span class="h3">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
@@ -84,7 +84,7 @@
             <panel>
               <template v-slot:header>{{this.userLikedSongs.songs?.length}} likes</template>
               <template v-slot:menu>
-                <router-link class="button-secondary h6" :to="{ name: 'UserLikes', params: { login: this.login }}">View all</router-link>
+                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
                 <songContainer class="ul-list hidden-scroll"

@@ -5,18 +5,15 @@
     <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button-primary hoverable h5">Log in</button>
   </template>
   <template v-else>
-    <router-link class="navlink" to="/upload">Upload</router-link>
-    <div class="user-panel"
-      @click="this.show=!this.show"
-      v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}"
-    >
+    <router-link to="/upload" class="navlink">Upload</router-link>
+    <div class="user-panel" @click="this.show=!this.show" v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}">
       <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s36x36 bi bi-person-fill" v-else/>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
       <panel v-if="this.show" style="position:absolute;top:100%;left:0; z-index:999;width:150px">
         <template v-slot:content>
           <div class = "usermenu">
-            <router-link class="usermenu-button" :to="{ name: 'User', params: { login: this.user }}">
+            <router-link :to="{ name: 'User', params: { login: this.user }}" class="usermenu-button">
               <span class="bi-person-fill usermenu-button-icon"></span>
               <span>Profile</span>
             </router-link>

@@ -17,31 +17,27 @@
         <div class= "info-wrapper">
             <div class ="h5 secondary-text text-overflow">
                 <template v-for="(artist,index) in this.song.artists">
-                    <router-link class="artistlink" v-if="artist.login"
-                        :to="'/id/'+artist.login"
-                        @click.stop>
-                        {{artist.name}}
-                    </router-link>
+                    <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                     <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.song.artists.length">, </span>
                 </template>
             </div>
-            <span class ="h4 primary-text text-overflow">{{this.song.name}}</span>
+            <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable text-overflow">{{this.song.name}}</router-link>
             <div class="row">
                 <span class="icon-text secondary-text h6">
                     <span class="bi bi-play-fill"></span>
                     <span>{{abbreviateNumber(53252)}}</span>
                 </span>
-                <router-link class="icon-text secondary-text hoverable h6" :to="'/song/'+this.id" @click.stop>
+                <span class="icon-text secondary-text h6">
                     <span class="bi bi-suit-heart-fill"></span>
                     <span>{{abbreviateNumber(this.song.likes_count)}}</span>
-                </router-link>
+                </span>
             </div>
         </div>
         <div class="songMenu">
             <dropdown>
                 <template v-slot:label class="bi bi-suit-heart-fill">
-                    <button class="button-secondary bi bi-three-dots tiny" style="height:auto;padding:5px;"></button>
+                    <button class="button-secondary bi bi-three-dots tiny" style="padding:5px;"></button>
                     </template>
                 <template v-slot:dropdown>
                     <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistNext()">

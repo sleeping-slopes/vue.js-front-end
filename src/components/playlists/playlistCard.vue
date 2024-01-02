@@ -19,16 +19,12 @@
         <div class= "info-wrapper">
             <div class ="h5 secondary-text text-overflow">
                 <template v-for="(artist,index) in this.playlist.artists">
-                    <router-link class="artistlink" v-if="artist.login"
-                        :to="'/id/'+artist.login"
-                        @click.stop>
-                        {{artist.name}}
-                    </router-link>
+                    <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                     <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
             </div>
-            <span class ="h4 primary-text text-overflow" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+            <span class ="h4 primary-text text-overflow hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
         </div>
     </div>
 </template>
