@@ -2,7 +2,6 @@
   <div class="content column">
     <panel>
       <template v-slot:header>Playlists</template>
-      <!-- <template v-slot:menu><router-link to="playlists" class="panel-header-button">Show all</router-link></template> -->
       <template v-slot:content>
         <playlistCarousel :playlists="this.playlists"/>
       </template>
