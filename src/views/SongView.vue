@@ -1,46 +1,84 @@
 <template>
-<errorMessage v-if="this.song.error">
-  <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-  <template v-slot:status>{{ this.song.error.status }}</template>
-  <template v-slot:message>{{ this.song.error.message }}</template>
-</errorMessage>
-
-<div class="content column" style="padding-top:0px; overflow:visible" v-else>
-    <div class="sticky-top">
-      <div class="column">
-        <songBanner :id="this.id"></songBanner>
-        <nav class="navtab">
-          <div class="nav-menu">
-            <router-link class="tablink h3" :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link>
-            <router-link class="tablink h3" :to="{ name: 'SongPlaylists', params: { id: this.id }}">In playlists</router-link>
-            <router-link class="tablink h3" :to="{ name: 'SongRelated', params: { id: this.id }}">Related songs</router-link>
-          </div>
-        </nav>
+  <errorMessage v-if="this.song.error">
+    <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+    <template v-slot:status>{{ this.song.error.status }}</template>
+    <template v-slot:message>{{ this.song.error.message }}</template>
+  </errorMessage>
+  <template v-else>
+    <songBanner :id="this.id" />
+    <div class="content row">
+      <panel style="width:100%;">
+        <template v-slot:header>Related songs</template>
+        <template v-slot:menu>
+          <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+        </template>
+        <template v-slot:content>
+          <songContainer class="ul-list hidden-scroll"
+          :playlist="this.relatedPlaylist"
+          :dynamicComponent="'songExtended'"
+          />
+        </template>
+      </panel>
+      <div class="column" style="width:50%">
+        <panel>
+          <template v-slot:header>In playlists</template>
+          <template v-slot:menu>
+            <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+          </template>
+          <template v-slot:content>
+            <songContainer class="ul-list hidden-scroll"
+            :playlist="{id:'zalupa',songs:[{id:1,pos:0},{id:1,pos:1},{id:1,pos:2}]}"
+            :dynamicComponent="'songExtended'"
+            />
+          </template>
+        </panel>
+        <panel>
+          <template v-slot:header>Likes</template>
+          <template v-slot:menu>
+            <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+          </template>
+          <template v-slot:content>
+            <songContainer class="ul-list hidden-scroll"
+            :playlist="{id:'zalupa',songs:[{id:1,pos:0}]}"
+            :dynamicComponent="'songExtended'"
+            />
+          </template>
+        </panel>
       </div>
     </div>
-    <router-view></router-view>
-</div>
-</template>
+  </template>
+  </template>
 
 <script>
 
 import API from "@/axios/API";
+
+  import panel from '@/components/containers/panel.vue';
   import songBanner from "@/components/songs/songBanner.vue";
   import errorMessage from "@/components/containers/errorMessage.vue";
+  import songContainer from '@/components/songContainer.vue';
 
-    export default {
+  export default
+  {
       name: 'SongView',
-      components:{songBanner,errorMessage},
+      components:{panel, songBanner, errorMessage, songContainer},
       props:
       {
-        id: { default: "noid" },
+          id: { default: "noid" },
       },
       data()
       {
         return {
-          song:{},
+            song:{},
+            relatedPlaylist:{}
         }
+      },
+      async created()
+      {
+        this.song = await API.get('songs/'+this.id);
+        this.relatedPlaylist = await API.get('songs/'+this.id+"/related");
       }
-    }
-    </script>
+  }
+  </script>
+
 

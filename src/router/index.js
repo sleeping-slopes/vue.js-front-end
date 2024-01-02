@@ -100,33 +100,29 @@ const routes =
     props:true
   },
   {
-    name: "Song",
+    name: 'Song',
     path: '/song/:id',
     component: () => import('@/views/SongView.vue'),
-    redirect: {name:'SongLikes'},
-    props:true,
-    children:
-    [
-      {
-        name: "SongLikes",
-        path: 'likes',
-        component: () => import('@/views/SongLikesView.vue'),
-        props:true
+    props:true
+  },
+  {
+    name: "SongLikes",
+    path: '/song/:id/likes',
+    component: () => import('@/views/SongLikesView.vue'),
+    props:true
 
-      },
-      {
-        name: "SongPlaylists",
-        path: 'playlists',
-        component: () => import('@/views/SongPlaylistsView.vue'),
-        props:true
-      },
-      {
-        name: "SongRelated",
-        path: 'related',
-        component: () => import('@/views/SongRelatedView.vue'),
-        props:true
-      }
-    ]
+  },
+  {
+    name: "SongPlaylists",
+    path: '/song/:id/playlists',
+    component: () => import('@/views/SongPlaylistsView.vue'),
+    props:true
+  },
+  {
+    name: "SongRelated",
+    path: '/song/:id/related',
+    component: () => import('@/views/SongRelatedView.vue'),
+    props:true
   }
 ]
 
