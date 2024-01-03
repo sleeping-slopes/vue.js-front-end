@@ -5,7 +5,7 @@
           <div class = "cover bi bi-music-note-list" v-else/>
           <div class = "shade"></div>
           <div class="cover-menu">
-            <button class="round-button huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+            <button class="button button-round huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
           </div>
           <div class="cover-menu playlist-stats h4">
             <span class="icon-text">
@@ -16,15 +16,15 @@
             </span>
           </div>
         </div>
-        <div class= "info-wrapper">
-            <div class ="h5 secondary-text text-overflow">
+        <div class= "info-wrapper column gap-0">
+            <div class ="h5 secondary-text">
                 <template v-for="(artist,index) in this.playlist.artists">
                     <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                     <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
             </div>
-            <span class ="h4 primary-text text-overflow hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+            <span class ="h4 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
         </div>
     </div>
 </template>
@@ -78,7 +78,7 @@ export default
         if (this.playlist.songs.songs?.length>0)
         {
           if (!this.current)
-              this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: {id:this.id,songs:this.playlist.songs.songs}, songIndex: 0}));
+              this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: {id:this.id,songs:this.playlist.songs.songs}, songIndex: 0});
           else
           this.$store.dispatch('togglePlayingState');
         }

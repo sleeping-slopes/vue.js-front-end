@@ -42,13 +42,13 @@ export default createStore({
     setCurrentPlaylistAndSong(state,playlistSong)
     {
       state.isPlaying=false;
+      if (JSON.stringify(playlistSong.playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
 
-      if (JSON.stringify(JSON.parse(playlistSong).playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
+      state.currentPlaylist=playlistSong.playlist;
 
-      state.currentPlaylist=JSON.parse(playlistSong).playlist;
       localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
 
-      state.currentSongIndex=JSON.parse(playlistSong).songIndex;
+      state.currentSongIndex=playlistSong.songIndex;
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
 
       setTimeout(()=>{state.isPlaying=true}, 0);

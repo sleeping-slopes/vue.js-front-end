@@ -52,7 +52,7 @@ export default
   {
     setCurrentPlaylistAndSong(songIndex)
     {
-      this.$store.dispatch('setCurrentPlaylistAndSong',JSON.stringify({playlist: this.playlist, songIndex: songIndex}));
+      this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: this.playlist, songIndex: songIndex});
     }
   },
   computed:
