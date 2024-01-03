@@ -1,17 +1,17 @@
 <template>
 <div class = "playlist-expansible">
-  <div class="column" style="gap:0px;">
+  <div class="column gap-0">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"/>
-      <skeleton class="button-secondary h2 shimmer" :exactwidth="90"/>
+      <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
     </div>
   </div>
   <div class="right-column">
-    <div class="row" style="gap:10px; align-items: center; width:100%">
-      <div class= "info-wrapper">
+    <div class="row gap-10 y-center w-100">
+      <div class= "info-wrapper column gap-0">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>
       </div>
@@ -23,7 +23,7 @@
       <songSkeleton/>
       <songSkeleton/>
     </div>
-    <skeleton class="button-secondary h2 shimmer" :exactwidth="90">123</skeleton>
+    <skeleton class="button button-secondary h2 shimmer" :exactwidth="90">123</skeleton>
   </div>
 </div>
 </template>

@@ -1,34 +1,28 @@
 <template>
   <header v-bind:class="{'dark': this.$store.state.darkTheme}">
     <nav>
-      <div class="nav-mainmenu">
-        <router-link :to="{ name: 'Discover'}">
-          <img src="@/assets/images/logo.png" class = "logo" v-on:click="this.$store.dispatch('toggleTheme')">
-        </router-link>
-        <router-link :to="{ name: 'Discover'}" class="navlink h4">Discover</router-link>
-        <router-link :to="{ name: 'Feed'}" class="navlink h4">Feed</router-link>
-        <router-link :to="{ name: 'You'}" class="navlink h4">Library</router-link>
-      </div>
-      <div class="wrapper-search h4">
-        <div class="search-panel">
-          <input class="search" type="text" placeholder="Search music" name="search" autocomplete="off">
-          <i class="fa fa-search"></i>
-        </div>
-      </div>
+      <ul class="nav-mainmenu h4">
+        <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png" v-on:click="this.$store.dispatch('toggleTheme')"></router-link></li>
+        <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
+        <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
+        <li><router-link :to="{ name: 'You'}">Library</router-link></li>
+      </ul>
+      <label class="label-search-input dark h4">
+        <input type="text" placeholder="Search music" autocomplete="off">
+        <i class="fa fa-search"></i>
+      </label>
       <usermenu class="right"/>
     </nav>
   </header>
   <main v-bind:class="{'dark': this.$store.state.darkTheme}">
     <router-view :key="this.$route.params.login"/>
   </main>
-  <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/> </footer>
-
+  <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/></footer>
   <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <ModalPlaylistView  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
     <ModalLogInView  v-if="this.$route.query.action=='login'"/>
     <ModalSignUpView  v-if="this.$route.query.action=='signup'"/>
   </div>
-
 </template>
 
 <script>
@@ -54,36 +48,21 @@ export default
 
 <style scoped>
 
-header
-{
-  width:100%;
-  display:flex;
-  justify-content: center;
-  background-color: var(--nav-color);
-}
-
-header nav
-{
-  width:1240px;
-  height: 48px;
-}
-
 .logo
 {
-  width:100px;
-  height:100%;
-  object-fit: scale-down;
   background-color: var(--soft-black);
 }
 
-.nav-mainmenu
+.logo a
 {
-  display:flex;
+  padding:0px;
 }
 
-.nav-mainmenu > *
+.logo img
 {
-  border-right:1px solid var(--soft-black);
+  height:100%;
+  object-fit: scale-down;
+  background-color: var(--soft-black);
 }
 
 footer
@@ -91,6 +70,8 @@ footer
   width:100%;
   position:sticky;
   bottom:0px;
+  border-top:2px solid var(--panel-border-color);
+  z-index:1;
 }
 
 </style>

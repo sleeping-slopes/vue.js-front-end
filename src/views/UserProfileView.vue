@@ -10,51 +10,44 @@
       <div class = "banner-bg gradient-bg-reverse" v-else/>
       <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
       <div class = "user-image s200x200 gradient-bg" v-else/>
-      <div class="banner-info-wrapper">
-        <h2 class="banner-info-primary" style="gap:10px" v-if="this.user.username || this.user.login">
-          <span>{{ this.user.username || this.user.login }}</span>
-          <span class="bi bi-patch-check-fill" v-if="this.user.verified"></span>
-        </h2>
-        <h3 class="banner-info-secondary" v-if="this.user.status">
-          {{ this.user.status }}
-        </h3>
-        <h3 class="banner-info-secondary" v-if="this.user.city || this.user.country">
-          {{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}
-        </h3>
+      <div class="info-wrapper column gap-10">
+        <h2 class="banner-info-primary" v-if="this.user.username || this.user.login">{{ this.user.username || this.user.login }}</h2>
+        <h3 class="banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
+        <h3 class="banner-info-secondary" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</h3>
       </div>
     </div>
     <div class="content column">
         <nav class="navtab">
-          <div class="nav-menu">
-            <router-link :to="{ name: 'UserActivity', params: { login: this.login }}" class="tablink h3">All</router-link>
-            <router-link :to="{ name: 'UserPopular', params: { login: this.login }}" class="tablink h3">Popular</router-link>
-            <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="tablink h3">Songs</router-link>
-            <router-link :to="{ name: 'UserPlaylists', params: { login: this.login }}" class="tablink h3">Playlists</router-link>
-            <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="tablink h3">Likes</router-link>
-          </div>
-          <div class="nav-menu right">
-            <button class="button-secondary h6" v-if="this.user.me">Edit</button>
-            <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+          <ul class="h3">
+            <li><router-link :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link></li>
+            <li><router-link :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link></li>
+            <li><router-link :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link></li>
+            <li><router-link :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link></li>
+            <li><router-link :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link></li>
+          </ul>
+          <div class="row right">
+            <button class="button button-secondary h6" v-if="this.user.me">Edit</button>
+            <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow</span>
             </button>
-            <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+            <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow back</span>
             </button>
-            <button class="button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
+            <button class="button button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
               <span class="bi bi bi-person-check-fill"></span><span>Following</span>
             </button>
-            <button class="button-primary h6" v-if="!this.user.me">Message</button>
+            <button class="button button-primary h6" v-if="!this.user.me">Message</button>
           </div>
         </nav>
 
         <div class="row">
-          <div class="column" style="overflow:hidden;width:100%">
+          <div class="column w-100" style="overflow:hidden">
             <router-view></router-view>
           </div>
           <div class="column" style="width:360px; flex-shrink: 0;">
             <panel>
               <template v-slot:content>
-                <div class="user-stats">
+                <div class="row gap-5">
                   <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="user-stat">
                     <span class="h4">Followers</span>
                     <span class="h3">{{abbreviateNumber(this.user.followers_count,0)}}</span>
@@ -68,9 +61,9 @@
                     <span class="h3">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
-                <span class="primary-text h5" v-if="this.user.bio">
+                <p class="primary-text h5" v-if="this.user.bio">
                   {{ this.user.bio }}
-                </span>
+                </p>
                 <ul class="h5" v-if="this.user.links && this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
                     <glyphLink
@@ -84,7 +77,7 @@
             <panel>
               <template v-slot:header>{{this.userLikedSongs.songs?.length}} likes</template>
               <template v-slot:menu>
-                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button-secondary h6">View all</router-link>
+                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
                 <songContainer class="ul-list hidden-scroll"
@@ -129,14 +122,7 @@ export default
 }
   </script>
 
-  <style scoped>
-
-.user-stats
-{
-  display:flex;
-  gap:5px;
-}
-
+<style scoped>
 .user-stat
 {
   width:100%;

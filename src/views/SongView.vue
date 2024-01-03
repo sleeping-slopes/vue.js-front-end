@@ -7,10 +7,10 @@
   <template v-else>
     <songBanner :id="this.id" />
     <div class="content row">
-      <panel style="width:100%;">
+      <panel class="w-100">
         <template v-slot:header>Related songs</template>
         <template v-slot:menu>
-          <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+          <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
         </template>
         <template v-slot:content>
           <songContainer class="ul-list hidden-scroll"
@@ -19,11 +19,11 @@
           />
         </template>
       </panel>
-      <div class="column" style="width:50%">
+      <div class="column w-50">
         <panel>
           <template v-slot:header>In playlists</template>
           <template v-slot:menu>
-            <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+            <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
             <songContainer class="ul-list hidden-scroll"
@@ -35,7 +35,7 @@
         <panel>
           <template v-slot:header>Likes</template>
           <template v-slot:menu>
-            <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button-secondary h5">View all</router-link>
+            <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
             <songContainer class="ul-list hidden-scroll"

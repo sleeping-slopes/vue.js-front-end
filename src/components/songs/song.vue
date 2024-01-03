@@ -5,7 +5,7 @@
     <div class = "cover bi bi-music-note" v-else/>
     <div class = "shade"></div>
     <div class="cover-menu">
-      <button class="round-button filled small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
+      <button class="button button-round filled small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
     </div>
     <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
       <div class ="wave"></div>
@@ -13,19 +13,19 @@
       <div class ="wave"></div>
     </div>
   </div>
-  <div class= "info-wrapper">
-    <div class ="h5 secondary-text text-overflow">
+  <div class= "info-wrapper column gap-0">
+    <div class ="h5 secondary-text">
       <template v-for="(artist,index) in this.song.artists">
         <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
         <span v-else>{{artist.name}}</span>
         <span v-if="index+1 < this.song.artists.length">, </span>
       </template>
     </div>
-    <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable text-overflow">{{this.song.name}}</router-link>
+    <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable">{{this.song.name}}</router-link>
   </div>
   <div class="songMenu">
-    <button class="round-button tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
-    <button id = "deleteSongButton" class="round-button tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
+    <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
+    <button id = "deleteSongButton" class="button button-round tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
   </div>
   <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
 </div>
@@ -128,11 +128,8 @@ export default
   display:flex;
   width: 60%;
   height:60%;
-  flex-shrink: 0;
   justify-content: space-between;
   align-items:flex-end;
-  margin-top:auto;
-  margin-bottom:auto;
   position: relative;
 }
 
@@ -167,7 +164,6 @@ export default
 .song-duration
 {
   display:none;
-  margin: auto;
   text-align: center;
   color: var(--text-color-secondary);
 }
@@ -187,12 +183,12 @@ export default
   display:flex;
 }
 
-.songMenu .round-button
+.songMenu .button-round:not(.toggled)
 {
   color: var(--text-color-secondary);
 }
 
-.songMenu .round-button:not(.toggled):hover
+.songMenu .button-round:not(.toggled):hover
 {
   color: var(--text-color-primary);
 }
@@ -233,14 +229,14 @@ export default
     transition:none;
 }
 
-.cover-menu > .round-button.filled
+.cover-menu > .button-round.filled
 {
   background-color:var(--soft-black);
 }
 
-.cover-menu > .round-button
+.cover-menu > .button-round:not(.toggled)
 {
-    color:var(--soft-white);
+  color:var(--soft-white);
 }
 
 .wave

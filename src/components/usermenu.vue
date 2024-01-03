@@ -1,11 +1,15 @@
 <template>
 <div class="nav-loginmenu">
   <template v-if="!this.user">
-    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button-secondary dark hoverable h5 ">Sign up</button>
-    <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button-primary hoverable h5">Log in</button>
+    <div class="row">
+      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark h5 ">Sign up</button>
+      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable h5">Log in</button>
+    </div>
   </template>
   <template v-else>
-    <router-link to="/upload" class="navlink">Upload</router-link>
+    <ul class="h100">
+      <li class="h100"><router-link to="/upload" class="navlink">Upload</router-link></li>
+    </ul>
     <div class="user-panel" @click="this.show=!this.show" v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}">
       <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s36x36 bi bi-person-fill" v-else/>
@@ -140,10 +144,8 @@ export default {
 {
   display:flex;
   align-items:center;
-  gap:10px;
   position:relative;
   height:100%;
-  float:right;
 }
 
 .user-panel
@@ -151,7 +153,6 @@ export default {
   position:relative;
   display:flex;
   align-items: center;
-  margin-left:auto;
   gap:10px;
   padding-left:10px;
   padding-right:10px;

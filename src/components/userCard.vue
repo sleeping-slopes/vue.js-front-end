@@ -4,8 +4,8 @@
       <img class = "user-image s180x180" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s180x180 gradient-bg" v-else/>
     </router-link>
-    <div class= "info-wrapper">
-      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable text-overflow">
+    <div class= "info-wrapper column gap-0">
+      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
         {{this.user.username || this.login}}
       </router-link>
       <span class ="h5 icon-text secondary-text" v-if="this.user.followers_count>0">
@@ -13,13 +13,13 @@
         <span>{{abbreviateNumber(this.user.followers_count)}} follower{{ this.user.followers_count>1?'s':'' }}</span>
       </span>
     </div>
-    <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+    <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
       <span class="bi bi-person-plus"></span><span>Follow</span>
     </button>
-    <button class="button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+    <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
       <span class="bi bi-person-plus"></span><span>Follow back</span>
     </button>
-    <button class="button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
+    <button class="button button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
       <span class="bi bi bi-person-check-fill"></span><span>Following</span>
     </button>
   </div>
@@ -77,11 +77,6 @@ export default
 </script>
 
 <style scoped>
-
-.user-card .button-secondary
-{
-  height:min-content;
-}
 
 .user-card:not(:hover) .button-secondary
 {

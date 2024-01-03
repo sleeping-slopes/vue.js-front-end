@@ -5,7 +5,7 @@
           <form @submit.prevent="signUp" class="h4">
               <label class = "label">
                   <span>Email</span>
-                  <input class="my-input" type="text" v-bind:style="email.error?{'border-color':'red'}:{}"
+                  <input type="text" v-bind:style="email.error?{'border-color':'red'}:{}"
                   placeholder="Enter email"
                   v-model="email.data"/>
                   <span class="icon-text error" v-if=email.error>
@@ -14,7 +14,7 @@
               </label>
               <label class = "label">
                 <span>Password</span>
-                  <input class="my-input" type="password" v-bind:style="password.error?{'border-color':'red'}:{}"
+                  <input type="password" v-bind:style="password.error?{'border-color':'red'}:{}"
                   placeholder="Enter password"
                   v-model="password.data"/>
                   <span class="icon-text error" v-if=password.error>
@@ -23,18 +23,18 @@
               </label>
               <label class = "label">
                 <span>Login</span>
-                  <input class="my-input" type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
+                  <input type="text" v-bind:style="login.error?{'border-color':'red'}:{}"
                   placeholder="What should we call you?"
                   v-model="login.data"/>
                   <span class="icon-text error" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
                   </span>
               </label>
-              <button type="submit" class = "button-primary hoverable h5">Sign up</button>
+              <button type="submit" class = "button button-primary hoverable h5">Sign up</button>
             </form>
           <hr />
           <span class="primary-text h5">Already have an account?
-            <button class="button-link" v-on:click="this.$router.replace({query:{action:'login',to:this.$route.query.to}});">Log in</button>
+            <button class="button button-link" v-on:click="this.$router.replace({query:{action:'login',to:this.$route.query.to}});">Log in</button>
           </span>
         </template>
     </modal>

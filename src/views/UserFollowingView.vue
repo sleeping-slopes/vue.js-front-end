@@ -10,10 +10,10 @@
         <router-link :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable h2">{{this.user.username || this.login}} is following</router-link>
       </div>
       <nav class="navtab">
-        <div class="nav-menu">
-          <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="tablink h3">Following</router-link>
-          <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="tablink h3">Followers</router-link>
-        </div>
+        <ul class="h3">
+          <li><router-link :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link></li>
+          <li><router-link :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link></li>
+        </ul>
       </nav>
     </div>
   </div>

@@ -1,13 +1,11 @@
 <template>
     <div class="column">
-        <div class="row" style="align-items: center;">
-            <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
-            <div class="wrapper-search h4" style="margin-left:auto;">
-                <div class="search-panel">
-                    <input class="search" type="text" placeholder="Filter" autocomplete="off">
-                    <i class="fa fa-search"></i>
-                </div>
-            </div>
+        <div class="row y-center">
+          <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
+          <label class="label-search-input h4 right">
+            <input type="text" placeholder="Filter" autocomplete="off">
+            <i class="fa fa-search"></i>
+          </label>
         </div>
         <errorMessage  v-if="this.followings.length==0">
           <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>

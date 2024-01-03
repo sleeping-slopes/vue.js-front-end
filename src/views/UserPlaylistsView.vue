@@ -1,6 +1,6 @@
 <template>
 
-<playlistContainer class="column hidden-scroll" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
+<playlistContainer class="column" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
 
 </template>
 
