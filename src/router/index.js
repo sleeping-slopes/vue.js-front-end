@@ -123,6 +123,12 @@ const routes =
     path: '/song/:id/related',
     component: () => import('@/views/SongRelatedView.vue'),
     props:true
+  },
+  {
+    name: "Upload",
+    path: '/upload',
+    component: () => import('@/views/UploadView.vue'),
+    meta: { authRequired:true }
   }
 ]
 
