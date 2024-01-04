@@ -14,11 +14,9 @@
                     </h3>
                     <h2 class="banner-info-primary">{{ this.song.name }}</h2>
                 </div>
-                <div class="tag-container right">
-                    <router-link class="button-tag h6" :to="'/discover'">YUNGRUSSIA</router-link>
-                    <router-link class="button-tag h6" :to="'/discover'">YUNGRUSSIA</router-link>
-                    <router-link class="button-tag h6" :to="'/discover'">YUNGRUSSIA</router-link>
-                </div>
+                <ul class="tag-container right">
+                    <li v-for="tag in this.song.tags"><router-link class="button-tag h6" :to="{ name: 'Tag', params: { tag: tag.tag } }">{{tag.tag}}</router-link></li>
+                </ul>
             </div>
 
             <div class="row bottom gap-5 y-center">
@@ -74,7 +72,6 @@ export default
     width:min-content;
     max-width:320px;
     height:fit-content;
-
     flex-shrink: 0;
 }
 .button-tag

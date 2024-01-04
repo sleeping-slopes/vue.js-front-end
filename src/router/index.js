@@ -12,6 +12,28 @@ const routes =
     component: () => import('@/views/DiscoverView.vue')
   },
   {
+    name: 'Tag',
+    path: '/tags/:tag',
+    component: () => import('@/views/TagView.vue'),
+    props:true,
+    redirect: {name:'TagPopular'},
+    children:
+    [
+      {
+        name: 'TagPopular',
+        path: '/tags/:tag/popular',
+        component: () => import('@/views/TagPopularView.vue'),
+        props:true
+      },
+      {
+        name: 'TagNew',
+        path: '/tags/:tag/new',
+        component: () => import('@/views/TagNewView.vue'),
+        props:true
+      },
+    ]
+  },
+  {
     name: 'Feed',
     path: '/feed',
     component: () => import('@/views/FeedView.vue'),
