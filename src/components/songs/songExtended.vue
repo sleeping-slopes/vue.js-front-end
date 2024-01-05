@@ -35,25 +35,7 @@
             </div>
         </div>
         <div class="songMenu">
-            <dropdown>
-                <template v-slot:label class="bi bi-suit-heart-fill">
-                    <button class="button button-secondary bi bi-three-dots tiny"></button>
-                    </template>
-                <template v-slot:dropdown>
-                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistNext()">
-                        <span class="bi bi-music-note-list"></span>
-                        <span>Play next</span>
-                    </button>
-                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistEnd()">
-                        <span class="bi bi-music-note-list"></span>
-                        <span>Add to current playlist</span>
-                    </button>
-                    <button class="icon-text hoverable h5" v-on:click.stop="this.addToCurrentPlaylistEnd()">
-                        <span class="bi bi-link"></span>
-                        <span>Copy link</span>
-                    </button>
-                </template>
-            </dropdown>
+            <button class="button button-secondary bi bi-three-dots tiny" v-on:click.stop="openDropdown($event)"></button>
             <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
             <button id = "deleteSongButton" class="button button-round tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
         </div>
@@ -63,13 +45,11 @@
 <script>
 
 import song from "@/components/songs/song.vue"
-import dropdown from "../containers/dropdown.vue";
 
 export default
 {
   name: 'songExtended',
-  extends: song,
-  components: { dropdown }
+  extends: song
 }
 
 </script>

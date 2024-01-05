@@ -14,15 +14,18 @@
       <usermenu class="right"/>
     </nav>
   </header>
-  <main v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <router-view :key="this.$route.params.login"/>
+  <main id="main" v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <router-view :key="JSON.stringify(this.$route.params)"/>
+    <songDropdown v-show="true" :id="0" :y="this.y" :x="this.x"/>
   </main>
   <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/></footer>
+
   <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <ModalPlaylistView  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
     <ModalLogInView  v-if="this.$route.query.action=='login'"/>
     <ModalSignUpView  v-if="this.$route.query.action=='signup'"/>
   </div>
+
 </template>
 
 <script>
@@ -30,6 +33,7 @@
 
 import usermenu from "@/components/usermenu.vue"
 import player from "@/components/player.vue"
+import songDropdown from "@/components/containers/songDropdown.vue"
 
 import ModalPlaylistView from "@/views/ModalPlaylistView.vue";
 import ModalLogInView from "./views/ModalLogInView.vue";
@@ -40,7 +44,31 @@ export default
   name: 'app',
   components:
   {
-    usermenu, player, ModalPlaylistView, ModalLogInView, ModalSignUpView
+    usermenu, player, ModalPlaylistView, ModalLogInView, ModalSignUpView,songDropdown
+  },
+  data()
+  {
+    return{
+      x:0,
+      y:0
+    }
+  },
+  methods:
+  {
+    openSongDropdown(target)
+    {
+      let el = target;
+      const rect = el.getBoundingClientRect();
+      this.y=rect.top;
+      this.x=rect.left;
+      while (el.parentElement)
+      {
+
+        el=el.parentElement;
+        console.log(el);
+      }
+      console.log(target);
+    }
   }
 }
 
