@@ -82,6 +82,7 @@
               <template v-slot:content>
                 <songContainer class="ul-list hidden-scroll"
                   :playlist="this.userLikedSongs"
+                  :maxDisplay="3"
                 />
               </template>
             </panel>
