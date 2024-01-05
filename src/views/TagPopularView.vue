@@ -1,19 +1,32 @@
 <template>
-    <errorMessage>
-        <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-        <template v-slot:status>{{ "200" }}</template>
-        <template v-slot:message>{{ "WIP" }}</template>
-    </errorMessage>
+    <songContainer :class="'ul-grid hidden-scroll'"
+      :playlist="playlist"
+      :dynamicComponent="'songCard'"/>
 </template>
 
 <script>
 
-import errorMessage from "@/components/containers/errorMessage.vue";
+import songContainer from "@/components/songContainer.vue";
+import API from "@/axios/API";
 
 export default
 {
     name: 'TagPopularView',
-    components:{errorMessage},
+    components:{songContainer},
+    props:
+    {
+        tag: {default:"notag"}
+    },
+    data()
+    {
+        return {
+            playlist: {},
+        }
+    },
+    async created()
+    {
+        this.playlist = await API.get('tags/'+this.tag+"/popular");
+    }
 }
 
 </script>
