@@ -1,5 +1,5 @@
 <template>
-    <songContainer :class="'ul-grid hidden-scroll'"
+    <songContainer :type="'ul-grid hidden-scroll'"
       :playlist="playlist"
       :dynamicComponent="'songCard'"/>
 </template>

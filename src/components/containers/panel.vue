@@ -32,7 +32,6 @@ export default
   border-radius:10px;
   display:flex;
   flex-direction: column;
-  overflow:hidden;
   box-sizing: border-box;
   height:fit-content;
 }

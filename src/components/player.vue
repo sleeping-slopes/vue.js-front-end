@@ -67,7 +67,7 @@
               </button>
             </template>
             <template v-slot:content>
-              <songContainer class="ul-list hidden-scroll"
+              <songContainer :type="'ul-list hidden-scroll'"
                 :playlist="this.$store.state.currentPlaylist" :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()"/>
             </template>
           </panel>

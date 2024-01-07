@@ -57,7 +57,6 @@
 .playlist-container
 {
   position:relative;
-  overflow:hidden;
 }
 
 </style>

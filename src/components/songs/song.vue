@@ -75,6 +75,10 @@ export default
         if (!this.current) this.$emit('setCurrentSong');
         else this.$store.dispatch('togglePlayingState');
     },
+    openDropdown(event)
+    {
+      this.$emit('openSongDropdown',event,this.id);
+    },
     async like()
     {
       if (!this.song.liked)
@@ -97,19 +101,6 @@ export default
           this.song.liked=false;
         }
       }
-    },
-    addToCurrentPlaylistEnd()
-    {
-      this.$store.dispatch('addSongToCurrentPlaylistEnd',this.id);
-    },
-    addToCurrentPlaylistNext()
-    {
-      this.$store.dispatch('addSongToCurrentPlaylistNext',this.id);
-    },
-    openDropdown(test)
-    {
-        const elem = test.target;
-        this.$root.openSongDropdown(elem);
     }
   }
 }

@@ -41,7 +41,7 @@
         </nav>
 
         <div class="row">
-          <div class="column w-100" style="overflow:hidden">
+          <div class="column" style="width:810px;">
             <router-view></router-view>
           </div>
           <div class="column" style="width:360px; flex-shrink: 0;">
@@ -80,7 +80,7 @@
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
-                <songContainer class="ul-list hidden-scroll"
+                <songContainer :type="'ul-list hidden-scroll'"
                   :playlist="this.userLikedSongs"
                   :maxDisplay="3"
                 />

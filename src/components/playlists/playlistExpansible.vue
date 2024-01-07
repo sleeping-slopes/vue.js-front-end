@@ -31,7 +31,7 @@
                 </div>
             </div>
             <hr>
-            <songContainer class="ul-list"
+            <songContainer :type="'ul-list'"
             :playlist="this.playlist.songs"
             :dynamicComponent="'song'"/>
             <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songs.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
@@ -69,6 +69,7 @@ export default
     flex-shrink: 0;
     transition: 0.5s all;
     width:100%;
+    position: relative;
 }
 
 .playlist-expansible.expanded

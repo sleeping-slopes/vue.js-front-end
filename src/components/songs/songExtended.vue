@@ -41,7 +41,8 @@
         </div>
         <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
-  </template>
+</template>
+
 <script>
 
 import song from "@/components/songs/song.vue"
@@ -53,3 +54,4 @@ export default
 }
 
 </script>
+

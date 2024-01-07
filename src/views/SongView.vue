@@ -13,7 +13,8 @@
           <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
         </template>
         <template v-slot:content>
-          <songContainer class="ul-list hidden-scroll"
+
+          <songContainer :type="'ul-list hidden-scroll'"
           :playlist="this.relatedPlaylist"
           :dynamicComponent="'songExtended'"
           />
@@ -26,7 +27,7 @@
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <songContainer class="ul-list hidden-scroll"
+            <songContainer :type="'ul-list hidden-scroll'"
             :playlist="{id:'zalupa',songs:[{id:1,pos:0},{id:1,pos:1},{id:1,pos:2}]}"
             :dynamicComponent="'songExtended'"
             />
@@ -38,7 +39,7 @@
             <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <songContainer class="ul-list hidden-scroll"
+            <songContainer :type="'ul-list hidden-scroll'"
             :playlist="{id:'zalupa',songs:[{id:1,pos:0}]}"
             :dynamicComponent="'songExtended'"
             />

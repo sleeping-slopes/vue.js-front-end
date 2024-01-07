@@ -46,7 +46,7 @@
       </div>
       <hr/>
 
-        <songContainer class="ul-list hidden-scroll"
+        <songContainer :type="'ul-list hidden-scroll'"
         :playlist="this.playlist.songs"/>
 
     </template>

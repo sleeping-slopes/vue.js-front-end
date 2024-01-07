@@ -30,7 +30,7 @@
         </ul>
       </nav>
     </div>
-    <songContainer class="ul-list hidden-scroll"
+    <songContainer :type="'ul-list hidden-scroll'"
         :playlist="playlist"
         :dynamicComponent="'songExtended'"
         />

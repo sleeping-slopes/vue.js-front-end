@@ -10,7 +10,7 @@
         </div>
         <div class="cover-menu song-options">
             <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
-            <button class="button button-round tiny bi bi-three-dots"></button>
+            <button class="button button-round tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
         </div>
     </div>
     <div class= "info-wrapper column gap-0">

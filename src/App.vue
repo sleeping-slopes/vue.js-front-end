@@ -16,7 +16,6 @@
   </header>
   <main id="main" v-bind:class="{'dark': this.$store.state.darkTheme}">
     <router-view :key="JSON.stringify(this.$route.params)"/>
-    <songDropdown v-show="true" :id="0" :y="this.y" :x="this.x"/>
   </main>
   <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/></footer>
 
@@ -46,30 +45,6 @@ export default
   {
     usermenu, player, ModalPlaylistView, ModalLogInView, ModalSignUpView,songDropdown
   },
-  data()
-  {
-    return{
-      x:0,
-      y:0
-    }
-  },
-  methods:
-  {
-    openSongDropdown(target)
-    {
-      let el = target;
-      const rect = el.getBoundingClientRect();
-      this.y=rect.top;
-      this.x=rect.left;
-      while (el.parentElement)
-      {
-
-        el=el.parentElement;
-        console.log(el);
-      }
-      console.log(target);
-    }
-  }
 }
 
 </script>
