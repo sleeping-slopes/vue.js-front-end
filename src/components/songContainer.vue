@@ -63,12 +63,19 @@ export default
     },
     openSongDropdown(event,id)
     {
-      console.log(id);
-      console.log(event);
-      const target = event.target;
 
-      this.contextMenuX=target.offsetLeft;
-      this.contextMenuY=target.offsetTop;
+      const target = event.target;
+      let el = target;
+      let x = target.getBoundingClientRect().width;
+      let y = target.getBoundingClientRect().height;
+      while (el.offsetParent &&  el!=this.$el)
+      {
+        x+=el.offsetLeft;
+        y+=el.offsetTop;
+        el=el.offsetParent;
+      }
+      this.contextMenuX=x;
+      this.contextMenuY=y;
       this.contextMenuSongID=id;
     },
   },
@@ -87,7 +94,7 @@ export default
 .song-container
 {
   overflow-y:auto;
-  /* position: relative; */
+  position:relative;
 }
 
 .song-container .song.item:hover,

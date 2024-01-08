@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="context-menu" :style="'left:'+ this.x +'px; top:'+ this.y +'px;'">
+    <div class="context-menu" :style="'right: calc(100% - '+ (this.x) +'px); top:'+ this.y +'px;'">
       <button class="button button-context h6 icon-text">
         <span class="bi bi-suit-heart-fill"></span><span>{{songID}}</span>
       </button>

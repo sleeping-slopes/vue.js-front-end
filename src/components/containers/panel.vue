@@ -65,6 +65,7 @@ export default
   width:100%;
   padding:5px;
   gap:5px;
+  height:100%;
 }
 
 </style>
