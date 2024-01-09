@@ -217,7 +217,7 @@ export default createStore({
     setCurrentPlaylistAndSong({commit}, playlistSong)
     {
       commit("updateSongHistory");
-      commit("setCurrentPlaylistAndSong",playlistSong);
+      commit("setCurrentPlaylistAndSong",JSON.parse(JSON.stringify(playlistSong)));
     },
     toggleRepeatMode({commit})
     {
