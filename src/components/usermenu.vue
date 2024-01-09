@@ -93,7 +93,7 @@ export default {
   {
     document.addEventListener('click', this.close);
   },
-  beforeDestroy()
+  beforeUnmount()
   {
     document.removeEventListener('click',this.close);
   },
