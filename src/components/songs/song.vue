@@ -24,7 +24,7 @@
     <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable">{{this.song.name}}</router-link>
   </div>
   <div class="songMenu">
-    <button class="button button-secondary bi bi-three-dots tiny" v-on:click.stop="openDropdown($event)"></button>
+    <button id = "dropdownButton" class="button button-secondary bi bi-three-dots tiny" v-on:click.stop="openDropdown($event)"></button>
     <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
     <button id = "deleteSongButton" class="button button-round tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
   </div>
@@ -77,7 +77,7 @@ export default
     },
     openDropdown(event)
     {
-      this.$emit('openSongDropdown',event,this.id);
+      this.$emit('openSongDropdown',event,{id:this.id,pos:this.pos});
     },
     async like()
     {
@@ -135,7 +135,7 @@ export default
   visibility:hidden;
 }
 
-.song.active:not(:hover) .wrapper-wave
+.song.active:not(.active2):not(:hover) .wrapper-wave
 {
   visibility:visible;
 }
@@ -170,12 +170,14 @@ export default
   display:inline;
 }
 
-.song:hover .song-duration
+.song:hover .song-duration,
+.song.active2 .song-duration
 {
   display:none;
 }
 
-.song-container .song:hover .songMenu
+.song-container .song:hover .songMenu,
+.song-container .song.active2 .songMenu
 {
   display:flex;
 }

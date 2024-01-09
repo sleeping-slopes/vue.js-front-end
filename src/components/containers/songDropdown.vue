@@ -2,16 +2,13 @@
 
 <template>
     <div class="context-menu" :style="'right: calc(100% - '+ (this.x) +'px); top:'+ this.y +'px;'">
-      <button class="button button-context h6 icon-text">
-        <span class="bi bi-suit-heart-fill"></span><span>{{songID}}</span>
-      </button>
-      <button class="button button-context h6 icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.songID)">
+      <button class="button button-context h6 icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
         <span class="bi bi-suit-heart-fill"></span><span>Play next</span>
       </button>
-      <button class="button button-context h6 icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistEnd',this.songID)">
+      <button class="button button-context h6 icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistEnd',this.song.id)">
         <span class="bi bi-suit-heart-fill"></span><span>Add to current playlist</span>
       </button>
-      <router-link class="button button-context h6 icon-text" :to="{ name: 'Song', params: { id: this.songID }}">
+      <router-link class="button button-context h6 icon-text" :to="{ name: 'Song', params: { id: this.song.id }}">
         <span class="bi bi-suit-heart-fill"></span><span>Song page</span>
       </router-link>
     </div>
@@ -22,32 +19,26 @@
 export default
 {
   name: 'dropdown',
-  data()
-  {
-      return{
-          isDropped: false
-      }
-  },
   props:
   {
       x: {default:0},
       y: {default:0},
-      songID: {default:'noid'}
+      song: {default:{}}
+  },
+  mounted()
+  {
+    document.addEventListener('click', this.close);
+  },
+  beforeUnmount()
+  {
+    document.removeEventListener('click', this.close);
   },
   methods:
   {
-      dropIt()
-      {
-        this.isDropped = !this.isDropped
-      },
-      addToCurrentPlaylistNext()
-      {
-        this.$store.dispatch('addSongToCurrentPlaylistNext',this.id);
-      },
-      addToCurrentPlaylistEnd()
-      {
-        this.$store.dispatch('addSongToCurrentPlaylistEnd',this.id);
-      }
+    close()
+    {
+      this.$emit('hideSongDropdown');
+    }
   }
 }
 
@@ -62,7 +53,6 @@ export default
   background-color: var(--panel-background-color);
   display:flex;
   flex-direction: column;
-  overflow:hidden;
   border-radius: 5px;
   border:1px solid var(--panel-border-color);
   box-sizing: border-box;
@@ -73,7 +63,7 @@ export default
 
 .button-context
 {
-  padding: 3px 5px 3px 5px;
+  padding: 5px 8px 5px 8px;
   border:none;
   border-bottom:1px solid var(--panel-border-color);
   color: var(--text-color-primary);

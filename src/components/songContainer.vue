@@ -4,10 +4,13 @@
     <template v-slot:message>{{ this.playlist.error.message }}</template>
   </errorMessage>
   <ul class = "song-container" :class="type" v-else>
-    <songDropdown v-show="true" :songID="this.contextMenuSongID" :y="this.contextMenuY" :x="this.contextMenuX"/>
+    <songDropdown v-if="this.contextMenuSong"
+    :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
+    @hideSongDropdown="this.contextMenuSong=undefined"/>
     <li v-for="(song,index) in getShortList">
       <Transition name="fade">
         <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
+        :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
         :id = "song.id" :pos = "song.pos" :key = "song.id"
           @setCurrentSong="setCurrentPlaylistAndSong(index)"
           @openSongDropdown="openSongDropdown"
@@ -52,7 +55,7 @@ export default
       counter:0,
       contextMenuX:0,
       contextMenuY:0,
-      contextMenuSongID:'noid'
+      contextMenuSong: undefined,
     }
   },
   methods:
@@ -61,9 +64,8 @@ export default
     {
       this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: this.playlist, songIndex: songIndex});
     },
-    openSongDropdown(event,id)
+    openSongDropdown(event,song)
     {
-
       const target = event.target;
       let el = target;
       let x = target.getBoundingClientRect().width;
@@ -76,8 +78,9 @@ export default
       }
       this.contextMenuX=x;
       this.contextMenuY=y;
-      this.contextMenuSongID=id;
+      this.contextMenuSong=song;
     },
+
   },
   computed:
   {
@@ -98,18 +101,27 @@ export default
 }
 
 .song-container .song.item:hover,
-.song-container .song.item.active
+.song-container .song.item.active,
+.song-container .song.item.active2
 {
   background-color:var(--selected-item-background-color);
 }
 
+.song-container .song.active2 #dropdownButton
+{
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
 .song-container .song:hover .shade,
-.song-container .song.active .shade
+.song-container .song.active .shade,
+.song-container .song.active2 .shade
 {
   opacity:0.5;
 }
 
 .song-container .song:hover .cover-menu,
+.song-container .song.active2 .cover-menu,
 .song-container .song.card.active .cover-menu
 {
   opacity:1.0;
