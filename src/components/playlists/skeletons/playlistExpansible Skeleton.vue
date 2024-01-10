@@ -52,7 +52,6 @@ export default
     flex-direction: row;
     height:fit-content;
     flex-shrink: 0;
-    transition: 0.5s all;
     width:100%;
 }
 

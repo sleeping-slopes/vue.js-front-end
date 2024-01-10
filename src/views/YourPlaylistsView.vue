@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <playlistContainer v-bind:class="{'ul-grid': this.currentViewStyle==0,'column':this.currentViewStyle==1}"
+    <playlistContainer :key="this.currentViewStyle" v-bind:class="{'ul-grid': this.currentViewStyle==0,'column':this.currentViewStyle==1}"
       :playlists="this.playlists" :dynamicComponent="this.currentViewStyle?'playlistExpansible':'playlistCard'">
     </playlistContainer>
   </div>
