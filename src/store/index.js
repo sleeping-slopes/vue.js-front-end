@@ -45,7 +45,6 @@ export default createStore({
       if (JSON.stringify(playlistSong.playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
 
       state.currentPlaylist=playlistSong.playlist;
-
       localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
 
       state.currentSongIndex=playlistSong.songIndex;

@@ -85,7 +85,7 @@ export default
   computed:
   {
     current() { return this.$store.state.currentPlaylist.id===this.playlist.id; },
-    loaded() { return this.counter == (this.maxDisplay == 0?this.playlist.songs.length: Math.min(this.maxDisplay, this.playlist.songs.length)); },
+    loaded() { return this.counter == this.getShortList.length },
     getShortList() { return this.maxDisplay<1?this.playlist.songs:this.playlist.songs?.slice(0,this.maxDisplay); }
   }
 }
