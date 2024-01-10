@@ -9,7 +9,7 @@
           </div>
           <div class="cover-menu playlist-stats h4">
             <span class="icon-text">
-              <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songs.length)}}</span>
+              <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songList.songs?.length)}}</span>
             </span>
             <span class="icon-text">
               <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
@@ -75,12 +75,10 @@ export default
     },
     playPlaylist()
     {
-        if (this.playlist.songs.songs?.length>0)
+        if (this.playlist.songList.songs?.length>0)
         {
-          if (!this.current)
-              this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: {id:this.id,songs:this.playlist.songs.songs}, songIndex: 0});
-          else
-          this.$store.dispatch('togglePlayingState');
+          if (!this.current) this.$store.dispatch('setCurrentPlaylistAndSong',{playlist: {id:this.id,songs:this.playlist.songList.songs}, songIndex: 0});
+          else this.$store.dispatch('togglePlayingState');
         }
     },
     abbreviateNumber: abbreviateNumber

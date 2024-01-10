@@ -30,7 +30,7 @@
             </template>
           </div>
           <span class="h4 secondary-text" style="margin-top:10px">
-            {{ abbreviateNumber(this.playlist.songs.length) }} song{{ this.playlist.songs.length!=1?'s':'' }}
+            {{ abbreviateNumber(this.playlist.songList.songs?.length) }} song{{ this.playlist.songList.songs?.length!=1?'s':'' }}
             <span class="bi bi-dot"></span>
             {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
           </span>
@@ -47,7 +47,7 @@
       <hr/>
 
         <songContainer :type="'ul-list hidden-scroll'"
-        :playlist="this.playlist.songs"/>
+        :playlist="this.playlist.songList"/>
 
     </template>
   </modal>
