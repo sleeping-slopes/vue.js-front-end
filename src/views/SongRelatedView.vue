@@ -30,10 +30,14 @@
         </ul>
       </nav>
     </div>
+    <panel>
+    <template v-slot:content>
     <songContainer :type="'ul-list hidden-scroll'"
         :playlist="playlist"
         :dynamicComponent="'songExtended'"
         />
+      </template>
+      </panel>
   </div>
 </template>
 
@@ -41,11 +45,12 @@
 
 import errorMessage from "@/components/containers/errorMessage.vue";
 import songContainer from "@/components/songContainer.vue";
+import panel from "@/components/containers/panel.vue";
 import API from "@/axios/API";
 
   export default {
     name: 'SongRelatedView',
-    components:{errorMessage,songContainer},
+    components:{errorMessage,songContainer,panel},
     props:
     {
       id: { default: "noid" },

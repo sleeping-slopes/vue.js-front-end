@@ -12,7 +12,6 @@
 
 import skeleton from '@/components/skeleton.vue';
 
-
 export default
 {
   name: 'songSkeleton',

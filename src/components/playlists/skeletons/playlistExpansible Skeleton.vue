@@ -23,7 +23,7 @@
       <songSkeleton/>
       <songSkeleton/>
     </div>
-    <skeleton class="button button-secondary h2 shimmer" :exactwidth="90">123</skeleton>
+    <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"></skeleton>
   </div>
 </div>
 </template>

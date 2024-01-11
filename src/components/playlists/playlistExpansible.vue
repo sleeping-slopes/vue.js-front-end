@@ -32,7 +32,7 @@
             </div>
             <hr>
             <songContainer :type="'ul-list'"
-            :playlist="this.playlist.songs"
+            :playlist="this.playlist.songList"
             :dynamicComponent="'song'"/>
             <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>

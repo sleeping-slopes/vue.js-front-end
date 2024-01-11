@@ -1,5 +1,4 @@
 <template>
-
 <div class = "song item">
   <div class = "cover-wrapper s52x52 shimmer"/>
   <div class= "info-wrapper column gap-0">
@@ -11,7 +10,6 @@
     </div>
   </div>
 </div>
-
 </template>
 
 <script>
