@@ -9,8 +9,20 @@
 
 .skeleton.button-secondary
 {
-    background-color: var(--panel-border-color);
-    border:none;
+  background-color: var(--panel-border-color);
+  border:none;
+}
+
+.skeleton.banner-info
+{
+  padding:7px;
+  background-color:rgb(0,0,0,0.7);
+}
+
+.skeleton.button-banner
+{
+  background-color:rgb(0,0,0,0.7);
+  border:none;
 }
 
 .info-wrapper:has(.skeleton)
@@ -49,7 +61,6 @@
 .shimmer
 {
   position:relative;
-  background-color: var(--panel-border-color);
   overflow: hidden;
 }
 
@@ -63,7 +74,7 @@
 .fade-enter-active,
 .fade-leave-active
 {
-  transition: opacity 0.5s ease, max-height 0.5s;
+  transition: opacity 0.2s ease, max-height 0.5s;
 }
 
 .fade-enter-from,

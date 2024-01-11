@@ -11,9 +11,9 @@
       <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
       <div class = "user-image s200x200 gradient-bg" v-else/>
       <div class="info-wrapper column gap-10">
-        <h2 class="banner-info-primary" v-if="this.user.username || this.user.login">{{ this.user.username || this.user.login }}</h2>
-        <h3 class="banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
-        <h3 class="banner-info-secondary" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</h3>
+        <h2 class="banner-info banner-info-primary" v-if="this.user.username || this.user.login">{{ this.user.username || this.user.login }}</h2>
+        <h3 class="banner-info banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
+        <h3 class="banner-info banner-info-secondary" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</h3>
       </div>
     </div>
     <div class="content column">
