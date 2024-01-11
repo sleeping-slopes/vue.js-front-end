@@ -5,7 +5,11 @@
     <template v-slot:message>{{ this.song.error.message }}</template>
   </errorMessage>
   <template v-else>
-    <songBanner :id="this.id" />
+    <songContainer
+      :playlist="{id:'songBanner '+this.song.id,songs:[{id:this.song.id,pos:0}]}"
+      :dynamicComponent="'songBanner'" :type="'banner'">
+    </songContainer>
+    <!-- <songBanner :id="this.id" /> -->
     <div class="content row">
       <panel class="w-100">
         <template v-slot:header>Related songs</template>
