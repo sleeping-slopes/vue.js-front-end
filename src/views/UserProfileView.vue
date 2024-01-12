@@ -44,7 +44,7 @@
           <div class="column" style="width:810px;">
             <router-view></router-view>
           </div>
-          <div class="column" style="width:360px; flex-shrink: 0;">
+          <div class="column" style="width:360px;">
             <panel>
               <template v-slot:content>
                 <div class="row gap-5">

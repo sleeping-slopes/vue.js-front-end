@@ -118,26 +118,19 @@ export default
 
 .song-container .song:hover .shade,
 .song-container .song.active .shade,
-.song-container .song.active2 .shade
+.song-container .song.active2 .shade,
+.playlist-container .cover-wrapper:hover .shade
 {
   opacity:0.5;
 }
 
 .song-container .song:hover .cover-menu,
 .song-container .song.active2 .cover-menu,
-.song-container .song.card.active .cover-menu
+.song-container .song.card.active .cover-menu,
+.playlist-container .playlist.item .cover-wrapper:hover .cover-menu,
+.playlist-container .playlist.card .cover-wrapper:hover .cover-menu
 {
   opacity:1.0;
-}
-
-.card .cover-wrapper:hover .shade
-{
-    opacity:0.5;
-}
-
-.card .cover-wrapper:hover .cover-menu
-{
-    opacity:1.0;
 }
 
 div:not(.song-container) > .song .cover-menu

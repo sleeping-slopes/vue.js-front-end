@@ -11,30 +11,27 @@
     </songContainer>
     <!-- <songBanner :id="this.id" /> -->
     <div class="content row">
-      <panel class="w-100">
+      <panel style="width:810px">
         <template v-slot:header>Related songs</template>
         <template v-slot:menu>
           <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
         </template>
         <template v-slot:content>
-
           <songContainer :type="'ul-list hidden-scroll'"
           :playlist="this.relatedPlaylist"
           :dynamicComponent="'songExtended'"
           />
         </template>
       </panel>
-      <div class="column w-50">
+      <div class="column" style="width:360px">
         <panel>
           <template v-slot:header>In playlists</template>
           <template v-slot:menu>
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
+
           <template v-slot:content>
-            <songContainer :type="'ul-list hidden-scroll'"
-            :playlist="{id:'zalupa',songs:[{id:1,pos:0},{id:1,pos:1},{id:1,pos:2}]}"
-            :dynamicComponent="'songExtended'"
-            />
+            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlist'"/>
           </template>
         </panel>
         <panel>
@@ -44,7 +41,7 @@
           </template>
           <template v-slot:content>
             <songContainer :type="'ul-list hidden-scroll'"
-            :playlist="{id:'zalupa',songs:[{id:1,pos:0}]}"
+            :playlist="{id:'USERS',songs:[{id:1,pos:0}]}"
             :dynamicComponent="'songExtended'"
             />
           </template>
@@ -52,7 +49,7 @@
       </div>
     </div>
   </template>
-  </template>
+</template>
 
 <script>
 
@@ -62,11 +59,12 @@ import API from "@/axios/API";
   import songBanner from "@/components/songs/songBanner.vue";
   import errorMessage from "@/components/containers/errorMessage.vue";
   import songContainer from '@/components/songContainer.vue';
+  import playlistContainer from "@/components/playlistContainer.vue";
 
   export default
   {
       name: 'SongView',
-      components:{panel, songBanner, errorMessage, songContainer},
+      components:{panel, songBanner, errorMessage, songContainer,playlistContainer},
       props:
       {
           id: { default: "noid" },
@@ -75,6 +73,7 @@ import API from "@/axios/API";
       {
         return {
             song:{},
+            playlists:[],
             relatedPlaylist:{}
         }
       },
@@ -82,6 +81,7 @@ import API from "@/axios/API";
       {
         this.song = await API.get('songs/'+this.id);
         this.relatedPlaylist = await API.get('songs/'+this.id+"/related");
+        this.playlists = await API.get('songs/'+this.id+'/playlists');
       }
   }
   </script>

@@ -109,17 +109,6 @@ export default
 
 <style>
 
-.song.item
-{
-  display:flex;
-  width:100%;
-  gap:5px;
-  border-radius:10px;
-  padding:3px;
-  box-sizing: border-box;
-  align-items: center;
-}
-
 .wrapper-wave
 {
   display:flex;
