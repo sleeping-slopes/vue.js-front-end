@@ -31,7 +31,7 @@
           </template>
 
           <template v-slot:content>
-            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlist'"/>
+            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlist'" :maxDisplay="3"/>
           </template>
         </panel>
         <panel>

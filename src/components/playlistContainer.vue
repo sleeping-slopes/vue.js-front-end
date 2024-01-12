@@ -4,7 +4,7 @@
     <template v-slot:message>{{ this.playlists.error.message }}</template>
   </errorMessage>
     <ul class="playlist-container" v-else>
-      <li v-for="(playlist) in this.playlists">
+      <li v-for="(playlist) in getShortList ">
         <Transition name="fade">
           <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
           @loaded="this.counter++"/>
@@ -39,7 +39,8 @@
     props:
     {
       playlists: { default: {} },
-      dynamicComponent: {default:"playlistExpansible"}
+      dynamicComponent: {default:"playlistExpansible"},
+      maxDisplay: {default:0},
     },
     data()
     {
@@ -49,8 +50,9 @@
     },
     computed:
     {
-      loaded() { return this.counter==this.playlists.length },
-    }
+      loaded() { return this.counter==this.getShortList.length },
+      getShortList() { return this.maxDisplay<1?this.playlists:this.playlists.slice(0,this.maxDisplay); }
+    },
   }
   </script>
 
