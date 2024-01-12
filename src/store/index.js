@@ -21,12 +21,10 @@ export default createStore({
   {
     getCurrentPlaylistSongPos(state)
     {
-
       if (state.currentPlaylist.songs)
       {
         return {playlistID: state.currentPlaylist.id, edited:state.currentPlaylist.edited, songPos:state.currentPlaylist.songs[state.currentSongIndex].pos};
       }
-
     },
     getCurrentSong(state)
     {
@@ -286,6 +284,5 @@ export default createStore({
       commit("loadPlaylist",playlist);
     }
   },
-  modules: {
-  }
+  modules: {}
 })

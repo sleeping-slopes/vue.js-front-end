@@ -138,4 +138,34 @@ div:not(.song-container) > .song .cover-menu
   display:none;
 }
 
+.cover-menu
+{
+  position:absolute;
+  opacity:0.0;
+  transition: 0.2s all;
+  color:var(--soft-white);
+  display:flex;
+  padding:10px;
+  gap:20px;
+  box-sizing: border-box;
+}
+
+.cover-menu.playlist-stats
+{
+  bottom:0px;
+}
+
+.cover-menu.song-options
+{
+  gap:10px;
+  bottom:0px;
+  right:0px;
+}
+
+.song.item .cover-menu { transition:none; }
+
+.cover-menu > .button-round.filled { background-color:var(--soft-black); }
+
+.cover-menu > .button-round:not(.toggled) { color:var(--soft-white); }
+
 </style>
