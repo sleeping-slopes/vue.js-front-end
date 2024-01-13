@@ -9,10 +9,7 @@
     <panel>
       <template v-slot:header>Songs</template>
       <template v-slot:content>
-        <songContainer :type="'ul-list hidden-scroll'"
-        :playlist="playlist"
-        :dynamicComponent="'songExtended'"
-        />
+        <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
       </template>
     </panel>
   </div>

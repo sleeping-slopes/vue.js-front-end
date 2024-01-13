@@ -7,7 +7,7 @@
   <li v-for="(user,index) in this.getShortList">
     <router-link :to="{ name: 'User', params: { login: user.login }}">
         <img class = "user-image s36x36" :src="getUserPicture(user.login)"  v-if="imageAvailable[index]" @error="imageAvailable[index]=false"/>
-        <div class = "user-image s36x36 gradient-bg" v-else/>
+        <div class = "user-image s36x36 gradient-bg" v-else></div>
     </router-link>
   </li>
 </ul>

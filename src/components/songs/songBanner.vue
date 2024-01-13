@@ -1,6 +1,6 @@
 <template>
     <div class="row gap-20" style="overflow: hidden; width:1200px;">
-        <div class="banner-bg" :style="this.gradient" />
+        <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
                 <button class="button button-round huge toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
@@ -44,8 +44,8 @@
             </div>
         </div>
         <div class = "cover-wrapper s320x320 right">
-            <img id="songCover" class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
-            <div class = "cover bi bi-music-note" v-else/>
+            <img id="songCover" class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+            <div class = "cover bi bi-music-note" v-else></div>
         </div>
     </div>
 </template>

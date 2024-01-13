@@ -7,9 +7,9 @@
   <template v-else>
     <div class="banner" style="position:relative">
       <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
-      <div class = "banner-bg gradient-bg-reverse" v-else/>
+      <div class = "banner-bg gradient-bg-reverse" v-else></div>
       <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
-      <div class = "user-image s200x200 gradient-bg" v-else/>
+      <div class = "user-image s200x200 gradient-bg" v-else></div>
       <div class="info-wrapper column gap-10">
         <h2 class="banner-info banner-info-primary" v-if="this.user.username || this.user.login">{{ this.user.username || this.user.login }}</h2>
         <h3 class="banner-info banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
@@ -66,10 +66,7 @@
                 </p>
                 <ul class="h5" v-if="this.user.links && this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
-                    <glyphLink
-                      :url=link.url
-                      :description=link.description
-                    />
+                    <glyphLink :url="link.url" :description="link.description"/>
                   </li>
                 </ul>
               </template>
@@ -80,10 +77,7 @@
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
-                <songContainer :type="'ul-list hidden-scroll'"
-                  :playlist="this.userLikedSongs"
-                  :maxDisplay="3"
-                />
+                <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
               </template>
             </panel>
           </div>

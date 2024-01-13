@@ -5,16 +5,18 @@
   </errorMessage>
   <ul class = "song-container" :class="type" v-else>
     <songDropdown v-if="this.contextMenuSong"
-    :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
-    @hideSongDropdown="this.contextMenuSong=undefined"/>
+      :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
+      @hideSongDropdown="this.contextMenuSong=undefined"
+    />
     <li v-for="(song,index) in getShortList">
       <Transition name="fade">
         <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
-        :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
-        :id = "song.id" :pos = "song.pos" :key = "song.id"
+          :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
+          :id = "song.id" :pos = "song.pos" :key = "song.id"
           @setCurrentSong="setCurrentPlaylistAndSong(index)"
           @openSongDropdown="openSongDropdown"
-          @loaded="this.counter++"/>
+          @loaded="this.counter++"
+        />
       </Transition>
     </li>
   </ul>

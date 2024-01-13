@@ -9,7 +9,6 @@
       :playlist="{id:'songBanner '+this.song.id,songs:[{id:this.song.id,pos:0}]}"
       :dynamicComponent="'songBanner'" :type="'banner'">
     </songContainer>
-    <!-- <songBanner :id="this.id" /> -->
     <div class="content row">
       <panel style="width:810px">
         <template v-slot:header>
@@ -21,10 +20,7 @@
           <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
         </template>
         <template v-slot:content>
-          <songContainer :type="'ul-list hidden-scroll'"
-          :playlist="this.relatedPlaylist"
-          :dynamicComponent="'songExtended'"
-          />
+          <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
         </template>
       </panel>
       <div class="column" style="width:360px">

@@ -2,7 +2,7 @@
     <div class = "playlist item">
         <div class="cover-wrapper s52x52" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
             <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
-            <div class = "cover bi bi-music-note-list" v-else/>
+            <div class = "cover bi bi-music-note-list" v-else></div>
             <div class = "shade"></div>
             <div class="cover-menu">
                 <button class="button button-round filled medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>

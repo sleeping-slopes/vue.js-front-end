@@ -7,7 +7,8 @@
       <li v-for="(playlist) in getShortList ">
         <Transition name="fade">
           <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
-          @loaded="this.counter++"/>
+            @loaded="this.counter++"
+          />
         </Transition>
       </li>
     </ul>

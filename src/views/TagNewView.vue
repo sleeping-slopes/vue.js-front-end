@@ -1,7 +1,5 @@
 <template>
-    <songContainer :type="'ul-grid hidden-scroll'"
-      :playlist="playlist"
-      :dynamicComponent="'songCard'"/>
+    <songContainer :type="'ul-grid hidden-scroll'" :dynamicComponent="'songCard'" :playlist="playlist"/>
 </template>
 
 <script>

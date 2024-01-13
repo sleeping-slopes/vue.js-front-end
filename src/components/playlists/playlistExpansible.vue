@@ -4,7 +4,7 @@
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
                     <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
-                    <div class = "cover bi bi-music-note-list" v-else/>
+                    <div class = "cover bi bi-music-note-list" v-else></div>
                 </div>
                 <button class="button button-secondary h6" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                     <div class="icon-text">
@@ -31,9 +31,7 @@
                 </div>
             </div>
             <hr>
-            <songContainer :type="'ul-list'"
-            :playlist="this.playlist.songList"
-            :dynamicComponent="'song'"/>
+            <songContainer :type="'ul-list'" :dynamicComponent="'song'" :playlist="this.playlist.songList"/>
             <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>
     </div>

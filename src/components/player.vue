@@ -40,7 +40,7 @@
             </button>
           </div>
           <panel class="popup volume-popup" v-bind:class="this.showVolume?'visible':'hidden'">
-            <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical" /> </template>
+            <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical"/> </template>
           </panel>
         </div>
         <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
@@ -68,7 +68,8 @@
             </template>
             <template v-slot:content>
               <songContainer :type="'ul-list hidden-scroll'"
-                :playlist="this.$store.state.currentPlaylist" :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()"/>
+                :playlist="this.$store.state.currentPlaylist" :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()"
+              />
             </template>
           </panel>
         </div>

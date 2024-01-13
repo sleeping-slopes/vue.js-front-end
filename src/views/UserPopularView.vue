@@ -8,10 +8,7 @@
     <panel>
       <template v-slot:header>Popular songs by {{ this.user.username || this.login }}</template>
       <template v-slot:content>
-        <songContainer :type="'ul-list hidden-scroll'"
-        :playlist="userPopularSongs"
-        :dynamicComponent="'songExtended'"
-        />
+        <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="userPopularSongs"/>
       </template>
     </panel>
 </template>

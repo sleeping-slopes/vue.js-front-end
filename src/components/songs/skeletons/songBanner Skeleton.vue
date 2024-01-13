@@ -5,7 +5,7 @@
                 <button class="button button-round huge toggled bi bi-pause-circle-fill"></button>
                 <div class="info-wrapper column gap-10">
                     <skeleton class="banner-info h3 shimmer" :minwidth="150" :maxwidth="300"/>
-                    <skeleton class="banner-info h2 shimmer" :minwidth="350" :maxwidth="500" />
+                    <skeleton class="banner-info h2 shimmer" :minwidth="350" :maxwidth="500"/>
                     <skeleton class="banner-info h5 shimmer" :exactwidth="140"/>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <skeleton class="button button-banner h2 shimmer" :exactwidth="105"></skeleton>
             </div>
         </div>
-        <div class = "cover-wrapper s320x320 right shimmer"/>
+        <div class = "cover-wrapper s320x320 right shimmer"></div>
     </div>
 </template>
 

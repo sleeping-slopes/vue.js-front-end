@@ -13,7 +13,7 @@
       <div class="row gap-5">
         <div class="cover-wrapper s160x160">
           <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
-          <div class = "cover bi bi-music-note-list" v-else/>
+          <div class = "cover bi bi-music-note-list" v-else></div>
           <div class = "shade"></div>
           <div class="cover-menu">
             <button class="button button-round huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
@@ -45,10 +45,7 @@
         </div>
       </div>
       <hr/>
-
-        <songContainer :type="'ul-list hidden-scroll'"
-        :playlist="this.playlist.songList"/>
-
+      <songContainer :type="'ul-list hidden-scroll'" :playlist="this.playlist.songList"/>
     </template>
   </modal>
 </template>

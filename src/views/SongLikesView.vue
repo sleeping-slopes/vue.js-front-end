@@ -8,8 +8,8 @@
     <div class="sticky-top">
       <div class="row">
         <router-link :to="{ name: 'Song', params: { id: this.id }}" class = "cover-wrapper s100x100">
-          <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
-          <div class = "cover bi bi-music-note" v-else/>
+          <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+          <div class = "cover bi bi-music-note" v-else></div>
         </router-link>
         <div class= "info-wrapper column gap-0">
           <div class ="h3 secondary-text">

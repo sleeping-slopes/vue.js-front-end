@@ -2,8 +2,8 @@
 <template>
     <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
         <div class = "cover-wrapper s52x52">
-            <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false" />
-            <div class = "cover bi bi-music-note" v-else/>
+            <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+            <div class = "cover bi bi-music-note" v-else></div>
             <div class = "shade"></div>
             <div class="cover-menu">
                 <button class="button button-round filled medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>

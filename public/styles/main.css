@@ -276,7 +276,7 @@ ul
 {
   display:flex;
   width:max-content;
-  gap:3px;
+  gap:0.3em;
   align-items: center;
 }
 
