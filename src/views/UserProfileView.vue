@@ -64,8 +64,8 @@
                 <p class="primary-text h5" v-if="this.user.bio">
                   {{ this.user.bio }}
                 </p>
-                <ul class="h5" v-if="this.user.links && this.user.links.length>0">
-                  <li v-for="(link) in this.user.links">
+                <ul class="h5 column gap-5" v-if="this.userLinks.length>0">
+                  <li v-for="(link) in this.userLinks">
                     <glyphLink :url="link.url" :description="link.description"/>
                   </li>
                 </ul>
@@ -105,13 +105,14 @@ export default
   {
     return {
       userLikedSongs: {},
+      userLinks: [],
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
     }
   },
   async created()
   {
-    this.user.links = await API.get('users/'+this.login+'/links');
+    this.userLinks = await API.get('users/'+this.login+'/links');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
   },
 }
