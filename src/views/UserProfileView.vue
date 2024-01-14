@@ -1,5 +1,5 @@
 <template>
-    <errorMessage v-if="this.user.error">
+  <errorMessage v-if="this.user.error">
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ this.user.error.status }}</template>
     <template v-slot:message>{{ this.user.error.message }}</template>
@@ -39,7 +39,6 @@
             <button class="button button-primary h6" v-if="!this.user.me">Message</button>
           </div>
         </nav>
-
         <div class="row">
           <div class="column" style="width:810px;">
             <router-view></router-view>
@@ -71,7 +70,7 @@
                 </ul>
               </template>
             </panel>
-            <panel>
+            <panel v-if="this.userLikedSongs.length">
               <template v-slot:header>{{this.userLikedSongs.songs?.length}} likes</template>
               <template v-slot:menu>
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
@@ -80,17 +79,31 @@
                 <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
               </template>
             </panel>
+            <panel v-if="this.followers.length">
+              <template v-slot:header>
+                <span class="icon-text">
+                  <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers.length) }} follower{{this.followers.length==1?'':'s'}}</span>
+                </span>
+              </template>
+              <template v-slot:menu>
+                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary h5">View all</router-link>
+              </template>
+              <template v-slot:content>
+                <userList :users="this.followers" :maxDisplay="13"></userList>
+              </template>
+            </panel>
           </div>
         </div>
     </div>
   </template>
-  </template>
+</template>
 
   <script>
 
 import API from "@/axios/API";
 
-import userCard from "@/components/userCard.vue";
+import userCard from "@/components/userCard.vue"
+import userList from "@/components/userList.vue"
 import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
@@ -99,19 +112,21 @@ import errorMessage from "@/components/containers/errorMessage.vue"
 export default
 {
   name: 'UserProfileView',
-  components:{panel,songContainer,glyphLink,errorMessage},
+  components:{panel,songContainer,glyphLink,errorMessage, userList},
   extends: userCard,
   data()
   {
     return {
       userLikedSongs: {},
       userLinks: [],
+      followers: [],
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
     }
   },
   async created()
   {
+    this.followers = await API.get('users/'+this.login+'/followers');
     this.userLinks = await API.get('users/'+this.login+'/links');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
   },
