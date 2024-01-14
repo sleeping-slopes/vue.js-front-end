@@ -117,6 +117,8 @@ a
 
 .button-link
 {
+  display:inline-flex;
+  padding:0px;
   color: var(--text-color-primary);
   border: none;
   background-color: transparent;
@@ -218,6 +220,7 @@ header > nav ul > li > a.router-link-active
 {
   display:flex;
   flex-direction: column;
+  gap:5px;
   color: var(--text-color-primary);
   width:100%;
 }
