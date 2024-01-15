@@ -216,6 +216,57 @@ header > nav ul > li > a.router-link-active
   color: var(--accent-color);
 }
 
+.sidenav > ul
+{
+  display:flex;
+  flex-direction: column;
+  gap:5px;
+  width: calc(100% - 15px);
+}
+
+.sidenav > ul > li
+{
+  position:relative;
+}
+
+.sidenav > ul > li > a
+{
+  display:flex;
+  color: var(--text-color-primary);
+  cursor:pointer;
+  white-space: nowrap;
+  padding:0px 5px 0px 5px;
+  font-size:18px;
+  line-height:30px;
+}
+
+.sidenav > ul > li:after
+{
+  content:' ';
+  left:100%;
+  top:50%;
+  height:0;
+  width:0;
+  position:absolute;
+  border: 15px solid transparent;
+  border-left-color: var(--accent-color);
+  margin-top: -15px;
+  box-sizing: border-box;
+  display:block;
+  visibility: hidden;
+}
+
+.sidenav > ul > li > a.router-link-exact-active
+{
+  background-color: var(--accent-color);
+  color:var(--soft-white);
+}
+
+.sidenav > ul > li:has(a.router-link-exact-active)::after
+{
+  visibility: visible;
+}
+
 .label
 {
   display:flex;
