@@ -70,8 +70,12 @@
                 </ul>
               </template>
             </panel>
-            <panel v-if="this.userLikedSongs.length">
-              <template v-slot:header>{{this.userLikedSongs.songs?.length}} likes</template>
+            <panel v-if="this.userLikedSongs.songs?.length">
+              <template v-slot:header>
+                <span class="icon-text">
+                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs.songs.length) }} like{{this.userLikedSongs.songs.length==1?'':'s'}}</span>
+                </span>
+              </template>
               <template v-slot:menu>
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
