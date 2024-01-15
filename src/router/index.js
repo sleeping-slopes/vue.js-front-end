@@ -22,13 +22,13 @@ const routes =
       {
         name: 'TagPopular',
         path: '/tags/:tag/popular',
-        component: () => import('@/views/TagPopularView.vue'),
+        component: () => import('@/views/Tag/TagPopularView.vue'),
         props:true
       },
       {
         name: 'TagNew',
         path: '/tags/:tag/new',
-        component: () => import('@/views/TagNewView.vue'),
+        component: () => import('@/views/Tag/TagNewView.vue'),
         props:true
       },
     ]
@@ -50,22 +50,22 @@ const routes =
       {
         path: 'songs',
         name: 'YourSongs',
-        component: () => import('@/views/YourSongsView.vue')
+        component: () => import('@/views/You/YourSongsView.vue')
       },
       {
         path: 'playlists',
         name: 'YourPlaylists',
-        component: () => import('@/views/YourPlaylistsView.vue')
+        component: () => import('@/views/You/YourPlaylistsView.vue')
       },
       {
         path: 'following',
         name: 'YourFollowing',
-        component: () => import('@/views/YourFollowingView.vue')
+        component: () => import('@/views/You/YourFollowingView.vue')
       },
       {
         path: 'history',
         name: 'YourHistory',
-        component: () => import('@/views/YourHistoryView.vue')
+        component: () => import('@/views/You/YourHistoryView.vue')
       },
     ]
   },
@@ -80,31 +80,31 @@ const routes =
       {
         name: "UserActivity",
         path: '',
-        component: () => import('@/views/UserPopularView.vue'),
+        component: () => import('@/views/UserProfile/UserPopularView.vue'),
         props:true
       },
       {
         name: "UserPopular",
         path: 'popular',
-        component: () => import('@/views/UserPopularView.vue'),
+        component: () => import('@/views/UserProfile/UserPopularView.vue'),
         props:true,
       },
       {
         name: "UserSongs",
         path: 'songs',
-        component: () => import('@/views/UserSongsView.vue'),
+        component: () => import('@/views/UserProfile/UserSongsView.vue'),
         props:true
       },
       {
         name: "UserPlaylists",
         path: 'playlists',
-        component: () => import('@/views/UserPlaylistsView.vue'),
+        component: () => import('@/views/UserProfile/UserPlaylistsView.vue'),
         props:true
       },
       {
         name: "UserLikes",
         path: 'likes',
-        component:() => import('@/views/UserLikesView.vue'),
+        component:() => import('@/views/UserProfile/UserLikesView.vue'),
         props:true
       },
     ],
@@ -112,13 +112,13 @@ const routes =
   {
     name: "UserFollowers",
     path: '/id/:login/followers',
-    component: () => import('@/views/UserFollowersView.vue'),
+    component: () => import('@/views/UserFollows/UserFollowersView.vue'),
     props:true
   },
   {
     name: "UserFollowing",
     path: '/id/:login/following',
-    component: () => import('@/views/UserFollowingView.vue'),
+    component: () => import('@/views/UserFollows/UserFollowingView.vue'),
     props:true
   },
   {
@@ -130,20 +130,20 @@ const routes =
   {
     name: "SongLikes",
     path: '/song/:id/likes',
-    component: () => import('@/views/SongLikesView.vue'),
+    component: () => import('@/views/Song/SongLikesView.vue'),
     props:true
 
   },
   {
     name: "SongPlaylists",
     path: '/song/:id/playlists',
-    component: () => import('@/views/SongPlaylistsView.vue'),
+    component: () => import('@/views/Song/SongPlaylistsView.vue'),
     props:true
   },
   {
     name: "SongRelated",
     path: '/song/:id/related',
-    component: () => import('@/views/SongRelatedView.vue'),
+    component: () => import('@/views/Song/SongRelatedView.vue'),
     props:true
   },
   {

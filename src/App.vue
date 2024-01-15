@@ -21,8 +21,8 @@
 
   <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <playlistModal  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
-    <ModalLogInView  v-if="this.$route.query.action=='login'"/>
-    <ModalSignUpView  v-if="this.$route.query.action=='signup'"/>
+    <logInModal  v-if="this.$route.query.action=='login'"/>
+    <signUpModal  v-if="this.$route.query.action=='signup'"/>
   </div>
 
 </template>
@@ -35,15 +35,15 @@ import player from "@/components/player.vue"
 import songDropdown from "@/components/containers/songDropdown.vue"
 
 import playlistModal from "@/components/playlists/playlistModal.vue";
-import ModalLogInView from "./views/ModalLogInView.vue";
-import ModalSignUpView from "./views/ModalSignUpView.vue";
+import logInModal from "@/components/modals/logInModal.vue";
+import signUpModal from "@/components/modals/signUpModal.vue";
 
 export default
 {
   name: 'app',
   components:
   {
-    usermenu, player, playlistModal, ModalLogInView, ModalSignUpView,songDropdown
+    usermenu, player, playlistModal, signUpModal, logInModal,songDropdown
   },
 }
 
