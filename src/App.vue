@@ -7,10 +7,12 @@
         <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
         <li><router-link :to="{ name: 'You'}">Library</router-link></li>
       </ul>
-      <label class="label-search-input dark h4">
-        <input type="text" placeholder="Search music" autocomplete="off">
-        <i class="fa fa-search"></i>
-      </label>
+      <form @submit.prevent="this.searchQuery.trim()?this.$router.push({ name: 'Search', query: { q: this.searchQuery.trim() } }):''">
+        <label class="label-search-input dark h4">
+          <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
+          <i class="fa fa-search"></i>
+        </label>
+      </form>
       <usermenu class="right"/>
     </nav>
   </header>
@@ -45,6 +47,12 @@ export default
   {
     usermenu, player, playlistModal, signUpModal, logInModal,songDropdown
   },
+  data()
+  {
+    return {
+      searchQuery:""
+    }
+  }
 }
 
 </script>

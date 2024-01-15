@@ -34,6 +34,30 @@ const routes =
     ]
   },
   {
+    name: 'Search',
+    path: '/search',
+    component: () => import('@/views/SearchView.vue'),
+    redirect: {name:'SearchSongs'},
+    children:
+    [
+      {
+        name: 'SearchSongs',
+        path: '/search/songs',
+        component: () => import('@/views/Search/SearchSongsView.vue')
+      },
+      {
+        name: 'SearchPlaylists',
+        path: '/search/playlists',
+        component: () => import('@/views/Search/SearchPlaylistsView.vue')
+      },
+      {
+        name: 'SearchUsers',
+        path: '/search/users',
+        component: () => import('@/views/Search/SearchUsersView.vue')
+      },
+    ]
+  },
+  {
     name: 'Feed',
     path: '/feed',
     component: () => import('@/views/FeedView.vue'),
