@@ -1,7 +1,7 @@
 <template>
     <div class="content column gap-0" style="padding-top:0px;">
       <div class="sticky-top" style="padding-bottom:20px;">
-        <h2 class="primary-text">{{this.$route.query.q.trim()?"Search results for '"+this.$route.query.q.trim()+"'":"Search"}}</h2>
+        <h2 class="primary-text">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h2>
       </div>
       <div class="row">
         <div class="column test2" style="width:360px">
@@ -26,11 +26,11 @@
             </nav>
         </div>
         <div class="column test3"  style="width:810px">
-            <errorMessage v-if="!this.$route.query.q.trim()">
+            <errorMessage v-if="!this.$route.query.q?.trim()">
                 <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>
             </errorMessage>
-            <router-view v-else/>
+            <router-view :key="this.$route.query.q?.trim()" v-else/>
         </div>
       </div>
     </div>

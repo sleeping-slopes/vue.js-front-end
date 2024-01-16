@@ -7,7 +7,7 @@
         <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
         <li><router-link :to="{ name: 'You'}">Library</router-link></li>
       </ul>
-      <form @submit.prevent="this.searchQuery.trim()?this.$router.push({ name: 'Search', query: { q: this.searchQuery.trim() } }):''">
+      <form @submit.prevent="this.search()">
         <label class="label-search-input dark h4">
           <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
           <i class="fa fa-search"></i>
@@ -51,6 +51,15 @@ export default
   {
     return {
       searchQuery:""
+    }
+  },
+  methods:
+  {
+    search()
+    {
+      if (!this.searchQuery.trim()) return;
+      if (this.$route.matched.some(route => route.name == "Search")) return this.$router.push({name: this.$route.name, query: { q: this.searchQuery.trim() } });
+      return this.$router.push({ name: 'Search', query: { q: this.searchQuery.trim() } });
     }
   }
 }

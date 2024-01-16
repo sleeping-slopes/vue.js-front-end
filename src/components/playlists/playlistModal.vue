@@ -30,9 +30,9 @@
             </template>
           </div>
           <span class="h4 secondary-text" style="margin-top:10px">
-            {{ abbreviateNumber(this.playlist.songList.songs?.length) }} song{{ this.playlist.songList.songs?.length!=1?'s':'' }}
+            {{ abbreviateNumber(this.playlist.songList.songs?.length) }} song{{ this.playlist.songList.songs?.length==1?'':'s' }}
             <span class="bi bi-dot"></span>
-            {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count!=1?'s':'' }}
+            {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count==1?'':'s' }}
           </span>
           <div class="row gap-5 bottom">
             <button class="button button-secondary h5 icon-text" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">

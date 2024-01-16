@@ -14,9 +14,9 @@
                     </h3>
                     <h2 class="banner-info banner-info-primary">{{ this.song.name }}</h2>
                     <span class="h5 banner-info banner-info-secondary">
-                    {{ abbreviateNumber(53252) }} play{{ 53252!=1?'s':'' }}
+                    {{ abbreviateNumber(53252) }} play{{ 53252==1?'':'s' }}
                     <span class="bi bi-dot"></span>
-                    {{ abbreviateNumber(this.song.likes_count) }} like{{ this.song.likes_count!=1?'s':'' }}
+                    {{ abbreviateNumber(this.song.likes_count) }} like{{ this.song.likes_count==1?'':'s' }}
                     </span>
                 </div>
                 <ul class="tag-container right">

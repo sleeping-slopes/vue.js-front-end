@@ -1,8 +1,6 @@
 <template>
-    <span class="secondary-text h4">Found {{ abbreviateNumber(this.playlists.length) }} playlists</span>
+    <span class="secondary-text h4" v-if="this.playlists.length">Found {{ abbreviateNumber(this.playlists.length) }} playlist{{this.playlists.length==1?'':'s'}}</span>
     <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
-    <!-- Sorry we didn't find any results for “fgdgsdgh”. -->
-    <!-- Check the spelling, or try a different search. -->
 </template>
 
 <script>
