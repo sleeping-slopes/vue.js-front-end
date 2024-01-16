@@ -27,7 +27,7 @@ export default
   methods: { abbreviateNumber:abbreviateNumber },
   async created()
   {
-    this.playlist = await API.get('songs');
+    this.playlist = await API.get('search/'+this.$route.query.q.trim()+'/songs');
   }
 }
 

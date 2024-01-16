@@ -22,7 +22,7 @@ export default
   methods: { abbreviateNumber:abbreviateNumber },
   async created()
   {
-    this.playlists = await API.get('playlists');
+    this.playlists = await API.get('search/'+this.$route.query.q.trim()+'/playlists');
   }
 }
 
