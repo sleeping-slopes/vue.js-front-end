@@ -43,7 +43,7 @@
             <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical"/> </template>
           </panel>
         </div>
-        <song ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
+        <songItem ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
         <div class="popup-wrapper">
           <div class="player-menu">
             <button class="button button-round small bi bi-suit-heart-fill"
@@ -83,8 +83,8 @@
 
 import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/songContainer.vue"
-import song from "@/components/songs/song.vue"
-import songSkeleton from "./songs/skeletons/song Skeleton.vue"
+import songItem from "@/components/songs/songItem.vue"
+import songItemSkeleton from "@/components/songs/skeletons/songItem Skeleton.vue"
 
 import { numberToTimeString } from "@/functions.js"
 
@@ -95,7 +95,7 @@ export default
   name: 'player',
   components:
   {
-    panel,songContainer,song,songSkeleton
+    panel,songContainer,songItem,songItemSkeleton
   },
   data()
   {

@@ -18,10 +18,10 @@
     </div>
     <hr>
     <div class="ul-list">
-      <songSkeleton/>
-      <songSkeleton/>
-      <songSkeleton/>
-      <songSkeleton/>
+      <songItemSkeleton/>
+      <songItemSkeleton/>
+      <songItemSkeleton/>
+      <songItemSkeleton/>
     </div>
     <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"></skeleton>
   </div>
@@ -30,14 +30,14 @@
 
 <script>
 
-import songSkeleton from "@/components/songs/skeletons/song Skeleton.vue";
+import songItemSkeleton from "@/components/songs/skeletons/songItem Skeleton.vue";
 
 import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue';
 
 export default
 {
   name: 'playlistCarouselCardSkeleton',
-  components: { songSkeleton },
+  components: { songItemSkeleton },
   extends: playlistCardSkeleton
 }
 

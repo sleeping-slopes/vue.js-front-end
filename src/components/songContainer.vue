@@ -24,26 +24,26 @@
 
 <script>
 
-import song from '@/components/songs/song.vue';
+import songItem from '@/components/songs/songItem.vue';
 import songExtended from '@/components/songs/songExtended.vue';
 import songCard from '@/components/songs/songCard.vue';
 import songBanner from '@/components/songs/songBanner.vue';
 
-import songSkeleton from '@/components/songs/skeletons/song Skeleton.vue';
+import songItemSkeleton from '@/components/songs/skeletons/songItem Skeleton.vue';
 import songExtendedSkeleton from '@/components/songs/skeletons/songExtended Skeleton.vue';
 import songCardSkeleton from '@/components/songs/skeletons/songCard Skeleton.vue';
 import songBannerSkeleton from '@/components/songs/skeletons/songBanner Skeleton.vue';
 
 import errorMessage from '@/components/containers/errorMessage.vue';
-import songDropdown from './containers/songDropdown.vue';
+import songDropdown from '@/components/containers/songDropdown.vue';
 
 export default
 {
   name: 'playlist',
   components:
   {
-    song, songExtended,songCard, songBanner,
-    songSkeleton, songExtendedSkeleton, songCardSkeleton, songBannerSkeleton,
+    songItem, songExtended,songCard, songBanner,
+    songItemSkeleton, songExtendedSkeleton, songCardSkeleton, songBannerSkeleton,
     errorMessage, songDropdown
   },
   props:
@@ -51,7 +51,7 @@ export default
     playlist: { default: {} },
     maxDisplay: {default:0},
     type:{default:''},
-    dynamicComponent: {default:"song"}
+    dynamicComponent: {default:"songItem"}
   },
   data()
   {

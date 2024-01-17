@@ -16,12 +16,12 @@
 
   <script>
 
-  import playlist from './playlists/playlist.vue'
+  import playlistItem from '@/components/playlists/playlistItem.vue'
   import playlistCard from '@/components/playlists/playlistCard.vue'
   import playlistCarouselCard from '@/components/playlists/playlistCarouselCard.vue'
   import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
 
-  import playlistSkeleton from './playlists/skeletons/playlist Skeleton.vue'
+  import playlistItemSkeleton from '@/components/playlists/skeletons/playlistItem Skeleton.vue'
   import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue'
   import playlistCarouselCardSkeleton from '@/components/playlists/skeletons/playlistCarouselCard Skeleton.vue'
   import playlistExpansibleSkeleton from '@/components/playlists/skeletons/playlistExpansible Skeleton.vue'
@@ -33,8 +33,8 @@
     name: 'playlistContainer',
     components:
     {
-        playlist, playlistCard, playlistCarouselCard, playlistExpansible,
-        playlistSkeleton, playlistCardSkeleton, playlistCarouselCardSkeleton, playlistExpansibleSkeleton,
+        playlistItem, playlistCard, playlistCarouselCard, playlistExpansible,
+        playlistItemSkeleton, playlistCardSkeleton, playlistCarouselCardSkeleton, playlistExpansibleSkeleton,
         errorMessage
     },
     props:

@@ -52,13 +52,13 @@
 
 <script>
 
-import song from "@/components/songs/song.vue"
+import songItem from "@/components/songs/songItem.vue"
 import ColorThief from 'colorthief/dist/color-thief.mjs'
 
 export default
 {
   name: 'songBanner',
-  extends: song,
+  extends: songItem,
   data()
   {
     return {

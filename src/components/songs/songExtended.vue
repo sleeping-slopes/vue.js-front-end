@@ -45,12 +45,12 @@
 
 <script>
 
-import song from "@/components/songs/song.vue"
+import songItem from "@/components/songs/songItem.vue"
 
 export default
 {
   name: 'songExtended',
-  extends: song
+  extends: songItem
 }
 
 </script>
