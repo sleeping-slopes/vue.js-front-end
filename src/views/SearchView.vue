@@ -27,7 +27,7 @@
         </div>
         <div class="column test3"  style="width:810px">
             <errorMessage v-if="!this.$route.query.q?.trim()">
-                <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+                <template v-slot:errorIcon><span class="bi bi-search"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>
             </errorMessage>
             <router-view :key="this.$route.query.q?.trim()" v-else/>
