@@ -49,7 +49,7 @@ export default {
   },
   created()
   {
-    if (this.$store.state.loggedIn)
+    if (!this.$store.state.loggedIn) return
     if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
     else this.$router.replace({query:null});
   },
