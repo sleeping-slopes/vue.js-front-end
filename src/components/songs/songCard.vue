@@ -27,12 +27,12 @@
 </template>
 <script>
 
-import songItem from "@/components/songs/songItem.vue"
+import songInterface from '@/components/songs/song interface.vue';
 
 export default
 {
-  name: 'songExtended',
-  extends: songItem
+  name: 'songCard',
+  extends: songInterface
 }
 
 </script>

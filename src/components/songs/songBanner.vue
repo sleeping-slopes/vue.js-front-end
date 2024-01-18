@@ -52,13 +52,14 @@
 
 <script>
 
-import songItem from "@/components/songs/songItem.vue"
+import songInterface from '@/components/songs/song interface.vue';
+
 import ColorThief from 'colorthief/dist/color-thief.mjs'
 
 export default
 {
   name: 'songBanner',
-  extends: songItem,
+  extends: songInterface,
   data()
   {
     return {
@@ -85,17 +86,10 @@ export default
   },
   mounted()
   {
-
     const img = document.getElementById('songCover');
     img.crossOrigin = 'Anonymous';
-    if (img.complete)
-    {
-        this.setColors();
-    }
-    else
-    {
-        img.addEventListener('load', this.setColors);
-    }
+    if (img.complete) this.setColors();
+    else img.addEventListener('load', this.setColors);
   }
 }
 
