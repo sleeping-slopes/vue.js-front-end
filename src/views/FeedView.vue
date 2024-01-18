@@ -13,7 +13,7 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 export default
 {
     name: 'FeedView',
-    components:{errorMessage},
+    components: { errorMessage },
 }
 
 </script>

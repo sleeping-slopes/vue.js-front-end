@@ -24,28 +24,27 @@
   </div>
 </template>
 
-  <script>
-  import panel from '@/components/containers/panel.vue';
-  import songContainer from '@/components/songContainer.vue';
+<script>
 
-  export default
+import panel from '@/components/containers/panel.vue';
+import songContainer from '@/components/songContainer.vue';
+
+export default
+{
+  name: 'YourHistoryView',
+  components: { panel, songContainer },
+  data()
   {
-    name: 'YourHistoryView',
-    components:
-    {
-      panel,songContainer
-    },
-    data()
-    {
-      return {
-        playlist:
-        {
-          id:'[]RENAME',
-          songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)),
-          ...(JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)).length<1) && {error:{"status":404,"message":"No HISTORY songs"}}
-        },
-        currentViewStyle:1,
-      }
+    return {
+      playlist:
+      {
+        id:'[]RENAME',
+        songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)),
+        ...(JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)).length<1) && {error:{"status":404,"message":"No HISTORY songs"}}
+      },
+      currentViewStyle:1,
     }
   }
-  </script>
+}
+
+</script>

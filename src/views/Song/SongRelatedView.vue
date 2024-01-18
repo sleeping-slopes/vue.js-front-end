@@ -45,24 +45,26 @@ import songContainer from "@/components/songContainer.vue";
 import panel from "@/components/containers/panel.vue";
 import API from "@/axios/API";
 
-  export default {
-    name: 'SongRelatedView',
-    components:{errorMessage,songContainer,panel},
-    props:
-    {
-      id: { default: "noid" },
-    },
-    data()
-    {
-      return {
-        song:{},
-        playlist:{}
-      }
-    },
-    async created()
-    {
-      this.song = await API.get('/songs/'+this.id);
-      this.playlist = await API.get('/songs/'+this.id+"/related");
+export default
+{
+  name: 'SongRelatedView',
+  components: { errorMessage, songContainer, panel },
+  props:
+  {
+    id: { default: "noid" }
+  },
+  data()
+  {
+    return {
+      song:{},
+      playlist:{}
     }
+  },
+  async created()
+  {
+    this.song = await API.get('/songs/'+this.id);
+    this.playlist = await API.get('/songs/'+this.id+"/related");
   }
-  </script>
+}
+
+</script>

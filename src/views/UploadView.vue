@@ -13,7 +13,7 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 export default
 {
     name: 'UploadView',
-    components:{errorMessage},
+    components: { errorMessage },
 }
 
 </script>

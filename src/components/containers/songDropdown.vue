@@ -21,9 +21,10 @@ export default
   name: 'dropdown',
   props:
   {
-      x: {default:0},
-      y: {default:0},
-      song: {default:{}}
+    song: { default: {} },
+    x: { default: 0 },
+    y: { default: 0 }
+
   },
   mounted()
   {

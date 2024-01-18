@@ -49,9 +49,9 @@ export default
   props:
   {
     playlist: { default: {} },
-    maxDisplay: {default:0},
-    type:{default:''},
-    dynamicComponent: {default:"songItem"}
+    maxDisplay: { default: 0 },
+    type: { default: '' },
+    dynamicComponent: { default: "songItem" }
   },
   data()
   {

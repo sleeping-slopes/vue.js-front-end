@@ -11,22 +11,24 @@
   </div>
 </template>
 
-  <script>
+<script>
 
-  import panel from "@/components/containers/panel.vue"
+import panel from "@/components/containers/panel.vue"
 
-  export default {
-    name: 'modal',
-    components: { panel },
-    props:
-    {
-        width:{default:"auto"},
-        height:{default:"auto"}
-    }
+export default
+{
+  name: 'modal',
+  components: { panel },
+  props:
+  {
+      width: { default: "auto" },
+      height: { default: "auto" }
   }
-  </script>
+}
 
-  <style scoped>
+</script>
+
+<style scoped>
 
 .modal-shade
 {

@@ -10,10 +10,10 @@ import API from "@/axios/API";
 export default
 {
     name: 'TagPopularView',
-    components:{songContainer},
+    components: { songContainer },
     props:
     {
-        tag: {default:"notag"}
+        tag: { default:"notag" }
     },
     data()
     {

@@ -57,41 +57,42 @@ import API from "@/axios/API";
 
 import { abbreviateNumber } from "@/functions.js";
 
-  import panel from '@/components/containers/panel.vue';
-  import errorMessage from "@/components/containers/errorMessage.vue";
-  import songContainer from '@/components/songContainer.vue';
-  import playlistContainer from "@/components/playlistContainer.vue";
-  import userList from "@/components/userList.vue";
+import panel from '@/components/containers/panel.vue';
+import errorMessage from "@/components/containers/errorMessage.vue";
+import songContainer from '@/components/songContainer.vue';
+import playlistContainer from "@/components/playlistContainer.vue";
+import userList from "@/components/userList.vue";
 
-  export default
-  {
-      name: 'SongView',
-      components:{panel, errorMessage, songContainer, playlistContainer, userList},
-      props:
-      {
-          id: { default: "noid" },
-      },
-      data()
-      {
-        return {
-            song:{},
-            playlists:[],
-            relatedPlaylist:{},
-            users:[]
-        }
-      },
-      methods:
-      {
-        abbreviateNumber: abbreviateNumber
-      },
-      async created()
-      {
-        this.song = await API.get('songs/'+this.id);
-        this.relatedPlaylist = await API.get('songs/'+this.id+"/related");
-        this.playlists = await API.get('songs/'+this.id+'/playlists');
-        this.users = await API.get('songs/'+this.id+'/likes');
+export default
+{
+    name: 'SongView',
+    components: { panel, errorMessage, songContainer, playlistContainer, userList },
+    props:
+    {
+        id: { default: "noid" }
+    },
+    data()
+    {
+      return {
+          song:{},
+          playlists:[],
+          relatedPlaylist:{},
+          users:[]
       }
-  }
-  </script>
+    },
+    methods:
+    {
+      abbreviateNumber: abbreviateNumber
+    },
+    async created()
+    {
+      this.song = await API.get('songs/'+this.id);
+      this.relatedPlaylist = await API.get('songs/'+this.id+"/related");
+      this.playlists = await API.get('songs/'+this.id+'/playlists');
+      this.users = await API.get('songs/'+this.id+'/likes');
+    }
+}
+
+</script>
 
 

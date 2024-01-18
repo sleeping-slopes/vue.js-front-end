@@ -17,7 +17,7 @@ import { abbreviateNumber } from '@/functions';
 export default
 {
   name: 'searchPlaylistView',
-  components: {panel,songContainer},
+  components: { panel, songContainer },
   data()
   {
     return {

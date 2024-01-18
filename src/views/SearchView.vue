@@ -25,7 +25,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="column test3"  style="width:810px">
+        <div class="column"  style="width:810px">
             <errorMessage v-if="!this.$route.query.q?.trim()">
                 <template v-slot:errorIcon><span class="bi bi-search"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>
@@ -43,12 +43,12 @@ import errorMessage from '@/components/containers/errorMessage.vue';
 export default
 {
   name: 'searchView',
-  components: {errorMessage},
-
+  components: { errorMessage }
 }
+
 </script>
 
-<style>
+<style scoped>
 
 .test2
 {
@@ -56,4 +56,5 @@ export default
     top:76px;
     height:min-content;
 }
+
 </style>

@@ -15,10 +15,7 @@ export default
   components: { playlistContainer },
   props:
   {
-    login:
-    {
-      default: "nologin",
-    },
+    login: { default: "nologin" }
   },
   data()
   {

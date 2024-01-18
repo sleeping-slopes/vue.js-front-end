@@ -17,35 +17,32 @@
     </div>
 </template>
 
-    <script>
+<script>
 
+import panel from "@/components/containers/panel.vue"
+import userCard from "@/components/userCard.vue"
+import errorMessage from "@/components/containers/errorMessage.vue";
+import API from "@/axios/API";
 
-      import panel from "@/components/containers/panel.vue"
-      import userCard from "@/components/userCard.vue"
-      import errorMessage from "@/components/containers/errorMessage.vue";
-      import API from "@/axios/API";
+export default
+{
+  name: 'YourFollowersView',
+  components: { panel, userCard, errorMessage },
+  props:
+  {
+    login: { default: "nologin" }
+  },
+  data()
+  {
+    return {
+      user:undefined,
+      followings:[],
+    }
+  },
+  async created()
+  {
+    this.followings = await API.get('users/'+this.login+'/following');
+  }
+}
 
-        export default {
-          name: 'YourFollowersView',
-          components:{panel,userCard,errorMessage},
-          props:
-          {
-
-          },
-          data()
-          {
-            return {
-              user:undefined,
-              followings:[],
-            }
-          },
-          async created()
-          {
-            this.followings = await API.get('users/'+this.login+'/following');
-          },
-          props:
-          {
-            login:{default:"nologin"}
-          }
-        }
-        </script>
+</script>

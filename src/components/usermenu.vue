@@ -44,7 +44,7 @@ import API from "@/axios/API";
 
 export default {
   name: 'usermenu',
-  components:{ panel },
+  components: { panel },
   data()
   {
     return {

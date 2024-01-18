@@ -25,7 +25,7 @@ import API from '@/axios/API';
     props:
     {
       users: { default: {} },
-      maxDisplay: {default:0},
+      maxDisplay: { default: 0 },
     },
     data()
     {

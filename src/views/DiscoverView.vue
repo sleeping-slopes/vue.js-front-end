@@ -24,10 +24,7 @@ import API from '@/axios/API';
 
 export default {
   name: 'DiscoverView',
-  components:
-  {
-    panel, playlistCarousel, songContainer
-  },
+  components: { panel, playlistCarousel, songContainer },
   data()
   {
     return {

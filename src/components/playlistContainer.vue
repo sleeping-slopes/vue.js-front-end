@@ -40,8 +40,8 @@
     props:
     {
       playlists: { default: {} },
-      dynamicComponent: {default:"playlistExpansible"},
-      maxDisplay: {default:0},
+      dynamicComponent: { default: "playlistExpansible" },
+      maxDisplay: { default: 0 }
     },
     data()
     {

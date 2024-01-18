@@ -12,7 +12,7 @@ import { abbreviateNumber } from '@/functions';
 export default
 {
   name: 'searchPlaylistView',
-  components: {playlistContainer},
+  components: { playlistContainer },
   data()
   {
     return {

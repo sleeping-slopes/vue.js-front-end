@@ -17,8 +17,8 @@ export default
   name: 'glyphLink',
   props:
   {
-    url: {default:'null'},
-    description: {default:null}
+    url: { default: 'null' },
+    description: { default: null }
   },
   computed:
   {

@@ -46,9 +46,10 @@ import API from "@/axios/API";
 
 import modal from "@/components/containers/modal.vue"
 
-export default {
+export default
+{
   name: 'signUpModal',
-  components:{modal},
+  components: { modal },
   data()
   {
     return {
@@ -110,4 +111,5 @@ export default {
     }
   }
 }
+
 </script>

@@ -27,45 +27,44 @@
   </div>
 </template>
 
-  <script>
+<script>
 
-  import playlistContainer from '@/components/playlistContainer.vue'
+import playlistContainer from '@/components/playlistContainer.vue'
 
-  import API from '@/axios/API'
+import API from '@/axios/API'
 
-  export default {
-    name: 'YourPlaylistsView',
-    components:
+export default
+{
+  name: 'YourPlaylistsView',
+  components: { playlistContainer },
+  data()
+  {
+    return {
+      playlists:[],
+      selected:'All',
+      currentViewStyle:1,
+    }
+  },
+  props:
+  {
+    login: { default: "nologin" }
+  },
+  watch:
+  {
+    'selected':
     {
-      playlistContainer
-    },
-    data()
-    {
-      return {
-        playlists:[],
-        selected:'All',
-        currentViewStyle:1,
-      }
-    },
-    props:
-    {
-      login:{default:"nologin"}
-    },
-    watch:
-    {
-      'selected':
+      handler: async function(value)
       {
-        handler: async function(value)
+        switch (value)
         {
-          switch (value)
-          {
-            case "All": this.playlists = await API.get("users/"+this.login+"/playlists"); break;
-            case "Created": this.playlists = await API.get("users/"+this.login+"/playlists/created"); break;
-            case "Liked": this.playlists = await API.get("users/"+this.login+"/playlists/liked"); break;
-          }
-        },
-        immediate: true
-      }
+          case "All": this.playlists = await API.get("users/"+this.login+"/playlists"); break;
+          case "Created": this.playlists = await API.get("users/"+this.login+"/playlists/created"); break;
+          case "Liked": this.playlists = await API.get("users/"+this.login+"/playlists/liked"); break;
+        }
+      },
+      immediate: true
     }
   }
-  </script>
+}
+
+</script>

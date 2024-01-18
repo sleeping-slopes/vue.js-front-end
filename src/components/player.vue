@@ -93,10 +93,7 @@ import API from "@/axios/API"
 export default
 {
   name: 'player',
-  components:
-  {
-    panel,songContainer,songItem,songItemSkeleton
-  },
+  components: { panel, songContainer, songItem, songItemSkeleton },
   data()
   {
     return {

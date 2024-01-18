@@ -40,24 +40,26 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 import playlistContainer from "@/components/playlistContainer.vue";
 import API from "@/axios/API";
 
-  export default {
-    name: 'SongLikesView',
-    components:{playlistContainer,errorMessage},
-    props:
-    {
-      id: { default: "noid" },
-    },
-    data()
-    {
-      return {
-        song:{},
-        playlists:[]
-      }
-    },
-    async created()
-    {
-      this.song = await API.get('songs/'+this.id);
-      this.playlists = await API.get('songs/'+this.id+'/playlists');
+export default
+{
+  name: 'SongLikesView',
+  components: { playlistContainer, errorMessage },
+  props:
+  {
+    id: { default: "noid" }
+  },
+  data()
+  {
+    return {
+      song:{},
+      playlists:[]
     }
+  },
+  async created()
+  {
+    this.song = await API.get('songs/'+this.id);
+    this.playlists = await API.get('songs/'+this.id+'/playlists');
   }
-  </script>
+}
+
+</script>

@@ -34,7 +34,6 @@
 
 import usermenu from "@/components/usermenu.vue"
 import player from "@/components/player.vue"
-import songDropdown from "@/components/containers/songDropdown.vue"
 
 import playlistModal from "@/components/playlists/playlistModal.vue";
 import logInModal from "@/components/modals/logInModal.vue";
@@ -43,10 +42,7 @@ import signUpModal from "@/components/modals/signUpModal.vue";
 export default
 {
   name: 'app',
-  components:
-  {
-    usermenu, player, playlistModal, signUpModal, logInModal,songDropdown
-  },
+  components: { usermenu, player, playlistModal, signUpModal, logInModal },
   data()
   {
     return {

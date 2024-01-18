@@ -116,8 +116,8 @@ import errorMessage from "@/components/containers/errorMessage.vue"
 export default
 {
   name: 'UserProfileView',
-  components:{panel,songContainer,glyphLink,errorMessage, userList},
   extends: userCard,
+  components: { panel, songContainer, glyphLink, errorMessage, userList },
   data()
   {
     return {

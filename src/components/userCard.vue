@@ -35,7 +35,7 @@ export default
   name: 'userCard',
   props:
   {
-    login: { default:"nologin"},
+    login: { default: "nologin" }
   },
   data()
   {

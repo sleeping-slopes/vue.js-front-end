@@ -29,33 +29,35 @@
 
 <script>
 
-  import API from "@/axios/API";
+import API from "@/axios/API";
 
-  import panel from "@/components/containers/panel.vue"
-  import userCard from "@/components/userCard.vue"
-  import errorMessage from "@/components/containers/errorMessage.vue";
+import panel from "@/components/containers/panel.vue"
+import userCard from "@/components/userCard.vue"
+import errorMessage from "@/components/containers/errorMessage.vue";
 
-    export default {
-      name: 'UserFollowingView',
-      components:{panel,userCard,errorMessage},
-      props:
-      {
-        login: { default: "nologin" },
-      },
-      data()
-      {
-        return {
-          user:{},
-          followings:[],
-          picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
-          imageAvailable:true
-        }
-      },
-      async created()
-      {
-        this.user = await API.get('users/'+this.login+'/username');
-        if (this.user.error) this.$router.push({name:"User",params:{login:this.login}});
-        this.followings = await API.get('users/'+this.login+'/following');
-      }
+export default
+{
+  name: 'UserFollowingView',
+  components: { panel, userCard, errorMessage },
+  props:
+  {
+    login: { default: "nologin" }
+  },
+  data()
+  {
+    return {
+      user:{},
+      followings:[],
+      picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
+      imageAvailable:true
     }
-    </script>
+  },
+  async created()
+  {
+    this.user = await API.get('users/'+this.login+'/username');
+    if (this.user.error) this.$router.push({name:"User",params:{login:this.login}});
+    this.followings = await API.get('users/'+this.login+'/following');
+  }
+}
+
+</script>

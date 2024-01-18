@@ -48,25 +48,27 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 import userCard from "@/components/userCard.vue";
 import API from "@/axios/API";
 
-  export default {
-    name: 'SongLikesView',
-    components:{userCard,errorMessage},
-    props:
-    {
-      id: { default: "noid" },
-    },
-    data()
-    {
-      return {
-        song:{},
-        users:[]
-      }
-    },
-    async created()
-    {
-      this.song = await API.get('songs/'+this.id);
-      this.users = await API.get('songs/'+this.id+'/likes');
+export default
+{
+  name: 'SongLikesView',
+  components: { userCard, errorMessage },
+  props:
+  {
+    id: { default: "noid" }
+  },
+  data()
+  {
+    return {
+      song:{},
+      users:[]
     }
+  },
+  async created()
+  {
+    this.song = await API.get('songs/'+this.id);
+    this.users = await API.get('songs/'+this.id+'/likes');
   }
-  </script>
+}
+
+</script>
 

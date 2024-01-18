@@ -17,9 +17,12 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 
 export default
 {
-    name: 'TagsView',
-    components:{errorMessage},
-    props: { tag: { default: "notag"} }
+  name: 'TagsView',
+  components: { errorMessage },
+  props:
+  {
+    tag: { default: "notag" }
+  }
 }
 
 </script>

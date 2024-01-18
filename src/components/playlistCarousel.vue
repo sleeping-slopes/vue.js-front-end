@@ -16,13 +16,10 @@ import playlistContainer from '@/components/playlistContainer.vue'
 export default
 {
   name: 'carousel',
-  components:
-  {
-    playlistContainer
-  },
+  components: { playlistContainer },
   props:
   {
-    playlists:{default: []}
+    playlists: { default: {} }
   },
   data()
   {
