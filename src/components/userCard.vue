@@ -40,7 +40,7 @@ export default
   data()
   {
     return {
-      user:{},
+      user: {},
       picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       imageAvailable: true
     }

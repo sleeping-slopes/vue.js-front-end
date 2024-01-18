@@ -53,16 +53,16 @@ export default
   data()
   {
     return {
-      email:{data:null,error:null},
-      password:{data:null,error:null},
-      login:{data:null,error:null}
+      email:{ data: null,error: null },
+      password:{ data: null, error: null },
+      login:{ data: null ,error: null }
     }
   },
   created()
   {
     if (!this.$store.state.loggedIn) return;
     if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
-    else this.$router.replace({query:null});
+    else this.$router.replace({query: null});
   },
   methods:
   {
@@ -90,7 +90,7 @@ export default
         {
           this.$store.dispatch('logIn',r.token);
           if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
-          else this.$router.replace({query:null});
+          else this.$router.replace({query: null});
         }
         else
         {
