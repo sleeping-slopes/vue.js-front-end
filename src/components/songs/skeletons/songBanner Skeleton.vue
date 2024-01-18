@@ -21,23 +21,17 @@
     </div>
 </template>
 
-  <script>
+<script>
 
-  import skeleton from '@/components/skeleton.vue';
+import songSkeletonInterface from '@/components/songs/skeletons/songSkeleton interface.vue';
 
-  export default
-  {
+export default
+{
     name: 'songBannerSkeleton',
-    components: { skeleton },
-    props: { id: { default: "noid"} },
-    async created()
-    {
-      await this.$store.dispatch('loadSong',this.id);
-      this.$emit('loaded');
-    }
-  }
+    extends: songSkeletonInterface
+}
 
-  </script>
+</script>
 
 
 <style scoped>

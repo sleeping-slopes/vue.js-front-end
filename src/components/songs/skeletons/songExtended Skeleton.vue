@@ -14,18 +14,12 @@
 
 <script>
 
-import skeleton from '@/components/skeleton.vue';
+import songSkeletonInterface from '@/components/songs/skeletons/songSkeleton interface.vue';
 
 export default
 {
-  name: 'songSkeleton',
-  components: { skeleton },
-  props: { id: { default: "noid"} },
-  async created()
-  {
-    await this.$store.dispatch('loadSong',this.id);
-    this.$emit('loaded');
-  }
+  name: 'songExtendedSkeleton',
+  extends: songSkeletonInterface
 }
 
 </script>
