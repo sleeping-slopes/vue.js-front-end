@@ -39,21 +39,23 @@
 
 <script>
 
-import playlistCard from "@/components/playlists/playlistCard.vue"
+import playlistInterface from "@/components/playlists/playlist interface.vue"
+
 import songContainer from "@/components/songContainer.vue"
 
 export default
 {
   name: 'playlistExpansible',
-  components: {songContainer},
-  extends: playlistCard,
+  components: { songContainer },
+  extends: playlistInterface,
   data()
   {
     return {
         expanded:false
     }
-  },
+  }
 }
+
 </script>
 
 <style scoped>

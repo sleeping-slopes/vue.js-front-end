@@ -52,20 +52,17 @@
 
 <script>
 
+import playlistInterface from "@/components/playlists/playlist interface.vue";
+
 import modal from "@/components/containers/modal.vue"
 import songContainer from "@/components/songContainer.vue";
 import errorMessage from "@/components/containers/errorMessage.vue"
 
-import playlistCard from "@/components/playlists/playlistCard.vue";
-
 export default
 {
   name: 'playlistModal',
-  components:
-  {
-    modal,songContainer,errorMessage
-  },
-  extends: playlistCard
+  extends: playlistInterface,
+  components: { modal, songContainer, errorMessage }
 }
 </script>
 

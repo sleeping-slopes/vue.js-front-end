@@ -31,13 +31,12 @@
 
 <script>
 
-import playlistCard from "@/components/playlists/playlistCard.vue"
-
+import playlistInterface from "@/components/playlists/playlist interface.vue"
 
 export default
 {
-  name: 'playlist',
-  extends: playlistCard,
+  name: 'playlistItem',
+  extends: playlistInterface
 }
 
 </script>
