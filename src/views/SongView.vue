@@ -30,7 +30,7 @@
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlist'" :maxDisplay="3"/>
+            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
           </template>
         </panel>
         <panel v-if="this.users.length">
