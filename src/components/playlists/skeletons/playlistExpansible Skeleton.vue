@@ -30,15 +30,15 @@
 
 <script>
 
-import songItemSkeleton from "@/components/songs/skeletons/songItem Skeleton.vue";
+import playlistSkeletonInterface from '@/components/playlists/skeletons/playlistSkeleton interface.vue';
 
-import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue';
+import songItemSkeleton from "@/components/songs/skeletons/songItem Skeleton.vue";
 
 export default
 {
-  name: 'playlistCarouselCardSkeleton',
-  components: { songItemSkeleton },
-  extends: playlistCardSkeleton
+  name: 'playlistExpansibleSkeleton',
+  extends: playlistSkeletonInterface,
+  components: { songItemSkeleton }
 }
 
 </script>

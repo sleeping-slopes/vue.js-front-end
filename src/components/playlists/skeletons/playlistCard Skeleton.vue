@@ -10,18 +10,12 @@
 
 <script>
 
-import skeleton from '@/components/skeleton.vue';
+import playlistSkeletonInterface from '@/components/playlists/skeletons/playlistSkeleton interface.vue';
 
 export default
 {
   name: 'playlistCardSkeleton',
-  components: { skeleton },
-  props: { id: { default: "noid"} },
-  async created()
-  {
-    await this.$store.dispatch('loadPlaylist',this.id);
-    this.$emit('loaded');
-  },
+  extends: playlistSkeletonInterface
 }
 
 </script>
