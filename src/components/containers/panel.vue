@@ -68,4 +68,9 @@ export default
   height:100%;
 }
 
+.panel:has(.load) > .panel-header
+{
+  display:none;
+}
+
 </style>
