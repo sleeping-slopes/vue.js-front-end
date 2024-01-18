@@ -1,4 +1,5 @@
 <template>
+  <template v-if="this.song">
   <errorMessage v-if="this.song.error">
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ this.song.error.status }}</template>
@@ -10,30 +11,32 @@
       :dynamicComponent="'songBanner'" :type="'banner'">
     </songContainer>
     <div class="content row">
-      <panel style="width:810px">
-        <template v-slot:header>
-            <span class="icon-text">
-              <span class="bi bi-soundwave"></span><span>Related songs</span>
-            </span>
+      <div class="column" style="width:810px">
+        <panel>
+          <template v-slot:header>
+              <span class="icon-text">
+                <span class="bi bi-soundwave"></span><span>Related songs</span>
+              </span>
+            </template>
+          <template v-slot:menu>
+            <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
-        <template v-slot:menu>
-          <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
-        </template>
-        <template v-slot:content>
-          <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
-        </template>
-      </panel>
+          <template v-slot:content>
+            <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
+          </template>
+        </panel>
+      </div>
       <div class="column" style="width:360px">
-        <panel  v-if="this.playlists.length">
+        <panel>
           <template v-slot:header>In playlists</template>
           <template v-slot:menu>
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
+            <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
           </template>
         </panel>
-        <panel v-if="this.users.length">
+        <panel>
           <template v-slot:header>
             <span class="icon-text">
               <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.users.length) }} like{{this.users.length==1?'':'s'}}</span>
@@ -48,6 +51,7 @@
         </panel>
       </div>
     </div>
+  </template>
   </template>
 </template>
 
@@ -74,10 +78,10 @@ export default
     data()
     {
       return {
-          song:{},
-          playlists:[],
-          relatedPlaylist:{},
-          users:[]
+          song: undefined,
+          playlists: undefined,
+          relatedPlaylist: undefined,
+          users: []
       }
     },
     methods:

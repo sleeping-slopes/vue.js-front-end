@@ -1,17 +1,20 @@
 <template>
-  <errorMessage  v-if="this.playlists.error">
-    <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
-    <template v-slot:message>{{ this.playlists.error.message }}</template>
-  </errorMessage>
-    <ul class="playlist-container" v-else>
-      <li v-for="(playlist) in getShortList ">
-        <Transition name="fade">
-          <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
-            @loaded="this.counter++"
-          />
-        </Transition>
-      </li>
-    </ul>
+  <template v-if="this.playlists">
+    <errorMessage  v-if="this.playlists.error">
+      <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
+      <template v-slot:message>{{ this.playlists.error.message }}</template>
+    </errorMessage>
+      <ul class="playlist-container" :class="type" v-else>
+        <li v-for="(playlist) in getShortList ">
+          <Transition name="fade">
+            <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
+              @loaded="this.counter++"
+            />
+          </Transition>
+        </li>
+      </ul>
+    </template>
+    <div class="load" style="height:200px; background-color:red" v-else>loading</div>
   </template>
 
   <script>
@@ -39,9 +42,10 @@
     },
     props:
     {
-      playlists: { default: {} },
-      dynamicComponent: { default: "playlistExpansible" },
-      maxDisplay: { default: 0 }
+      playlists: { default: undefined },
+      maxDisplay: { default: 0 },
+      type: { default: '' },
+      dynamicComponent: { default: "playlistExpansible" }
     },
     data()
     {
@@ -62,6 +66,17 @@
 .playlist-container
 {
   position:relative;
+}
+
+.carousel-content
+{
+  display:flex;
+  width:100%;
+  gap:10px;
+  box-sizing: border-box;
+  overflow-x:scroll;
+  scroll-behavior: smooth;
+  align-items: center;
 }
 
 </style>

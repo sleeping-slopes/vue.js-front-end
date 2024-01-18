@@ -35,8 +35,8 @@ export default
   data()
   {
     return {
-      user:undefined,
-      followings:[],
+      user: undefined,
+      followings: [],
     }
   },
   async created()

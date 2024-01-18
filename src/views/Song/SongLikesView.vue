@@ -59,8 +59,8 @@ export default
   data()
   {
     return {
-      song:{},
-      users:[]
+      song: undefined,
+      users: []
     }
   },
   async created()

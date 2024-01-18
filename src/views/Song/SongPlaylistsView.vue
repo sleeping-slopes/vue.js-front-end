@@ -30,7 +30,7 @@
         </ul>
       </nav>
     </div>
-    <playlistContainer class="ul-list" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
+    <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
   </div>
 </template>
 
@@ -51,8 +51,8 @@ export default
   data()
   {
     return {
-      song:{},
-      playlists:[]
+      song: undefined,
+      playlists: undefined
     }
   },
   async created()

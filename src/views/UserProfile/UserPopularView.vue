@@ -32,9 +32,9 @@ export default
   data()
   {
     return{
-      userPopularPlaylists:[],
-      userPopularSongs: {},
-      user:{}
+      userPopularPlaylists: undefined,
+      userPopularSongs: undefined,
+      user: {}
     }
   },
   async created()

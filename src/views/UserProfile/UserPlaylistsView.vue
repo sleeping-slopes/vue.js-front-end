@@ -1,6 +1,6 @@
 <template>
 
-<playlistContainer class="column" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
+<playlistContainer :type="'column'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
 
 </template>
 
@@ -20,8 +20,8 @@ export default
   data()
   {
     return{
-      playlists:[],
-      user:{}
+      playlists: undefined,
+      user: {}
     }
   },
   async created()

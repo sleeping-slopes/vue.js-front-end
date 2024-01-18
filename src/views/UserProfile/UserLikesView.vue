@@ -31,9 +31,9 @@ export default
   data()
   {
     return{
-      userLikedPlaylists:[],
-      userLikedSongs: {},
-      user:{},
+      userLikedPlaylists: undefined,
+      userLikedSongs: undefined,
+      user: {}
     }
   },
   async created()

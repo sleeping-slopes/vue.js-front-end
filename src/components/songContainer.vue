@@ -1,25 +1,28 @@
 <template>
+  <template v-if="this.playlist">
     <errorMessage  v-if="this.playlist.error">
-    <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
-    <template v-slot:message>{{ this.playlist.error.message }}</template>
-  </errorMessage>
-  <ul class = "song-container" :class="type" v-else>
-    <songDropdown v-if="this.contextMenuSong"
-      :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
-      @hideSongDropdown="this.contextMenuSong=undefined"
-    />
-    <li v-for="(song,index) in getShortList">
-      <Transition name="fade">
-        <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
-          :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
-          :id = "song.id" :pos = "song.pos" :key = "song.id"
-          @setCurrentSong="setCurrentPlaylistAndSong(index)"
-          @openSongDropdown="openSongDropdown"
-          @loaded="this.counter++"
-        />
-      </Transition>
-    </li>
-  </ul>
+      <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
+      <template v-slot:message>{{ this.playlist.error.message }}</template>
+    </errorMessage>
+    <ul class = "song-container" :class="type" ref="list" v-else>
+      <songDropdown v-if="this.contextMenuSong"
+        :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
+        @hideSongDropdown="this.contextMenuSong=undefined"
+      />
+      <li v-for="(song,index) in getShortList">
+        <Transition name="fade">
+          <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
+            :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
+            :id = "song.id" :pos = "song.pos" :key = "song.id"
+            @setCurrentSong="setCurrentPlaylistAndSong(index)"
+            @openSongDropdown="openSongDropdown"
+            @loaded="this.counter++"
+          />
+        </Transition>
+      </li>
+    </ul>
+  </template>
+  <div class="load" style="height:200px; background-color:red" v-else>loading</div>
 </template>
 
 <script>
@@ -48,7 +51,7 @@ export default
   },
   props:
   {
-    playlist: { default: {} },
+    playlist: { default: undefined },
     maxDisplay: { default: 0 },
     type: { default: '' },
     dynamicComponent: { default: "songItem" }
@@ -74,12 +77,15 @@ export default
       let el = target;
       let x = target.getBoundingClientRect().width;
       let y = target.getBoundingClientRect().height;
-      while (el.offsetParent &&  el!=this.$el)
+      while (el.offsetParent &&  el!=this.$refs.list)
       {
+        console.log(this.$refs.list);
         x+=el.offsetLeft;
         y+=el.offsetTop;
         el=el.offsetParent;
+
       }
+
       this.contextMenuX=x;
       this.contextMenuY=y;
       this.contextMenuSong=song;

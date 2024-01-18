@@ -46,8 +46,8 @@ export default
   data()
   {
     return {
-      user:{},
-      followings:[],
+      user: {},
+      followings: [],
       picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       imageAvailable:true
     }

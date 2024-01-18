@@ -18,7 +18,7 @@ export default
     data()
     {
         return {
-            playlist: {},
+            playlist: undefined,
         }
     },
     async created()

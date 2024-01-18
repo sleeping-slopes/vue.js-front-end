@@ -8,7 +8,7 @@
         <li><router-link :to="{ name: 'YourHistory'}">History</router-link></li>
       </ul>
     </nav>
-    <router-view :login="login" :key="login"></router-view>
+    <router-view :login="this.login" :key="this.login" v-if="this.login !== null"></router-view>
 </div>
 </template>
 
@@ -22,12 +22,12 @@ export default
   async created()
   {
     const user = await API.get('me');
-    if (!user.error) this.login = user.login;
+    this.login = user.login;
   },
   data()
   {
     return{
-      login:undefined
+      login: null
     }
   }
 }

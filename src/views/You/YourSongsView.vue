@@ -44,7 +44,7 @@ export default
   data()
   {
     return {
-      playlist: {},
+      playlist: undefined,
       currentViewStyle:1,
       selected:'All',
     }

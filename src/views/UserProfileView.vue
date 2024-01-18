@@ -70,10 +70,10 @@
                 </ul>
               </template>
             </panel>
-            <panel v-if="this.userLikedSongs.songs?.length">
+            <panel>
               <template v-slot:header>
                 <span class="icon-text">
-                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs.songs.length) }} like{{this.userLikedSongs.songs.length==1?'':'s'}}</span>
+                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs?.songs.length) }} like{{this.userLikedSongs?.songs.length==1?'':'s'}}</span>
                 </span>
               </template>
               <template v-slot:menu>
@@ -83,10 +83,10 @@
                 <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
               </template>
             </panel>
-            <panel v-if="this.followers.length">
+            <panel>
               <template v-slot:header>
                 <span class="icon-text">
-                  <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers.length) }} follower{{this.followers.length==1?'':'s'}}</span>
+                  <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
                 </span>
               </template>
               <template v-slot:menu>
@@ -102,7 +102,7 @@
   </template>
 </template>
 
-  <script>
+<script>
 
 import API from "@/axios/API";
 
@@ -121,9 +121,9 @@ export default
   data()
   {
     return {
-      userLikedSongs: {},
+      userLikedSongs: undefined,
       userLinks: [],
-      followers: [],
+      followers: undefined,
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
     }
@@ -135,7 +135,8 @@ export default
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
   },
 }
-  </script>
+
+</script>
 
 <style scoped>
 .user-stat

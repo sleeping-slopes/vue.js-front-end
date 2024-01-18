@@ -25,8 +25,8 @@ export default
   data()
   {
     return{
-      playlist: {},
-      user:{}
+      playlist: undefined,
+      user: {}
     }
   },
   async created()

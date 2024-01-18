@@ -56,8 +56,8 @@ export default
   data()
   {
     return {
-      song:{},
-      playlist:{}
+      song: undefined,
+      playlist: undefined
     }
   },
   async created()

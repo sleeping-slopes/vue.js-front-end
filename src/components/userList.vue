@@ -1,4 +1,5 @@
 <template>
+<template v-if="this.users">
 <errorMessage  v-if="this.users.error">
     <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
     <template v-slot:message>{{ this.users.error.message }}</template>
@@ -12,8 +13,9 @@
   </li>
 </ul>
 </template>
+</template>
 
-  <script>
+<script>
 
 import errorMessage from '@/components/containers/errorMessage.vue';
 import API from '@/axios/API';
@@ -24,7 +26,7 @@ import API from '@/axios/API';
     components: { errorMessage },
     props:
     {
-      users: { default: {} },
+      users: { default: undefined },
       maxDisplay: { default: 0 },
     },
     data()

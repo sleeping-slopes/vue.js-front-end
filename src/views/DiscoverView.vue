@@ -28,8 +28,8 @@ export default {
   data()
   {
     return {
-      playlists:[],
-      playlist: {},
+      playlists: undefined,
+      playlist: undefined,
     }
   },
   async created()
