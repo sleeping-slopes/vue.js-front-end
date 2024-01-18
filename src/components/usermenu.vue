@@ -1,5 +1,5 @@
 <template>
-<div class="nav-loginmenu">
+<div class="nav-loginmenu" v-if="user !== null">
   <template v-if="!this.user">
     <div class="row">
       <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark h5 ">Sign up</button>
@@ -48,8 +48,8 @@ export default {
   data()
   {
     return {
-      show:false,
-      user:undefined,
+      show: false,
+      user: null,
 
       imageAvailable: true
     }
@@ -58,35 +58,17 @@ export default {
   {
     picturesrc() { return API.defaults.baseURL+`users/`+this.user+`/picture` }
   },
-  async created()
-  {
-    const userByToken = await API.get('me');
-    if (userByToken.error)
-    {
-      this.user=undefined;
-      this.$store.state.loggedIn = false;
-    }
-    else
-    {
-      this.user=userByToken.login;
-      this.$store.state.loggedIn = true;
-    }
-  },
   watch:
   {
-    async '$store.state.authJWT'(playlistSong)
+    '$store.state.authJWT':
     {
-      const userByToken = await API.get('me');
-      if (userByToken.error)
+      handler: async function(value)
       {
-        this.user=undefined;
-        this.$store.state.loggedIn = false;
-      }
-      else
-      {
-        this.user=userByToken.login;
-        this.$store.state.loggedIn = true;
-      }
+        const userByToken = await API.get('me');
+        this.user = userByToken.login;
+        this.$store.state.loggedIn = !!this.user;
+      },
+      immediate: true
     }
   },
   mounted()
