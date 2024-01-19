@@ -7,7 +7,7 @@
     <button class="carousel-button button button-round medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
     <button class="carousel-button button button-round medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
   </div>
-  <div class="load" style="height:200px; background-color:red" v-else>loading</div>
+  <div class="load" v-else>loading</div>
 </template>
 
 <script>

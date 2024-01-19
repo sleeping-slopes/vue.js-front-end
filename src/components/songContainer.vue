@@ -22,7 +22,7 @@
       </li>
     </ul>
   </template>
-  <div class="load" style="height:200px; background-color:red" v-else>loading</div>
+  <div class="load" v-else>loading</div>
 </template>
 
 <script>
@@ -109,7 +109,6 @@ export default
   overflow-y:auto;
   position:relative;
 }
-
 
 .song-container .song.item:hover,
 .song-container .song.item.active,

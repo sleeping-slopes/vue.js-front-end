@@ -70,32 +70,36 @@
                 </ul>
               </template>
             </panel>
-            <panel>
-              <template v-slot:header>
-                <span class="icon-text">
-                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs?.songs.length) }} like{{this.userLikedSongs?.songs.length==1?'':'s'}}</span>
-                </span>
-              </template>
-              <template v-slot:menu>
-                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
-              </template>
-              <template v-slot:content>
-                <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
-              </template>
-            </panel>
-            <panel>
-              <template v-slot:header>
-                <span class="icon-text">
-                  <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
-                </span>
-              </template>
-              <template v-slot:menu>
-                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary h5">View all</router-link>
-              </template>
-              <template v-slot:content>
-                <userList :users="this.followers" :maxDisplay="13"></userList>
-              </template>
-            </panel>
+            <Transition name="fade">
+              <panel v-if="this.userLikedSongs?.songs?.length">
+                <template v-slot:header>
+                  <span class="icon-text">
+                    <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs?.songs.length) }} like{{this.userLikedSongs?.songs.length==1?'':'s'}}</span>
+                  </span>
+                </template>
+                <template v-slot:menu>
+                  <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
+                </template>
+                <template v-slot:content>
+                  <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
+                </template>
+              </panel>
+            </Transition>
+            <Transition name="fade">
+              <panel  v-if="this.followers?.length">
+                <template v-slot:header>
+                  <span class="icon-text">
+                    <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
+                  </span>
+                </template>
+                <template v-slot:menu>
+                  <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary h5">View all</router-link>
+                </template>
+                <template v-slot:content>
+                  <userList :users="this.followers" :maxDisplay="13"></userList>
+                </template>
+              </panel>
+            </Transition>
           </div>
         </div>
     </div>
