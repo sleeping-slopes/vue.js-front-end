@@ -17,13 +17,7 @@
       </div>
     </div>
     <hr>
-    <div class="ul-list">
-      <songItemSkeleton/>
-      <songItemSkeleton/>
-      <songItemSkeleton/>
-      <songItemSkeleton/>
-    </div>
-    <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"></skeleton>
+    <!-- <div class="load">loading</div> -->
   </div>
 </div>
 </template>

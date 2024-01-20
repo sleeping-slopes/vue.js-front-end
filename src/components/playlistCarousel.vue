@@ -1,4 +1,6 @@
 <template>
+  <div class="loader-transition-wrapper">
+  <Transition name="fade222">
   <div class="playlist-carousel" v-if="this.playlists">
     <playlistContainer :type="'carousel-content hidden-scroll'" ref="carousel"
       :playlists="this.playlists"
@@ -8,6 +10,8 @@
     <button class="carousel-button button button-round medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
   </div>
   <div class="load" v-else>loading</div>
+  </Transition>
+  </div>
 </template>
 
 <script>

@@ -1,4 +1,6 @@
 <template>
+  <div class="loader-transition-wrapper">
+  <Transition name="fade222">
   <template v-if="this.playlist">
     <errorMessage  v-if="this.playlist.error">
       <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
@@ -23,6 +25,8 @@
     </ul>
   </template>
   <div class="load" v-else>loading</div>
+  </Transition>
+  </div>
 </template>
 
 <script>

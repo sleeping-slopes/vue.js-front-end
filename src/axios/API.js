@@ -23,7 +23,6 @@ API.interceptors.response.use
 (
     async response =>
     {
-        // if (response.data.values.songList)
         // await new Promise(r => setTimeout(r, 10+Math.random()*1500));
 
         return response.data.values;

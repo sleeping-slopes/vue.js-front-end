@@ -88,7 +88,7 @@
 .fade222-leave-active
 {
   position:absolute;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.0s ease;
 }
 
 .fade222-enter-from,

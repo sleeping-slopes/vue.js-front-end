@@ -68,7 +68,6 @@ export default
     height:fit-content;
     flex-shrink: 0;
     width:100%;
-    position: relative;
 }
 
 .playlist-expansible.expanded

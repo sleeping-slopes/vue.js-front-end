@@ -68,15 +68,4 @@ export default
   height:100%;
 }
 
-.panel:has(.panel-content .load) > .panel-header
-{
-  display:none;
-}
-.panel:has(.panel-content .fade222-enter-active) > .panel-header
-{
-  display:flex;
-}
-
-
-
 </style>
