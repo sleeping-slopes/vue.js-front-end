@@ -12,10 +12,11 @@ export default createStore({
     repeatMode: JSON.parse(localStorage.getItem('repeatMode') || '0'),
     volume: JSON.parse(localStorage.getItem('volume') || '0.75'),
     songHistory: JSON.parse(localStorage.getItem('songHistory') ||'[]'),
-    isPlaying: false,
-    loggedIn: false,
     songs:{}, //memory leak
     playlists:{}, //memory leak
+    users:{}, //memory leak
+    isPlaying: false,
+    loggedIn: false
   },
   getters:
   {
@@ -33,6 +34,7 @@ export default createStore({
     },
     getPlaylist: (state) => (id) => { return state.playlists[id] || {}; },
     getSong: (state) => (id) => { return state.songs[id] || {}; },
+    getUser: (state) => (login) => { return state.users[login] || {}; },
     getSongHistory(state) { return state.songHistory.map((song, index) => { return {id:song,pos:index} }); }
   },
   mutations:
@@ -145,6 +147,10 @@ export default createStore({
     loadPlaylist(state,playlist)
     {
       state.playlists[playlist.id]=playlist;
+    },
+    loadUser(state,user)
+    {
+      state.users[user.login]=user;
     },
     setVolume(state,volume)
     {
@@ -273,15 +279,18 @@ export default createStore({
     },
     async loadSong({commit},id)
     {
-      // await new Promise(r => setTimeout(r, 1000+Math.random()*2000000));
       const song = await API.get('songs/'+id);
       commit("loadSong",song);
     },
     async loadPlaylist({commit},id)
     {
-      // await new Promise(r => setTimeout(r, 1000+Math.random()*2000000));
       const playlist = await API.get('playlists/'+id);
       commit("loadPlaylist",playlist);
+    },
+    async loadUser({commit},login)
+    {
+      const user = await API.get('users/'+login+'/profile');
+      commit("loadUser",user);
     }
   },
   modules: {}
