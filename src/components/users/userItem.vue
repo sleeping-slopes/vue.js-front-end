@@ -6,7 +6,7 @@
       </router-link>
       <div class= "info-wrapper column" style="justify-content: center;">
         <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
-          {{this.user.username || this.login}}
+          {{this.user.username}}
         </router-link>
         <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class ="h5 icon-text secondary-text hoverable" v-if="this.user.followers_count>0">
           <span class="bi bi-people-fill"></span>

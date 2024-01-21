@@ -6,7 +6,7 @@
     </router-link>
     <div class= "info-wrapper column gap-0">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
-        {{this.user.username || this.login}}
+        {{this.user.username}}
       </router-link>
       <span class ="h5 icon-text secondary-text" v-if="this.user.followers_count>0">
         <span class="bi bi-people-fill"></span>

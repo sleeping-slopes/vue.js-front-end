@@ -1,6 +1,6 @@
 <template>
   <panel>
-    <template v-slot:header>Songs by {{ this.user.username || this.login }}</template>
+    <template v-slot:header>Songs by {{ this.user.username }}</template>
     <template v-slot:content>
       <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="this.playlist"/>
     </template>

@@ -5,7 +5,7 @@
         :href="'https://'+this.url"
         target=”_blank” rel="noopener noreferrer">
         <span :class="'bi bi-'+this.glyph"></span>
-        <span>{{this.description || this.url}}</span>
+        <span>{{this.description}}</span>
     </a>
 </template>
 
