@@ -25,13 +25,14 @@
     </div>
   </template>
 
-  <script>
+<script>
 
-  import userCard from "@/components/userCard.vue";
+import userInterface from "@/components/users/user interface.vue";
 
-  export default
-  {
-    name: 'userItem',
-    extends: userCard
-  }
-  </script>
+export default
+{
+  name: 'userItem',
+  extends: userInterface
+}
+
+</script>
