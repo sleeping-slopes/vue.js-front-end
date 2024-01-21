@@ -23,7 +23,7 @@ API.interceptors.response.use
 (
     async response =>
     {
-        // await new Promise(r => setTimeout(r, 10+Math.random()*1500));
+        await new Promise(r => setTimeout(r, 10+Math.random()*1500));
 
         return response.data.values;
 
@@ -31,7 +31,7 @@ API.interceptors.response.use
     },
     async error =>
     {
-        // await new Promise(r => setTimeout(r, 10+Math.random()*1500));
+        await new Promise(r => setTimeout(r, 10+Math.random()*1500));
 
         if (error.response) return {"error":{"status":error.response.data.status,"message":error.response.data.values}};
         return {"error":{"status":503,"message":"Network error"}};

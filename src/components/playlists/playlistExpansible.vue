@@ -68,6 +68,7 @@ export default
     height:fit-content;
     flex-shrink: 0;
     width:100%;
+    transition: max-height 0.5s;
 }
 
 .playlist-expansible.expanded
@@ -92,7 +93,8 @@ export default
 
 .right-column
 {
-    display:flex;align-items: center;
+    display:flex;
+    align-items: center;
     flex-direction: column;
     width:100%;
     gap:5px;

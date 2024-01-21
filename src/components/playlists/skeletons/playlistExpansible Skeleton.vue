@@ -17,7 +17,9 @@
       </div>
     </div>
     <hr>
-    <!-- <div class="load">loading</div> -->
+    <div class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
   </div>
 </div>
 </template>
@@ -47,6 +49,7 @@ export default
     height:fit-content;
     flex-shrink: 0;
     width:100%;
+    z-index:1;
 }
 
 .playlist-expansible.expanded
@@ -71,7 +74,8 @@ export default
 
 .right-column
 {
-    display:flex;align-items: center;
+    display:flex;
+    align-items: center;
     flex-direction: column;
     width:100%;
     gap:5px;
