@@ -1,4 +1,5 @@
 <template>
+<template v-if="this.song">
   <errorMessage v-if="this.song.error">
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ this.song.error.status }}</template>
@@ -36,6 +37,7 @@
       </template>
     </panel>
   </div>
+</template>
 </template>
 
 <script>
