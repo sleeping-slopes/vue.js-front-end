@@ -100,7 +100,7 @@
   height: 50px;
   display: grid;
   border-radius: 50%;
-  -webkit-mask:radial-gradient(farthest-side,#0000 40%,#000 41%);
+  -webkit-mask:radial-gradient(farthest-side,#0000 50%,#FFF 50%);
   background:
     linear-gradient(0deg ,#6495ED80 50%,#6495EDFF 0) center/4px 100%,
     linear-gradient(90deg,#6495ED40 50%,#6495EDBF 0) center/100% 4px;
@@ -114,11 +114,16 @@
    grid-area: 1/1;
    border-radius: 50%;
    background:inherit;
-   transform: rotate(30deg);
 }
+
+.loader::before
+{
+  transform: rotate(-30deg);
+}
+
 .loader::after
 {
-   transform: rotate(60deg);
+   transform: rotate(30deg);
 }
 
 @keyframes loader-spin
