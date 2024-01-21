@@ -27,52 +27,12 @@
 
 <script>
 
-import API from "@/axios/API";
-import { abbreviateNumber } from "@/functions.js";
+import userInterface from "@/components/users/user interface.vue";
 
 export default
 {
   name: 'userCard',
-  props:
-  {
-    login: { default: "nologin" }
-  },
-  data()
-  {
-    return {
-      user: {},
-      picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
-      imageAvailable: true
-    }
-  },
-  async created()
-  {
-    this.user = await API.get('users/'+this.login+"/profile");
-  },
-  methods:
-  {
-    abbreviateNumber: abbreviateNumber,
-    async follow()
-    {
-      const response = await API.post('users/'+this.login+"/action/follow/post");
-      if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-      else
-      {
-        this.user.followers_count++;
-        this.user.youFollow=true;
-      }
-    },
-    async unfollow()
-    {
-      const response = await API.post('users/'+this.login+"/action/follow/delete");
-      if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-      else
-      {
-        this.user.followers_count--;
-        this.user.youFollow=false;
-      }
-    }
-  }
+  extends: userInterface
 }
 </script>
 
