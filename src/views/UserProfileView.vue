@@ -93,7 +93,7 @@
                 <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary h5">View all</router-link>
               </template>
               <template v-slot:content>
-                <userList :users="this.followers" :maxDisplay="13"></userList>
+                <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.followers" :maxDisplay="13"></userContainer>
               </template>
             </panel>
           </div>
@@ -106,18 +106,20 @@
 
 import API from "@/axios/API";
 
-import userCard from "@/components/userCard.vue"
-import userList from "@/components/userList.vue"
+import userInterface from '@/components/users/user interface.vue'
+
 import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
 
+import userContainer from "@/components/userContainer.vue";
+
 export default
 {
   name: 'UserProfileView',
-  extends: userCard,
-  components: { panel, songContainer, glyphLink, errorMessage, userList },
+  extends: userInterface,
+  components: { panel, songContainer, glyphLink, errorMessage, userContainer },
   data()
   {
     return {

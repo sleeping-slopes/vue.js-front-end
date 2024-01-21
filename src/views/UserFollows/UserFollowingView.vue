@@ -17,28 +17,19 @@
       </nav>
     </div>
   </div>
-  <ul class="ul-grid" v-if="this.followings.length>0">
-    <li v-for="following in this.followings"><userCard :login="following.login"></userCard></li>
-  </ul>
-  <errorMessage  v-else>
-    <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
-    <template v-slot:message>{{ this.user.username || this.login }} isn’t following anyone</template>
-  </errorMessage>
+  <userContainer :type="'ul-grid hidden-scroll'" :dynamicComponent="'userCard'" :users="followings"></userContainer>
 </div>
 </template>
 
 <script>
 
 import API from "@/axios/API";
-
-import panel from "@/components/containers/panel.vue"
-import userCard from "@/components/userCard.vue"
-import errorMessage from "@/components/containers/errorMessage.vue";
+import userContainer from "@/components/userContainer.vue";
 
 export default
 {
   name: 'UserFollowingView',
-  components: { panel, userCard, errorMessage },
+  components: { userContainer },
   props:
   {
     login: { default: "nologin" }
@@ -47,7 +38,7 @@ export default
   {
     return {
       user: {},
-      followings: [],
+      followings: undefined,
       picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       imageAvailable:true
     }

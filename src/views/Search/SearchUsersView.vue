@@ -1,34 +1,22 @@
 <template>
-
-    <template v-if="this.users.length">
-    <span class="secondary-text h4">Found {{ abbreviateNumber(this.users.length) }} user{{this.users.length==1?'':'s'}}</span>
-    <ul class="column gap-20">
-        <li v-for="user in this.users">
-            <userItem :login="user.login"/>
-        </li>
-    </ul>
-    </template>
-    <errorMessage v-if="this.users.error">
-        <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
-        <template v-slot:message>{{ this.users.error.message }}</template>
-    </errorMessage>
+  <span class="secondary-text h4" v-if="this.users?.length">Found {{ abbreviateNumber(this.users.length) }} user{{this.users.length==1?'':'s'}}</span>
+  <userContainer :type="'column gap-20'" :dynamicComponent="'userItem'" :users="this.users"></userContainer>
 </template>
 
 <script>
 
 import API from '@/axios/API';
-import userItem from '@/components/users/userItem.vue';
+import userContainer from '@/components/userContainer.vue';
 import { abbreviateNumber } from '@/functions';
-import errorMessage from '@/components/containers/errorMessage.vue';
 
 export default
 {
   name: 'searchPlaylistView',
-  components: { userItem, errorMessage },
+  components: { userContainer },
   data()
   {
     return {
-        users: []
+        users: undefined
     }
   },
   methods: { abbreviateNumber:abbreviateNumber },

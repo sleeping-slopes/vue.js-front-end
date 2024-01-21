@@ -36,7 +36,7 @@
             <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
           </template>
         </panel>
-        <panel>
+        <panel v-if="this.users?.length">
           <template v-slot:header>
             <span class="icon-text">
               <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.users.length) }} like{{this.users.length==1?'':'s'}}</span>
@@ -46,7 +46,7 @@
             <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <userList :users="this.users" :maxDisplay="13"></userList>
+            <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.users" :maxDisplay="13"></userContainer>
           </template>
         </panel>
       </div>
@@ -65,12 +65,12 @@ import panel from '@/components/containers/panel.vue';
 import errorMessage from "@/components/containers/errorMessage.vue";
 import songContainer from '@/components/songContainer.vue';
 import playlistContainer from "@/components/playlistContainer.vue";
-import userList from "@/components/userList.vue";
+import userContainer from "@/components/userContainer.vue";
 
 export default
 {
     name: 'SongView',
-    components: { panel, errorMessage, songContainer, playlistContainer, userList },
+    components: { panel, errorMessage, songContainer, playlistContainer, userContainer },
     props:
     {
         id: { default: "noid" }
@@ -81,7 +81,7 @@ export default
           song: undefined,
           playlists: undefined,
           relatedPlaylist: undefined,
-          users: []
+          users: undefined
       }
     },
     methods:

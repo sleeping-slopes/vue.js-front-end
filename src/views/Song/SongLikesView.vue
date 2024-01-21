@@ -1,4 +1,5 @@
 <template>
+<template v-if="this.song">
   <errorMessage v-if="this.song.error">
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ this.song.error.status }}</template>
@@ -30,28 +31,21 @@
         </ul>
       </nav>
     </div>
-    <ul class="ul-grid" v-if="this.users.length>0">
-      <li v-for="users in this.users">
-        <userCard :login="users.login"></userCard>
-      </li>
-    </ul>
-    <errorMessage  v-else>
-      <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
-      <template v-slot:message>No one liked this song yet</template>
-    </errorMessage>
+    <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="users"></userContainer>
   </div>
+</template>
 </template>
 
 <script>
 
-import errorMessage from "@/components/containers/errorMessage.vue";
-import userCard from "@/components/userCard.vue";
 import API from "@/axios/API";
+import userContainer from '@/components/userContainer.vue';
+import errorMessage from "@/components/containers/errorMessage.vue";
 
 export default
 {
   name: 'SongLikesView',
-  components: { userCard, errorMessage },
+  components: { userContainer, errorMessage },
   props:
   {
     id: { default: "noid" }
@@ -60,7 +54,7 @@ export default
   {
     return {
       song: undefined,
-      users: []
+      users: undefined
     }
   },
   async created()

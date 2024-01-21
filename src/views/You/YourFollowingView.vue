@@ -7,27 +7,19 @@
             <i class="fa fa-search"></i>
           </label>
         </div>
-        <errorMessage  v-if="this.followings.length==0">
-          <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
-          <template v-slot:message>You aren’t following anyone</template>
-        </errorMessage>
-        <ul class="ul-grid">
-            <li v-for="following in this.followings"><userCard :login="following.login"></userCard></li>
-        </ul>
+        <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="followings"></userContainer>
     </div>
 </template>
 
 <script>
 
-import panel from "@/components/containers/panel.vue"
-import userCard from "@/components/userCard.vue"
-import errorMessage from "@/components/containers/errorMessage.vue";
 import API from "@/axios/API";
+import userContainer from "@/components/userContainer.vue";
 
 export default
 {
   name: 'YourFollowersView',
-  components: { panel, userCard, errorMessage },
+  components: { userContainer },
   props:
   {
     login: { default: "nologin" }
@@ -36,7 +28,7 @@ export default
   {
     return {
       user: undefined,
-      followings: [],
+      followings: undefined,
     }
   },
   async created()
