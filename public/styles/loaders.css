@@ -73,7 +73,7 @@
 .fade-enter-active,
 .fade-leave-active
 {
-  transition: opacity 0.2s ease;
+  transition: opacity 0.5s ease;
 }
 
 .fade-enter-from,
@@ -87,16 +87,41 @@
 {
   width:100%;
   height:100%;
-  background-color:red;
   display:flex;
   justify-content: center;
   padding:20px 0px 20px 0px;
   box-sizing: border-box;
 }
 
+
 .loader
 {
   width: 50px;
-  height:50px;
-  background:green;
+  height: 50px;
+  display: grid;
+  border-radius: 50%;
+  -webkit-mask:radial-gradient(farthest-side,#0000 40%,#000 41%);
+  background:
+    linear-gradient(0deg ,#6495ED80 50%,#6495EDFF 0) center/4px 100%,
+    linear-gradient(90deg,#6495ED40 50%,#6495EDBF 0) center/100% 4px;
+  background-repeat: no-repeat;
+  animation: loader-spin 1s infinite steps(12);
+}
+.loader::before,
+.loader::after
+{
+   content:"";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background:inherit;
+   transform: rotate(30deg);
+}
+.loader::after
+{
+   transform: rotate(60deg);
+}
+
+@keyframes loader-spin
+{
+  100% {transform: rotate(1turn)}
 }
