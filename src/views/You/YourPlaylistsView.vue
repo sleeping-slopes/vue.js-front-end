@@ -29,7 +29,7 @@
 
 <script>
 
-import playlistContainer from '@/components/playlistContainer.vue'
+import playlistContainer from '@/components/containers/playlistContainer.vue'
 
 import API from '@/axios/API'
 

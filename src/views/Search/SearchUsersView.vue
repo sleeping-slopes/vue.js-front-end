@@ -6,7 +6,7 @@
 <script>
 
 import API from '@/axios/API';
-import userContainer from '@/components/userContainer.vue';
+import userContainer from '@/components/containers/userContainer.vue';
 import { abbreviateNumber } from '@/functions';
 
 export default

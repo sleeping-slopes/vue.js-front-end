@@ -39,7 +39,7 @@
 <script>
 
 import API from "@/axios/API";
-import userContainer from '@/components/userContainer.vue';
+import userContainer from '@/components/containers/userContainer.vue';
 import errorMessage from "@/components/containers/errorMessage.vue";
 
 export default

@@ -14,7 +14,7 @@
 <script>
 
 import API from "@/axios/API";
-import userContainer from "@/components/userContainer.vue";
+import userContainer from "@/components/containers/userContainer.vue";
 
 export default
 {

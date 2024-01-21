@@ -39,7 +39,7 @@
 <script>
 
 import errorMessage from "@/components/containers/errorMessage.vue";
-import playlistContainer from "@/components/playlistContainer.vue";
+import playlistContainer from "@/components/containers/playlistContainer.vue";
 import API from "@/axios/API";
 
 export default

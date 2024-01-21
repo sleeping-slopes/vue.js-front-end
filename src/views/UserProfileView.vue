@@ -109,11 +109,11 @@ import API from "@/axios/API";
 import userInterface from '@/components/users/user interface.vue'
 
 import panel from "@/components/containers/panel.vue"
-import songContainer from "@/components/songContainer.vue"
+import songContainer from "@/components/containers/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
 
-import userContainer from "@/components/userContainer.vue";
+import userContainer from "@/components/containers/userContainer.vue";
 
 export default
 {

@@ -41,7 +41,7 @@
 
 import playlistInterface from "@/components/playlists/playlist interface.vue"
 
-import songContainer from "@/components/songContainer.vue"
+import songContainer from "@/components/containers/songContainer.vue"
 
 export default
 {

@@ -4,7 +4,7 @@
 
 <script>
 
-import songContainer from "@/components/songContainer.vue";
+import songContainer from "@/components/containers/songContainer.vue";
 import API from "@/axios/API";
 
 export default

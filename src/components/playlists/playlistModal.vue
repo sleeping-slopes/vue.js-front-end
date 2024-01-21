@@ -55,7 +55,7 @@
 import playlistInterface from "@/components/playlists/playlist interface.vue";
 
 import modal from "@/components/containers/modal.vue"
-import songContainer from "@/components/songContainer.vue";
+import songContainer from "@/components/containers/songContainer.vue";
 import errorMessage from "@/components/containers/errorMessage.vue"
 
 export default

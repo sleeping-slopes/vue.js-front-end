@@ -63,9 +63,9 @@ import { abbreviateNumber } from "@/functions.js";
 
 import panel from '@/components/containers/panel.vue';
 import errorMessage from "@/components/containers/errorMessage.vue";
-import songContainer from '@/components/songContainer.vue';
-import playlistContainer from "@/components/playlistContainer.vue";
-import userContainer from "@/components/userContainer.vue";
+import songContainer from '@/components/containers/songContainer.vue';
+import playlistContainer from "@/components/containers/playlistContainer.vue";
+import userContainer from "@/components/containers/userContainer.vue";
 
 export default
 {

@@ -43,7 +43,7 @@
 <script>
 
 import errorMessage from "@/components/containers/errorMessage.vue";
-import songContainer from "@/components/songContainer.vue";
+import songContainer from "@/components/containers/songContainer.vue";
 import panel from "@/components/containers/panel.vue";
 import API from "@/axios/API";
 

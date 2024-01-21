@@ -17,7 +17,7 @@
 
 import panel from '@/components/containers/panel.vue';
 import playlistCarousel from '@/components/playlistCarousel.vue';
-import songContainer from '@/components/songContainer.vue';
+import songContainer from '@/components/containers/songContainer.vue';
 
 import API from '@/axios/API';
 

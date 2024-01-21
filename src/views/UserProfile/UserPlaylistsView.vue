@@ -7,7 +7,7 @@
 <script>
 
 import API from '@/axios/API';
-import playlistContainer from "@/components/playlistContainer.vue"
+import playlistContainer from "@/components/containers/playlistContainer.vue"
 
 export default
 {
