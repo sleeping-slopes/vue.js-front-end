@@ -15,6 +15,7 @@ export default
     return {
       coversrc: API.defaults.baseURL+`playlists/`+this.id+`/cover`,
       imageAvailable:true,
+      loaded:false
     }
   },
   computed:
@@ -25,7 +26,9 @@ export default
   },
   async created()
   {
-    if (this.playlist.vuexInitial) await this.$store.dispatch('loadPlaylist',this.id);
+    await this.$store.dispatch('loadPlaylist',this.id);
+    this.loaded = true;
+    this.$emit('loaded');
   },
   methods:
   {

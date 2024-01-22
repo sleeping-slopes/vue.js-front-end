@@ -1,5 +1,6 @@
 <template>
-    <div class = "playlist-expansible" v-bind:class="{'expanded': this.expanded}">
+    <Transition name="fade">
+    <div class = "playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="column gap-0">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
@@ -35,18 +36,21 @@
             <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>
     </div>
+    <playlistExpansibleSkeleton v-else></playlistExpansibleSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import playlistInterface from "@/components/playlists/playlist interface.vue"
 
+import playlistExpansibleSkeleton from "@/components/playlists/skeletons/playlistExpansible Skeleton.vue";
 import songContainer from "@/components/containers/songContainer.vue"
 
 export default
 {
   name: 'playlistExpansible',
-  components: { songContainer },
+  components: { playlistExpansibleSkeleton,songContainer },
   extends: playlistInterface,
   data()
   {

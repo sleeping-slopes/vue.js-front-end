@@ -14,12 +14,12 @@
 
 <script>
 
-import playlistSkeletonInterface from '@/components/playlists/skeletons/playlistSkeleton interface.vue';
+import skeleton from '@/components/skeleton.vue';
 
 export default
 {
     name: 'playlistItemSkeleton',
-    extends: playlistSkeletonInterface
+    components: { skeleton }
 }
 
 </script>

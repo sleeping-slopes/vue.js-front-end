@@ -1,5 +1,6 @@
 <template>
-    <div class = "playlist card">
+<Transition name="fade">
+    <div class = "playlist card" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="cover-wrapper s128x128" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
             <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
             <div class = "cover bi bi-music-note-list" v-else></div>
@@ -27,16 +28,20 @@
             <span class ="h4 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
         </div>
     </div>
+    <playlistCarouselCardSkeleton v-else></playlistCarouselCardSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import playlistInterface from "@/components/playlists/playlist interface.vue"
+import playlistCarouselCardSkeleton from "@/components/playlists/skeletons/playlistCarouselCard Skeleton.vue";
 
 export default
 {
   name: 'playlistCarouselCard',
-  extends: playlistInterface
+  extends: playlistInterface,
+  components: { playlistCarouselCardSkeleton }
 }
 
 </script>

@@ -6,11 +6,9 @@
     </errorMessage>
       <ul class="playlist-container" :class="type" v-else>
         <li v-for="(playlist) in getShortList ">
-          <Transition name="fade">
-            <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :id="playlist.id"
+            <component :is = "this.dynamicComponent" :id="playlist.id"
               @loaded="this.counter++"
             />
-          </Transition>
         </li>
       </ul>
   </template>
@@ -26,11 +24,6 @@ import playlistCard from '@/components/playlists/playlistCard.vue'
 import playlistCarouselCard from '@/components/playlists/playlistCarouselCard.vue'
 import playlistExpansible from '@/components/playlists/playlistExpansible.vue'
 
-import playlistItemSkeleton from '@/components/playlists/skeletons/playlistItem Skeleton.vue'
-import playlistCardSkeleton from '@/components/playlists/skeletons/playlistCard Skeleton.vue'
-import playlistCarouselCardSkeleton from '@/components/playlists/skeletons/playlistCarouselCard Skeleton.vue'
-import playlistExpansibleSkeleton from '@/components/playlists/skeletons/playlistExpansible Skeleton.vue'
-
 import errorMessage from "@/components/containers/errorMessage.vue"
 
 export default
@@ -39,7 +32,6 @@ export default
   components:
   {
       playlistItem, playlistCard, playlistCarouselCard, playlistExpansible,
-      playlistItemSkeleton, playlistCardSkeleton, playlistCarouselCardSkeleton, playlistExpansibleSkeleton,
       errorMessage
   },
   props:

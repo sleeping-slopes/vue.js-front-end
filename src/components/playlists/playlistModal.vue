@@ -3,14 +3,12 @@
 <template>
   <modal :width="'600px'">
     <template v-slot:content>
-      <template v-if="!this.playlist.vuexInitial">
-        <template v-if="this.playlist.error">
-          <errorMessage>
-            <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-            <template v-slot:status>{{ this.playlist.error.status }}</template>
-            <template v-slot:message>{{ this.playlist.error.message }}</template>
-          </errorMessage>
-        </template>
+      <template v-if="this.loaded">
+        <errorMessage v-if="this.playlist.error">
+          <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+          <template v-slot:status>{{ this.playlist.error.status }}</template>
+          <template v-slot:message>{{ this.playlist.error.message }}</template>
+        </errorMessage>
         <template v-else>
           <div class="row gap-5">
             <div class="cover-wrapper s160x160">
@@ -50,6 +48,9 @@
           <songContainer :type="'ul-list hidden-scroll'" :playlist="this.playlist.songList"/>
         </template>
       </template>
+      <div class="loader-wrapper" v-else>
+        <div class="loader"></div>
+      </div>
     </template>
   </modal>
 </template>
@@ -68,6 +69,7 @@ export default
   extends: playlistInterface,
   components: { modal, songContainer, errorMessage }
 }
+
 </script>
 
 <style scoped>

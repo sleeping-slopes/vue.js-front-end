@@ -26,15 +26,12 @@
 
 <script>
 
-import playlistSkeletonInterface from '@/components/playlists/skeletons/playlistSkeleton interface.vue';
-
-import songItemSkeleton from "@/components/songs/skeletons/songItem Skeleton.vue";
+import skeleton from '@/components/skeleton.vue';
 
 export default
 {
-  name: 'playlistExpansibleSkeleton',
-  extends: playlistSkeletonInterface,
-  components: { songItemSkeleton }
+    name: 'playlistExpansibleSkeleton',
+    components: { skeleton }
 }
 
 </script>
