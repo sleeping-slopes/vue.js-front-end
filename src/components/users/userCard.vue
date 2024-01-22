@@ -1,5 +1,6 @@
 <template>
-  <div class = "card user-card">
+<Transition name = "fade">
+  <div class = "card user-card" v-if="(this.$parent.loaded??true) && this.loaded">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
       <img class = "user-image s180x180" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s180x180 gradient-bg" v-else></div>
@@ -23,16 +24,20 @@
       <span class="bi bi bi-person-check-fill"></span><span>Following</span>
     </button>
   </div>
+  <userCardSkeleton v-else></userCardSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import userInterface from "@/components/users/user interface.vue";
+import userCardSkeleton from "@/components/users/skeletons/userCard Skeleton.vue";
 
 export default
 {
   name: 'userCard',
-  extends: userInterface
+  extends: userInterface,
+  components: { userCardSkeleton }
 }
 </script>
 

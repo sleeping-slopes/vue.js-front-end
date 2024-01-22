@@ -14,7 +14,8 @@ export default
   {
     return {
       picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
-      imageAvailable: true
+      imageAvailable: true,
+      loaded: false
     }
   },
   computed:
@@ -23,7 +24,9 @@ export default
   },
   async created()
   {
-    if (this.user.vuexInitial) await this.$store.dispatch('loadUser',this.login);
+    await this.$store.dispatch('loadUser',this.login);
+    this.loaded = true;
+    this.$emit('loaded');
   },
   methods:
   {

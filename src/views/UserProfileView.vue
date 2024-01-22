@@ -1,5 +1,5 @@
 <template>
-<template v-if="!this.user.vuexInitial">
+<template v-if="this.loaded">
   <errorMessage v-if="this.user.error">
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ this.user.error.status }}</template>
@@ -102,6 +102,9 @@
     </div>
   </template>
 </template>
+<div class="loader-wrapper" v-else>
+  <div class="loader"></div>
+</div>
 </template>
 
 <script>
@@ -134,7 +137,7 @@ export default
   },
   async created()
   {
-    if (this.user.error) return;
+    // if (this.user.error) return;
     this.followers = await API.get('users/'+this.login+'/followers');
     this.userLinks = await API.get('users/'+this.login+'/links');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');

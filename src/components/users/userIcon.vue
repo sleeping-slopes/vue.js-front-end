@@ -1,18 +1,23 @@
 <template>
-    <router-link :to="{ name: 'User', params: { login: user.login }}">
+<Transition name = "fade">
+    <router-link :to="{ name: 'User', params: { login: user.login }}" v-if="(this.$parent.loaded??true) && this.loaded">
         <img class = "user-image user-icon s36x36" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
         <div class = "user-image user-icon s36x36 gradient-bg" v-else></div>
     </router-link>
+    <userIconSkeleton v-else></userIconSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import userInterface from "@/components/users/user interface.vue";
+import userIconSkeleton from "@/components/users/skeletons/userIcon Skeleton.vue";
 
 export default
 {
     name: 'userIcon',
-    extends: userInterface
+    extends: userInterface,
+    components: { userIconSkeleton }
 }
 </script>
 

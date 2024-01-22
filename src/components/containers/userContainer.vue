@@ -6,11 +6,9 @@
       </errorMessage>
         <ul class="user-container" :class="type" v-else>
           <li v-for="(user) in getShortList">
-            <Transition name="fade">
-              <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')" :login="user.login"
-                @loaded="this.counter++"
-              />
-            </Transition>
+            <component :is = "this.dynamicComponent" :login="user.login"
+              @loaded="this.counter++"
+            />
           </li>
         </ul>
     </template>
@@ -25,10 +23,6 @@
   import userItem from '@/components/users/userItem.vue'
   import userIcon from '@/components/users/userIcon.vue'
 
-  import userCardSkeleton from '@/components/users/skeletons/userCard Skeleton.vue'
-  import userItemSkeleton from '@/components/users/skeletons/userItem Skeleton.vue'
-  import userIconSkeleton from '@/components/users/skeletons/userIcon Skeleton.vue'
-
   import errorMessage from "@/components/containers/errorMessage.vue"
 
   export default
@@ -37,7 +31,6 @@
     components:
     {
         userCard, userItem, userIcon,
-        userCardSkeleton, userItemSkeleton, userIconSkeleton,
         errorMessage
     },
     props:

@@ -11,12 +11,12 @@
 
 <script>
 
-import userSkeletonInterface from '@/components/users/skeletons/userSkeleton interface.vue';
+import skeleton from '@/components/skeleton.vue';
 
 export default
 {
     name: 'userItemSkeleton',
-    extends: userSkeletonInterface
+    components: { skeleton }
 }
 
 </script>
