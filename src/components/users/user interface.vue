@@ -21,6 +21,10 @@ export default
   {
     user(){ return this.$store.getters.getUser(this.login) }
   },
+  async created()
+  {
+    if (this.user.vuexInitial) await this.$store.dispatch('loadUser',this.login);
+  },
   methods:
   {
     abbreviateNumber: abbreviateNumber,

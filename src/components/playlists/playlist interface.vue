@@ -17,6 +17,16 @@ export default
       imageAvailable:true,
     }
   },
+  computed:
+  {
+    playlist() { return this.$store.getters.getPlaylist(this.id); },
+    current() { return this.$store.state.currentPlaylist.id===this.id; },
+    isPlaying() { return this.current?this.$store.state.isPlaying:false; }
+  },
+  async created()
+  {
+    if (this.playlist.vuexInitial) await this.$store.dispatch('loadPlaylist',this.id);
+  },
   methods:
   {
     async like()
@@ -51,12 +61,6 @@ export default
         }
     },
     abbreviateNumber: abbreviateNumber
-  },
-  computed:
-  {
-    playlist() { return this.$store.getters.getPlaylist(this.id); },
-    current() { return this.$store.state.currentPlaylist.id===this.id; },
-    isPlaying() { return this.current?this.$store.state.isPlaying:false; }
   }
 }
 

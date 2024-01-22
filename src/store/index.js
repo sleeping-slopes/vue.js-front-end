@@ -32,9 +32,9 @@ export default createStore({
       if (state.currentPlaylist.songs)
       return state.currentPlaylist.songs[state.currentSongIndex].id;
     },
-    getPlaylist: (state) => (id) => { return state.playlists[id] || {"error":{"status":400,"message":"Vuex store error"}}; },
-    getSong: (state) => (id) => { return state.songs[id] || {"error":{"status":400,"message":"Vuex store error"}}; },
-    getUser: (state) => (login) => { return (state.users[login]) || {"error":{"status":400,"message":"Vuex store error"}}; },
+    getPlaylist: (state) => (id) => { return state.playlists[id] || {"vuexInitial":true}; },
+    getSong: (state) => (id) => { return state.songs[id] || {"vuexInitial":true}; },
+    getUser: (state) => (login) => { return (state.users[login]) || {"vuexInitial":true}; },
     getSongHistory(state) { return state.songHistory.map((song, index) => { return {id:song,pos:index} }); }
   },
   mutations:
@@ -142,15 +142,15 @@ export default createStore({
     },
     loadSong(state,song)
     {
-      state.songs[song.id]=song;
+      state.songs[song.id]=song.data;
     },
     loadPlaylist(state,playlist)
     {
-      state.playlists[playlist.id]=playlist;
+      state.playlists[playlist.id]=playlist.data;
     },
     loadUser(state,user)
     {
-      state.users[user.login]=user;
+      state.users[user.login]=user.data;
     },
     setVolume(state,volume)
     {
@@ -279,18 +279,18 @@ export default createStore({
     },
     async loadSong({commit},id)
     {
-      const song = await API.get('songs/'+id);
-      commit("loadSong",song);
+      const response = await API.get('songs/'+id);
+      commit("loadSong", { id: id, data: response });
     },
     async loadPlaylist({commit},id)
     {
-      const playlist = await API.get('playlists/'+id);
-      commit("loadPlaylist",playlist);
+      const response = await API.get('playlists/'+id);
+      commit("loadPlaylist", { id: id, data: response });
     },
     async loadUser({commit},login)
     {
-      const user = await API.get('users/'+login+'/profile');
-      commit("loadUser",user);
+      const response = await API.get('users/'+login+'/profile');
+      commit("loadUser", { login: login, data: response });
     }
   },
   modules: {}

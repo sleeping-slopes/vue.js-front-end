@@ -32,6 +32,10 @@ export default
       return this.current?this.$store.state.isPlaying:false;
     }
   },
+  async created()
+  {
+    if (this.song.vuexInitial) await this.$store.dispatch('loadSong',this.id);
+  },
   methods:
   {
     numberToTimeString:numberToTimeString,
