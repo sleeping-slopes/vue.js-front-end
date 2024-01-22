@@ -1,5 +1,6 @@
 <template>
-    <div class="row gap-20" style="overflow: hidden; width:1200px;">
+<Transition name="fade">
+    <div class="row gap-20" style="overflow: hidden; width:1200px;" v-if="this.$parent.loaded">
         <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
@@ -23,7 +24,6 @@
                     <li v-for="tag in this.song.tags"><router-link class="button-tag h6" :to="{ name: 'Tag', params: { tag: tag.tag } }">{{tag.tag}}</router-link></li>
                 </ul>
             </div>
-
             <div class="row bottom gap-5 y-center">
                 <button class="button button-banner h5 icon-text" style="width:75px;" v-bind:class="{'toggled':this.song.liked}" v-on:click="this.like()">
                     <span class="bi bi-suit-heart-fill"></span><span>{{this.song.liked?"Liked":"Like"}}</span>
@@ -40,7 +40,6 @@
                 <button class="button button-banner h5 icon-text" style="width:105px;">
                     <span class="bi bi-download"></span><span>Download</span>
                 </button>
-
             </div>
         </div>
         <div class = "cover-wrapper s320x320 right">
@@ -48,11 +47,14 @@
             <div class = "cover bi bi-music-note" v-else></div>
         </div>
     </div>
+    <songBannerSkeleton v-else></songBannerSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import songInterface from '@/components/songs/song interface.vue';
+import songBannerSkeleton from '@/components/songs/skeletons/songBanner Skeleton.vue';
 
 import ColorThief from 'colorthief/dist/color-thief.mjs'
 
@@ -60,6 +62,7 @@ export default
 {
   name: 'songBanner',
   extends: songInterface,
+  components: { songBannerSkeleton },
   data()
   {
     return {

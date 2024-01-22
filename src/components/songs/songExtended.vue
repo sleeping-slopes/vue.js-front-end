@@ -1,6 +1,7 @@
 
 <template>
-    <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}">
+<Transition name="fade">
+    <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}" v-if="this.$parent.loaded">
         <div class = "cover-wrapper s52x52">
             <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
             <div class = "cover bi bi-music-note" v-else></div>
@@ -41,16 +42,20 @@
         </div>
         <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
+    <songExtendedSkeleton v-else></songExtendedSkeleton>
+</Transition>
 </template>
 
 <script>
 
 import songInterface from '@/components/songs/song interface.vue';
+import songExtendedSkeleton from '@/components/songs/skeletons/songExtended Skeleton.vue';
 
 export default
 {
   name: 'songExtended',
-  extends: songInterface
+  extends: songInterface,
+  components: { songExtendedSkeleton }
 }
 
 </script>

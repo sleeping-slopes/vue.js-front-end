@@ -15,7 +15,8 @@ export default
   {
     return {
       coversrc: API.defaults.baseURL+`songs/`+this.id+`/cover`,
-      imageAvailable:true
+      imageAvailable:true,
+      loaded:false
     }
   },
   computed:
@@ -34,7 +35,9 @@ export default
   },
   async created()
   {
-    if (this.song.vuexInitial) await this.$store.dispatch('loadSong',this.id);
+    await this.$store.dispatch('loadSong',this.id);
+    this.loaded = true;
+    this.$emit('loaded');
   },
   methods:
   {

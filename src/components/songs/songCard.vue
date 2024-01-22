@@ -1,38 +1,44 @@
 
 <template>
-<div class = "song card" v-bind:class="{'active': current}">
-    <div class = "cover-wrapper s180x180" >
-        <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
-        <div class = "cover bi bi-music-note" v-else></div>
-        <div class = "shade"></div>
-        <div class="cover-menu">
-            <button class="button button-round filled huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+<Transition name="fade">
+    <div class = "song card" v-bind:class="{'active': current}" v-if="this.$parent.loaded">
+        <div class = "cover-wrapper s180x180" >
+            <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+            <div class = "cover bi bi-music-note" v-else></div>
+            <div class = "shade"></div>
+            <div class="cover-menu">
+                <button class="button button-round filled huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+            </div>
+            <div class="cover-menu song-options">
+                <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
+                <button id = "dropdownButton" class="button button-round tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
+            </div>
         </div>
-        <div class="cover-menu song-options">
-            <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
-            <button id = "dropdownButton" class="button button-round tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
+        <div class= "info-wrapper column gap-0">
+            <div class ="h5 secondary-text">
+                <template v-for="(artist,index) in this.song.artists">
+                    <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+                    <span v-else>{{artist.name}}</span>
+                    <span v-if="index+1 < this.song.artists.length">, </span>
+                </template>
+            </div>
+            <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable">{{this.song.name}}</router-link>
         </div>
     </div>
-    <div class= "info-wrapper column gap-0">
-        <div class ="h5 secondary-text">
-            <template v-for="(artist,index) in this.song.artists">
-                <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
-                <span v-else>{{artist.name}}</span>
-                <span v-if="index+1 < this.song.artists.length">, </span>
-            </template>
-        </div>
-        <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class ="h4 primary-text hoverable">{{this.song.name}}</router-link>
-    </div>
-</div>
+    <songCardSkeleton v-else></songCardSkeleton>
+</Transition>
 </template>
+
 <script>
 
 import songInterface from '@/components/songs/song interface.vue';
+import songCardSkeleton from '@/components/songs/skeletons/songCard Skeleton.vue';
 
 export default
 {
   name: 'songCard',
-  extends: songInterface
+  extends: songInterface,
+  components: { songCardSkeleton }
 }
 
 </script>

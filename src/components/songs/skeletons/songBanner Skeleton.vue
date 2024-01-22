@@ -23,12 +23,12 @@
 
 <script>
 
-import songSkeletonInterface from '@/components/songs/skeletons/songSkeleton interface.vue';
+import skeleton from '@/components/skeleton.vue';
 
 export default
 {
     name: 'songBannerSkeleton',
-    extends: songSkeletonInterface
+    components: { skeleton }
 }
 
 </script>

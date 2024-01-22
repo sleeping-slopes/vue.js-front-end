@@ -10,15 +10,13 @@
         @hideSongDropdown="this.contextMenuSong=undefined"
       />
       <li v-for="(song,index) in getShortList">
-        <Transition name="fade">
-          <component :is = "this.loaded?this.dynamicComponent:(this.dynamicComponent+'Skeleton')"
-            :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
-            :id = "song.id" :pos = "song.pos" :key = "song.id"
-            @setCurrentSong="setCurrentPlaylistAndSong(index)"
-            @openSongDropdown="openSongDropdown"
-            @loaded="this.counter++"
-          />
-        </Transition>
+        <component :is = "this.dynamicComponent"
+          :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
+          :id = "song.id" :pos = "song.pos" :key = "song.id"
+          @setCurrentSong="setCurrentPlaylistAndSong(index)"
+          @openSongDropdown="openSongDropdown"
+          @loaded="this.counter++;"
+        />
       </li>
     </ul>
   </template>
@@ -34,11 +32,6 @@ import songExtended from '@/components/songs/songExtended.vue';
 import songCard from '@/components/songs/songCard.vue';
 import songBanner from '@/components/songs/songBanner.vue';
 
-import songItemSkeleton from '@/components/songs/skeletons/songItem Skeleton.vue';
-import songExtendedSkeleton from '@/components/songs/skeletons/songExtended Skeleton.vue';
-import songCardSkeleton from '@/components/songs/skeletons/songCard Skeleton.vue';
-import songBannerSkeleton from '@/components/songs/skeletons/songBanner Skeleton.vue';
-
 import errorMessage from '@/components/containers/errorMessage.vue';
 import songDropdown from '@/components/containers/songDropdown.vue';
 
@@ -48,7 +41,6 @@ export default
   components:
   {
     songItem, songExtended,songCard, songBanner,
-    songItemSkeleton, songExtendedSkeleton, songCardSkeleton, songBannerSkeleton,
     errorMessage, songDropdown
   },
   props:
