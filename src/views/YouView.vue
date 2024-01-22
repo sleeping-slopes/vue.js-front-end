@@ -8,7 +8,7 @@
         <li><router-link :to="{ name: 'YourHistory'}">History</router-link></li>
       </ul>
     </nav>
-    <router-view :login="this.login" :key="this.login" v-if="this.login !== null"></router-view>
+    <router-view :login="this.login" v-if="this.login !== null"></router-view>
 </div>
 </template>
 

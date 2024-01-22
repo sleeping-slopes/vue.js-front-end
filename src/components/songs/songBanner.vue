@@ -1,6 +1,6 @@
 <template>
 <Transition name="fade">
-    <div class="row gap-20" style="overflow: hidden; width:1200px;" v-if="this.$parent.loaded">
+    <div class="row gap-20" style="overflow: hidden; width:1200px;" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
