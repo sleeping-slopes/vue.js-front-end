@@ -73,11 +73,9 @@ export default
       let y = target.getBoundingClientRect().height;
       while (el.offsetParent &&  el!=this.$refs.list)
       {
-        console.log(this.$refs.list);
         x+=el.offsetLeft;
         y+=el.offsetTop;
         el=el.offsetParent;
-
       }
 
       this.contextMenuX=x;
