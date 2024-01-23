@@ -35,7 +35,7 @@
 import usermenu from "@/components/usermenu.vue"
 import player from "@/components/player.vue"
 
-import playlistModal from "@/components/playlists/playlistModal.vue";
+import playlistModal from "@/components/modals/playlistModal.vue";
 import logInModal from "@/components/modals/logInModal.vue";
 import signUpModal from "@/components/modals/signUpModal.vue";
 
