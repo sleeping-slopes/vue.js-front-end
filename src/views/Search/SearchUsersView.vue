@@ -11,7 +11,7 @@ import { abbreviateNumber } from '@/functions';
 
 export default
 {
-  name: 'searchPlaylistView',
+  name: 'searchUsersView',
   components: { userContainer },
   data()
   {

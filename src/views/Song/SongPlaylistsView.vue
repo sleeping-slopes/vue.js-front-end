@@ -44,7 +44,7 @@ import API from "@/axios/API";
 
 export default
 {
-  name: 'SongLikesView',
+  name: 'SongPlaylistsView',
   components: { playlistContainer, errorMessage },
   props:
   {

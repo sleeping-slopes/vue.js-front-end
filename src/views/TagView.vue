@@ -17,7 +17,7 @@ import errorMessage from "@/components/containers/errorMessage.vue";
 
 export default
 {
-  name: 'TagsView',
+  name: 'TagView',
   components: { errorMessage },
   props:
   {

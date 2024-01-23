@@ -42,7 +42,7 @@ import errorMessage from '@/components/containers/errorMessage.vue';
 
 export default
 {
-  name: 'searchView',
+  name: 'SearchView',
   components: { errorMessage }
 }
 

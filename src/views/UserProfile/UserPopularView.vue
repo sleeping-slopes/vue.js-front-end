@@ -31,7 +31,6 @@ import API from '@/axios/API';
 
 export default
 {
-  name: 'UserLikesView',
   name: 'UserPopularView',
   components: { panel, carousel, songContainer, playlistContainer },
   props:

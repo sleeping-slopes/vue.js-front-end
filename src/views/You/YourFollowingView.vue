@@ -18,7 +18,7 @@ import userContainer from "@/components/containers/userContainer.vue";
 
 export default
 {
-  name: 'YourFollowersView',
+  name: 'YourFollowingView',
   components: { userContainer },
   props:
   {
