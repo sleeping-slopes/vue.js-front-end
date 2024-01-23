@@ -1,29 +1,38 @@
 <template>
-    <panel>
-        <template v-slot:header>Playlists liked by {{ this.user.username }}</template>
+  <panel>
+    <template v-slot:header>Playlists liked by {{ this.user.username }}</template>
+    <template v-slot:content>
+      <carousel>
         <template v-slot:content>
-          <playlistCarousel :playlists="userLikedPlaylists"/>
+          <playlistContainer :type="'carousel-content hidden-scroll'"
+            :playlists="userLikedPlaylists"
+            :dynamicComponent="'playlistCarouselCard'">
+          </playlistContainer>
         </template>
-      </panel>
-      <panel>
-        <template v-slot:header>Songs liked by {{ this.user.username }}</template>
-        <template v-slot:content>
-          <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="userLikedSongs"/>
-        </template>
-      </panel>
-  </template>
+      </carousel>
+    </template>
+  </panel>
+  <panel>
+    <template v-slot:header>Songs liked by {{ this.user.username }}</template>
+    <template v-slot:content>
+      <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="userLikedSongs"/>
+    </template>
+  </panel>
+</template>
 
 <script>
 
 import panel from '@/components/containers/panel.vue';
-import playlistCarousel from '@/components/playlistCarousel.vue';
+import carousel from '@/components/carousel.vue';
 import songContainer from '@/components/containers/songContainer.vue';
+import playlistContainer from '@/components/containers/playlistContainer.vue';
+
 import API from '@/axios/API';
 
 export default
 {
   name: 'UserLikesView',
-  components: { panel, playlistCarousel, songContainer },
+  components: { panel, carousel, songContainer, playlistContainer },
   props:
   {
     login: { default: "nologin" }

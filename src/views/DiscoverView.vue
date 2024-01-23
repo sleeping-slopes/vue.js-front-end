@@ -3,7 +3,14 @@
     <panel>
       <template v-slot:header>Playlists</template>
       <template v-slot:content>
-        <playlistCarousel :playlists="this.playlists"/>
+        <carousel>
+        <template v-slot:content>
+          <playlistContainer :type="'carousel-content hidden-scroll'"
+            :playlists="this.playlists"
+            :dynamicComponent="'playlistCarouselCard'">
+          </playlistContainer>
+        </template>
+        </carousel>
       </template>
     </panel>
     <panel>
@@ -18,13 +25,14 @@
 <script>
 
 import panel from '@/components/containers/panel.vue';
-import playlistCarousel from '@/components/playlistCarousel.vue';
+import carousel from '@/components/carousel.vue';
 import songContainer from '@/components/containers/songContainer.vue';
+import playlistContainer from '@/components/containers/playlistContainer.vue';
 import API from '@/axios/API';
 
 export default {
   name: 'DiscoverView',
-  components: { panel, playlistCarousel, songContainer },
+  components: { panel, carousel, songContainer, playlistContainer },
   data()
   {
     return {

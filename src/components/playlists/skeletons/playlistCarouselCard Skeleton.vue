@@ -22,7 +22,7 @@ export default
 
 <style scoped>
 
-.playlist-carousel .playlist.card
+.carousel .playlist.card
 {
     width:128px;
 }

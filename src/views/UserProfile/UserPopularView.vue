@@ -1,30 +1,39 @@
 <template>
-    <panel>
-      <template v-slot:header>Popular playlists by {{ this.user.username }}</template>
-      <template v-slot:content>
-        <playlistCarousel :playlists="userPopularPlaylists"/>
-      </template>
-    </panel>
-    <panel>
-      <template v-slot:header>Popular songs by {{ this.user.username }}</template>
-      <template v-slot:content>
-        <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="userPopularSongs"/>
-      </template>
-    </panel>
+  <panel>
+    <template v-slot:header>Popular playlists by {{ this.user.username }}</template>
+    <template v-slot:content>
+      <carousel>
+        <template v-slot:content>
+          <playlistContainer :type="'carousel-content hidden-scroll'"
+            :playlists="userPopularPlaylists"
+            :dynamicComponent="'playlistCarouselCard'">
+          </playlistContainer>
+        </template>
+      </carousel>
+    </template>
+  </panel>
+  <panel>
+    <template v-slot:header>Popular songs by {{ this.user.username }}</template>
+    <template v-slot:content>
+      <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="userPopularSongs"/>
+    </template>
+  </panel>
 </template>
 
 <script>
 
 import panel from '@/components/containers/panel.vue';
-import playlistCarousel from '@/components/playlistCarousel.vue';
+import carousel from '@/components/carousel.vue';
 import songContainer from '@/components/containers/songContainer.vue';
+import playlistContainer from '@/components/containers/playlistContainer.vue';
 
 import API from '@/axios/API';
 
 export default
 {
   name: 'UserLikesView',
-  components: { panel, playlistCarousel, songContainer },
+  name: 'UserPopularView',
+  components: { panel, carousel, songContainer, playlistContainer },
   props:
   {
     login: { default: "nologin" }
@@ -40,9 +49,8 @@ export default
   async created()
   {
     this.user = await API.get('users/'+this.login+'/username');
-      this.userPopularSongs = await API.get('users/'+this.login+'/songs/created/popular');
-      this.userPopularPlaylists = await API.get('users/'+this.login+'/playlists/created/popular');
-
+    this.userPopularSongs = await API.get('users/'+this.login+'/songs/created/popular');
+    this.userPopularPlaylists = await API.get('users/'+this.login+'/playlists/created/popular');
   },
 }
 

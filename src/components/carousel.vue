@@ -1,14 +1,8 @@
 <template>
-  <div class="playlist-carousel" v-if="this.playlists">
-    <playlistContainer :type="'carousel-content hidden-scroll'" ref="carousel"
-      :playlists="this.playlists"
-      :dynamicComponent="'playlistCarouselCard'">
-    </playlistContainer>
+  <div class="carousel">
+    <slot name="content"></slot>
     <button class="carousel-button button button-round medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" style="left:-40px" v-on:click="shift(-1)"></button>
     <button class="carousel-button button button-round medium bi bi-arrow-right-circle-fill" ref="rightScrollButton" style="right:10px" v-on:click="shift(1)"></button>
-  </div>
-  <div class="loader-wrapper" v-else>
-    <div class="loader"></div>
   </div>
 </template>
 
@@ -20,10 +14,6 @@ export default
 {
   name: 'carousel',
   components: { playlistContainer },
-  props:
-  {
-    playlists: { default: undefined }
-  },
   data()
   {
     return {
@@ -61,7 +51,7 @@ export default
 
 <style scoped>
 
-.playlist-carousel
+.carousel
 {
   display:flex;
   position:relative;
@@ -79,7 +69,7 @@ export default
   transition: all 0.2s;
 }
 
-.playlist-carousel:hover .carousel-button
+.carousel:hover .carousel-button
 {
   opacity:0.9;
 }
