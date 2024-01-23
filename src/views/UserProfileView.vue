@@ -137,7 +137,6 @@ export default
   },
   async created()
   {
-    // if (this.user.error) return;
     this.followers = await API.get('users/'+this.login+'/followers');
     this.userLinks = await API.get('users/'+this.login+'/links');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');

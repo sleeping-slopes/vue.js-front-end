@@ -126,7 +126,6 @@ export default {
 {
   display:flex;
   align-items:center;
-  position:relative;
   height:100%;
 }
 

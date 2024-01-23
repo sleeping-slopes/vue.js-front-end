@@ -72,7 +72,6 @@ export default
     height:fit-content;
     flex-shrink: 0;
     width:100%;
-    transition: max-height 0.5s;
 }
 
 .playlist-expansible.expanded
