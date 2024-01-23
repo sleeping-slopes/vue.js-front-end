@@ -43,7 +43,10 @@
             </div>
         </div>
         <div class = "cover-wrapper s320x320 right">
-            <img id="songCover" class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+            <img id="songCover" class = "cover" v-if="imageAvailable" :src="coversrc"
+            crossorigin="anonymous"
+            @load="setColors"
+            @error="imageAvailable=false"/>
             <div class = "cover bi bi-music-note" v-else></div>
         </div>
     </div>
@@ -81,18 +84,11 @@ export default
   {
     setColors()
     {
-        const colorThief = new ColorThief();
         const img = document.getElementById('songCover');
+        const colorThief = new ColorThief();
         const colors = colorThief.getPalette(img,2).map(color=>{ return "rgb("+color.join(',')+")"});
         [this.colorA,this.colorB] = colors;
     }
-  },
-  mounted()
-  {
-    const img = document.getElementById('songCover');
-    img.crossOrigin = 'Anonymous';
-    if (img.complete) this.setColors();
-    else img.addEventListener('load', this.setColors);
   }
 }
 
