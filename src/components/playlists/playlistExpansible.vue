@@ -67,18 +67,11 @@ export default
 .playlist-expansible
 {
     display:flex;
-    max-height:288px;
     flex-direction: row;
     height:fit-content;
     flex-shrink: 0;
     width:100%;
 }
-
-.playlist-expansible.expanded
-{
-    max-height:624px;
-}
-
 .left-column
 {
     display:flex;
@@ -109,6 +102,18 @@ export default
     background-color: var(--panel-background-color);
     min-height:253px;
 }
+
+.right-column
+{
+    max-height:288px;
+    transition:0.5s all;
+}
+
+.playlist-expansible.expanded > .right-column
+{
+    max-height:624px;
+}
+
 
 .empty-column-panel
 {
