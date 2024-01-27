@@ -1,0 +1,55 @@
+<template>
+<div class="sticky-top">
+  <div class="row">
+    <router-link :to="{ name: 'Song', params: { id: this.id }}" class = "cover-wrapper s100x100">
+      <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+      <div class = "cover bi bi-music-note" v-else></div>
+    </router-link>
+    <div class= "info-wrapper column gap-0">
+      <div class ="h3 secondary-text">
+        <template v-for="(artist,index) in this.song.artists">
+          <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+          <span v-else>{{artist.name}}</span>
+          <span v-if="index+1 < this.song.artists.length">, </span>
+        </template>
+      </div>
+      <router-link :to="{ name: 'Song', params: { id: this.id }}" class="h2 primary-text hoverable">{{this.song.name}}</router-link>
+    </div>
+  </div>
+  <nav class="navtab">
+    <ul class="h3">
+      <li><router-link :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link></li>
+      <li><router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}">In playlists</router-link></li>
+      <li><router-link :to="{ name: 'SongRelated', params: { id: this.id }}">Related songs</router-link></li>
+    </ul>
+  </nav>
+</div>
+</template>
+
+<script>
+
+import API from "@/axios/API";
+
+export default
+{
+  name: 'songHeader',
+  props:
+  {
+    id: { default: "noid" }
+  },
+  data()
+  {
+    return {
+      song: {},
+      coversrc: API.defaults.baseURL+`songs/`+this.id+`/cover`,
+      imageAvailable:true
+    }
+  },
+  async created()
+  {
+    this.song = await API.get('songs/'+this.id);
+    if (this.song.error) this.$router.push({ name:"Song", params: { id: this.id } });
+  }
+}
+
+</script>
