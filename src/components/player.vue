@@ -43,7 +43,7 @@
             <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical"/> </template>
           </panel>
         </div>
-        <songItem ref="song" style="width:320px;" :id = "this.currentSongID" :key = "this.currentSongID"/>
+        <div style="width:320px"><songItem ref="song" :id = "this.currentSongID" :key = "this.currentSongID"/></div>
         <div class="popup-wrapper">
           <div class="player-menu">
             <button class="button button-round small bi bi-suit-heart-fill"
