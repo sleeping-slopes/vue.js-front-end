@@ -102,26 +102,13 @@ h6, .h6
   font-size:180px;
 }
 
+.top { margin-bottom:auto; }
 
-.top
-{
-  margin-bottom:auto;
-}
+.right { margin-left:auto; }
 
-.right
-{
-  margin-left:auto;
-}
+.bottom { margin-top:auto; }
 
-.bottom
-{
-  margin-top:auto;
-}
-
-.left
-{
-  margin-right:auto;
-}
+.left { margin-right:auto; }
 
 .y-center { align-items: center }
 
