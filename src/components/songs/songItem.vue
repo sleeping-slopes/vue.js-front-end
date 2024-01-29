@@ -9,9 +9,9 @@
         <button class="button button-round filled small" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
       </div>
       <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
-        <div class ="wave"></div>
-        <div class ="wave"></div>
-        <div class ="wave"></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </div>
     <div class= "info-wrapper column gap-0">

@@ -32,9 +32,9 @@ export default createStore({
       if (state.currentPlaylist.songs)
       return state.currentPlaylist.songs[state.currentSongIndex].id;
     },
-    getPlaylist: (state) => (id) => { return state.playlists[id] || {"error":{"status":404,"message":"Vuex: song not found"}}; },
-    getSong: (state) => (id) => { return state.songs[id] || {"error":{"status":404,"message":"Vuex: playlist not found"}}; },
-    getUser: (state) => (login) => { return state.users[login] || {"error":{"status":404,"message":"Vuex: user not found"}}; },
+    getPlaylist: (state) => (id) => { return state.playlists[id] || {"error":{"status":404,"message":"Vuex: Song not found"}}; },
+    getSong: (state) => (id) => { return state.songs[id] || {"error":{"status":404,"message":"Vuex: Playlist not found"}}; },
+    getUser: (state) => (login) => { return state.users[login] || {"error":{"status":404,"message":"Vuex: User not found"}}; },
     getSongHistory(state) { return state.songHistory.map((song, index) => { return {id:song,pos:index} }); }
   },
   mutations:

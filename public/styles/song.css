@@ -85,3 +85,8 @@ div:not(.song-container) > .song .cover-menu
 {
     transition:none;
 }
+
+.song .row
+{
+  height:min-content;
+}
