@@ -1,6 +1,6 @@
 <template>
 <div class="content column" style="padding-top:0px;">
-  <userHeader :login = "this.login"></userHeader>
+  <userHeader :login = "this.login"><template v-slot:caption>Followings</template></userHeader>
   <userContainer :type="'ul-grid hidden-scroll'" :dynamicComponent="'userCard'" :users="followings"></userContainer>
 </div>
 </template>
