@@ -130,6 +130,37 @@ a
   color: var(--text-color-secondary);
 }
 
+.button-tag
+{
+  background-color:var(--light-gray);
+  color: var(--soft-white);
+  padding:3px 7px 3px 7px;
+  border-radius: 50vh;
+  width:fit-content;
+  height:fit-content;
+  white-space: nowrap;
+}
+
+.button-tag::before
+{
+  content:"# "
+}
+
+.button-tag:hover
+{
+  background-color:var(--dark-gray);
+}
+
+.artistlink
+{
+  color:inherit;
+}
+
+.artistlink:hover
+{
+  text-decoration: underline;
+}
+
 header
 {
   width:100%;

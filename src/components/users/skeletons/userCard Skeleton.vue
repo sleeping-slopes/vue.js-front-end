@@ -19,12 +19,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.user.card .info-wrapper
-{
-  align-items: center;
-}
-
-</style>

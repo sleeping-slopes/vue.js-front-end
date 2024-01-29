@@ -1,6 +1,6 @@
 <template>
     <Transition name="fade">
-    <div class = "playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
+    <div class = "playlist playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="column gap-0">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
@@ -61,72 +61,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.playlist-expansible
-{
-    display:flex;
-    flex-direction: row;
-    height:fit-content;
-    flex-shrink: 0;
-    width:100%;
-}
-.left-column
-{
-    display:flex;
-    flex-direction: column;
-    height:min-content;
-    padding:5px;
-    box-sizing: border-box;
-    gap: 5px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: var(--panel-background-color);
-    align-items: center;
-    justify-content: space-between;
-}
-
-.right-column
-{
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    width:100%;
-    gap:5px;
-    padding:5px;
-    box-sizing: border-box;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    background-color: var(--panel-background-color);
-    min-height:253px;
-}
-
-.right-column
-{
-    max-height:288px;
-    transition:0.5s all;
-}
-
-.playlist-expansible.expanded > .right-column
-{
-    max-height:624px;
-}
-
-
-.empty-column-panel
-{
-    height:100%;
-    background-color: var(--panel-background-color);
-}
-
-.empty-column-main
-{
-    height:100%;
-    background-color: var(--main-background-color);
-    border-top-right-radius: 10px;
-}
-
-
-</style>

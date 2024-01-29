@@ -20,14 +20,3 @@ export default
     components: { userIconSkeleton }
 }
 </script>
-
-<style scoped>
-
-.user.icon
-{
-    border:2px solid var(--panel-background-color);
-    margin-right:-10px;
-    box-sizing: border-box;
-}
-
-</style>

@@ -40,17 +40,3 @@ export default
   components: { userCardSkeleton }
 }
 </script>
-
-<style scoped>
-
-.user.card:not(:hover) .button-secondary
-{
-  visibility: hidden;
-}
-
-.user.card .info-wrapper
-{
-  align-items: center;
-}
-
-</style>

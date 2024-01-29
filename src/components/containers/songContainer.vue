@@ -94,77 +94,12 @@ export default
 
 </script>
 
-<style>
+<style scoped>
 
 .song-container
 {
   overflow-y:auto;
   position:relative;
 }
-
-.song-container .song.item:hover,
-.song-container .song.item.active,
-.song-container .song.item.active2
-{
-  background-color:var(--selected-item-background-color);
-}
-
-.song-container .song.active2 #dropdownButton
-{
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.song-container .song:hover .shade,
-.song-container .song.active .shade,
-.song-container .song.active2 .shade,
-.playlist-container .cover-wrapper:hover .shade
-{
-  opacity:0.5;
-}
-
-.song-container .song:hover .cover-menu,
-.song-container .song.active2 .cover-menu,
-.song-container .song.card.active .cover-menu,
-.playlist-container .playlist.item .cover-wrapper:hover .cover-menu,
-.playlist-container .playlist.card .cover-wrapper:hover .cover-menu
-{
-  opacity:1.0;
-}
-
-div:not(.song-container) > .song .cover-menu
-{
-  display:none;
-}
-
-.cover-menu
-{
-  position:absolute;
-  opacity:0.0;
-  transition: 0.2s all;
-  color:var(--soft-white);
-  display:flex;
-  padding:10px;
-  gap:20px;
-  box-sizing: border-box;
-}
-
-.cover-menu.playlist-stats
-{
-  bottom:0px;
-}
-
-.cover-menu.song-options
-{
-  gap:10px;
-  bottom:0px;
-  right:0px;
-}
-
-.song.item .cover-menu { transition:none; }
-
-.cover-menu > .button-round.filled { background-color:var(--soft-black); }
-
-.cover-menu > .button-round:not(.toggled) { color:var(--soft-white); }
 
 </style>

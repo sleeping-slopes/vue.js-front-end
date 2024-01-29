@@ -41,12 +41,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.user.item .info-wrapper
-{
-  justify-content: center;
-}
-
-</style>

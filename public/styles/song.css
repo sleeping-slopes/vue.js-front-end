@@ -1,0 +1,87 @@
+.song-container .song.item:hover,
+.song-container .song.item.active,
+.song-container .song.item.active2
+{
+  background-color:var(--selected-item-background-color);
+}
+
+.song-container .song:hover .song-menu,
+.song-container .song.active2 .song-menu
+{
+  display:flex;
+}
+
+.song-container .song.active2 #dropdownButton
+{
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.song-container .song .song-duration
+{
+  display:inline;
+}
+
+div:not(.song-container) > .song .cover-menu
+{
+  display:none;
+}
+
+.song.song-banner
+{
+    display:flex;
+    flex-direction:row;
+    gap:20px;
+    width:1200px;
+}
+
+.song .wrapper-wave
+{
+  visibility:hidden;
+}
+
+.song.active:not(.active2):not(:hover) .wrapper-wave
+{
+  visibility:visible;
+}
+
+.song .song-duration
+{
+  display:none;
+  text-align: center;
+  color: var(--text-color-secondary);
+}
+
+.song:hover .song-duration,
+.song.active2 .song-duration
+{
+  display:none;
+}
+
+.song .song-menu
+{
+  display:none;
+  gap:10px;
+  padding-right:10px;
+  align-items: center;
+}
+
+.song .song-menu .button-round:not(.toggled)
+{
+  color: var(--text-color-secondary);
+}
+
+.song .song-menu .button-round:not(.toggled):hover
+{
+  color: var(--text-color-primary);
+}
+
+.song.active #deleteSongButton
+{
+  display:none;
+}
+
+.song.item .cover-menu
+{
+    transition:none;
+}

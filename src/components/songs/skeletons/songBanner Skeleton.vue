@@ -1,5 +1,5 @@
 <template>
-    <div class="row gap-20" style="overflow: hidden; width:1200px;">
+    <div class="song song-banner">
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
                 <button class="button button-round huge toggled bi bi-pause-circle-fill"></button>
@@ -32,40 +32,3 @@ export default
 }
 
 </script>
-
-
-<style scoped>
-
-.tag-container
-{
-    display:flex;
-    flex-wrap:wrap;
-    flex-direction: row-reverse;
-    gap:10px;
-    min-width:min-content;
-    width:min-content;
-    max-width:320px;
-    height:fit-content;
-    flex-shrink: 0;
-}
-.button-tag
-{
-    background-color:var(--light-gray);
-    color: var(--soft-white);
-    padding:3px 7px 3px 7px;
-    border-radius: 50vh;
-
-    white-space: nowrap;
-}
-
-.button-tag::before
-{
-    content:"# "
-}
-
-.button-tag:hover
-{
-    background-color:var(--dark-gray);
-}
-
-</style>

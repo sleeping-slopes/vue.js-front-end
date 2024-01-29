@@ -45,12 +45,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.carousel .playlist.card
-{
-    width:128px;
-}
-
-</style>

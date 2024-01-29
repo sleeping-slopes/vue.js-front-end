@@ -1,6 +1,6 @@
 <template>
 <Transition name="fade">
-    <div class="row gap-20" style="overflow: hidden; width:1200px;" v-if="(this.$parent.loaded??true) && this.loaded">
+    <div class="song song-banner" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
@@ -107,26 +107,6 @@ export default
     max-width:320px;
     height:fit-content;
     flex-shrink: 0;
-}
-.button-tag
-{
-    background-color:var(--light-gray);
-    color: var(--soft-white);
-    padding:3px 7px 3px 7px;
-    border-radius: 50vh;
-    width:fit-content;
-    height:fit-content;
-    white-space: nowrap;
-}
-
-.button-tag::before
-{
-    content:"# "
-}
-
-.button-tag:hover
-{
-    background-color:var(--dark-gray);
 }
 
 </style>
