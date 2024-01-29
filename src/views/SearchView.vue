@@ -4,7 +4,7 @@
         <h2 class="primary-text">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h2>
       </div>
       <div class="row">
-        <div class="column test2" style="width:360px">
+        <div class="column sticky">
             <nav class="sidenav">
                 <ul class="h3">
                     <li>
@@ -50,11 +50,12 @@ export default
 
 <style scoped>
 
-.test2
+.sticky
 {
     position:sticky;
     top:76px;
     height:min-content;
+    width:360px;
 }
 
 </style>

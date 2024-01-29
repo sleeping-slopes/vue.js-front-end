@@ -46,7 +46,6 @@ export default
 
 <style scoped>
 
-
 .context-menu
 {
   position:absolute;

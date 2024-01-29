@@ -62,7 +62,7 @@ export default
   position:relative;
 }
 
-.carousel-content
+.playlist-container.carousel-content
 {
   display:flex;
   width:100%;

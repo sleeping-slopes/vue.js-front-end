@@ -174,13 +174,13 @@ export default
   box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
 }
 
-.visible
+.popup.visible
 {
   opacity:1.0;
   transform:translateY(-100%) translateY(-12px);
 }
 
-.hidden
+.popup.hidden
 {
   opacity:0.0;
 }
