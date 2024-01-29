@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <playlistContainer :key="this.currentViewStyle" :type="this.currentViewStyle==0?'ul-grid':'column'"
-      :playlists="this.playlists" :dynamicComponent="this.currentViewStyle?'playlistExpansible':'playlistCard'">
+    <playlistContainer :key="this.currentViewStyle" :type="this.currentViewStyle?'ul-grid':'column'"
+      :playlists="this.playlists" :dynamicComponent="this.currentViewStyle?'playlistCard':'playlistExpansible'">
     </playlistContainer>
   </div>
 </template>
