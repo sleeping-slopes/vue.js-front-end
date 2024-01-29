@@ -1,7 +1,7 @@
 <template>
-  <div class = "card user-card">
-    <div class = "user-image s180x180 shimmer"></div>
-    <div class= "info-wrapper column gap-0">
+  <div class="user card">
+    <div class="user-image s180x180 shimmer"></div>
+    <div class="info-wrapper column gap-0">
       <skeleton class="h3 shimmer"/>
       <skeleton class="h5 shimmer" :exactwidth="90"/>
     </div>
@@ -22,7 +22,7 @@ export default
 
 <style scoped>
 
-.user-card .info-wrapper
+.user.card .info-wrapper
 {
   align-items: center;
 }

@@ -1,9 +1,9 @@
 <template>
-    <div class = "row">
-        <div class = "user-image s160x160 shimmer"></div>
-        <div class= "info-wrapper column" style="justify-content: center;">
-            <skeleton class ="h3 shimmer"></skeleton>
-            <skeleton class ="h5 shimmer"></skeleton>
+    <div class="user item">
+        <div class="user-image s160x160 shimmer"></div>
+        <div class="info-wrapper column">
+            <skeleton class="h3 shimmer"></skeleton>
+            <skeleton class="h5 shimmer"></skeleton>
             <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"/>
         </div>
     </div>
@@ -20,3 +20,12 @@ export default
 }
 
 </script>
+
+<style scoped>
+
+.user.item .info-wrapper
+{
+  justify-content: center;
+}
+
+</style>

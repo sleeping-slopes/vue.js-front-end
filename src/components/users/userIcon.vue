@@ -1,8 +1,8 @@
 <template>
 <Transition name = "fade">
     <router-link :to="{ name: 'User', params: { login: user.login }}" v-if="(this.$parent.loaded??true) && this.loaded">
-        <img class = "user-image user-icon s36x36" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
-        <div class = "user-image user-icon s36x36 gradient-bg" v-else></div>
+        <img class = "user icon user-image s36x36" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
+        <div class = "user icon user-image s36x36 gradient-bg" v-else></div>
     </router-link>
     <userIconSkeleton v-else></userIconSkeleton>
 </Transition>
@@ -23,7 +23,7 @@ export default
 
 <style scoped>
 
-.user-icon
+.user.icon
 {
     border:2px solid var(--panel-background-color);
     margin-right:-10px;

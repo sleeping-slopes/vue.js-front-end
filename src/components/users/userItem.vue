@@ -1,11 +1,11 @@
 <template>
 <Transition name = "fade">
-  <div class = "row" v-if="(this.$parent.loaded??true) && this.loaded">
+  <div class = "user item" v-if="(this.$parent.loaded??true) && this.loaded">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
       <img class = "user-image s160x160" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s160x160 gradient-bg" v-else></div>
     </router-link>
-    <div class= "info-wrapper column" style="justify-content: center;">
+    <div class= "info-wrapper column">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
         {{this.user.username}}
       </router-link>
@@ -41,3 +41,12 @@ export default
 }
 
 </script>
+
+<style scoped>
+
+.user.item .info-wrapper
+{
+  justify-content: center;
+}
+
+</style>

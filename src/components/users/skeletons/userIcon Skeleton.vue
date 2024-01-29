@@ -1,5 +1,5 @@
 <template>
-    <div class = "user-image user-icon s36x36 shimmer"></div>
+    <div class="user icon user-image s36x36 shimmer"></div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default
 
 <style scoped>
 
-.user-icon
+.user.icon
 {
     border:2px solid var(--panel-background-color);
     margin-right:-10px;
