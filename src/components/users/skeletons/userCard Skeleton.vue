@@ -3,7 +3,7 @@
     <div class = "user-image s180x180 shimmer"></div>
     <div class= "info-wrapper column gap-0">
       <skeleton class="h3 shimmer"/>
-      <skeleton class="h5 shimmer"/>
+      <skeleton class="h5 shimmer" :exactwidth="90"/>
     </div>
   </div>
 </template>
@@ -19,3 +19,12 @@ export default
 }
 
 </script>
+
+<style scoped>
+
+.user-card .info-wrapper
+{
+  align-items: center;
+}
+
+</style>
