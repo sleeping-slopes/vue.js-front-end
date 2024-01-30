@@ -118,6 +118,7 @@ export default createStore({
         state.currentSongIndex=state.currentPlaylist.songs[state.currentSongIndex].pos;
         state.currentPlaylist.songs.sort((a,b)=>{return a.pos-b.pos});
       }
+      state.currentPlaylist.edited=Date.now();
       localStorage.setItem('shuffle', JSON.stringify(state.shuffle));
       localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
