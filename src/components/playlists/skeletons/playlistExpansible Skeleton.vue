@@ -1,5 +1,5 @@
 <template>
-<div class = "playlist-expansible">
+<div class = "playlist playlist-expansible">
   <div class="column gap-0">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"></div>
