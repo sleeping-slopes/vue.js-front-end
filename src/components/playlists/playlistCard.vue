@@ -1,6 +1,6 @@
 <template>
 <Transition name="fade">
-  <div class = "playlist card" v-bind:class="{'active': current}" v-if="(this.$parent.loaded??true) && this.loaded">
+  <div class = "playlist card" v-if="(this.$parent.loaded??true) && this.loaded">
       <div class="cover-wrapper s180x180" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
         <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
         <div class = "cover bi bi-music-note-list" v-else></div>
