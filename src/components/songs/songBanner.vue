@@ -4,7 +4,7 @@
         <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
-                <button class="button button-round huge toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+                <button class="button button-default button-round button-huge toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
                 <div class="info-wrapper column gap-10">
                     <h3 class="banner-info banner-info-secondary">
                         <template v-for="(artist,index) in this.song.artists">

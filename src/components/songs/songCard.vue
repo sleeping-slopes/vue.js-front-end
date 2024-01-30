@@ -7,11 +7,11 @@
             <div class = "cover bi bi-music-note" v-else></div>
             <div class = "shade"></div>
             <div class="cover-menu">
-                <button class="button button-round filled huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+                <button class="button button-default button-round button-huge" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
             </div>
             <div class="cover-menu song-options">
-                <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
-                <button id = "dropdownButton" class="button button-round tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
+                <button class="button button-default button-tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
+                <button id = "dropdownButton" class="button button-default button-tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
             </div>
         </div>
         <div class= "info-wrapper column gap-0">

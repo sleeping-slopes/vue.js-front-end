@@ -8,6 +8,7 @@
 
 .song-container .song:hover .cover-menu,
 .song-container .song.active .cover-menu,
+.song-container .song.card.current .cover-menu,
 .playlist-container .playlist .cover-wrapper:hover .cover-menu
 {
   opacity:1.0;
@@ -29,9 +30,11 @@
 
 .cover-menu.song-options { bottom:0px; right:0px; gap:10px; }
 
-.cover-menu > .button-round.filled { background-color:var(--soft-black); }
-
-.cover-menu > .button-round:not(.toggled) { color:var(--soft-white); }
+.cover-menu > .button-round
+{
+  color:var(--soft-white);
+  background-color:var(--soft-black);
+}
 
 
 

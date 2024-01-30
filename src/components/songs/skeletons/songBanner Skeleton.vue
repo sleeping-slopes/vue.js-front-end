@@ -2,7 +2,7 @@
     <div class="song song-banner">
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
-                <button class="button button-round huge toggled bi bi-pause-circle-fill"></button>
+                <button class="button button-default button-round button-huge toggled bi bi-pause-circle-fill"></button>
                 <div class="info-wrapper column gap-10">
                     <skeleton class="banner-info h3 shimmer" :minwidth="150" :maxwidth="300"/>
                     <skeleton class="banner-info h2 shimmer" :minwidth="350" :maxwidth="500"/>

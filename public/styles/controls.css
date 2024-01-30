@@ -58,6 +58,11 @@ a
   transition: color 0.2s, border 0.2s;
 }
 
+.button-primary.bi, .button-secondary.bi
+{
+  padding:3px;
+}
+
 .button-secondary.toggled, .button-banner.toggled
 {
   color:var(--accent-color);
@@ -87,33 +92,21 @@ a
   border-color:var(--soft-white);
 }
 
-.button-round
+.button-default
 {
   padding:0px;
   border:none;
-  border-radius:50%;
   background-color: transparent;
   color: var(--text-color-primary);
-
   transition: color 0.2s;
 }
 
-.button-secondary.bi
+.button.button-round
 {
-  padding:3px;
+  border-radius: 50%;
 }
 
-.button-round.toggled { color: var(--accent-color); }
-
-.button-round.huge { font-size:60px; }
-
-.button-round.large { font-size:44px; }
-
-.button-round.medium { font-size:30px; }
-
-.button-round.small { font-size:22px; }
-
-.button-round.tiny { font-size:14px; }
+.button-default.toggled { color: var(--accent-color); }
 
 .button-link
 {
@@ -150,6 +143,16 @@ a
 {
   background-color:var(--dark-gray);
 }
+
+.button-huge { font-size:60px; }
+
+.button-large { font-size:44px; }
+
+.button-medium { font-size:30px; }
+
+.button-small { font-size:22px; }
+
+.button-tiny { font-size:14px; }
 
 .artistlink
 {

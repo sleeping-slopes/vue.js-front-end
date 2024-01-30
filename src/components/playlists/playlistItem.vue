@@ -6,7 +6,7 @@
             <div class = "cover bi bi-music-note-list" v-else></div>
             <div class = "shade"></div>
             <div class="cover-menu">
-                <button class="button button-round filled medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
+                <button class="button button-default button-round button-medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
             </div>
         </div>
         <div class= "info-wrapper column gap-0">

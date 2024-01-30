@@ -66,12 +66,12 @@ div:not(.song-container) > .song .cover-menu
   align-items: center;
 }
 
-.song .song-menu .button-round:not(.toggled)
+.song .song-menu .button-default:not(.toggled)
 {
   color: var(--text-color-secondary);
 }
 
-.song .song-menu .button-round:not(.toggled):hover
+.song .song-menu .button-default:not(.toggled):hover
 {
   color: var(--text-color-primary);
 }

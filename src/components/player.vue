@@ -9,21 +9,21 @@
     <div style="background-color:var(--panel-background-color);width:100%;"></div>
     <div class="player">
       <div class="player-menu">
-        <button class="button button-round small bi bi-skip-start-fill"
+        <button class="button button-default button-small bi bi-skip-start-fill"
           v-on:click="this.$store.dispatch('shiftCurrentSong',-1)">
         </button>
-        <button class="button button-round small"
+        <button class="button button-default button-small"
           v-bind:class="this.$store.state.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'"
           v-on:click="this.$store.dispatch('togglePlayingState');">
         </button>
-        <button class="button button-round small bi bi-skip-end-fill"
+        <button class="button button-default button-small bi bi-skip-end-fill"
           v-on:click="this.$store.dispatch('shiftCurrentSong',1)">
         </button>
-        <button class="button button-round small bi bi-shuffle"
+        <button class="button button-default button-small bi bi-shuffle"
           v-bind:class="{'toggled':this.$store.state.shuffle}"
           v-on:click = "this.$store.dispatch('shuffle')">
         </button>
-        <button class="button button-round small" v-bind:class="{ 'bi bi-repeat': $store.state.repeatMode==0, 'bi bi-repeat toggled': $store.state.repeatMode==1,'bi bi-repeat-1 toggled': $store.state.repeatMode==2}"
+        <button class="button button-default button-small" v-bind:class="{ 'bi bi-repeat': $store.state.repeatMode==0, 'bi bi-repeat toggled': $store.state.repeatMode==1,'bi bi-repeat-1 toggled': $store.state.repeatMode==2}"
             v-on:click="this.$store.dispatch('toggleRepeatMode')">
         </button>
       </div>
@@ -35,7 +35,7 @@
       <div class="row gap-20">
         <div class="popup-wrapper">
           <div class="player-menu">
-            <button class="button button-round small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill': volume>0 && volume<0.5,'bi-volume-mute-fill': volume==0}"
+            <button class="button button-default button-small" v-bind:class="{ 'bi-volume-up-fill': volume>=0.5,'bi-volume-down-fill': volume>0 && volume<0.5,'bi-volume-mute-fill': volume==0}"
               v-on:click="this.showVolume=!this.showVolume">
             </button>
           </div>
@@ -46,11 +46,11 @@
         <div style="width:320px"><songItem ref="song" :id = "this.currentSongID" :key = "this.currentSongID"/></div>
         <div class="popup-wrapper">
           <div class="player-menu">
-            <button class="button button-round small bi bi-suit-heart-fill"
+            <button class="button button-default button-small bi bi-suit-heart-fill"
               v-bind:class="{'toggled':this.liked}"
               @click="likeCurrentSong">
             </button>
-            <button class="button button-round small bi bi-music-note-list"
+            <button class="button button-default button-small bi bi-music-note-list"
               v-bind:class="{'toggled':this.showCurrentPlaylist}"
               v-on:click="this.showCurrentPlaylist=!this.showCurrentPlaylist">
             </button>
@@ -62,7 +62,7 @@
                 v-on:click="this.$store.dispatch('clearCurrentPlaylist')">
                 Clear
               </button>
-              <button class="button button-round h4 bi bi-x-lg"
+              <button class="button button-default h4 bi bi-x-lg"
                 v-on:click="this.showCurrentPlaylist=!this.showCurrentPlaylist">
               </button>
             </template>
