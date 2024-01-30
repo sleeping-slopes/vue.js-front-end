@@ -1,6 +1,6 @@
 <template>
 <Transition name="fade">
-  <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'active': current}" v-if="(this.$parent.loaded??true) && this.loaded">
+  <div class = "song item" v-on:click="setCurrentSong" v-bind:class="{'current': current}" v-if="(this.$parent.loaded??true) && this.loaded">
     <div class = "cover-wrapper s36x36">
       <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
       <div class = "cover bi bi-music-note" v-else></div>
@@ -27,7 +27,7 @@
     <div class="song-menu">
       <button id = "dropdownButton" class="button button-secondary bi bi-three-dots tiny" v-on:click.stop="openDropdown($event)"></button>
       <button class="button button-round tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
-      <button id = "deleteSongButton" class="button button-round tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')" ></button>
+      <button id = "deleteSongButton" class="button button-round tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')"></button>
     </div>
     <div class = "song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
   </div>

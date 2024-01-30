@@ -11,7 +11,7 @@
       />
       <li v-for="(song,index) in getShortList">
         <component :is = "this.dynamicComponent"
-          :class="{ 'active2': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
+          :class="{ 'active': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
           :id = "song.id" :pos = "song.pos" :key = "song.id"
           @setCurrentSong="setCurrentPlaylistAndSong(index)"
           @openSongDropdown="openSongDropdown"

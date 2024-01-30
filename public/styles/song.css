@@ -1,17 +1,17 @@
 .song-container .song.item:hover,
-.song-container .song.item.active,
-.song-container .song.item.active2
+.song-container .song.item.current,
+.song-container .song.item.active
 {
   background-color:var(--selected-item-background-color);
 }
 
 .song-container .song:hover .song-menu,
-.song-container .song.active2 .song-menu
+.song-container .song.active .song-menu
 {
   display:flex;
 }
 
-.song-container .song.active2 #dropdownButton
+.song-container .song.active #dropdownButton
 {
   color: var(--accent-color);
   border-color: var(--accent-color);
@@ -40,7 +40,7 @@ div:not(.song-container) > .song .cover-menu
   visibility:hidden;
 }
 
-.song.active:not(.active2):not(:hover) .wrapper-wave
+.song.current:not(.active):not(:hover) .wrapper-wave
 {
   visibility:visible;
 }
@@ -53,7 +53,7 @@ div:not(.song-container) > .song .cover-menu
 }
 
 .song:hover .song-duration,
-.song.active2 .song-duration
+.song.active .song-duration
 {
   display:none;
 }
@@ -76,7 +76,7 @@ div:not(.song-container) > .song .cover-menu
   color: var(--text-color-primary);
 }
 
-.song.active #deleteSongButton
+.song.current #deleteSongButton
 {
   display:none;
 }
