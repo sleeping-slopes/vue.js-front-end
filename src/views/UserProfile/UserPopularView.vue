@@ -23,7 +23,7 @@
 <script>
 
 import panel from '@/components/containers/panel.vue';
-import carousel from '@/components/carousel.vue';
+import carousel from '@/components/containers/carousel.vue';
 import songContainer from '@/components/containers/songContainer.vue';
 import playlistContainer from '@/components/containers/playlistContainer.vue';
 
