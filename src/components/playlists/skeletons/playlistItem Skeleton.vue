@@ -5,8 +5,8 @@
             <skeleton class="h5 shimmer"/>
             <skeleton class="h4 shimmer"/>
             <div class="row">
-                <skeleton class="h6 shimmer" :exactwidth="50"/>
-                <skeleton class="h6 shimmer" :exactwidth="50"/>
+                <skeleton class="h6 shimmer" :exactwidth="30"/>
+                <skeleton class="h6 shimmer" :exactwidth="30"/>
             </div>
         </div>
     </div>

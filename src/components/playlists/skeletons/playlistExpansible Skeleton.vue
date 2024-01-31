@@ -3,7 +3,7 @@
   <div class="column gap-0">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"></div>
-      <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"/>
+      <skeleton class="button button-secondary h6 shimmer" :exactwidth="90"/>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>

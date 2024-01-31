@@ -1,38 +1,19 @@
 .skeleton
 {
   background-color: var(--panel-border-color);
-  color: var(--panel-border-color);
-  height:1.0em;
   border-radius: 5px;
   max-width:100%;
 }
 
-.skeleton.button-secondary
+.skeleton.button
 {
-  background-color: var(--panel-border-color);
   border:none;
 }
 
-.skeleton.banner-info
-{
-  padding:7px;
-  background-color:rgba(0,0,0,0.7);
-}
-
+.skeleton.banner-info,
 .skeleton.button-banner
 {
   background-color:rgba(0,0,0,0.7);
-  border:none;
-}
-
-.info-wrapper:has(.skeleton)
-{
-  justify-content: space-between;
-}
-
-.card .info-wrapper:has(.skeleton), .playlist-expansible .right-column .info-wrapper:has(.skeleton)
-{
-  gap:7px;
 }
 
 .shimmer::before

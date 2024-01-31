@@ -1,5 +1,5 @@
 <template>
-    <span class="skeleton" v-bind:style="{'width':this.width+'px'}"></span>
+    <div class="skeleton" v-bind:style="{'width':this.width+'px'}">&#8203</div>
 </template>
 
 <script>
@@ -10,12 +10,12 @@ export default
   props:
   {
     minwidth: { default: 80 },
-    maxwidth: { default: 150 },
+    maxwidth: { default: 200 },
     exactwidth: { default: 0 }
   },
   computed:
   {
-    width() { return this.exactwidth || this.minwidth+Math.random()*(this.maxwidth-this.minwidth) }
+    width() { return this.exactwidth || Math.floor(this.minwidth+Math.random()*(this.maxwidth+1-this.minwidth)) }
   }
 }
 
