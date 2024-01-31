@@ -14,7 +14,7 @@
                 <button id = "dropdownButton" class="button button-default button-tiny bi bi-three-dots" v-on:click.stop="openDropdown($event)"></button>
             </div>
         </div>
-        <div class= "info-wrapper column gap-0">
+        <div class= "info-wrapper">
             <div class ="h5 secondary-text">
                 <template v-for="(artist,index) in this.song.artists">
                     <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>

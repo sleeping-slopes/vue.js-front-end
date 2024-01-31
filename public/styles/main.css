@@ -177,6 +177,9 @@ ul
 
 .info-wrapper
 {
+  display:flex;
+  flex-direction: column;
+  gap:0px;
   width:100%;
   overflow: hidden;
   align-self: normal;

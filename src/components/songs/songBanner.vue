@@ -5,7 +5,7 @@
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
                 <button class="button button-default button-round button-huge toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
-                <div class="info-wrapper column gap-10">
+                <div class="info-wrapper gap-10">
                     <h3 class="banner-info banner-info-secondary">
                         <template v-for="(artist,index) in this.song.artists">
                             <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>

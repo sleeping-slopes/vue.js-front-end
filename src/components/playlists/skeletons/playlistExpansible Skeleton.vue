@@ -11,15 +11,16 @@
   </div>
   <div class="right-column">
     <div class="row gap-10 y-center w-100">
-      <div class= "info-wrapper column gap-0">
+      <button class="button button-default button-round button-medium bi bi-play-circle-fill"></button>
+      <div class= "info-wrapper">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>
       </div>
     </div>
     <hr>
     <div class="loader-wrapper">
-    <div class="loader"></div>
-  </div>
+      <div class="loader"></div>
+    </div>
   </div>
 </div>
 </template>

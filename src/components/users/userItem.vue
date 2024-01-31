@@ -5,7 +5,7 @@
       <img class = "user-image s160x160" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s160x160 gradient-bg" v-else></div>
     </router-link>
-    <div class= "info-wrapper column">
+    <div class= "info-wrapper gap-10">
       <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
         {{this.user.username}}
       </router-link>

@@ -1,7 +1,7 @@
 <template>
     <div class = "song item">
         <div class = "cover-wrapper s52x52 shimmer"></div>
-        <div class= "info-wrapper column gap-0">
+        <div class= "info-wrapper">
             <skeleton class="h5 shimmer"/>
             <skeleton class="h4 shimmer"/>
             <div class="row">

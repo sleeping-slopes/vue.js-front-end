@@ -1,5 +1,5 @@
 <template>
-    <Transition name="fade">
+<Transition name="fade">
     <div class = "playlist playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="column gap-0">
             <div class="left-column">
@@ -20,7 +20,7 @@
         <div class="right-column" style="overflow:hidden">
             <div class="row gap-10 w-100 y-center">
                 <button class="button button-default button-round button-medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
-                <div class= "info-wrapper column gap-0">
+                <div class= "info-wrapper">
                     <div class ="h4 secondary-text">
                         <template v-for="(artist,index) in this.playlist.artists">
                             <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <hr>
-            <songContainer :type="'ul-list'" :dynamicComponent="'songItem'" :playlist="this.playlist.songList"/>
+            <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songItem'" :playlist="this.playlist.songList"/>
             <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>
     </div>

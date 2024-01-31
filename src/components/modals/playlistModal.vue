@@ -19,7 +19,7 @@
                 <button class="button button-default button-huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
               </div>
             </div>
-            <div class="info-wrapper column gap-0">
+            <div class="info-wrapper">
               <h2 class="primary-text">{{this.playlist.name}}</h2>
               <div class ="h3 primary-text">
                 <span>by&nbsp;</span>

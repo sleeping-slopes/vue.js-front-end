@@ -17,7 +17,7 @@
           </span>
         </div>
       </div>
-      <div class= "info-wrapper column gap-0">
+      <div class= "info-wrapper">
           <div class ="h5 secondary-text">
               <template v-for="(artist,index) in this.playlist.artists">
                   <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>

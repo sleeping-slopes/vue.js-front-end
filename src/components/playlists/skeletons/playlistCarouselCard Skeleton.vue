@@ -1,7 +1,7 @@
 <template>
 <div class = "playlist card">
   <div class="cover-wrapper s128x128 shimmer"></div>
-  <div class= "info-wrapper column gap-0">
+  <div class= "info-wrapper">
     <skeleton class="h5 shimmer"/>
     <skeleton class="h4 shimmer"/>
   </div>
