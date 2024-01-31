@@ -66,15 +66,9 @@ div:not(.song-container) > .song .cover-menu
   align-items: center;
 }
 
-.song .song-menu .button-default:not(.toggled)
-{
-  color: var(--text-color-secondary);
-}
+.song .song-menu .button-default:not(.toggled) { color: var(--text-color-secondary); }
 
-.song .song-menu .button-default:not(.toggled):hover
-{
-  color: var(--text-color-primary);
-}
+.song .song-menu .button-default:not(.toggled):hover { color: var(--text-color-primary); }
 
 .song.current #deleteSongButton
 {

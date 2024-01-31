@@ -32,9 +32,11 @@
 
 .cover-menu > .button-round
 {
-  color:var(--soft-white);
   background-color:var(--soft-black);
 }
 
-
+.cover-menu .button
+{
+  color:var(--soft-white);
+}
 

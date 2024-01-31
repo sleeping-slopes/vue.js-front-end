@@ -4,7 +4,7 @@
         <div class="info-wrapper gap-10">
             <skeleton class="h3 shimmer"></skeleton>
             <skeleton class="h5 shimmer"></skeleton>
-            <skeleton class="button button-secondary h2 shimmer" :exactwidth="90"/>
+            <skeleton class="button button-secondary h6 shimmer" :exactwidth="90"/>
         </div>
     </div>
 </template>
