@@ -5,7 +5,7 @@
       <template v-slot:content>
         <carousel>
         <template v-slot:content>
-          <playlistContainer :type="'carousel-content hidden-scroll'"
+          <playlistContainer :type="'row gap-10'"
             :playlists="this.playlists"
             :dynamicComponent="'playlistCarouselCard'">
           </playlistContainer>

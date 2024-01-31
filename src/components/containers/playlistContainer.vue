@@ -62,15 +62,4 @@ export default
   position:relative;
 }
 
-.playlist-container.carousel-content
-{
-  display:flex;
-  width:100%;
-  gap:10px;
-  box-sizing: border-box;
-  overflow-x:scroll;
-  scroll-behavior: smooth;
-  align-items: center;
-}
-
 </style>
