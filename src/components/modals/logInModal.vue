@@ -2,7 +2,7 @@
   <modal :width="'400px'">
     <template v-slot:content>
       <h2 class="primary-text left right" style="padding:57px 0px 57px 0px">Log in to 3V3R51NC3</h2>
-      <form @submit.prevent="logIn" class="h4 column gap-5 y-center">
+      <form @submit.prevent="logIn" class="h4 column gap-10 y-center">
         <label class = "label">
           <span>Login or email</span>
           <input type="text" v-bind:style="login.error?{'border-color':'red'}:{}" placeholder="Enter login or email"
