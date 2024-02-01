@@ -1,6 +1,6 @@
 <template>
   <div class="carousel">
-    <div class="carousel-content hidden-scroll" ref="carousel" @scroll="this.scroll">
+    <div class="carousel-content scroll-hidden" ref="carousel" @scroll="this.scroll">
       <slot name="content"></slot>
     </div>
     <button class="button button-default button-round button-medium bi bi-arrow-left-circle-fill" ref="leftScrollButton" v-bind:style="{'left':this.leftVisible?'10px':'-40px'}"  v-on:click="shift(-1)"></button>

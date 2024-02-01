@@ -3,7 +3,7 @@
     <songHeader :id="this.id"></songHeader>
     <panel>
       <template v-slot:content>
-        <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
+        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
       </template>
     </panel>
   </div>

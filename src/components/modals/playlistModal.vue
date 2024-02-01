@@ -45,7 +45,7 @@
             </div>
           </div>
           <hr/>
-          <songContainer :type="'ul-list hidden-scroll'" :playlist="this.playlist.songList"/>
+          <songContainer :type="'ul-list scroll-hidden'" :playlist="this.playlist.songList"/>
         </template>
       </template>
       <div class="loader-wrapper" v-else>

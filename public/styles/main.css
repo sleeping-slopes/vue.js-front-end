@@ -313,13 +313,22 @@ hr
   margin:0px;
 }
 
-.hidden-scroll
 {
+
+.scroll
+{
+  overflow:auto;
+}
+
+.scroll-hidden
+{
+  overflow:auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.hidden-scroll::-webkit-scrollbar
+.scroll-hidden::-webkit-scrollbar
 {
-    display: none;
+  display: none;
+}
 }

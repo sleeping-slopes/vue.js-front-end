@@ -8,7 +8,7 @@
   <template v-else>
     <songContainer
       :playlist="{id:'songBanner '+this.song.id,songs:[{id:this.song.id,pos:0}]}"
-      :dynamicComponent="'songBanner'" :type="'banner hidden-scroll'">
+      :dynamicComponent="'songBanner'" :type="'banner'">
     </songContainer>
     <div class="content row">
       <div class="column" style="width:810px">
@@ -22,7 +22,7 @@
             <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
           </template>
           <template v-slot:content>
-            <songContainer :type="'ul-list hidden-scroll'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
+            <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
           </template>
         </panel>
       </div>

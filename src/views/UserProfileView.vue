@@ -81,7 +81,7 @@
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
-                <songContainer :type="'ul-list hidden-scroll'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
+                <songContainer :type="'ul-list'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
               </template>
             </panel>
             <panel v-if="this.followers?.length">
