@@ -1,28 +1,28 @@
-.song-container .song.item:hover,
-.song-container .song.item.current,
-.song-container .song.item.active
+.container .song.item:hover,
+.container .song.item.current,
+.container .song.item.active
 {
   background-color:var(--selected-item-background-color);
 }
 
-.song-container .song:hover .song-menu,
-.song-container .song.active .song-menu
+.container .song:hover .song-menu,
+.container .song.active .song-menu
 {
   display:flex;
 }
 
-.song-container .song.active #dropdownButton
+.container .song.active #dropdownButton
 {
   color: var(--accent-color);
   border-color: var(--accent-color);
 }
 
-.song-container .song .song-duration
+.container .song .song-duration
 {
   display:inline;
 }
 
-div:not(.song-container) > .song .cover-menu
+div:not(.container) > .song .cover-menu
 {
   display:none;
 }

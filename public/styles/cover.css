@@ -1,15 +1,15 @@
-.song-container .song:hover .shade,
-.song-container .song.current .shade,
-.song-container .song.active .shade,
-.playlist-container .playlist .cover-wrapper:hover .shade
+.container .song:hover .shade,
+.container .song.current .shade,
+.container .song.active .shade,
+.container .playlist .cover-wrapper:hover .shade
 {
   opacity:0.5;
 }
 
-.song-container .song:hover .cover-menu,
-.song-container .song.active .cover-menu,
-.song-container .song.card.current .cover-menu,
-.playlist-container .playlist .cover-wrapper:hover .cover-menu
+.container .song:hover .cover-menu,
+.container .song.active .cover-menu,
+.container .song.card.current .cover-menu,
+.container .playlist .cover-wrapper:hover .cover-menu
 {
   opacity:1.0;
 }

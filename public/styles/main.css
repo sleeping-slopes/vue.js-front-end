@@ -313,7 +313,10 @@ hr
   margin:0px;
 }
 
+.container
 {
+  position:relative;
+}
 
 .scroll
 {
@@ -331,4 +334,8 @@ hr
 {
   display: none;
 }
+
+ul.container > li
+{
+  position:relative;
 }

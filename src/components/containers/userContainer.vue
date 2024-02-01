@@ -4,7 +4,7 @@
       <template v-slot:errorIcon><span class="bi bi-person-fill"></span></template>
       <template v-slot:message>{{ this.users.error.message }}</template>
     </errorMessage>
-      <ul class="user-container" :class="type" v-else>
+      <ul class="container" :class="type" v-else>
         <li v-for="(user) in getShortList">
           <component :is = "this.dynamicComponent" :login="user.login"
             @loaded="this.counter++"
@@ -53,12 +53,3 @@ export default
   },
 }
 </script>
-
-<style scoped>
-
-.user-container
-{
-  position:relative;
-}
-
-</style>

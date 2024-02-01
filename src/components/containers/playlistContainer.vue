@@ -4,7 +4,7 @@
       <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
       <template v-slot:message>{{ this.playlists.error.message }}</template>
     </errorMessage>
-      <ul class="playlist-container" :class="type" v-else>
+      <ul class="container" :class="type" v-else>
         <li v-for="(playlist) in getShortList ">
             <component :is = "this.dynamicComponent" :id="playlist.id"
               @loaded="this.counter++"
@@ -54,12 +54,3 @@ export default
   },
 }
 </script>
-
-<style scoped>
-
-.playlist-container
-{
-  position:relative;
-}
-
-</style>
