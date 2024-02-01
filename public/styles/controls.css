@@ -319,14 +319,23 @@ header > nav ul > li > a.router-link-active
 {
   outline: 2px solid var(--panel-border-color);
   border: none;
-  box-sizing: border-box;
   background:none;
   color: var(--text-color-primary);
   border-radius:5px;
   transition:0.1s all;
 }
 
-.label input:focus
+.label textarea
+{
+  outline: 2px solid var(--panel-border-color);
+  border: none;
+  box-sizing: border-box;
+  background:none;
+  color: var(--text-color-primary);
+  border-radius:5px;
+}
+
+.label input:focus, .label textarea:focus
 {
   outline-color: var(--text-color-primary);
 }

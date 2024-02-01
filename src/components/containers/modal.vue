@@ -2,6 +2,9 @@
   <div class="modal-shade">
     <div class="modal">
       <panel :style="'width:'+this.width+';height:'+this.height+';'">
+        <template v-slot:header v-if="!!this.$slots.header">
+          <slot name="header"></slot>
+        </template>
         <template v-slot:content>
           <slot name="content"></slot>
         </template>

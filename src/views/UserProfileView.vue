@@ -6,6 +6,7 @@
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
   <template v-else>
+    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me"/>
     <div class="banner" style="position:relative">
       <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
       <div class = "banner-bg gradient-bg-reverse" v-else></div>
@@ -27,7 +28,7 @@
             <li><router-link :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link></li>
           </ul>
           <div class="row right">
-            <button class="button button-secondary h6" v-if="this.user.me">Edit</button>
+            <button class="button button-secondary h6" v-if="this.user.me" v-on:click="$router.push({path: $route.fullPath,query:{action:'edit'}})">Edit</button>
             <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow</span>
             </button>
@@ -113,6 +114,8 @@ import API from "@/axios/API";
 
 import userInterface from '@/components/users/user interface.vue'
 
+import editProfileModal from "@/components/modals/editProfileModal.vue";
+
 import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/containers/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
@@ -124,7 +127,7 @@ export default
 {
   name: 'UserProfileView',
   extends: userInterface,
-  components: { panel, songContainer, glyphLink, errorMessage, userContainer },
+  components: { panel, songContainer, glyphLink, errorMessage, userContainer,editProfileModal },
   data()
   {
     return {
