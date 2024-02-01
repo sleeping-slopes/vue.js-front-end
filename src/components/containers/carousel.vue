@@ -94,4 +94,5 @@ export default
   scroll-behavior: smooth;
   width:100%;
 }
+
 </style>

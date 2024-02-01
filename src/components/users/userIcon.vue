@@ -1,5 +1,5 @@
 <template>
-<Transition name = "fade">
+<Transition name="fade">
     <router-link :to="{ name: 'User', params: { login: user.login }}" v-if="(this.$parent.loaded??true) && this.loaded">
         <img class = "user icon user-image s36x36" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
         <div class = "user icon user-image s36x36 gradient-bg" v-else></div>
