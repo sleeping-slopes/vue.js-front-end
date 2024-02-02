@@ -56,31 +56,32 @@ export default
   },
   methods:
   {
-    logIn()
+    async logIn()
     {
+      this.login.data = this.login.data.trim();
+
       this.login.error=null;
-      if (!this.login.data) this.login.error="Required field";
+      if (!this.login.data) this.login.error="Required field.";
+      if (this.login.data.length)
 
       this.password.error=null;
-      if (!this.password.data) this.password.error="Required field";
+      if (!this.password.data) this.password.error="Required field.";
 
       if ((this.login.error) || (this.password.error)) return;
 
-      (async () =>
+      const r = await API.post('auth/login',{ login:this.login.data, password:this.password.data});
+      if (r.error)
       {
-        const r = await API.post('auth/login',{ login:this.login.data, password:this.password.data});
-        if (r.token)
-        {
-          this.$store.dispatch('logIn',r.token);
-          if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
-          else this.$router.replace({query: null});
-        }
-        else
-        {
-          if (r.error.message.loginError) this.login.error = r.error.message.loginError;
-          if (r.error.message.passwordError) this.password.error = r.error.message.passwordError;
-        }
-      })();
+        if (r.error.message.loginError) this.login.error = r.error.message.loginError;
+        if (r.error.message.passwordError) this.password.error = r.error.message.passwordError;
+      }
+      else if (r.token)
+      {
+        this.$store.dispatch('logIn',r.token);
+        if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
+        else this.$router.replace({query: null});
+      }
+
     },
   }
 }

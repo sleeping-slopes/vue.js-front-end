@@ -66,38 +66,38 @@ export default
   },
   methods:
   {
-    signUp()
+    async signUp()
     {
+      this.email.data = this.email.data.trim().toLowerCase();
+      this.login.data = this.login.data.trim().toLowerCase();
+
       this.email.error=null;
-      if (!this.email.data) this.email.error="Required field";
-      else if (!this.validEmail(this.email.data)) this.email.error='Invalid email';
+      if (!this.email.data) this.email.error="Required field.";
+      else if (!this.validEmail(this.email.data)) this.email.error='Invalid email.';
 
       this.password.error=null;
-      if (!this.password.data) this.password.error="Required field";
-      else if (this.password.data.length<5) this.password.error='Password is too short';
+      if (!this.password.data) this.password.error="Required field.";
+      else if (!(this.password.data.length>=6 || this.password.data.length<=60)) this.password.error='Enter a password from 6 to 60 characters.';
 
       this.login.error=null;
-      if (!this.login.data) this.login.error="Required field";
-      else if (!this.validLogin(this.login.data)) this.login.error='Invalid login';
-      else if (this.login.data.length<5) this.login.error='Login is too short';
+      if (!this.login.data) this.login.error="Required field.";
+      else if (!(this.login.data.length>=6 || this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
+      else if (!this.validLogin(this.login.data)) this.login.error='Invalid login.';
 
       if ((this.email.error) || (this.password.error) || (this.login.error)) return;
 
-      (async () =>
+      const r = await API.post('auth/signup',{ email:this.email.data, password:this.password.data, login:this.login.data });
+      if (r.error)
       {
-        const r = await API.post('auth/signup',{ email:this.email.data, password:this.password.data, login:this.login.data });
-        if (r.token)
-        {
-          this.$store.dispatch('logIn',r.token);
-          if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
-          else this.$router.replace({query: null});
-        }
-        else
-        {
-          if (r.error.message.emailError) this.email.error = r.error.message.emailError;
-          if (r.error.message.loginError) this.login.error = r.error.message.loginError;
-        }
-      })();
+        if (r.error.message.emailError) this.email.error = r.error.message.emailError;
+        if (r.error.message.loginError) this.login.error = r.error.message.loginError;
+      }
+      else if (r.token)
+      {
+        this.$store.dispatch('logIn',r.token);
+        if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
+        else this.$router.replace({query: null});
+      }
     },
     validEmail(email)
     {
