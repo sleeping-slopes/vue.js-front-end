@@ -25,13 +25,15 @@ export default
   data()
   {
     return{
-      playlist: undefined,
-      user: {}
+      playlist: undefined
     }
+  },
+  computed:
+  {
+    user() { return this.$store.getters.getUser(this.login) }
   },
   async created()
   {
-    this.user = await API.get('users/'+this.login+'/username');
     this.playlist = await API.get('users/'+this.login+'/songs/created');
   },
 }

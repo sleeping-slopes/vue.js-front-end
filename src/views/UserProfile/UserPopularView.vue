@@ -41,13 +41,15 @@ export default
   {
     return{
       userPopularPlaylists: undefined,
-      userPopularSongs: undefined,
-      user: {}
+      userPopularSongs: undefined
     }
+  },
+  computed:
+  {
+    user() { return this.$store.getters.getUser(this.login) }
   },
   async created()
   {
-    this.user = await API.get('users/'+this.login+'/username');
     this.userPopularSongs = await API.get('users/'+this.login+'/songs/created/popular');
     this.userPopularPlaylists = await API.get('users/'+this.login+'/playlists/created/popular');
   },

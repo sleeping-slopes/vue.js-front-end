@@ -20,9 +20,12 @@ export default
   data()
   {
     return{
-      playlists: undefined,
-      user: {}
+      playlists: undefined
     }
+  },
+  computed:
+  {
+    user() { return this.$store.getters.getUser(this.login) }
   },
   async created()
   {

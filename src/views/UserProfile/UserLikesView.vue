@@ -41,13 +41,15 @@ export default
   {
     return{
       userLikedPlaylists: undefined,
-      userLikedSongs: undefined,
-      user: {}
+      userLikedSongs: undefined
     }
+  },
+  computed:
+  {
+    user() { return this.$store.getters.getUser(this.login) }
   },
   async created()
   {
-    this.user = await API.get('users/'+this.login+'/username');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
     this.userLikedPlaylists = await API.get('users/'+this.login+'/playlists/liked');
   },
