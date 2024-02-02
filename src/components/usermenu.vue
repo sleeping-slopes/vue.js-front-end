@@ -50,7 +50,6 @@ export default {
     return {
       show: false,
       user: null,
-
       imageAvailable: true
     }
   },
