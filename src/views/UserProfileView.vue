@@ -6,7 +6,7 @@
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
   <template v-else>
-    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me"/>
+    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user" :imageAvailable="this.imageAvailable"/>
     <div class="banner" style="position:relative">
       <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
       <div class = "banner-bg gradient-bg-reverse" v-else></div>
@@ -65,8 +65,8 @@
                 <p class="primary-text h5" v-if="this.user.bio">
                   {{ this.user.bio }}
                 </p>
-                <ul class="h5 column gap-5" v-if="this.userLinks.length>0">
-                  <li v-for="(link) in this.userLinks">
+                <ul class="h5 column gap-5" v-if="this.user.links.length>0">
+                  <li v-for="(link) in this.user.links">
                     <glyphLink :url="link.url" :description="link.description"/>
                   </li>
                 </ul>
@@ -132,7 +132,6 @@ export default
   {
     return {
       userLikedSongs: undefined,
-      userLinks: [],
       followers: undefined,
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
@@ -141,7 +140,6 @@ export default
   async created()
   {
     this.followers = await API.get('users/'+this.login+'/followers');
-    this.userLinks = await API.get('users/'+this.login+'/links');
     this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
   },
 }
