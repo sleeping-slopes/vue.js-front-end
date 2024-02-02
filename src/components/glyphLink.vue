@@ -1,8 +1,6 @@
-
-
 <template>
     <a class="icon-text secondary-text hoverable"
-        :href="'https://'+this.url"
+        :href="this.url"
         target=”_blank” rel="noopener noreferrer">
         <span :class="'bi bi-'+this.glyph"></span>
         <span>{{this.description}}</span>
@@ -11,27 +9,28 @@
 
 <script>
 
-
 export default
 {
   name: 'glyphLink',
   props:
   {
-    url: { default: 'null' },
+    url: { default: '/' },
     description: { default: null }
   },
   computed:
   {
     glyph()
     {
-        let domain = this.url;
-        const slashPos = this.url.indexOf('/');
-        if (slashPos>0) domain = this.url.slice(0, slashPos);
+        let domain = this.url.replace(/^https?:\/\//, '');
+        const slashPos = domain.indexOf('/');
+        if (slashPos>0) domain = domain.slice(0, slashPos);
         const dotPos = domain.lastIndexOf('.');
         if (dotPos>0) domain = domain.slice(0,dotPos);
+        console.log(domain);
         switch (domain)
         {
             case "t":
+            case "telegram":
                 return "telegram";
             case "twitter":
             case "x":
