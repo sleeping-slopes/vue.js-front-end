@@ -310,7 +310,7 @@ header > nav ul > li > a.router-link-active
   width:100%;
 }
 
-.label .error
+span.notification-error
 {
   color:red;
 }
@@ -338,6 +338,11 @@ header > nav ul > li > a.router-link-active
 .label input:focus, .label textarea:focus
 {
   outline-color: var(--text-color-primary);
+}
+
+input.input-error, textarea.input-error
+{
+  outline-color:red;
 }
 
 .select-wrapper

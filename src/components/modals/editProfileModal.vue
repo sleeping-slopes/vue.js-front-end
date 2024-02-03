@@ -9,45 +9,46 @@
                 <div class= "column gap-20 w-100">
                     <label class = "label h4">
                     <span>Display name</span>
-                    <input type="text" v-bind:style="username.error?{'border-color':'red'}:{}" :placeholder="this.user.login"
+
+                    <input type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
                         v-model="username.data"
                     />
-                    <span class="icon-text error" v-if=username.error>
+                    <span class="icon-text notification-error" v-if=username.error>
                         <span class="bi bi-exclamation-circle-fill"></span><span>{{ username.error }}</span>
                     </span>
                     </label>
                     <label class = "label h5">
                     <span>Status</span>
-                    <input type="text" v-bind:style="status.error?{'border-color':'red'}:{}"
+                    <input type="text" v-bind:class="{'input-error': status.error}"
                         v-model="status.data"
                     />
-                    <span class="icon-text error" v-if=status.error>
+                    <span class="icon-text notification-error" v-if=status.error>
                         <span class="bi bi-exclamation-circle-fill"></span><span>{{ status.error }}</span>
                     </span>
                     </label>
                     <div class="row gap-10 h5">
                         <label class = "label">
                             <span>City</span>
-                            <input type="text" v-bind:style="city.error?{'border-color':'red'}:{}"
+                            <input type="text" v-bind:class="{'input-error': city.error}"
                                 v-model="city.data"/>
-                            <span class="icon-text error" v-if=city.error>
+                            <span class="icon-text notification-error" v-if=city.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ city.error }}</span>
                             </span>
                         </label>
                         <label class = "label">
                             <span>Country</span>
-                            <input type="text" v-bind:style="country.error?{'border-color':'red'}:{}"
+                            <input type="text" v-bind:class="{'input-error': country.error}"
                                 v-model="country.data"/>
-                            <span class="icon-text error" v-if=country.error>
+                            <span class="icon-text notification-error" v-if=country.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ country.error }}</span>
                             </span>
                         </label>
                     </div>
                     <label class = "label h5">
                     <span>Bio</span>
-                    <textarea rows="5" type="text" v-bind:style="bio.error?{'border-color':'red'}:{}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
+                    <textarea rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
                         v-model="bio.data"></textarea>
-                    <span class="icon-text error" v-if=bio.error>
+                    <span class="icon-text notification-error" v-if=bio.error>
                         <span class="bi bi-exclamation-circle-fill"></span><span>{{ bio.error }}</span>
                     </span>
                     </label>
@@ -59,23 +60,29 @@
                 <div class="column gap-15" v-if="this.links.length">
                     <div class="row gap-10" v-for="(link,index) in this.links">
                         <label class = "label">
-                            <input type="text" v-bind:style="link.url.error?{'border-color':'red'}:{}" placeholder="Web or email address"
+                            <input type="text" v-bind:class="{'input-error': link.url.error}" placeholder="Web or email address"
                                 v-model="link.url.data"/>
-                            <span class="icon-text error" v-if=link.url.error>
+                            <span class="icon-text notification-error" v-if=link.url.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.url.error }}</span>
                             </span>
                         </label>
                         <label class = "label">
-                            <input type="text" v-bind:style="link.description.error?{'border-color':'red'}:{}" placeholder="Short title"
+                            <input type="text" v-bind:class="{'input-error': link.description.error}" placeholder="Short title"
                                 v-model="link.description.data"/>
-                            <span class="icon-text error" v-if=link.description.error>
+                            <span class="icon-text notification-error" v-if=link.description.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.description.error }}</span>
                             </span>
                         </label>
                         <button type="button" class="button button-secondary form-button bi bi-trash3-fill" v-on:click="this.links.splice(index,1)"></button>
                     </div>
                 </div>
-                <button type="button" class = "button button-secondary hoverable" v-on:click="this.links.push({url: {data:'',error:null}, description: {data:'',error:null}})">Add link</button>
+                <div class="row">
+                    <button type="button" class = "button button-secondary hoverable"
+                    v-on:click="this.links.push({url: {data:'',error:null}, description: {data:'',error:null}})" :disabled='this.links.length>=10'>Add link</button>
+                    <span class="icon-text notification-error" v-if="this.links.length>=10">
+                        <span class="bi bi-exclamation-circle-fill"></span><span>A maximum of 10 links can be added to your profile.</span>
+                    </span>
+                </div>
             </div>
             <hr>
             <div class="row right h5">
@@ -184,7 +191,7 @@ export default
 
         const linksError = this.links.some((link)=>{ return link.url.error || link.description.error });
 
-        if (this.username.error || this.status.error || this.city.error || this.country.error || this.bio.error || linksError) return;
+        if (this.username.error || this.status.error || this.city.error || this.country.error || this.bio.error || linksError || this.links.length>10) return;
 
         const r = await API.put('users/'+this.user.login+'/action/edit/profile',
         {

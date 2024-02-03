@@ -5,28 +5,28 @@
           <form @submit.prevent="signUp" class="h4 column gap-10 y-center">
               <label class = "label">
                   <span>Email</span>
-                  <input type="text" v-bind:style="email.error?{'border-color':'red'}:{}" placeholder="Enter email"
+                  <input type="text" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
                     v-model="email.data"
                   />
-                  <span class="icon-text error" v-if=email.error>
+                  <span class="icon-text notification-error" v-if=email.error>
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
                   </span>
               </label>
               <label class = "label">
                 <span>Password</span>
-                  <input type="password" v-bind:style="password.error?{'border-color':'red'}:{}" placeholder="Enter password"
+                  <input type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
                     v-model="password.data"
                   />
-                  <span class="icon-text error" v-if=password.error>
+                  <span class="icon-text notification-error" v-if=password.error>
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
                   </span>
               </label>
               <label class = "label">
                 <span>Login</span>
-                  <input type="text" v-bind:style="login.error?{'border-color':'red'}:{}" placeholder="What should we call you?"
+                  <input type="text" v-bind:class="{'input-error': login.error}" placeholder="What should we call you?"
                     v-model="login.data"
                   />
-                  <span class="icon-text error" v-if=login.error>
+                  <span class="icon-text notification-error" v-if=login.error>
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
                   </span>
               </label>
