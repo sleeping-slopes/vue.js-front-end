@@ -8,7 +8,7 @@
   <template v-else>
     <songContainer
       :playlist="{id:'songBanner '+this.song.id,songs:[{id:this.song.id,pos:0}]}"
-      :dynamicComponent="'songBanner'" :type="'banner'">
+      :dynamicComponent="'songBanner'">
     </songContainer>
     <div class="content row">
       <div class="column" style="width:810px">

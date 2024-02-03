@@ -1,6 +1,7 @@
 <template>
-    <div class="song song-banner">
+    <div class="song banner">
         <div class="column w-100" style="overflow:hidden;">
+            <div class="banner-bg" :style="this.gradient"></div>
             <div class="row">
                 <button class="button button-default button-round button-huge toggled bi bi-play-circle-fill"></button>
                 <div class="info-wrapper gap-10">
@@ -28,7 +29,21 @@ import skeleton from '@/components/skeleton.vue';
 export default
 {
     name: 'songBannerSkeleton',
-    components: { skeleton }
+    components: { skeleton },
+    data()
+    {
+        return {
+            colorA:'var(--panel-border-color)',
+            colorB:'var(--main-background-color)'
+        }
+    },
+    computed:
+    {
+        gradient()
+        {
+            return "background: linear-gradient(135deg, "+this.colorA+" 0%, "+this.colorB+" 100%)";
+        }
+    },
 }
 
 </script>

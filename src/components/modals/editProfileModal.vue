@@ -2,10 +2,25 @@
 <modal :width="'900px'">
     <template v-slot:header>Edit your profile</template>
     <template v-slot:content>
-        <form @submit.prevent="editProfile" class="h4 column gap-15 scroll" style="padding:5px">
+        <form @submit.prevent="editProfile" class="column gap-15 scroll" style="padding:5px">
             <div class="row gap-20">
-                <img class = "user-image s200x200" v-if="imageAvailable" :src="picturesrc"/>
-                <div class = "user-image s200x200 bi bi-person-fill" v-else></div>
+                <div style="height:min-content;position:relative;">
+                    <img class = "user-image s200x200" v-if="imageAvailable" :src="picturesrc"/>
+                    <div class = "user-image s200x200 bi bi-person-fill" v-else></div>
+                    <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;">
+                        <template v-slot:header>
+                            <button type = "button" class="button h6">
+                                <span class="icon-text">
+                                    <span class="bi bi-camera-fill"></span><span>Update image</span>
+                                </span>
+                            </button>
+                        </template>
+                        <template v-slot:options>
+                            <button type = "button" class="button h6">Replace image</button>
+                            <button type = "button" class="button h6">Delete image</button>
+                        </template>
+                    </contextMenu>
+                </div>
                 <div class= "column gap-20 w-100">
                     <label class = "label h4">
                     <span>Display name</span>
@@ -98,11 +113,12 @@
 
 import API from "@/axios/API";
 import modal from "@/components/containers/modal.vue";
+import contextMenu from "@/components/containers/contextMenu.vue";
 
 export default
 {
   name: 'editProfileModal',
-  components: { modal },
+  components: { modal,contextMenu },
   data()
   {
     return {
