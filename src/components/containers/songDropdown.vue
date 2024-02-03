@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="context-menu" :style="'right: calc(100% - '+ (this.x) +'px); top:'+ this.y +'px;'">
+    <div class="song-context-menu" :style="'right: calc(100% - '+ (this.x) +'px); top:'+ this.y +'px;'">
       <button class="button button-context h6 icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
         <span class="bi bi-suit-heart-fill"></span><span>Play next</span>
       </button>
@@ -46,7 +46,7 @@ export default
 
 <style scoped>
 
-.context-menu
+.song-context-menu
 {
   position:absolute;
   background-color: var(--panel-background-color);

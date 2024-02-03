@@ -9,7 +9,7 @@
             <div class="cover-menu">
                 <button class="button button-default button-round button-medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'"></button>
             </div>
-            <div class = "wrapper-wave" v-bind:class="this.isPlaying?'playing':''">
+            <div class = "wrapper-wave" v-bind:class="{'playing': this.isPlaying}">
                 <div></div>
                 <div></div>
                 <div></div>

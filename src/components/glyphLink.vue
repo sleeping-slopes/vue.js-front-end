@@ -26,7 +26,6 @@ export default
         if (slashPos>0) domain = domain.slice(0, slashPos);
         const dotPos = domain.lastIndexOf('.');
         if (dotPos>0) domain = domain.slice(0,dotPos);
-        console.log(domain);
         switch (domain)
         {
             case "t":

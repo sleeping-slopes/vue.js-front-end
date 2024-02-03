@@ -110,7 +110,13 @@ h6, .h6
 
 .left { margin-right:auto; }
 
-.y-center { align-items: center }
+.x-center { display:flex; justify-content: center; }
+
+.x-center-absolute { position:absolute; left: 50%; transform: translateX(-50%) }
+
+.y-center { display:flex; align-items: center; }
+
+.y-center-absolute { position:absolute; top: 50%; transform: translateY(-50%); }
 
 .h100 { height:100% }
 

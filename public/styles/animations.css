@@ -73,13 +73,13 @@
   box-sizing: border-box;
 }
 
-
 .loader
 {
   width: 50px;
   height: 50px;
   display: grid;
   border-radius: 50%;
+  mask:radial-gradient(farthest-side,#0000 50%,#FFF 50%);
   -webkit-mask:radial-gradient(farthest-side,#0000 50%,#FFF 50%);
   background:
     linear-gradient(0deg ,#6495ED80 50%,#6495EDFF 0) center/4px 100%,
@@ -87,13 +87,14 @@
   background-repeat: no-repeat;
   animation: loader-spin 1s infinite steps(12);
 }
+
 .loader::before,
 .loader::after
 {
-   content:"";
-   grid-area: 1/1;
-   border-radius: 50%;
-   background:inherit;
+  content:"";
+  grid-area: 1/1;
+  border-radius: 50%;
+  background:inherit;
 }
 
 .loader::before
