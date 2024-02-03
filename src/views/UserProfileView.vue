@@ -7,15 +7,45 @@
   </errorMessage>
   <template v-else>
     <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user" :imageAvailable="this.imageAvailable"/>
-    <div class="banner" style="position:relative">
+    <div class="banner">
       <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
       <div class = "banner-bg gradient-bg-reverse" v-else></div>
-      <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
-      <div class = "user-image s200x200 gradient-bg" v-else></div>
+      <div style="height:min-content;position:relative;">
+        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
+        <div class = "user-image s200x200 gradient-bg" v-else></div>
+        <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;" v-if="this.user.me">
+          <template v-slot:header>
+            <button type = "button" class="button h6">
+              <span class="icon-text">
+                <span class="bi bi-camera-fill"></span><span>Update image</span>
+              </span>
+            </button>
+          </template>
+          <template v-slot:options>
+            <button type = "button" class="button h6">Replace image</button>
+            <button type = "button" class="button h6">Delete image</button>
+          </template>
+        </contextMenu>
+      </div>
       <div class="info-wrapper gap-10">
         <h2 class="banner-info banner-info-primary" v-if="this.user.username">{{ this.user.username }}</h2>
         <h3 class="banner-info banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
         <h3 class="banner-info banner-info-secondary" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</h3>
+      </div>
+      <div class="banner-edit-area" v-if="this.user.me">
+        <contextMenu style="width:115px;">
+          <template v-slot:header>
+            <button type = "button" class="button h6">
+              <span class="icon-text">
+                <span class="bi bi-camera-fill"></span><span>Update image</span>
+              </span>
+            </button>
+          </template>
+          <template v-slot:options>
+            <button type = "button" class="button h6">Replace image</button>
+            <button type = "button" class="button h6">Delete image</button>
+          </template>
+        </contextMenu>
       </div>
     </div>
     <div class="content column">
@@ -120,6 +150,7 @@ import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/containers/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
+import contextMenu from "@/components/containers/contextMenu.vue";
 
 import userContainer from "@/components/containers/userContainer.vue";
 
@@ -127,7 +158,7 @@ export default
 {
   name: 'UserProfileView',
   extends: userInterface,
-  components: { panel, songContainer, glyphLink, errorMessage, userContainer,editProfileModal },
+  components: { panel, songContainer, glyphLink, errorMessage, userContainer,editProfileModal, contextMenu },
   data()
   {
     return {
@@ -147,6 +178,18 @@ export default
 </script>
 
 <style scoped>
+
+.banner-edit-area
+{
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  width:175px;
+  padding:20px 20px 0px 40px;
+  box-sizing:border-box;
+}
+
 .user-stat
 {
   width:100%;
