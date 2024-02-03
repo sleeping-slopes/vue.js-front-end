@@ -48,7 +48,8 @@
 
 <script>
 
-import songInterface from '@/components/songs/song interface.vue';
+import songInterface from '@/components/interfaces/songInterface.vue';
+
 import songExtendedSkeleton from '@/components/songs/skeletons/songExtended Skeleton.vue';
 
 export default

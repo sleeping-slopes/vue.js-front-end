@@ -42,7 +42,7 @@
 
 <script>
 
-import playlistInterface from "@/components/playlists/playlist interface.vue"
+import playlistInterface from "@/components/interfaces/playlistInterface.vue";
 
 import playlistExpansibleSkeleton from "@/components/playlists/skeletons/playlistExpansible Skeleton.vue";
 import songContainer from "@/components/containers/songContainer.vue"

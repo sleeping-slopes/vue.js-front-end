@@ -112,7 +112,7 @@
 
 import API from "@/axios/API";
 
-import userInterface from '@/components/users/user interface.vue'
+import userInterface from '@/components/interfaces/userInterface.vue'
 
 import editProfileModal from "@/components/modals/editProfileModal.vue";
 

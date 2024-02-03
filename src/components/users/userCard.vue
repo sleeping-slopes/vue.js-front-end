@@ -30,7 +30,8 @@
 
 <script>
 
-import userInterface from "@/components/users/user interface.vue";
+import userInterface from "@/components/interfaces/userInterface.vue";
+
 import userCardSkeleton from "@/components/users/skeletons/userCard Skeleton.vue";
 
 export default

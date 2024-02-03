@@ -34,7 +34,7 @@
 
 <script>
 
-import playlistInterface from "@/components/playlists/playlist interface.vue"
+import playlistInterface from "@/components/interfaces/playlistInterface.vue";
 
 import playlistItemSkeleton from "@/components/playlists/skeletons/playlistItem Skeleton.vue";
 

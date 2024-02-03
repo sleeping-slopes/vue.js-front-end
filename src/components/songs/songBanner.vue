@@ -56,7 +56,8 @@
 
 <script>
 
-import songInterface from '@/components/songs/song interface.vue';
+import songInterface from '@/components/interfaces/songInterface.vue';
+
 import songBannerSkeleton from '@/components/songs/skeletons/songBanner Skeleton.vue';
 
 import ColorThief from 'colorthief/dist/color-thief.mjs'

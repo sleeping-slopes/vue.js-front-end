@@ -34,7 +34,8 @@
 
 <script>
 
-import playlistInterface from "@/components/playlists/playlist interface.vue"
+import playlistInterface from "@/components/interfaces/playlistInterface.vue";
+
 import playlistCardSkeleton from "@/components/playlists/skeletons/playlistCard Skeleton.vue";
 
 export default

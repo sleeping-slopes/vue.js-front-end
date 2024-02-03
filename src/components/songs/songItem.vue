@@ -37,7 +37,8 @@
 
 <script>
 
-import songInterface from '@/components/songs/song interface.vue';
+import songInterface from '@/components/interfaces/songInterface.vue';
+
 import songItemSkeleton from '@/components/songs/skeletons/songItem Skeleton.vue';
 
 export default

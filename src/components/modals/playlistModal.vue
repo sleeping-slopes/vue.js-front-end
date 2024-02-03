@@ -57,7 +57,7 @@
 
 <script>
 
-import playlistInterface from "@/components/playlists/playlist interface.vue";
+import playlistInterface from "@/components/interfaces/playlistInterface.vue";
 
 import modal from "@/components/containers/modal.vue"
 import songContainer from "@/components/containers/songContainer.vue";

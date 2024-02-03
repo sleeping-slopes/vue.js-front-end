@@ -10,7 +10,8 @@
 
 <script>
 
-import userInterface from "@/components/users/user interface.vue";
+import userInterface from "@/components/interfaces/userInterface.vue";
+
 import userIconSkeleton from "@/components/users/skeletons/userIcon Skeleton.vue";
 
 export default
