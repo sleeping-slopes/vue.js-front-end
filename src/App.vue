@@ -1,7 +1,7 @@
 <template>
   <header v-bind:class="{'dark': this.$store.state.darkTheme}">
     <nav class="nav-header">
-      <ul class="nav-mainmenu h4">
+      <ul class="nav-menu nav-main-menu h4">
         <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png" v-on:click="this.$store.dispatch('toggleTheme')"></router-link></li>
         <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
         <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
@@ -13,9 +13,53 @@
           <i class="fa fa-search"></i>
         </label>
       </form>
-      <usermenu class="right"/>
+      <template v-if="user !== null">
+        <ul class="nav-menu right gap-10 h5" v-if="!this.user">
+          <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark">Sign up</button></li>
+          <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button></li>
+        </ul>
+        <ul class="nav-menu right h4" v-else>
+          <li><router-link to="/upload">Upload</router-link></li>
+          <li>
+            <contextMenuNav>
+              <template v-slot:header>
+                <button class="button">
+                  <span class="icon-text gap-10">
+                    <div>
+                      <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
+                      <div class = "user-image s36x36 bi bi-person-fill" v-else></div>
+                    </div>
+                    <span class = "bi bi-caret-down-fill" ></span>
+                  </span>
+                </button>
+              </template>
+              <template v-slot:options>
+                <button v-on:click="$router.push({ name: 'User', params: { login: this.user }})" class = "button h5">
+                  <span class="icon-text">
+                    <span class="accent-text bi bi-person-fill"></span>
+                    <span>Profile</span>
+                  </span>
+                </button>
+                <button v-on:click="$router.push({ name: 'Settings' })" class = "button h5">
+                  <span class="icon-text">
+                    <span class="accent-text bi bi-gear-fill"></span>
+                    <span>Settings</span>
+                  </span>
+                </button>
+                <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Discover'});" class = "button h5">
+                  <span class="icon-text">
+                    <span class="accent-text bi bi-box-arrow-right"></span>
+                    <span>Sign out</span>
+                  </span>
+                </button>
+              </template>
+            </contextMenuNav>
+          </li>
+        </ul>
+      </template>
     </nav>
   </header>
+
   <main id="main" v-bind:class="{'dark': this.$store.state.darkTheme}">
     <router-view :key="JSON.stringify(this.$route.params)"/>
   </main>
@@ -32,7 +76,9 @@
 <script>
 
 
-import usermenu from "@/components/usermenu.vue"
+import API from "@/axios/API";
+
+import contextMenuNav from "@/components/containers/contextMenuNav.vue"
 import player from "@/components/player.vue"
 
 import playlistModal from "@/components/modals/playlistModal.vue";
@@ -42,11 +88,30 @@ import signUpModal from "@/components/modals/signUpModal.vue";
 export default
 {
   name: 'app',
-  components: { usermenu, player, playlistModal, signUpModal, logInModal },
+  components: { contextMenuNav, player, playlistModal, signUpModal, logInModal },
   data()
   {
     return {
-      searchQuery:""
+      searchQuery:"",
+      user: null,
+      imageAvailable: true
+    }
+  },
+  computed:
+  {
+    picturesrc() { return API.defaults.baseURL+`users/`+this.user+`/picture` }
+  },
+  watch:
+  {
+    '$store.state.authJWT':
+    {
+      handler: async function(value)
+      {
+        const userByToken = await API.get('me');
+        this.user = userByToken.login;
+        this.$store.state.loggedIn = !!this.user;
+      },
+      immediate: true
     }
   },
   methods:
@@ -70,6 +135,18 @@ header
   display:flex;
   justify-content: center;
   background-color: var(--nav-color);
+  z-index:2;
+}
+
+header .logo { background-color: var(--soft-black); }
+
+header .logo a { padding:0px; }
+
+header .logo img
+{
+  height:100%;
+  object-fit: scale-down;
+  background-color: var(--soft-black);
 }
 
 footer
@@ -78,24 +155,7 @@ footer
   position:sticky;
   bottom:0px;
   border-top:2px solid var(--panel-border-color);
-  z-index:1;
-}
-
-.logo
-{
-  background-color: var(--soft-black);
-}
-
-.logo a
-{
-  padding:0px;
-}
-
-.logo img
-{
-  height:100%;
-  object-fit: scale-down;
-  background-color: var(--soft-black);
+  z-index:2;
 }
 
 </style>
