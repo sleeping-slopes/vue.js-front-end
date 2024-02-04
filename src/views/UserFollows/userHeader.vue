@@ -9,7 +9,7 @@
         <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable h2">
           <slot name="caption"></slot> of {{this.user.username}}</router-link>
       </div>
-      <nav class="navtab">
+      <nav class="nav-tab">
         <ul class="h3">
           <li><router-link :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link></li>
           <li><router-link :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link></li>

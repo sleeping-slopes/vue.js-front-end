@@ -1,12 +1,6 @@
-header
-{
-  width:100%;
-  display:flex;
-  justify-content: center;
-  background-color: var(--nav-color);
-}
+/* ================================================== */
 
-header > nav
+.nav-header
 {
   width: 1240px;
   height: 48px;
@@ -14,18 +8,18 @@ header > nav
   align-items: center;
 }
 
-header > nav > ul
+.nav-header ul
 {
   display:flex;
   height:100%;
 }
 
-header > nav > .nav-mainmenu > li
+.nav-header .nav-mainmenu > li
 {
   border-right:1px solid var(--soft-black);
 }
 
-header > nav ul > li > a
+.nav-header ul > li > a
 {
   color: var(--light-gray);
   height:100%;
@@ -37,31 +31,33 @@ header > nav ul > li > a
   align-items: center;
 }
 
-header > nav ul > li > a:hover
+.nav-header ul > li > a:hover
 {
   color: var(--soft-white);
 }
 
-header > nav ul > li > a.router-link-active
+.nav-header ul > li > a.router-link-active
 {
   color: var(--soft-white);
   background-color: var(--soft-black);
 }
 
-.navtab
+/* ================================================== */
+
+.nav-tab
 {
   margin:10px 0px 0px 0px;
   border-bottom:1px solid var(--panel-border-color);
 }
 
-.navtab > ul
+.nav-tab > ul
 {
   display:flex;
   gap:20px;
   padding-top:5px;
 }
 
-.navtab > ul > li > a
+.nav-tab > ul > li > a
 {
   display:flex;
   align-items: flex-end;
@@ -72,18 +68,20 @@ header > nav ul > li > a.router-link-active
   font-size:18px;
 }
 
-.navtab > ul > li > a:hover
+.nav-tab > ul > li > a:hover
 {
   border-bottom:2px solid var(--text-color-primary);
 }
 
-.navtab > ul > li > a.router-link-exact-active
+.nav-tab > ul > li > a.router-link-exact-active
 {
   border-bottom:2px solid var(--accent-color);
   color: var(--accent-color);
 }
 
-.sidenav > ul
+/* ================================================== */
+
+.nav-side > ul
 {
   display:flex;
   flex-direction: column;
@@ -91,12 +89,12 @@ header > nav ul > li > a.router-link-active
   width: calc(100% - 15px);
 }
 
-.sidenav > ul > li
+.nav-side > ul > li
 {
   position:relative;
 }
 
-.sidenav > ul > li > a
+.nav-side > ul > li > a
 {
   display:flex;
   color: var(--text-color-primary);
@@ -107,7 +105,7 @@ header > nav ul > li > a.router-link-active
   line-height:30px;
 }
 
-.sidenav > ul > li:after
+.nav-side > ul > li:after
 {
   content:' ';
   left:100%;
@@ -123,13 +121,15 @@ header > nav ul > li > a.router-link-active
   visibility: hidden;
 }
 
-.sidenav > ul > li > a.router-link-exact-active
+.nav-side > ul > li > a.router-link-exact-active
 {
   background-color: var(--accent-color);
   color:var(--soft-white);
 }
 
-.sidenav > ul > li:has(a.router-link-exact-active)::after
+.nav-side > ul > li:has(a.router-link-exact-active)::after
 {
   visibility: visible;
 }
+
+/* ================================================== */

@@ -1,3 +1,5 @@
+/* ================================================== */
+
 .container .song:hover .shade,
 .container .song.current .shade,
 .container .song.active .shade,
@@ -6,13 +8,7 @@
   opacity:0.5;
 }
 
-.container .song:hover .cover-menu,
-.container .song.active .cover-menu,
-.container .song.card.current .cover-menu,
-.container .playlist .cover-wrapper:hover .cover-menu
-{
-  opacity:1.0;
-}
+/* ================================================== */
 
 .cover-menu
 {
@@ -30,13 +26,20 @@
 
 .cover-menu.song-options { bottom:0px; right:0px; gap:10px; }
 
-.cover-menu > .button-round
+.cover-menu > .button-round { background-color:var(--soft-black); }
+
+.cover-menu .button { color:var(--soft-white); }
+
+.container .song:hover .cover-menu,
+.container .song.active .cover-menu,
+.container .song.card.current .cover-menu,
+.container .playlist .cover-wrapper:hover .cover-menu
 {
-  background-color:var(--soft-black);
+  opacity:1.0;
 }
 
-.cover-menu .button
-{
-  color:var(--soft-white);
-}
+.song.item .cover-menu { transition:none; }
 
+div:not(.container) > .song .cover-menu { display:none; }
+
+/* ================================================== */

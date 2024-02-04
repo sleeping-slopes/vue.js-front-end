@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="content column">
-        <nav class="navtab">
+        <nav class="nav-tab">
           <ul class="h3">
             <li><router-link :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link></li>
             <li><router-link :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link></li>

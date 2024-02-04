@@ -1,3 +1,5 @@
+/* ================================================== */
+
 .playlist.playlist-expansible
 {
     display:flex;
@@ -62,4 +64,4 @@
     max-height:624px;
 }
 
-.carousel .playlist.card { width:128px; }
+/* ================================================== */

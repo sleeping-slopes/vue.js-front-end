@@ -1,6 +1,6 @@
 <template>
 <div class="content column">
-    <nav class="navtab">
+    <nav class="nav-tab">
       <ul class="h3">
         <li><router-link :to="{ name: 'YourSongs'}">Songs</router-link></li>
         <li><router-link :to="{ name: 'YourPlaylists'}">Playlists</router-link></li>

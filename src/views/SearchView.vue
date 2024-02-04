@@ -5,7 +5,7 @@
       </div>
       <div class="row">
         <div class="column sticky">
-            <nav class="sidenav">
+            <nav class="nav-side">
                 <ul class="h3">
                     <li>
                         <router-link :to="{ name: 'SearchSongs', query:this.$route.query }">

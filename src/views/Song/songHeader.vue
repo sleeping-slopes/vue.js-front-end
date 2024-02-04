@@ -16,7 +16,7 @@
       <router-link :to="{ name: 'Song', params: { id: this.id }}" class="h2 primary-text hoverable">{{this.song.name}}</router-link>
     </div>
   </div>
-  <nav class="navtab">
+  <nav class="nav-tab">
     <ul class="h3">
       <li><router-link :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link></li>
       <li><router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}">In playlists</router-link></li>

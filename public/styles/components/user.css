@@ -1,7 +1,16 @@
+/* ================================================== */
+
+.user.item .info-wrapper
+{
+  justify-content: center;
+}
+
 .user.card .info-wrapper
 {
   align-items: center;
 }
+
+/* ================================================== */
 
 .user.icon
 {
@@ -10,12 +19,11 @@
   box-sizing: border-box;
 }
 
-.user.item .info-wrapper
-{
-  justify-content: center;
-}
+/* ================================================== */
 
 .user.card:not(:hover) .button-secondary
 {
   visibility: hidden;
 }
+
+/* ================================================== */

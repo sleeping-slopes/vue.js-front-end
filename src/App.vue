@@ -1,6 +1,6 @@
 <template>
   <header v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <nav>
+    <nav class="nav-header">
       <ul class="nav-mainmenu h4">
         <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png" v-on:click="this.$store.dispatch('toggleTheme')"></router-link></li>
         <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
@@ -64,6 +64,23 @@ export default
 
 <style scoped>
 
+header
+{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color: var(--nav-color);
+}
+
+footer
+{
+  width:100%;
+  position:sticky;
+  bottom:0px;
+  border-top:2px solid var(--panel-border-color);
+  z-index:1;
+}
+
 .logo
 {
   background-color: var(--soft-black);
@@ -79,15 +96,6 @@ export default
   height:100%;
   object-fit: scale-down;
   background-color: var(--soft-black);
-}
-
-footer
-{
-  width:100%;
-  position:sticky;
-  bottom:0px;
-  border-top:2px solid var(--panel-border-color);
-  z-index:1;
 }
 
 </style>
