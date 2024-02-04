@@ -11,7 +11,7 @@
   </div>
   <div class="right-column">
     <div class="row gap-10 y-center w-100">
-      <button class="button button-default button-round button-medium bi bi-play-circle-fill"></button>
+      <button class="button button-default button-round button-medium toggled bi bi-play-circle-fill"></button>
       <div class= "info-wrapper">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>

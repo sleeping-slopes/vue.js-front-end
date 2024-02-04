@@ -66,6 +66,8 @@
 
 .button-banner.toggled { color:var(--accent-color); border-color:var(--accent-color); }
 
+.button-banner.skeleton { border:none; background-color:rgba(0,0,0,0.7); }
+
 /* ================================================== */
 
 .button-default

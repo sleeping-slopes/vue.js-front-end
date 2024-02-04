@@ -19,7 +19,7 @@
         </div>
         <div class="right-column" style="overflow:hidden">
             <div class="row gap-10 w-100 y-center">
-                <button class="button button-default button-round button-medium" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
+                <button class="button button-default button-round button-medium toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
                 <div class= "info-wrapper">
                     <div class ="h4 secondary-text">
                         <template v-for="(artist,index) in this.playlist.artists">
