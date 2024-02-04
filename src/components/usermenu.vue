@@ -1,16 +1,16 @@
 <template>
 <div class="nav-loginmenu" v-if="user !== null">
   <template v-if="!this.user">
-    <div class="row">
-      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark h5 ">Sign up</button>
-      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable h5">Log in</button>
+    <div class="row h5">
+      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark">Sign up</button>
+      <button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button>
     </div>
   </template>
   <template v-else>
-    <ul class="h100">
-      <li class="h100"><router-link to="/upload" class="navlink">Upload</router-link></li>
+    <ul class="h-100 h4">
+      <li class="h-100"><router-link to="/upload" class="navlink">Upload</router-link></li>
     </ul>
-    <div class="user-panel" @click="this.show=!this.show" v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}">
+    <div class="user-panel h5" @click="this.show=!this.show" v-bind:style="this.show?{'background-color':'var(--soft-black)'}:{}">
       <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
       <div class = "user-image s36x36 bi bi-person-fill" v-else></div>
       <span class="bi-caret-down-fill user-panel-carets" v-bind:style="{'color':'var(--light-gray)'}"></span>
@@ -104,8 +104,6 @@ export default {
   text-align: left;
   border:none;
   cursor:pointer;
-  align-items: center;
-  gap:10px;
   border-radius:10px;
   padding: 5px 5px 5px 5px;
 }

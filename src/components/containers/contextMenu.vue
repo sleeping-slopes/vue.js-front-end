@@ -39,7 +39,7 @@ export default
 
 </script>
 
-<style>
+<style scoped>
 
 .context-menu
 {
@@ -63,20 +63,6 @@ div:hover > .context-menu:hover
   opacity:1.0;
 }
 
-.context-menu .button
-{
-  width:100%;
-  background-color: transparent;
-  color: var(--soft-black);
-  padding: 3px 0px 3px 0px;
-}
-
-.context-menu .context-menu-header .button
-{
-  border:1px solid var(--light-gray);
-  border-radius:3px;
-}
-
 .context-menu .context-menu-options
 {
   display:none;
@@ -87,12 +73,6 @@ div:hover > .context-menu:hover
 .context-menu.context-menu-active .context-menu-options
 {
   display:flex;
-}
-
-.context-menu .context-menu-options .button:hover
-{
-  background-color:var(--light-gray);
-  color:var(--accent-color);
 }
 
 </style>

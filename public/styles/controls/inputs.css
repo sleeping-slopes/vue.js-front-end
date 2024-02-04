@@ -1,0 +1,137 @@
+input[type=range][orient=vertical]
+{
+  appearance: slider-vertical;
+  width: 8px;
+  height: 175px;
+  padding: 0 5px;
+}
+
+.label
+{
+  display:flex;
+  flex-direction: column;
+  gap:5px;
+  color: var(--text-color-primary);
+  width:100%;
+}
+
+.label input
+{
+  outline: 2px solid var(--panel-border-color);
+  border: none;
+  background:none;
+  color: var(--text-color-primary);
+  border-radius:5px;
+  transition:0.1s all;
+}
+
+.label textarea
+{
+  outline: 2px solid var(--panel-border-color);
+  border: none;
+  box-sizing: border-box;
+  background:none;
+  color: var(--text-color-primary);
+  border-radius:5px;
+}
+
+.label input:focus, .label textarea:focus
+{
+  outline-color: var(--text-color-primary);
+}
+
+input.input-error, textarea.input-error
+{
+  outline-color:red;
+}
+
+.select-wrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border:1px solid var(--accent-color);
+  border-radius:10px;
+  overflow:hidden;
+  height:32px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+select
+{
+  background-color: var(--soft-white);
+  color: var(--accent-color);
+  height:100%;
+  outline-color: transparent;
+  padding-left:5px;
+  padding-right:15px;
+  border:none;
+  flex-shrink: 0;
+}
+
+select:hover
+{
+  background-color:var(--accent-color);
+  color:var(--soft-white);
+}
+
+option
+{
+  background-color: var(--soft-white);
+  color:var(--soft-black);
+}
+
+option:checked
+{
+  background-color: var(--accent-color);
+  color:var(--soft-white);
+}
+
+.label-search-input
+{
+  height:min-content;
+  background-color: var(--soft-white);
+  border-radius: 8px;
+  min-width:100px;
+  width:100%;
+  max-width:400px;
+  display:flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  border: 2px solid var(--light-gray);
+  box-sizing: border-box;
+  padding:3px;
+}
+
+.label-search-input:focus-within
+{
+  border-color: var(--text-color-primary);
+}
+
+.label-search-input i
+{
+  padding-left: 6px;
+  padding-right: 6px;
+  color: var(--light-gray);
+  transition: color 0.2s;
+}
+
+.label-search-input input
+{
+  width:100%;
+  background-color: transparent;
+  color: var(--dark-gray);
+  outline:none;
+  border: none;
+}
+
+.label-search-input input:not(:placeholder-shown) + i
+{
+  color: var(--dark-gray);
+}
+
+::placeholder
+{
+  color: var(--light-gray);
+}

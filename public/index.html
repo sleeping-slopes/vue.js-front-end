@@ -10,15 +10,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/main.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/controls.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/shortcuts.css">
   <link rel="stylesheet" href="<%= BASE_URL %>styles/animations.css">
 
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/main.css">
+
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/controls/buttons.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/controls/inputs.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/controls/navs.css">
+
   <link rel="stylesheet" href="<%= BASE_URL %>styles/cover.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/song.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/playlist.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>styles/user.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/components/song.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/components/playlist.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/components/user.css">
+
+  <!-- ANIMATION < (WRAPPER-WAVE???) COMPONENTS (&& MAIN) && CONTROLS -->
+
+  <link rel="stylesheet" href="<%= BASE_URL %>styles/shortcuts.css">
 
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>

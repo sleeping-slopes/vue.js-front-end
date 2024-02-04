@@ -5,17 +5,6 @@
   max-width:100%;
 }
 
-.skeleton.button
-{
-  border:none;
-}
-
-.skeleton.banner-info,
-.skeleton.button-banner
-{
-  background-color:rgba(0,0,0,0.7);
-}
-
 .shimmer::before
 {
   content:'';

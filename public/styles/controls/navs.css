@@ -1,0 +1,135 @@
+header
+{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color: var(--nav-color);
+}
+
+header > nav
+{
+  width: 1240px;
+  height: 48px;
+  display:flex;
+  align-items: center;
+}
+
+header > nav > ul
+{
+  display:flex;
+  height:100%;
+}
+
+header > nav > .nav-mainmenu > li
+{
+  border-right:1px solid var(--soft-black);
+}
+
+header > nav ul > li > a
+{
+  color: var(--light-gray);
+  height:100%;
+  box-sizing:border-box;
+  transition: all 0.2s;
+  white-space: nowrap;
+  padding:0px 20px 0px 20px;
+  display:flex;
+  align-items: center;
+}
+
+header > nav ul > li > a:hover
+{
+  color: var(--soft-white);
+}
+
+header > nav ul > li > a.router-link-active
+{
+  color: var(--soft-white);
+  background-color: var(--soft-black);
+}
+
+.navtab
+{
+  margin:10px 0px 0px 0px;
+  border-bottom:1px solid var(--panel-border-color);
+}
+
+.navtab > ul
+{
+  display:flex;
+  gap:20px;
+  padding-top:5px;
+}
+
+.navtab > ul > li > a
+{
+  display:flex;
+  align-items: flex-end;
+  color: var(--text-color-primary);
+  cursor:pointer;
+  white-space: nowrap;
+  padding:0px 5px 0px 5px;
+  font-size:18px;
+}
+
+.navtab > ul > li > a:hover
+{
+  border-bottom:2px solid var(--text-color-primary);
+}
+
+.navtab > ul > li > a.router-link-exact-active
+{
+  border-bottom:2px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+.sidenav > ul
+{
+  display:flex;
+  flex-direction: column;
+  gap:5px;
+  width: calc(100% - 15px);
+}
+
+.sidenav > ul > li
+{
+  position:relative;
+}
+
+.sidenav > ul > li > a
+{
+  display:flex;
+  color: var(--text-color-primary);
+  cursor:pointer;
+  white-space: nowrap;
+  padding:0px 5px 0px 5px;
+  font-size:18px;
+  line-height:30px;
+}
+
+.sidenav > ul > li:after
+{
+  content:' ';
+  left:100%;
+  top:50%;
+  height:0;
+  width:0;
+  position:absolute;
+  border: 15px solid transparent;
+  border-left-color: var(--accent-color);
+  margin-top: -15px;
+  box-sizing: border-box;
+  display:block;
+  visibility: hidden;
+}
+
+.sidenav > ul > li > a.router-link-exact-active
+{
+  background-color: var(--accent-color);
+  color:var(--soft-white);
+}
+
+.sidenav > ul > li:has(a.router-link-exact-active)::after
+{
+  visibility: visible;
+}
