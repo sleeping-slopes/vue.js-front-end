@@ -48,7 +48,7 @@
 
 .button-secondary.toggled { color:var(--accent-color); border-color:var(--accent-color); }
 
-.button-secondary.skeleton { border:none; background-color: var(--text-color-secondary); }
+.button-secondary.skeleton { border:none; background-color: var(--panel-border-color); }
 
 /* ================================================== */
 

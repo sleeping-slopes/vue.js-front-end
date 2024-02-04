@@ -4,8 +4,8 @@
         <h2 class="primary-text">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h2>
       </div>
       <div class="row">
-        <div class="column sticky">
-            <nav class="nav-side">
+        <div style="width:360px;">
+            <nav class="nav-side sticky">
                 <ul class="h3">
                     <li>
                         <router-link :to="{ name: 'SearchSongs', query:this.$route.query }">
@@ -53,9 +53,7 @@ export default
 .sticky
 {
     position:sticky;
-    top:76px;
-    height:min-content;
-    width:360px;
+    top:74.5px;
 }
 
 </style>
