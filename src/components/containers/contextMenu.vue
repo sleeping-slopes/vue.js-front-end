@@ -46,22 +46,15 @@ export default
   border-radius:3px;
   background-color: var(--soft-white);
   overflow:hidden;
+  box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
 }
 
-.context-menu:not(.context-menu-active)
-{
-  opacity:0.0;
-}
+.context-menu:not(.context-menu-active) { opacity:0.0; }
 
-div:hover > .context-menu:not(.context-menu-active)
-{
-  opacity:0.7;
-}
+div:hover > .context-menu:not(.context-menu-active) { opacity:0.7; }
 
-div:hover > .context-menu:hover
-{
-  opacity:1.0;
-}
+div:hover > .context-menu:hover { opacity:1.0; }
+
 
 .context-menu .context-menu-options
 {
@@ -70,9 +63,6 @@ div:hover > .context-menu:hover
   width:100%;
 }
 
-.context-menu.context-menu-active .context-menu-options
-{
-  display:flex;
-}
+.context-menu.context-menu-active .context-menu-options { display:flex; }
 
 </style>

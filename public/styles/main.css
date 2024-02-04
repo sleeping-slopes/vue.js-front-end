@@ -276,6 +276,8 @@ ul.container > li { position:relative; }
 
 .secondary-text.hoverable:hover { color:var(--text-color-primary); }
 
+.accent-text { color:var(--accent-color); }
+
 .icon-text
 {
   display:flex;
