@@ -243,14 +243,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.form-button
-{
-    border:2px solid var(--panel-border-color);
-    height:20px;
-    width:20px;
-}
-
-</style>
