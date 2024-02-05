@@ -36,23 +36,17 @@ export default
     {
       if (!this.playlist.liked)
       {
-        const response = await API.post("playlists/"+this.id+"/action/like/post");
-        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-        else
-        {
-          this.playlist.likes_count++;
-          this.playlist.liked=true;
-        }
+        const response = await API.patch("me/playlists/likes", { op: 'add', id: this.id });
+        if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
+        this.playlist.likes_count++;
+        this.playlist.liked=true;
       }
       else
       {
-        const response = await API.post("playlists/"+this.id+"/action/like/delete");
-        if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-        else
-        {
-          this.playlist.likes_count--;
-          this.playlist.liked=false;
-        }
+        const response = await API.patch("me/playlists/likes", { op: 'remove', id: this.id });
+        if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
+        this.playlist.likes_count--;
+        this.playlist.liked=false;
       }
     },
     playPlaylist()

@@ -33,23 +33,17 @@ export default
     abbreviateNumber: abbreviateNumber,
     async follow()
     {
-      const response = await API.post('users/'+this.login+"/action/follow/post");
-      if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-      else
-      {
-        this.user.followers_count++;
-        this.user.youFollow=true;
-      }
+      const response = await API.patch("me/users/following", { op: 'add', login: this.login });
+      if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
+      this.user.followers_count++;
+      this.user.youFollow=true;
     },
     async unfollow()
     {
-      const response = await API.post('users/'+this.login+"/action/follow/delete");
-      if (response.error?.status==401) { this.$router.push({path: this.$route.fullPath,query:{action:'login'}}) }
-      else
-      {
-        this.user.followers_count--;
-        this.user.youFollow=false;
-      }
+      const response = await API.patch("me/users/following", { op: 'remove', login: this.login });
+      if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
+      this.user.followers_count--;
+      this.user.youFollow=false;
     }
   }
 }

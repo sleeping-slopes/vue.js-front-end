@@ -2,7 +2,7 @@
   <modal :width="'400px'">
     <template v-slot:content>
           <h2 class="primary-text left right" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</h2>
-          <form @submit.prevent="signUp" class="h4 column gap-10 y-center">
+          <form @submit.prevent="postUser" class="h4 column gap-10 y-center">
               <label class = "label">
                   <span>Email</span>
                   <input type="text" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
@@ -66,7 +66,7 @@ export default
   },
   methods:
   {
-    async signUp()
+    async postUser()
     {
       this.email.data = this.email.data.trim().toLowerCase();
       this.login.data = this.login.data.trim().toLowerCase();
@@ -86,7 +86,7 @@ export default
 
       if ((this.email.error) || (this.password.error) || (this.login.error)) return;
 
-      const r = await API.post('auth/signup',{ email:this.email.data, password:this.password.data, login:this.login.data });
+      const r = await API.post('users',{ email:this.email.data, password:this.password.data, login:this.login.data });
       if (r.error)
       {
         if (r.error.message.emailError) this.email.error = r.error.message.emailError;
