@@ -102,17 +102,17 @@
                 </ul>
               </template>
             </panel>
-            <panel v-if="this.userLikedSongs?.songs?.length">
+            <panel v-if="this.userSongLikes?.songs?.length">
               <template v-slot:header>
                 <span class="icon-text">
-                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userLikedSongs?.songs.length) }} like{{this.userLikedSongs?.songs.length==1?'':'s'}}</span>
+                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userSongLikes?.songs.length) }} like{{this.userSongLikes?.songs.length==1?'':'s'}}</span>
                 </span>
               </template>
               <template v-slot:menu>
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
               </template>
               <template v-slot:content>
-                <songContainer :type="'ul-list'" :playlist="this.userLikedSongs" :maxDisplay="3"/>
+                <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"/>
               </template>
             </panel>
             <panel v-if="this.followers?.length">
@@ -162,7 +162,7 @@ export default
   data()
   {
     return {
-      userLikedSongs: undefined,
+      userSongLikes: undefined,
       followers: undefined,
       bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
       backgroundImageAvailable: true
@@ -171,7 +171,7 @@ export default
   async created()
   {
     this.followers = await API.get('users/'+this.login+'/followers');
-    this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
+    this.userSongLikes = await API.get('users/'+this.login+'/songs/likes');
   },
 }
 

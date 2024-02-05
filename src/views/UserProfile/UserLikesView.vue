@@ -5,7 +5,7 @@
       <carousel>
         <template v-slot:content>
           <playlistContainer :type="'row gap-10'"
-            :playlists="userLikedPlaylists"
+            :playlists="userPlaylistLikes"
             :dynamicComponent="'playlistCarouselCard'">
           </playlistContainer>
         </template>
@@ -15,7 +15,7 @@
   <panel>
     <template v-slot:header>Songs liked by {{ this.user.username }}</template>
     <template v-slot:content>
-      <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="userLikedSongs"/>
+      <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="userSongLikes"/>
     </template>
   </panel>
 </template>
@@ -40,8 +40,8 @@ export default
   data()
   {
     return{
-      userLikedPlaylists: undefined,
-      userLikedSongs: undefined
+      userPlaylistLikes: undefined,
+      userSongLikes: undefined
     }
   },
   computed:
@@ -50,8 +50,8 @@ export default
   },
   async created()
   {
-    this.userLikedSongs = await API.get('users/'+this.login+'/songs/liked');
-    this.userLikedPlaylists = await API.get('users/'+this.login+'/playlists/liked');
+    this.userSongLikes = await API.get('users/'+this.login+'/songs/likes');
+    this.userPlaylistLikes = await API.get('users/'+this.login+'/playlists/likes');
   },
 }
 

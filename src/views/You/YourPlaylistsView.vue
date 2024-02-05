@@ -16,7 +16,7 @@
           <select v-model="selected" class="h4">
             <option>All</option>
             <option>Created</option>
-            <option>Liked</option>
+            <option>Likes</option>
           </select>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default
         {
           case "All": this.playlists = await API.get("users/"+this.login+"/playlists"); break;
           case "Created": this.playlists = await API.get("users/"+this.login+"/playlists/created"); break;
-          case "Liked": this.playlists = await API.get("users/"+this.login+"/playlists/liked"); break;
+          case "Likes": this.playlists = await API.get("users/"+this.login+"/playlists/likes"); break;
         }
       },
       immediate: true

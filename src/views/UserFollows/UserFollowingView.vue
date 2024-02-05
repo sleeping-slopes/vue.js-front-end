@@ -1,7 +1,7 @@
 <template>
 <div class="content column" style="padding-top:0px;">
   <userHeader :login = "this.login"><template v-slot:caption>Followings</template></userHeader>
-  <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="followings"></userContainer>
+  <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="following"></userContainer>
 </div>
 </template>
 
@@ -23,12 +23,12 @@ export default
   data()
   {
     return {
-      followings: undefined
+      following: undefined
     }
   },
   async created()
   {
-    this.followings = await API.get('users/'+this.login+'/following');
+    this.following = await API.get('users/'+this.login+'/following');
   }
 }
 
