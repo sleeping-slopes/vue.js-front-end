@@ -23,23 +23,22 @@
                 </div>
                 <div class= "column gap-20 w-100">
                     <label class = "label h4">
-                    <span>Display name</span>
-
-                    <input type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
-                        v-model="username.data"
-                    />
-                    <span class="icon-text notification-error" v-if=username.error>
-                        <span class="bi bi-exclamation-circle-fill"></span><span>{{ username.error }}</span>
-                    </span>
+                        <span>Display name</span>
+                        <input type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
+                            v-model="username.data"
+                        />
+                        <span class="icon-text notification-error" v-if=username.error>
+                            <span class="bi bi-exclamation-circle-fill"></span><span>{{ username.error }}</span>
+                        </span>
                     </label>
                     <label class = "label h5">
-                    <span>Status</span>
-                    <input type="text" v-bind:class="{'input-error': status.error}"
-                        v-model="status.data"
-                    />
-                    <span class="icon-text notification-error" v-if=status.error>
-                        <span class="bi bi-exclamation-circle-fill"></span><span>{{ status.error }}</span>
-                    </span>
+                        <span>Status</span>
+                        <input type="text" v-bind:class="{'input-error': status.error}"
+                            v-model="status.data"
+                        />
+                        <span class="icon-text notification-error" v-if=status.error>
+                            <span class="bi bi-exclamation-circle-fill"></span><span>{{ status.error }}</span>
+                        </span>
                     </label>
                     <div class="row gap-10 h5">
                         <label class = "label">
@@ -60,12 +59,12 @@
                         </label>
                     </div>
                     <label class = "label h5">
-                    <span>Bio</span>
-                    <textarea rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
-                        v-model="bio.data"></textarea>
-                    <span class="icon-text notification-error" v-if=bio.error>
-                        <span class="bi bi-exclamation-circle-fill"></span><span>{{ bio.error }}</span>
-                    </span>
+                        <span>Bio</span>
+                        <textarea rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
+                            v-model="bio.data"></textarea>
+                        <span class="icon-text notification-error" v-if=bio.error>
+                            <span class="bi bi-exclamation-circle-fill"></span><span>{{ bio.error }}</span>
+                        </span>
                     </label>
                 </div>
             </div>
@@ -93,7 +92,7 @@
                 </div>
                 <div class="row">
                     <button type="button" class = "button button-secondary hoverable"
-                    v-on:click="this.links.push({url: {data:'',error:null}, description: {data:'',error:null}})" :disabled='this.links.length>=10'>Add link</button>
+                    v-on:click="this.links.push({url: { data:null, error:null }, description: { data:null, error:null }})" :disabled='this.links.length>=10'>Add link</button>
                     <span class="icon-text notification-error" v-if="this.links.length>=10">
                         <span class="bi bi-exclamation-circle-fill"></span><span>A maximum of 10 links can be added to your profile.</span>
                     </span>
@@ -132,6 +131,11 @@ export default
 
     }
   },
+  props:
+  {
+    user: {default:undefined},
+    imageAvailable: {default:false}
+  },
   created()
   {
     for (let i = 0;i<this.user.links.length;i++)
@@ -139,69 +143,75 @@ export default
         this.links.push({ url: {data: this.user.links[i].url, error: null}, description:{data: this.user.links[i].description, error: null}});
     }
   },
-  props:
-  {
-    user: {default:undefined},
-    imageAvailable: {default:false}
-  },
   methods:
   {
     async editProfile()
     {
-        this.username.data = this.username.data.trim();
-        this.status.data = this.status.data.trim();
-        this.city.data = this.city.data.trim();
-        this.country.data = this.country.data.trim();
-        this.bio.data = this.bio.data.trim();
-        for (let i = 0;i<this.links.length;i++)
+        this.username.data = this.username.data || null;
+        this.username.error=null;
+        if (this.username.data)
         {
-            this.links[i].url.data=this.links[i].url.data.trim();
-            this.links[i].url.data.replace(/^https?:\/\//, '',"");
-
-            this.links[i].description.data=this.links[i].description.data.trim();
+            this.username.data = this.username.data.trim();
+            if (this.username.data.length>50) this.username.error = "Enter a display name that is up to 50 characters.";
         }
 
-        this.username.error=null;
-        if (this.username.data.length>50) this.username.error = "Enter a display name that is up to 50 characters.";
-
+        this.status.data = this.status.data || null;
         this.status.error=null;
-        if (this.status.data.length>50) this.status.error = "Enter a status that is up to 50 characters.";
-
-        this.city.error=null;
-        if (this.city.data.length>35) this.city.error = "Enter a city that is up to 35 characters.";
-
-        this.country.error=null;
-        if (this.country.data.length>35) this.country.error = "Enter a country that is up to 35 characters.";
-
-        this.bio.error=null;
-        if (this.bio.data.length>280) this.bio.error = "Write a bio that is up to 200 characters.";
-
-        for (let i = 0;i<this.links.length;i++)
+        if (this.status.data)
         {
+            this.status.data = this.status.data.trim();
+            if (this.status.data.length>50) this.status.error = "Enter a status that is up to 50 characters.";
+        }
+
+        this.city.data = this.city.data || null;
+        this.city.error=null;
+        if (this.city.data)
+        {
+            this.city.data = this.city.data.trim();
+            if (this.city.data.length>35) this.city.error = "Enter a city that is up to 35 characters.";
+        }
+
+        this.country.data = this.country.data || null;
+        this.country.error=null;
+        if (this.country.data)
+        {
+            this.country.data = this.country.data.trim();
+            if (this.country.data.length>35) this.country.error = "Enter a country that is up to 35 characters.";
+        }
+
+        this.bio.data = this.bio.data || null;
+        this.bio.error=null;
+        if (this.bio.data)
+        {
+            this.bio.data = this.bio.data.trim();
+            if (this.bio.data.length>280) this.bio.error = "Write a bio that is up to 200 characters.";
+        }
+
+        for (let i = 0; i < this.links.length; i++)
+        {
+            this.links[i].url.data = this.links[i].url.data || null;
             this.links[i].url.error=null;
+            if (this.links[i].url.data)
+            {
+                this.links[i].url.data=this.links[i].url.data.trim();
+                if (this.links[i].url.data.length>60) this.links[i].url.error = "Enter a web or email address that is up to 60 characters.";
+                else
+                {
+                    if (!(this.links[i].url.data.startsWith("http://") || this.links[i].url.data.startsWith("https://")))
+                    {
+                        this.links[i].url.data = "http://"+this.links[i].url.data;
+                    }
+                }
+                if (!this.validURL(this.links[i].url.data))this.links[i].url.error = "This URL or email is invalid.";
+            }
+            else this.links[i].url.error = "Enter a web or email address.";
+
+            this.links[i].description.data = this.links[i].description.data || null;
             this.links[i].description.error=null;
-            if (this.links[i].description.data.length>60)
+            if (this.links[i].description.data)
             {
-                this.links[i].description.error = "Enter a description that is up to 60 characters.";
-            }
-            if (!this.links[i].url.data)
-            {
-                this.links[i].url.error = "Enter a web or email address.";
-                continue;
-            }
-            if (this.links[i].url.data.length>60)
-            {
-                this.links[i].url.error = "Enter a web or email address that is up to 60 characters.";
-                continue;
-            }
-            if (!(this.links[i].url.data.startsWith("http://") || this.links[i].url.data.startsWith("https://")))
-            {
-                this.links[i].url.data = "http://"+this.links[i].url.data;
-            }
-            if (!this.validURL(this.links[i].url.data))
-            {
-                this.links[i].url.error = "This URL or email is invalid.";
-                continue;
+                this.links[i].description.data=this.links[i].description.data.trim();
+                if (this.links[i].description.data.length>60) this.links[i].description.error = "Enter a description that is up to 60 characters.";
             }
         }
 

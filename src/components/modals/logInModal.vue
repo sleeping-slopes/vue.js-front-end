@@ -58,14 +58,20 @@ export default
   {
     async logIn()
     {
-      this.login.data = this.login.data.trim();
-
+      this.login.data = this.login.data || null;
       this.login.error=null;
-      if (!this.login.data) this.login.error="Required field.";
-      if (this.login.data.length)
+      if (this.login.data)
+      {
+        this.login.data = this.login.data.trim();
+      }
+      else this.login.error="Required field.";
 
+      this.password.data = this.password.data || null;
       this.password.error=null;
-      if (!this.password.data) this.password.error="Required field.";
+      if (this.password.data)
+      {
+      }
+      else this.password.error="Required field.";
 
       if ((this.login.error) || (this.password.error)) return;
 

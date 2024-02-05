@@ -68,21 +68,32 @@ export default
   {
     async postUser()
     {
-      this.email.data = this.email.data.trim().toLowerCase();
-      this.login.data = this.login.data.trim().toLowerCase();
+      this.email.data = this.email.data || null;
+      this.email.error = null;
+      if (this.email.data)
+      {
+        this.email.data = this.email.data.trim().toLowerCase();
+        if (!this.validEmail(this.email.data)) this.email.error='Invalid email.';
+      }
+      else this.email.error="Required field.";
 
-      this.email.error=null;
-      if (!this.email.data) this.email.error="Required field.";
-      else if (!this.validEmail(this.email.data)) this.email.error='Invalid email.';
+      this.login.data = this.login.data || null;
+      this.login.error = null;
+      if (this.login.data)
+      {
+        this.login.data = this.login.data.trim().toLowerCase();
+        if (!(this.login.data.length>=6 || this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
+        else if (!this.validLogin(this.login.data)) this.login.error='Invalid login.';
+      }
+      else this.login.error="Required field.";
 
-      this.password.error=null;
-      if (!this.password.data) this.password.error="Required field.";
-      else if (!(this.password.data.length>=6 || this.password.data.length<=60)) this.password.error='Enter a password from 6 to 60 characters.';
-
-      this.login.error=null;
-      if (!this.login.data) this.login.error="Required field.";
-      else if (!(this.login.data.length>=6 || this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
-      else if (!this.validLogin(this.login.data)) this.login.error='Invalid login.';
+      this.password.data = this.password.data || null;
+      this.password.error = null;
+      if (this.password.data)
+      {
+        if (!(this.password.data.length>=6 || this.password.data.length<=60)) this.password.error='Enter a password from 6 to 60 characters.';
+      }
+      else this.password.error="Required field.";
 
       if ((this.email.error) || (this.password.error) || (this.login.error)) return;
 
