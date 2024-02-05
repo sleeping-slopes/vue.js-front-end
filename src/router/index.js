@@ -175,6 +175,12 @@ const routes =
     path: '/upload',
     component: () => import('@/views/UploadView.vue'),
     meta: { authRequired:true }
+  {
+    name: "Settings",
+    path: '/settings',
+    component: () => import('@/views/SettingsView.vue'),
+    meta: { authRequired:true }
+  },
   }
 ]
 
