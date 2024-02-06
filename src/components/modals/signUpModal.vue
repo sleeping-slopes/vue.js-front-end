@@ -46,6 +46,9 @@ import API from "@/axios/API";
 
 import modal from "@/components/containers/modal.vue"
 
+import { validEmail, validLogin } from "@/functions.js"
+
+
 export default
 {
   name: 'signUpModal',
@@ -73,7 +76,7 @@ export default
       if (this.email.data)
       {
         this.email.data = this.email.data.trim().toLowerCase();
-        if (!this.validEmail(this.email.data)) this.email.error='Invalid email.';
+        if (!validEmail(this.email.data)) this.email.error='Invalid email.';
       }
       else this.email.error="Required field.";
 
@@ -83,7 +86,7 @@ export default
       {
         this.login.data = this.login.data.trim().toLowerCase();
         if (!(this.login.data.length>=6 || this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
-        else if (!this.validLogin(this.login.data)) this.login.error='Invalid login.';
+        else if (!validLogin(this.login.data)) this.login.error='Invalid login.';
       }
       else this.login.error="Required field.";
 
@@ -109,16 +112,6 @@ export default
         if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
         else this.$router.replace({query: null});
       }
-    },
-    validEmail(email)
-    {
-      const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return regex.test(email);
-    },
-    validLogin(login)
-    {
-      const re = /^[a-zA-Z0-9_.-]*$/;
-      return re.test(login);
     }
   }
 }

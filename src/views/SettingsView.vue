@@ -56,6 +56,8 @@
 
 import API from '@/axios/API';
 
+import { validEmail } from "@/functions.js"
+
 export default
 {
     name: 'SettingsView',
@@ -89,7 +91,7 @@ export default
             if (this.email.data)
             {
                 this.email.data = this.email.data.trim().toLowerCase();
-                if (!this.validEmail(this.email.data)) this.email.error='Invalid email.';
+                if (!validEmail(this.email.data)) this.email.error='Invalid email.';
             }
             else this.email.error="Required field.";
 
@@ -100,11 +102,6 @@ export default
             {
                 alert (JSON.stringify(r.error));
             }
-        },
-        validEmail(email)
-        {
-            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return regex.test(email);
         },
         async resetPassword()
         {
