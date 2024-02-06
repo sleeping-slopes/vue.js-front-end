@@ -110,9 +110,15 @@ export default
         async deleteAccount()
         {
             const r = await API.delete('me');
-            if (r.error)
+            // if (r.error)
+            if (false)
             {
                 alert (JSON.stringify(r.error));
+            }
+            else
+            {
+                this.$store.dispatch('logOut');
+                this.$router.push({name: 'Root'});
             }
         }
     }
