@@ -56,15 +56,15 @@ export default
     {
       if (!this.song.liked)
       {
-        const response = await API.patch("me/songs/likes", { op: 'add', id: this.id });
+        const response = await API.post("me/songs/likes", { id: this.id });
         if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
         this.song.likes_count++;
         this.song.liked=true;
       }
       else
       {
-        const response = await API.patch("me/songs/likes", { op: 'remove', id: this.id });
-        if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
+        const response = await API.delete("me/songs/likes/"+this.id);
+        if (response?.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
         this.song.likes_count--;
         this.song.liked=false;
       }
