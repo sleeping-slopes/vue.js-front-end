@@ -3,9 +3,9 @@
   <div class="context-menu-nav-header" ref="header" v-on:click="this.active=!this.active">
     <slot name="header"></slot>
   </div>
-  <div class="context-menu-nav-options">
+  <ul class="context-menu-nav-options">
     <slot name="options"></slot>
-  </div>
+  </ul>
 </div>
 </template>
 

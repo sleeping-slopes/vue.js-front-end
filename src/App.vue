@@ -34,24 +34,30 @@
                 </button>
               </template>
               <template v-slot:options>
-                <button v-on:click="$router.push({ name: 'User', params: { login: this.user }})" class = "button h5">
-                  <span class="icon-text">
-                    <span class="accent-text bi bi-person-fill"></span>
-                    <span>Profile</span>
-                  </span>
-                </button>
-                <button v-on:click="$router.push({ name: 'Settings' })" class = "button h5">
-                  <span class="icon-text">
-                    <span class="accent-text bi bi-gear-fill"></span>
-                    <span>Settings</span>
-                  </span>
-                </button>
-                <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Discover'});" class = "button h5">
-                  <span class="icon-text">
-                    <span class="accent-text bi bi-box-arrow-right"></span>
-                    <span>Sign out</span>
-                  </span>
-                </button>
+                <li>
+                  <button v-on:click="$router.push({ name: 'User', params: { login: this.user }})" class = "button h5">
+                    <span class="icon-text">
+                      <span class="accent-text bi bi-person-fill"></span>
+                      <span>Profile</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button v-on:click="$router.push({ name: 'Settings' })" class = "button h5">
+                    <span class="icon-text">
+                      <span class="accent-text bi bi-gear-fill"></span>
+                      <span>Settings</span>
+                    </span>
+                  </button>
+                </li>
+                <li>
+                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class = "button h5">
+                    <span class="icon-text">
+                      <span class="accent-text bi bi-box-arrow-right"></span>
+                      <span>Sign out</span>
+                    </span>
+                  </button>
+                </li>
               </template>
             </contextMenuNav>
           </li>
