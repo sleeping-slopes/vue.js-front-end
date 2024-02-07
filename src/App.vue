@@ -2,7 +2,7 @@
   <header v-bind:class="{'dark': this.$store.state.darkTheme}">
     <nav class="nav-header">
       <ul class="nav-menu nav-main-menu h4">
-        <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png" v-on:click="this.$store.dispatch('toggleTheme')"></router-link></li>
+        <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
         <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
         <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
         <li><router-link :to="{ name: 'You'}">Library</router-link></li>
@@ -69,7 +69,10 @@
   <main id="main" v-bind:class="{'dark': this.$store.state.darkTheme}">
     <router-view :key="JSON.stringify(this.$route.params)"/>
   </main>
-  <footer v-bind:class="{'dark': this.$store.state.darkTheme}"><player/></footer>
+
+  <footer v-bind:class="{'dark': this.$store.state.darkTheme}">
+    <player/>
+  </footer>
 
   <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <playlistModal  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>

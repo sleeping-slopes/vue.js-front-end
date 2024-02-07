@@ -22,8 +22,13 @@
             </button>
           </template>
           <template v-slot:options>
-            <button type = "button" class="button h6">Replace image</button>
-            <button type = "button" class="button h6">Delete image</button>
+            <li>
+              <button type = "button" class="button h6" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
+              <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
+            </li>
+            <li>
+              <button type = "button" class="button h6" v-on:click="deleteProfilePicture">Delete image</button>
+            </li>
           </template>
         </contextMenu>
       </div>
@@ -42,8 +47,13 @@
             </button>
           </template>
           <template v-slot:options>
-            <button type = "button" class="button h6">Replace image</button>
-            <button type = "button" class="button h6">Delete image</button>
+            <li>
+              <button type = "button" class="button h6" v-on:click="this.$refs.bannerInput.click()">Replace image</button>
+              <input type="file" ref="bannerInput" style="display:none" v-on:change="uploadBanner" accept="image/*" />
+            </li>
+            <li>
+              <button type = "button" class="button h6" v-on:click="deleteBanner">Delete image</button>
+            </li>
           </template>
         </contextMenu>
       </div>

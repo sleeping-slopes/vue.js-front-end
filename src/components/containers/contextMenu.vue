@@ -1,6 +1,6 @@
 <template>
 <div class="context-menu" v-bind:class="{'context-menu-active': this.active}">
-  <div class="context-menu-header" v-on:click="this.active=!this.active">
+  <div class="context-menu-header" ref="header" v-on:click="this.active=!this.active">
     <slot name="header"></slot>
   </div>
   <ul class="context-menu-options">
@@ -32,7 +32,7 @@ export default
   {
     close(e)
     {
-      if (!this.$el.contains(e.target)) this.active=false;
+      if (!this.$refs.header.contains(e.target)) this.active=false;
     }
   }
 }
