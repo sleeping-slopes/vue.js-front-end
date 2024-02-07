@@ -21,7 +21,7 @@
                                 <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
                             </li>
                             <li>
-                                <button type = "button" class="button h6">Delete image</button>
+                                <button type = "button" class="button h6" v-on:click="deleteProfilePicture">Delete image</button>
                             </li>
                         </template>
                     </contextMenu>
@@ -250,6 +250,10 @@ export default
         const fd = new FormData();
         fd.append('userProfilePicture',selectedFile,selectedFile.name);
         const r = await API.post('me/profile-picture', fd);
+    },
+    async deleteProfilePicture()
+    {
+      const r = await API.delete('me/profile-picture');
     }
   }
 }

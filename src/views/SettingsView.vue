@@ -15,16 +15,16 @@
             <div class="column gap-10">
                 <span class="primary-text h4">Theme</span>
                 <div class="row h2 gap-5">
-                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==0 && !systemTheme}"
+                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==0 && !defaultTheme}"
                         v-on:click="changeTheme(0)">
                     </button>
-                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==1 && !systemTheme}"
+                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==1 && !defaultTheme}"
                         v-on:click="changeTheme(1)">
                     </button>
                 </div>
                 <label class="label row y-center h5">
-                    <button class="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': systemTheme}"
-                        v-on:click="toggleSystemTheme(1)">
+                    <button class="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': defaultTheme}"
+                        v-on:click="toggleDefaultTheme()">
                     </button>
                     <span>Use system theme</span>
                 </label>
@@ -66,7 +66,7 @@ export default
         return {
             email:{ data: null, error: null },
             theme: 1,
-            systemTheme: false
+            defaultTheme: false
         }
     },
     async created()
@@ -78,11 +78,14 @@ export default
     {
         changeTheme(theme)
         {
-            this.theme=theme;
+            if (this.theme!=theme)
+            {
+                this.theme=theme;
+            }
         },
-        toggleSystemTheme()
+        toggledefaultTheme()
         {
-            this.systemTheme=!this.systemTheme;
+            this.defaultTheme=!this.defaultTheme;
         },
         async changeEmail()
         {

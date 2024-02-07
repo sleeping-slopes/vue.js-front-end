@@ -20,7 +20,7 @@
   align-items: center;
 }
 
-.nav-header .nav-menu.nav-mainmenu > li
+.nav-header .nav-menu.nav-main-menu > li
 {
   border-right:1px solid var(--soft-black);
 }
