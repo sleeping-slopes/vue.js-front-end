@@ -5,7 +5,7 @@
         <form @submit.prevent="editProfile" class="column gap-15 scroll" style="padding:5px">
             <div class="row gap-20">
                 <div style="height:min-content;position:relative;">
-                    <img class = "user-image s200x200" v-if="imageAvailable" :src="picturesrc"/>
+                    <img class = "user-image s200x200" v-if="imageAvailable" :src="picturesrc" @error="imageAvailable=false" />
                     <div class = "user-image s200x200 bi bi-person-fill" v-else></div>
                     <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;">
                         <template v-slot:header>
@@ -18,7 +18,7 @@
                         <template v-slot:options>
                             <li>
                                 <button type = "button" class="button h6" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
-                                <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadImage" accept="image/*" />
+                                <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
                             </li>
                             <li>
                                 <button type = "button" class="button h6">Delete image</button>
@@ -135,14 +135,13 @@ export default
       country: {data: this.user.country, error: null },
       bio: {data: this.user.bio, error: null },
       links: [],
-      picturesrc: API.defaults.baseURL+`users/`+this.user.login+`/picture`
-
+      picturesrc: API.defaults.baseURL+`users/`+this.user.login+`/picture`,
+      imageAvailable:true
     }
   },
   props:
   {
-    user: {default:undefined},
-    imageAvailable: {default:false}
+    user: {default:undefined}
   },
   created()
   {
@@ -242,7 +241,7 @@ export default
             this.$router.replace({query: null});
         }
     },
-    async uploadImage(event)
+    async uploadProfilePicture(event)
     {
         const selectedFile = event.target.files[0];
 

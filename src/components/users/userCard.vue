@@ -2,7 +2,7 @@
 <Transition name="fade">
   <div class = "user card" v-if="(this.$parent.loaded??true) && this.loaded">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-      <img class = "user-image s180x180" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
+      <img class = "user-image s180x180" :src="picturesrc"  v-if="this.user.profile_picture"/>
       <div class = "user-image s180x180 gradient-bg" v-else></div>
     </router-link>
     <div class= "info-wrapper">

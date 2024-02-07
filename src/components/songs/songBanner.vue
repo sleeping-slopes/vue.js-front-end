@@ -43,10 +43,9 @@
             </div>
         </div>
         <div class = "cover-wrapper s320x320 right">
-            <img id="songCover" class = "cover" v-if="imageAvailable" :src="coversrc"
-            crossorigin="anonymous"
-            @load="setColors"
-            @error="imageAvailable=false"/>
+            <img id="songCover" class = "cover" :src="coversrc" v-if="this.song.cover"
+                crossorigin="anonymous"
+                @load="setColors"/>
             <div class = "cover bi bi-music-note" v-else></div>
         </div>
     </div>

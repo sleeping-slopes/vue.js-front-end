@@ -14,7 +14,6 @@ export default
   {
     return {
       coversrc: API.defaults.baseURL+`playlists/`+this.id+`/cover`,
-      imageAvailable:true,
       loaded:false
     }
   },

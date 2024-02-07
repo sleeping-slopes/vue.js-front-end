@@ -4,7 +4,7 @@
         <div class="column gap-0">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-                    <img class = "cover" v-if="imageAvailable" :src="this.coversrc" @error="imageAvailable=false"/>
+                    <img class = "cover" :src="coversrc" v-if="this.playlist.cover"/>
                     <div class = "cover bi bi-music-note-list" v-else></div>
                 </div>
                 <button class="button button-secondary h6" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">

@@ -12,7 +12,7 @@
         <template v-else>
           <div class="row gap-5">
             <div class="cover-wrapper s160x160">
-              <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+              <img class = "cover" :src="coversrc" v-if="this.playlist.cover"/>
               <div class = "cover bi bi-music-note-list" v-else></div>
               <div class = "shade"></div>
               <div class="cover-menu">

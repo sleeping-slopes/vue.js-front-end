@@ -6,12 +6,12 @@
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
   <template v-else>
-    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user" :imageAvailable="this.imageAvailable"/>
+    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user"/>
     <div class="banner">
-      <img class="banner-bg" v-if="backgroundImageAvailable" @error="backgroundImageAvailable=false" :src="bannersrc"/>
+      <img class="banner-bg" :src="bannersrc" v-if="this.user.banner"/>
       <div class = "banner-bg gradient-bg-reverse" v-else></div>
       <div style="height:min-content;position:relative;">
-        <img class = "user-image s200x200" v-if="imageAvailable" @error="imageAvailable=false" :src="picturesrc"/>
+        <img class = "user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
         <div class = "user-image s200x200 gradient-bg" v-else></div>
         <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;" v-if="this.user.me">
           <template v-slot:header>
@@ -163,9 +163,7 @@ export default
   {
     return {
       userSongLikes: undefined,
-      followers: undefined,
-      bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
-      backgroundImageAvailable: true
+      followers: undefined
     }
   },
   async created()
