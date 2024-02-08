@@ -12,21 +12,23 @@
             </nav>
         </div>
         <div class="column gap-15" style="width:min-content">
-            <div class="column gap-10">
-                <span class="primary-text h4">Theme</span>
-                <div class="row h2 gap-5">
-                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==0 && !defaultTheme}"
-                        v-on:click="changeTheme(0)">
-                    </button>
-                    <button class ="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': theme==1 && !defaultTheme}"
-                        v-on:click="changeTheme(1)">
-                    </button>
+            <div class="column gap-15">
+                <div class="column gap-5">
+                    <span class="primary-text h4">Theme</span>
+                    <div class="row h2 gap-10">
+                        <button class ="button button-secondary bi bi-brightness-high-fill" v-bind:class="{'toggled': theme==0 && customTheme}"
+                            v-on:click="changeTheme(0)">
+                        </button>
+                        <button class ="button button-secondary bi bi-moon-fill" v-bind:class="{'toggled': theme==1 && customTheme}"
+                            v-on:click="changeTheme(1)">
+                        </button>
+                    </div>
                 </div>
-                <label class="label row y-center h5">
-                    <button class="button button-secondary bi bi-gear-fill" v-bind:class="{'toggled': defaultTheme}"
-                        v-on:click="toggleDefaultTheme()">
+                <label class="label row y-center gap-5">
+                    <button class="button button-secondary h4" style="padding:0;border:none;" v-bind:class="{'bi bi-check-square': customTheme, 'bi bi-check-square-fill toggled': !customTheme}"
+                        v-on:click="toggleCustomTheme()">
                     </button>
-                    <span>Use system theme</span>
+                    <span class="h5">Use system theme</span>
                 </label>
             </div>
             <hr>
@@ -64,28 +66,32 @@ export default
     data()
     {
         return {
-            email:{ data: null, error: null },
-            theme: 1,
-            defaultTheme: false
+            email:{ data: this.$store.state.currentUser.email, error: null },
+            theme: this.$store.state.currentUser.theme,
+            customTheme: this.$store.state.currentUser.custom_theme
         }
-    },
-    async created()
-    {
-        const user = await API.get('me/credentials');
-        this.email.data = user.email;
     },
     methods:
     {
-        changeTheme(theme)
+        async changeTheme(theme)
         {
-            if (this.theme!=theme)
+            if (this.theme!=theme || this.customTheme==0)
             {
                 this.theme=theme;
+                this.$store.state.currentUser.theme = this.theme;
+
+                this.customTheme=1;
+                this.$store.state.currentUser.custom_theme = this.customTheme;
+
+                const r = await API.put('me/theme', {theme:this.theme, customTheme:this.customTheme });
             }
         },
-        toggledefaultTheme()
+        async toggleCustomTheme()
         {
-            this.defaultTheme=!this.defaultTheme;
+            this.customTheme = 1 - this.customTheme;
+            this.$store.state.currentUser.custom_theme = this.customTheme;
+
+            const r = await API.put('me/theme', {theme:this.theme, customTheme:this.customTheme });
         },
         async changeEmail()
         {
