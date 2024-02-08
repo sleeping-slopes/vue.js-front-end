@@ -63,7 +63,7 @@ export default
   },
   created()
   {
-    if (!this.$store.state.loggedIn) return;
+    if (!this.$store.state.currentUser) return;
     if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
     else this.$router.replace({query: null});
   },
@@ -106,9 +106,10 @@ export default
         if (r.error.message.emailError) this.email.error = r.error.message.emailError;
         if (r.error.message.loginError) this.login.error = r.error.message.loginError;
       }
-      else if (r.token)
+      else if (r.loginData)
       {
-        this.$store.dispatch('logIn',r.token);
+        this.$store.dispatch('logIn',r.loginData);
+
         if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
         else this.$router.replace({query: null});
       }

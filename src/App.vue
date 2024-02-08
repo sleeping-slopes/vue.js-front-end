@@ -1,21 +1,22 @@
 <template>
-  <header v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <nav class="nav-header">
-      <ul class="nav-menu nav-main-menu h4">
-        <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
-        <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
-        <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
-        <li><router-link :to="{ name: 'You'}">Library</router-link></li>
-      </ul>
-      <form @submit.prevent="this.search()">
-        <label class="label-search-input dark h4">
-          <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
-          <i class="fa fa-search"></i>
-        </label>
-      </form>
-      <template v-if="user !== null">
-        <ul class="nav-menu right gap-10 h5" v-if="!this.user">
-          <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark">Sign up</button></li>
+  <div class="app" v-if="$store.state.currentUser !== undefined"  v-bind:class="{'dark-theme': this.darkTheme}">
+
+    <header>
+      <nav class="nav-header">
+        <ul class="nav-menu nav-main-menu h4">
+          <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
+          <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
+          <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
+          <li><router-link :to="{ name: 'You'}">Library</router-link></li>
+        </ul>
+        <form @submit.prevent="this.search()">
+          <label class="label-search-input h4">
+            <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
+            <i class="fa fa-search"></i>
+          </label>
+        </form>
+        <ul class="nav-menu right gap-10 h5" v-if="!$store.state.currentUser">
+          <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark-theme">Sign up</button></li>
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button></li>
         </ul>
         <ul class="nav-menu right h4" v-else>
@@ -26,7 +27,7 @@
                 <button class="button">
                   <span class="icon-text gap-10">
                     <div>
-                      <img class = "user-image s36x36" :src="picturesrc" v-if="imageAvailable" @error="imageAvailable=false"/>
+                      <img class = "user-image s36x36" v-if="$store.state.currentUser.profile_picture" :src="picturesrc"/>
                       <div class = "user-image s36x36 bi bi-person-fill" v-else></div>
                     </div>
                     <span class = "bi bi-caret-down-fill" ></span>
@@ -35,7 +36,7 @@
               </template>
               <template v-slot:options>
                 <li>
-                  <button v-on:click="$router.push({ name: 'User', params: { login: this.user }})" class = "button h5">
+                  <button v-on:click="$router.push({ name: 'User', params: { login: $store.state.currentUser.login }})" class = "button h5">
                     <span class="icon-text">
                       <span class="accent-text bi bi-person-fill"></span>
                       <span>Profile</span>
@@ -62,28 +63,26 @@
             </contextMenuNav>
           </li>
         </ul>
-      </template>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
-  <main id="main" v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <router-view :key="JSON.stringify(this.$route.params)"/>
-  </main>
+    <main id="main">
+      <router-view :key="JSON.stringify(this.$route.params)"/>
+    </main>
 
-  <footer v-bind:class="{'dark': this.$store.state.darkTheme}">
-    <player/>
-  </footer>
+    <footer>
+      <div style="background-color:var(--panel-background-color);width:100%;"></div>
+      <player/>
+      <div style="background-color:var(--panel-background-color);width:100%;"></div>
+    </footer>
 
-  <div v-bind:class="{'dark': this.$store.state.darkTheme}">
     <playlistModal  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
     <logInModal  v-if="this.$route.query.action=='login'"/>
     <signUpModal  v-if="this.$route.query.action=='signup'"/>
   </div>
-
 </template>
 
 <script>
-
 
 import API from "@/axios/API";
 
@@ -102,26 +101,23 @@ export default
   {
     return {
       searchQuery:"",
-      user: null,
-      imageAvailable: true
     }
   },
   computed:
   {
-    picturesrc() { return API.defaults.baseURL+`users/`+this.user+`/picture` }
-  },
-  watch:
-  {
-    '$store.state.authJWT':
+    picturesrc() { return API.defaults.baseURL+`users/`+this.$store.state.currentUser?.login+`/picture` },
+    darkTheme()
     {
-      handler: async function(value)
+      if (this.$store.state.currentUser && this.$store.state.currentUser.custom_theme)
       {
-        const userByToken = await API.get('me');
-        this.user = userByToken.login;
-        this.$store.state.loggedIn = !!this.user;
-      },
-      immediate: true
+        return this.$store.state.currentUser.theme;
+      }
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
+  },
+  created()
+  {
+    this.$store.dispatch('setCurrentUserByToken');
   },
   methods:
   {
@@ -138,33 +134,18 @@ export default
 
 <style scoped>
 
-header
+.app
 {
   width:100%;
+  height:100%;
   display:flex;
-  justify-content: center;
-  background-color: var(--nav-color);
-  z-index:2;
+  flex-direction: column;
 }
 
 header .logo { background-color: var(--soft-black); }
 
 header .logo a { padding:0px; }
 
-header .logo img
-{
-  height:100%;
-  object-fit: scale-down;
-  background-color: var(--soft-black);
-}
-
-footer
-{
-  width:100%;
-  position:sticky;
-  bottom:0px;
-  border-top:2px solid var(--panel-border-color);
-  z-index:2;
-}
+header .logo img { height:100%; }
 
 </style>

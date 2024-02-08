@@ -7,7 +7,6 @@ export default createStore({
     authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null'),
     currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') ||'{}'),
     currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') ||'-1'),
-    darkTheme: JSON.parse(localStorage.getItem('darkTheme') || 'false'),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
     repeatMode: JSON.parse(localStorage.getItem('repeatMode') || '0'),
     volume: JSON.parse(localStorage.getItem('volume') || '0.75'),
@@ -16,7 +15,7 @@ export default createStore({
     playlists:{}, //memory leak
     users:{}, //memory leak
     isPlaying: false,
-    loggedIn: false
+    currentUser: undefined
   },
   getters:
   {
@@ -98,11 +97,6 @@ export default createStore({
           return;
       }
     },
-    toggleTheme(state)
-    {
-      state.darkTheme=!state.darkTheme;
-      localStorage.setItem('darkTheme', JSON.stringify(state.darkTheme));
-    },
     shuffle(state)
     {
       state.shuffle=!state.shuffle;
@@ -123,19 +117,30 @@ export default createStore({
       localStorage.setItem('currentPlaylist', JSON.stringify(state.currentPlaylist));
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
     },
-    logIn(state,authJWT)
+    async setCurrentUserByToken(state)
     {
-      state.authJWT=authJWT;
-      state.loggedIn=true;
+      if (state.authJWT)
+      {
+        const r = await API.get('me');
+        state.currentUser = r;
+      }
+      else state.currentUser = null;
+    },
+    logIn(state,loginData)
+    {
+      state.authJWT=loginData.authJWT;
       localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
+
+      state.currentUser = loginData.user;
     },
     logOut(state)
     {
       state.authJWT=null;
-      state.loggedIn=false;
+      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
+
+      state.currentUser=null;
       // state.songs={}; //memory leak
       // state.playlsts={}; //memory leak
-      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
     },
     togglePlayingState(state)
     {
@@ -218,66 +223,6 @@ export default createStore({
   },
   actions:
   {
-    setCurrentPlaylistAndSong({commit}, playlistSong)
-    {
-      commit("updateSongHistory");
-      commit("setCurrentPlaylistAndSong",JSON.parse(JSON.stringify(playlistSong)));
-    },
-    toggleRepeatMode({commit})
-    {
-      commit("toggleRepeatMode");
-    },
-
-    shiftCurrentSong({commit}, shift)
-    {
-      commit("updateSongHistory");
-      commit("shiftCurrentSong", shift);
-    },
-    playNextSong({commit})
-    {
-      commit("updateSongHistory");
-      commit("playNextSong");
-    },
-    toggleTheme({commit})
-    {
-      commit("toggleTheme");
-    },
-    shuffle({commit})
-    {
-      commit("shuffle");
-    },
-    logIn({commit},authJWT)
-    {
-      commit("logIn",authJWT);
-    },
-    logOut({commit})
-    {
-      commit("logOut");
-    },
-    togglePlayingState({commit})
-    {
-      commit("togglePlayingState");
-    },
-    setVolume({commit},volume)
-    {
-      commit("setVolume",volume);
-    },
-    clearSongHistory({commit})
-    {
-      commit("clearSongHistory");
-    },
-    clearCurrentPlaylist({commit})
-    {
-      commit("clearCurrentPlaylist");
-    },
-    addSongToCurrentPlaylistEnd({commit},id)
-    {
-      commit("addSongToCurrentPlaylistEnd",id);
-    },
-    addSongToCurrentPlaylistNext({commit},id)
-    {
-      commit("addSongToCurrentPlaylistNext",id);
-    },
     async loadSong({commit},id)
     {
       const response = await API.get('songs/'+id);
@@ -292,7 +237,36 @@ export default createStore({
     {
       const response = await API.get('users/'+login+'/profile');
       commit("loadUser", { login: login, data: response });
-    }
+    },
+
+    logIn({commit},loginData) { commit("logIn",loginData) },
+    setCurrentUserByToken({commit}) { commit("setCurrentUserByToken") },
+    logOut({commit}) { commit("logOut") },
+
+    setCurrentPlaylistAndSong({commit}, playlistSong)
+    {
+      commit("updateSongHistory");
+      commit("setCurrentPlaylistAndSong",JSON.parse(JSON.stringify(playlistSong)));
+    },
+    shiftCurrentSong({commit}, shift)
+    {
+      commit("updateSongHistory");
+      commit("shiftCurrentSong", shift);
+    },
+    playNextSong({commit})
+    {
+      commit("updateSongHistory");
+      commit("playNextSong");
+    },
+    toggleRepeatMode({commit}) { commit("toggleRepeatMode") },
+    shuffle({commit}) { commit("shuffle") },
+    togglePlayingState({commit}) { commit("togglePlayingState") },
+    setVolume({commit},volume) { commit("setVolume",volume) },
+
+    clearSongHistory({commit}) { commit("clearSongHistory") },
+    clearCurrentPlaylist({commit}) { commit("clearCurrentPlaylist") },
+    addSongToCurrentPlaylistEnd({commit},id) { commit("addSongToCurrentPlaylistEnd",id) },
+    addSongToCurrentPlaylistNext({commit},id) { commit("addSongToCurrentPlaylistNext",id) }
   },
   modules: {}
 })
