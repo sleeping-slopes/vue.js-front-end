@@ -30,7 +30,7 @@
   --text-color-secondary: #808080;
 }
 
-#app .dark, #app .dark *
+#app .dark-theme, #app .dark-theme *
 {
   --main-background-color: #12151d;
   --panel-background-color: #1d232f;
@@ -46,6 +46,23 @@ nav
   display:flex;
   gap:10px;
   width:100%;
+}
+
+header
+{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  background-color: var(--nav-color);
+  z-index:2;
+}
+
+footer
+{
+  width:100%;
+  display:flex;
+  border-top:2px solid var(--panel-border-color);
+  z-index:2;
 }
 
 main

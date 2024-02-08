@@ -67,9 +67,6 @@ export default
   border-top:none;
 }
 
-.context-menu-nav.context-menu-nav-active .context-menu-nav-options
-{
-  display:flex;
-}
+.context-menu-nav.context-menu-nav-active .context-menu-nav-options { display:flex; }
 
 </style>
