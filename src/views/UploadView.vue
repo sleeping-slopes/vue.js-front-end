@@ -1,21 +1,282 @@
 <template>
-    <errorMessage>
-        <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-        <template v-slot:status>{{ "200" }}</template>
-        <template v-slot:message>{{ "WIP" }}</template>
-    </errorMessage>
+    <div class="content x-center">
+        <div class="h-100 w-100 y-center x-center" v-if=!this.songs.length>
+            <form class="drag-n-drop">
+                <h2 class="primary-text">Drag and drop your songs here</h2>
+                <button type="button" class="h4 button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
+                <input type="file" ref="songsInput" style="display:none" v-on:change="uploadSongs" accept=".mp3" multiple/>
+                <label class="label row y-center gap-5">
+                    <button type="button" class="button button-secondary h4" style="padding:0;border:none;" v-on:click="this.makePlaylist=!this.makePlaylist"
+                    v-bind:class="{'bi bi-check-square': !this.makePlaylist, 'bi bi-check-square-fill toggled': this.makePlaylist }">
+                    </button>
+                    <span class="h5">Make a playlist when multiple files are selected</span>
+                </label>
+            </form>
+        </div>
+        <form class="column" @submit.prevent="submitLoadSongs" v-else>
+            <panel v-for="(song,songIndex) in this.songs" style="width:720px">
+                <template v-slot:header>Upload song</template>
+                <template v-slot:menu>
+                    <button type="button" class="button button-secondary h5" v-on:click="openSongAudioFileInput(songIndex)">Replace file</button>
+                    <input type="file" :ref="'songAudioInput'" style="display:none" v-on:change="uploadSongAudioFile($event,songIndex)" accept=".mp3" />
+                    <button type="button" class="button button-default h4 bi bi-x-lg" v-on:click="this.songs.splice(songIndex,1)"></button>
+                </template>
+                <template v-slot:content>
+                    <div class="column gap-10">
+                        <div class="row gap-20">
+                            <div class = "cover-wrapper s200x200">
+                                <img id="songCover" class = "cover" :src="song.cover.url" v-if="song.cover">
+                                <div class = "cover bi bi-music-note" v-else></div>
+                                <contextMenu class="x-center-absolute" style="top:50%; width:115px;">
+                                    <template v-slot:header>
+                                        <button type = "button" class="button h6">
+                                            <span class="icon-text">
+                                                <span class="bi bi-camera-fill"></span><span>Update cover</span>
+                                            </span>
+                                        </button>
+                                    </template>
+                                    <template v-slot:options>
+                                        <li>
+                                            <button type = "button" class="button h6" v-on:click="openSongCoverFileInput(songIndex)">Upload image</button>
+                                            <input type="file" :ref="'songCoverInput'" style="display:none" v-on:change="uploadSongCoverFile($event,songIndex)" accept="image/*" />
+                                        </li>
+                                        <li>
+                                            <button type = "button" class="button h6" v-on:click="song.cover=null">Delete image</button>
+                                        </li>
+                                    </template>
+                                </contextMenu>
+                            </div>
+                            <div class="column gap-10 h4 w-100">
+                                <label class = "label">
+                                    <span>Name</span>
+                                    <input type="text" v-bind:class="{'input-error': false}" placeholder="Enter song name"
+                                        v-model="song.name.data"
+                                    />
+                                    <span class="icon-text notification-error" v-if=song.name.error>
+                                        <span class="bi bi-exclamation-circle-fill"></span><span>{{song.name.error}}</span>
+                                    </span>
+                                </label>
+                                <label class = "label">
+                                    <span>Tags</span>
+                                    <input type="text" v-bind:class="{'input-error': false}" placeholder="Up to 5 space-separated tags"
+                                        v-model="song.tags.data"
+                                    />
+                                    <span class="icon-text notification-error" v-if=song.tags.error>
+                                        <span class="bi bi-exclamation-circle-fill"></span><span>{{song.tags.error}}</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="column gap-5 h4">
+                            <span class="primary-text">Artists</span>
+                            <div class="column gap-15">
+                                <div class="row gap-10" v-for="(artist,artistIndex) in song.artists">
+                                    <label class = "label">
+                                        <input type="text" placeholder="Login"
+                                            v-model="artist.login.data"
+                                        />
+                                        <span class="icon-text notification-error" v-if=artist.login.error>
+                                            <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.login.error }}</span>
+                                        </span>
+                                    </label>
+                                    <label class = "label">
+                                        <input type="text" placeholder="Pseudoname"
+                                            v-model="artist.pseudoname.data"
+                                        />
+                                        <span class="icon-text notification-error" v-if=artist.pseudoname.error>
+                                            <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.pseudoname.error }}</span>
+                                        </span>
+                                    </label>
+                                    <button type="button" class="button button-secondary form-button bi bi-trash3-fill" v-on:click="song.artists.splice(artistIndex,1)"></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button type="button" class = "button button-secondary hoverable h5" :disabled='song.artists.length>=10'
+                                    v-on:click="song.artists.push({login: { data:null, error:null }, pseudoname: { data:null, error:null }})">
+                                    Add artist
+                                </button>
+                                <span class="icon-text notification-error" v-if="song.artists.length>=10">
+                                    <span class="bi bi-exclamation-circle-fill"></span><span>A maximum of 10 artists can be added to song.</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </panel>
+            <div class="row right">
+                <button type="button" class="button button-secondary hoverable h5" v-on:click="this.songs=[]">Cancel</button>
+                <button type="submit" class="button button-primary hoverable h5">Upload</button>
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
 
-import errorMessage from "@/components/containers/errorMessage.vue";
+import API from '@/axios/API';
+
+import panel from '@/components/containers/panel.vue';
+import contextMenu from '@/components/containers/contextMenu.vue';
 
 export default
 {
     name: 'UploadView',
-    components: { errorMessage },
+    components: { panel,contextMenu },
+    data()
+    {
+        return {
+            validImageTypes: ['image/gif', 'image/jpeg', 'image/png'],
+            validAudioTypes: ['audio/mpeg'],
+            makePlaylist:false,
+            songs: []
+        }
+    },
+    methods:
+    {
+        uploadSongs(event)
+        {
+            this.songs=[];
+            const selectedFiles = event.target.files;
+
+            for (let i = 0;i<selectedFiles.length;i++)
+            {
+                if (!this.validAudioTypes.includes(selectedFiles[i].type)) continue;
+                this.songs.push(
+                {
+                    name: { data: selectedFiles[i].name.split('.').slice(0, -1).join('.'), error:null },
+                    tags: { data:"", error:null },
+                    artists: [],
+                    cover: null,
+                    audio: selectedFiles[i]
+                });
+            }
+        },
+
+        openSongAudioFileInput(index)
+        {
+            this.$refs.songAudioInput[index].click();
+        },
+        uploadSongAudioFile(event,index)
+        {
+            const selectedFile = event.target.files[0];
+            if (!selectedFile || !this.validAudioTypes.includes(selectedFile.type)) return;
+
+            this.songs[index].audio = selectedFile;
+        },
+
+        openSongCoverFileInput(index)
+        {
+            this.$refs.songCoverInput[index].click();
+        },
+        uploadSongCoverFile(event,index)
+        {
+            const selectedFile = event.target.files[0];
+            if (!selectedFile || !this.validImageTypes.includes(selectedFile.type)) return;
+
+            this.songs[index].cover = { url: URL.createObjectURL(selectedFile), file: selectedFile};
+        },
+        async submitLoadSongs()
+        {
+            const uploadSongPromises = this.songs.map
+            (
+                async (song) =>
+                {
+                    song.name.data = song.name.data || null;
+                    song.name.error = null;
+                    if (song.name.data)
+                    {
+                        song.name.data = song.name.data.trim();
+                        if (song.name.data.length>120) song.name.error='Enter a song name that is up to 120 characters.';
+                    }
+                    else song.name.error="Enter a song name.";
+
+                    song.tags.data = song.tags.data || null;
+                    song.tags.error = null;
+
+                    let tagsArray = [];
+                    if (song.tags.data)
+                    {
+                        song.tags.data = song.tags.data.trim().toLowerCase().replace('#','').replace(/\s+/g, ' ');;
+                        tagsArray = song.tags.data.split(' ');
+                        if (tagsArray.length>5) song.tags.error='Maximum 5 tags.';
+                        tagsArray.forEach((tag) =>
+                        {
+                            if (tag.length>15) song.tags.error='One of tags is more than 15 characters.';
+                        });
+                    }
+                    song.artists.forEach((artist) =>
+                    {
+                        artist.login.data = artist.login.data || null;
+                        artist.login.error = null;
+                        if (artist.login.data)
+                        {
+                            artist.login.data = artist.login.data.trim().toLowerCase();
+                            // if (!validEmail(this.email.data)) this.email.error='Invalid email.';
+                        }
+
+                        artist.pseudoname.data = artist.pseudoname.data || null;
+                        artist.pseudoname.error = null;
+                        if (artist.pseudoname.data)
+                        {
+                            artist.pseudoname.data = artist.pseudoname.data.trim();
+                        }
+                        if (!artist.login.data && !artist.pseudoname.data)
+                        {
+                            artist.login.error="Enter artist username/pseudoname.";
+                        }
+                    });
+
+                    if (song.name.error || song.tags.error || song.artists.some(artist =>{ return artist.login.error } )) return;
+
+                    const fd = new FormData();
+
+                    if (song.cover) fd.append('songCover',song.cover.file);
+                    fd.append('songAudio',song.audio);
+                    const songJSON = JSON.stringify({
+                        name: song.name.data,
+                        tags: tagsArray,
+                        artists: song.artists.map((artist) => { return { login: artist.login.data, pseudoname: artist.pseudoname.data }})
+                    });
+                    fd.append('songJSON',songJSON);
+
+                    const r = await API.post('me/songs', fd);
+                    if (r.error)
+                    {
+                        if (r.error.message.artistsError)
+                        {
+                            r.error.message.artistsError.forEach(artistError =>
+                            {
+                                song.artists[artistError.index].login.error =  artistError.message;
+                            });
+                        }
+                    }
+                    else song.uploaded=true;
+                }
+            );
+            await Promise.all(uploadSongPromises);
+            this.songs = this.songs.filter(song => { return !song.uploaded });
+        }
+    }
 }
 
 </script>
 
+<style scoped>
+
+.drag-n-drop
+{
+    display:flex;
+    margin-top:20px;
+    flex-direction:column;
+    padding:20px;
+    border: 2px dashed var(--accent-color);
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    height:400px;
+    width:800px;
+}
+
+</style>
 
