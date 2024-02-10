@@ -1,14 +1,14 @@
 <template>
-    <article class = "panel">
-        <div class = "panel-header" v-if="!!this.$slots.header">
+    <article class="panel">
+        <div class="panel-header" v-if="!!this.$slots.header">
             <h3 class="primary-text">
               <slot name="header"></slot>
             </h3>
-            <div class = "panel-menu">
+            <div class="panel-menu">
                 <slot name="menu"></slot>
             </div>
         </div>
-        <div class = "panel-content">
+        <div class="panel-content">
             <slot name="content"></slot>
         </div>
     </article>

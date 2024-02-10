@@ -4,7 +4,7 @@
     <header>
       <nav class="nav-header">
         <ul class="nav-menu nav-main-menu h4">
-          <li class = "logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
+          <li class="logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
           <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
           <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
           <li><router-link :to="{ name: 'You'}">Library</router-link></li>
@@ -27,10 +27,10 @@
                 <button class="button">
                   <span class="icon-text gap-10">
                     <div>
-                      <img class = "user-image s36x36" v-if="$store.state.currentUser.profile_picture" :src="picturesrc"/>
-                      <div class = "user-image s36x36 bi bi-person-fill" v-else></div>
+                      <img class="user-image s36x36" v-if="$store.state.currentUser.profile_picture" :src="picturesrc"/>
+                      <div class="user-image s36x36 bi bi-person-fill" v-else></div>
                     </div>
-                    <span class = "bi bi-caret-down-fill" ></span>
+                    <span class="bi bi-caret-down-fill" ></span>
                   </span>
                 </button>
               </template>
@@ -52,7 +52,7 @@
                   </button>
                 </li>
                 <li>
-                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class = "button h5">
+                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class="button h5">
                     <span class="icon-text">
                       <span class="accent-text bi bi-box-arrow-right"></span>
                       <span>Sign out</span>

@@ -9,10 +9,10 @@
     <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user"/>
     <div class="banner">
       <img class="banner-bg" :src="bannersrc" v-if="this.user.banner"/>
-      <div class = "banner-bg gradient-bg-reverse" v-else></div>
+      <div class="banner-bg gradient-bg-reverse" v-else></div>
       <div style="height:min-content;position:relative;">
-        <img class = "user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
-        <div class = "user-image s200x200 gradient-bg" v-else></div>
+        <img class="user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
+        <div class="user-image s200x200 gradient-bg" v-else></div>
         <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;" v-if="this.user.me">
           <template v-slot:header>
             <button type = "button" class="button h6">

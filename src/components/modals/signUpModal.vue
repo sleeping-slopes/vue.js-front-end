@@ -30,7 +30,7 @@
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
                   </span>
               </label>
-              <button type="submit" class = "button button-primary hoverable h5">Sign up</button>
+              <button type="submit" class="button button-primary hoverable h5">Sign up</button>
             </form>
           <hr/>
           <span class="primary-text h5 left right">Already have an account?

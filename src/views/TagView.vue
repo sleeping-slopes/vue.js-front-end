@@ -1,5 +1,5 @@
 <template>
-<div class="content column" style="padding-top:40px">
+<div class="content column" style="padding-top:30px">
   <span class="h2 primary-text">Songs tagged #{{ this.tag }}</span>
   <nav class="nav-tab">
     <ul class="h3">

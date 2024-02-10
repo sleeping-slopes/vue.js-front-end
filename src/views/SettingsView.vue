@@ -16,10 +16,10 @@
                 <div class="column gap-5">
                     <span class="primary-text h4">Theme</span>
                     <div class="row h2 gap-10">
-                        <button class ="button button-secondary bi bi-brightness-high-fill" v-bind:class="{'toggled': theme==0 && customTheme}"
+                        <button class="button button-secondary bi bi-brightness-high-fill" v-bind:class="{'toggled': theme==0 && customTheme}"
                             v-on:click="changeTheme(0)">
                         </button>
-                        <button class ="button button-secondary bi bi-moon-fill" v-bind:class="{'toggled': theme==1 && customTheme}"
+                        <button class="button button-secondary bi bi-moon-fill" v-bind:class="{'toggled': theme==1 && customTheme}"
                             v-on:click="changeTheme(1)">
                         </button>
                     </div>

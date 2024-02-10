@@ -159,6 +159,7 @@ a { text-decoration: none; }
 {
   width:1180px;
   padding: 5px 0px 5px 0px;
+  box-sizing: border-box;
 }
 
 /* ================================================== */
@@ -282,8 +283,6 @@ ul.container > li { position:relative; }
 .artistlink { color:inherit; }
 
 .artistlink:hover { text-decoration: underline; }
-
-.notification-error { color:red; }
 
 .primary-text { color:var(--text-color-primary); /* display:inline; height:min-content; */ }
 

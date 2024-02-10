@@ -18,7 +18,7 @@
                 <skeleton class="button button-banner h5 shimmer" :exactwidth="105"></skeleton>
             </div>
         </div>
-        <div class = "cover-wrapper s320x320 right shimmer"></div>
+        <div class="cover-wrapper s320x320 right shimmer"></div>
     </div>
 </template>
 

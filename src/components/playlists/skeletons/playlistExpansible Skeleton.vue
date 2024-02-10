@@ -1,5 +1,5 @@
 <template>
-<div class = "playlist playlist-expansible">
+<div class="playlist playlist-expansible">
   <div class="column gap-0">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"></div>
@@ -12,7 +12,7 @@
   <div class="right-column">
     <div class="row gap-10 y-center w-100">
       <button class="button button-default button-round button-medium toggled bi bi-play-circle-fill"></button>
-      <div class= "info-wrapper">
+      <div class="info-wrapper">
         <skeleton class="h4 shimmer"/>
         <skeleton class="h3 shimmer"/>
       </div>

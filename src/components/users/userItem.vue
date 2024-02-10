@@ -1,15 +1,15 @@
 <template>
 <Transition name="fade">
-  <div class = "user item" v-if="(this.$parent.loaded??true) && this.loaded">
+  <div class="user item" v-if="(this.$parent.loaded??true) && this.loaded">
     <router-link :to="{ name: 'User', params: { login: this.login }}">
-      <img class = "user-image s160x160" :src="picturesrc"  v-if="this.user.profile_picture"/>
-      <div class = "user-image s160x160 gradient-bg" v-else></div>
+      <img class="user-image s160x160" :src="picturesrc"  v-if="this.user.profile_picture"/>
+      <div class="user-image s160x160 gradient-bg" v-else></div>
     </router-link>
-    <div class= "info-wrapper gap-10">
-      <router-link :to="{ name: 'User', params: { login: this.login }}" class ="h3 primary-text hoverable">
+    <div class="info-wrapper gap-10">
+      <router-link :to="{ name: 'User', params: { login: this.login }}" class="h3 primary-text hoverable">
         {{this.user.username}}
       </router-link>
-      <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class ="h5 icon-text secondary-text hoverable" v-if="this.user.followers_count>0">
+      <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="h5 icon-text secondary-text hoverable" v-if="this.user.followers_count>0">
         <span class="bi bi-people-fill"></span>
         <span>{{abbreviateNumber(this.user.followers_count)}} follower{{ this.user.followers_count>1?'s':'' }}</span>
       </router-link>

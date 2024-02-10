@@ -4,7 +4,7 @@
       <template v-slot:errorIcon><span class="bi bi-music-note-beamed"></span></template>
       <template v-slot:message>{{ this.playlist.error.message }}</template>
     </errorMessage>
-    <ul class = "container" :class="type" ref="list" v-else>
+    <ul class="container" :class="type" ref="list" v-else>
       <songDropdown v-if="this.contextMenuSong"
         :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
         @hideSongDropdown="this.contextMenuSong=undefined"

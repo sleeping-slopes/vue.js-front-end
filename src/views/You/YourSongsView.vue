@@ -2,7 +2,7 @@
   <div class="column">
     <div class="row y-center">
       <span class="h3 secondary-text">Hear your own songs and the songs you’ve liked:</span>
-      <div class="row right y-center gap-20">
+      <div class="row gap-20 y-center right">
         <div class="row y-center gap-5">
           <span class="secondary-text h4">View</span>
           <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button button-secondary bi bi-grid-fill h3"></button>

@@ -1,12 +1,12 @@
 <template>
 <div class="sticky-top">
   <div class="row">
-    <router-link :to="{ name: 'Song', params: { id: this.id }}" class = "cover-wrapper s100x100">
-      <img class = "cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
-      <div class = "cover bi bi-music-note" v-else></div>
+    <router-link :to="{ name: 'Song', params: { id: this.id }}" class="cover-wrapper s100x100">
+      <img class="cover" v-if="imageAvailable" :src="coversrc" @error="imageAvailable=false"/>
+      <div class="cover bi bi-music-note" v-else></div>
     </router-link>
-    <div class= "info-wrapper" v-if="this.song">
-      <div class ="h3 secondary-text">
+    <div class="info-wrapper" v-if="this.song">
+      <div class="h3 secondary-text">
         <template v-for="(artist,index) in this.song.artists">
           <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
           <span v-else>{{artist.name}}</span>

@@ -12,16 +12,16 @@
         <template v-else>
           <div class="row gap-5">
             <div class="cover-wrapper s160x160">
-              <img class = "cover" :src="coversrc" v-if="this.playlist.cover"/>
-              <div class = "cover bi bi-music-note-list" v-else></div>
-              <div class = "shade"></div>
+              <img class="cover" :src="coversrc" v-if="this.playlist.cover"/>
+              <div class="cover bi bi-music-note-list" v-else></div>
+              <div class="shade"></div>
               <div class="cover-menu">
                 <button class="button button-default button-huge" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
               </div>
             </div>
             <div class="info-wrapper">
               <h2 class="primary-text">{{this.playlist.name}}</h2>
-              <div class ="h3 primary-text">
+              <div class="h3 primary-text">
                 <span>by&nbsp;</span>
                 <template v-for="(artist,index) in this.playlist.artists">
                   <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>

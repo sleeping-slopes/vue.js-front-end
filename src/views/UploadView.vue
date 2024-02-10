@@ -24,9 +24,9 @@
                 <template v-slot:content>
                     <div class="column gap-10">
                         <div class="row gap-20">
-                            <div class = "cover-wrapper s200x200">
-                                <img id="songCover" class = "cover" :src="song.cover.url" v-if="song.cover">
-                                <div class = "cover bi bi-music-note" v-else></div>
+                            <div class="cover-wrapper s200x200">
+                                <img id="songCover" class="cover" :src="song.cover.url" v-if="song.cover">
+                                <div class="cover bi bi-music-note" v-else></div>
                                 <contextMenu class="x-center-absolute" style="top:50%; width:115px;">
                                     <template v-slot:header>
                                         <button type = "button" class="button h6">
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <button type="button" class = "button button-secondary hoverable h5" :disabled='song.artists.length>=10'
+                                <button type="button" class="button button-secondary h5" :disabled='song.artists.length>=10'
                                     v-on:click="song.artists.push({login: { data:null, error:null }, pseudoname: { data:null, error:null }})">
                                     Add artist
                                 </button>
@@ -105,7 +105,7 @@
                 </template>
             </panel>
             <div class="row right">
-                <button type="button" class="button button-secondary hoverable h5" v-on:click="this.songs=[]">Cancel</button>
+                <button type="button" class="button button-secondary h5" v-on:click="this.songs=[]">Cancel</button>
                 <button type="submit" class="button button-primary hoverable h5">Upload</button>
             </div>
         </form>

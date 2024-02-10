@@ -5,8 +5,8 @@
         <form @submit.prevent="editProfile" class="column gap-15 scroll" style="padding:5px">
             <div class="row gap-20">
                 <div style="height:min-content;position:relative;">
-                    <img class = "user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
-                    <div class = "user-image s200x200 bi bi-person-fill" v-else></div>
+                    <img class="user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
+                    <div class="user-image s200x200 bi bi-person-fill" v-else></div>
                     <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;">
                         <template v-slot:header>
                             <button type = "button" class="button h6">
@@ -74,11 +74,11 @@
                 </div>
             </div>
             <hr>
-            <div class="column gap-20 h5">
-                <span class="secondary-text">Your links</span>
+            <div class="column gap-20">
+                <span class="primary-text h4">Your links</span>
                 <div class="column gap-15" v-if="this.links.length">
-                    <div class="row gap-10" v-for="(link,index) in this.links">
                         <label class = "label">
+                    <div class="row gap-10" v-for="(link,linkIndex) in this.links">
                             <input type="text" v-bind:class="{'input-error': link.url.error}" placeholder="Web or email address"
                                 v-model="link.url.data"/>
                             <span class="icon-text notification-error" v-if=link.url.error>
@@ -92,11 +92,11 @@
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.description.error }}</span>
                             </span>
                         </label>
-                        <button type="button" class="button button-secondary form-button bi bi-trash3-fill" v-on:click="this.links.splice(index,1)"></button>
+                        <button type="button" class="button button-secondary form-button bi bi-trash3-fill h4" v-on:click="this.links.splice(linkIndex,1)"></button>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" class = "button button-secondary hoverable"
+                    <button type="button" class="button button-secondary h5"
                     v-on:click="this.links.push({url: { data:null, error:null }, description: { data:null, error:null }})" :disabled='this.links.length>=10'>Add link</button>
                     <span class="icon-text notification-error" v-if="this.links.length>=10">
                         <span class="bi bi-exclamation-circle-fill"></span><span>A maximum of 10 links can be added to your profile.</span>
@@ -105,8 +105,8 @@
             </div>
             <hr>
             <div class="row right h5">
-                <button type="button" class = "button button-secondary hoverable" v-on:click="$router.replace({query: null})">Cancel</button>
-                <button type="submit" class = "button button-primary">Save changes</button>
+                <button type="button" class="button button-secondary" v-on:click="$router.replace({query: null})">Cancel</button>
+                <button type="submit" class="button button-primary">Save changes</button>
             </div>
         </form>
     </template>

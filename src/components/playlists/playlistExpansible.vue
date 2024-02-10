@@ -1,11 +1,11 @@
 <template>
 <Transition name="fade">
-    <div class = "playlist playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
+    <div class="playlist playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="column gap-0">
             <div class="left-column">
                 <div class="cover-wrapper s160x160" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-                    <img class = "cover" :src="coversrc" v-if="this.playlist.cover"/>
-                    <div class = "cover bi bi-music-note-list" v-else></div>
+                    <img class="cover" :src="coversrc" v-if="this.playlist.cover"/>
+                    <div class="cover bi bi-music-note-list" v-else></div>
                 </div>
                 <button class="button button-secondary h6" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                     <div class="icon-text">
@@ -17,18 +17,18 @@
                 <div class="empty-column-main"></div>
             </div>
         </div>
-        <div class="right-column" style="overflow:hidden">
+        <div class="right-column">
             <div class="row gap-10 w-100 y-center">
                 <button class="button button-default button-round button-medium toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
-                <div class= "info-wrapper">
-                    <div class ="h4 secondary-text">
+                <div class="info-wrapper">
+                    <div class="h4 secondary-text">
                         <template v-for="(artist,index) in this.playlist.artists">
                             <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                             <span v-else>{{artist.name}}</span>
                             <span v-if="index+1 < this.playlist.artists.length">, </span>
                         </template>
                     </div>
-                    <span class ="h3 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+                    <span class="h3 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
                 </div>
             </div>
             <hr>

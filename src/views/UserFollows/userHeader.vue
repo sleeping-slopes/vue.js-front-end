@@ -3,8 +3,8 @@
     <div class="column">
       <div class="row">
         <router-link :to="{ name: 'User', params: { login: this.login }}">
-          <img class = "user-image s100x100" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
-          <div class = "user-image s100x100 gradient-bg" v-else></div>
+          <img class="user-image s100x100" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
+          <div class="user-image s100x100 gradient-bg" v-else></div>
         </router-link>
         <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable h2">
           <slot name="caption"></slot> of {{this.user.username}}</router-link>
