@@ -36,20 +36,20 @@
               </template>
               <template v-slot:options>
                 <li>
-                  <button v-on:click="$router.push({ name: 'User', params: { login: $store.state.currentUser.login }})" class = "button h5">
+                  <router-link :to="{ name: 'User', params: { login: $store.state.currentUser.login }}" class="button h5">
                     <span class="icon-text">
                       <span class="accent-text bi bi-person-fill"></span>
                       <span>Profile</span>
                     </span>
-                  </button>
+                  </router-link>
                 </li>
                 <li>
-                  <button v-on:click="$router.push({ name: 'Settings' })" class = "button h5">
+                  <router-link :to="{ name: 'Settings' }" class="button h5">
                     <span class="icon-text">
                       <span class="accent-text bi bi-gear-fill"></span>
                       <span>Settings</span>
                     </span>
-                  </button>
+                  </router-link>
                 </li>
                 <li>
                   <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class="button h5">
