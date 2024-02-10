@@ -190,7 +190,7 @@ export default
         if (this.bio.data)
         {
             this.bio.data = this.bio.data.trim();
-            if (this.bio.data.length>280) this.bio.error = "Write a bio that is up to 200 characters.";
+            if (this.bio.data.length>200) this.bio.error = "Write a bio that is up to 200 characters.";
         }
 
         for (let i = 0; i < this.links.length; i++)
@@ -242,9 +242,10 @@ export default
     },
     async uploadProfilePicture(event)
     {
-        const selectedFile = event.target.files[0];
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
-        if (!selectedFile) return;
+        const selectedFile = event.target.files[0];
+        if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
 
         const fd = new FormData();
         fd.append('userProfilePicture',selectedFile,selectedFile.name);

@@ -197,7 +197,7 @@ export default
                     let tagsArray = [];
                     if (song.tags.data)
                     {
-                        song.tags.data = song.tags.data.trim().toLowerCase().replace('#','').replace(/\s+/g, ' ');;
+                        song.tags.data = [...new Set(song.tags.data.trim().toLowerCase().replace('#','').replace(/\s+/g, ' ').split(' '))].join(' ');
                         tagsArray = song.tags.data.split(' ');
                         if (tagsArray.length>5) song.tags.error='Maximum 5 tags.';
                         tagsArray.forEach((tag) =>
@@ -219,14 +219,17 @@ export default
                         if (artist.pseudoname.data)
                         {
                             artist.pseudoname.data = artist.pseudoname.data.trim();
+                            if (artist.pseudoname.data.length>50) artist.pseudoname.error='Enter a pseudoname that is up to 50 characters.';
                         }
                         if (!artist.login.data && !artist.pseudoname.data)
                         {
-                            artist.login.error="Enter artist username/pseudoname.";
+                            artist.login.error="Enter an artist username/pseudoname.";
                         }
                     });
 
-                    if (song.name.error || song.tags.error || song.artists.some(artist =>{ return artist.login.error } )) return;
+                    const artistsError = song.artists.some(artist =>{ return artist.login.error || artist.pseudoname.error });
+
+                    if (song.name.error || song.tags.error || artistsError || song.artists.length>10 ) return;
 
                     const fd = new FormData();
 

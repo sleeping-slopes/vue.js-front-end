@@ -185,9 +185,10 @@ export default
   {
     async uploadProfilePicture(event)
     {
-      const selectedFile = event.target.files[0];
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
-      if (!selectedFile) return;
+      const selectedFile = event.target.files[0];
+      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
 
       const fd = new FormData();
       fd.append('userProfilePicture',selectedFile,selectedFile.name);
@@ -200,9 +201,10 @@ export default
 
     async uploadBanner(event)
     {
-      const selectedFile = event.target.files[0];
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
 
-      if (!selectedFile) return;
+      const selectedFile = event.target.files[0];
+      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
 
       const fd = new FormData();
       fd.append('userBanner',selectedFile,selectedFile.name);
