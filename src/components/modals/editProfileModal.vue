@@ -26,8 +26,8 @@
                         </template>
                     </contextMenu>
                 </div>
-                <div class= "column gap-20 w-100">
-                    <label class = "label h4">
+                <div class="column gap-20 w-100">
+                    <label class="label-form">
                         <span>Display name</span>
                         <input type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
                             v-model="username.data"
@@ -36,7 +36,7 @@
                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ username.error }}</span>
                         </span>
                     </label>
-                    <label class = "label h5">
+                    <label class="label-form">
                         <span>Status</span>
                         <input type="text" v-bind:class="{'input-error': status.error}"
                             v-model="status.data"
@@ -45,8 +45,8 @@
                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ status.error }}</span>
                         </span>
                     </label>
-                    <div class="row gap-10 h5">
-                        <label class = "label">
+                    <div class="row gap-10">
+                        <label class="label-form">
                             <span>City</span>
                             <input type="text" v-bind:class="{'input-error': city.error}"
                                 v-model="city.data"/>
@@ -54,7 +54,7 @@
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ city.error }}</span>
                             </span>
                         </label>
-                        <label class = "label">
+                        <label class="label-form">
                             <span>Country</span>
                             <input type="text" v-bind:class="{'input-error': country.error}"
                                 v-model="country.data"/>
@@ -63,7 +63,7 @@
                             </span>
                         </label>
                     </div>
-                    <label class = "label h5">
+                    <label class="label-form">
                         <span>Bio</span>
                         <textarea rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
                             v-model="bio.data"></textarea>
@@ -77,15 +77,15 @@
             <div class="column gap-20">
                 <span class="primary-text h4">Your links</span>
                 <div class="column gap-15" v-if="this.links.length">
-                        <label class = "label">
                     <div class="row gap-10" v-for="(link,linkIndex) in this.links">
+                        <label class="label-form">
                             <input type="text" v-bind:class="{'input-error': link.url.error}" placeholder="Web or email address"
                                 v-model="link.url.data"/>
                             <span class="icon-text notification-error" v-if=link.url.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.url.error }}</span>
                             </span>
                         </label>
-                        <label class = "label">
+                        <label class="label-form">
                             <input type="text" v-bind:class="{'input-error': link.description.error}" placeholder="Short title"
                                 v-model="link.description.data"/>
                             <span class="icon-text notification-error" v-if=link.description.error>

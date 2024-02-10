@@ -2,8 +2,8 @@
   <modal :width="'400px'">
     <template v-slot:content>
           <h2 class="primary-text left right" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</h2>
-          <form @submit.prevent="postUser" class="h4 column gap-10 y-center">
-              <label class = "label">
+          <form @submit.prevent="postUser" class="column gap-10 y-center">
+              <label class="label-form">
                   <span>Email</span>
                   <input type="text" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
                     v-model="email.data"
@@ -12,7 +12,7 @@
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
                   </span>
               </label>
-              <label class = "label">
+              <label class="label-form">
                 <span>Password</span>
                   <input type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
                     v-model="password.data"
@@ -21,7 +21,7 @@
                     <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
                   </span>
               </label>
-              <label class = "label">
+              <label class="label-form">
                 <span>Login</span>
                   <input type="text" v-bind:class="{'input-error': login.error}" placeholder="What should we call you?"
                     v-model="login.data"

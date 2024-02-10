@@ -2,8 +2,8 @@
   <modal :width="'400px'">
     <template v-slot:content>
       <h2 class="primary-text left right" style="padding:57px 0px 57px 0px">Log in to 3V3R51NC3</h2>
-      <form @submit.prevent="logIn" class="h4 column gap-10 y-center">
-        <label class = "label">
+      <form @submit.prevent="logIn" class="column gap-10 y-center">
+        <label class="label-form">
           <span>Login or email</span>
           <input type="text" v-bind:class="{'input-error': login.error}" placeholder="Enter login or email"
             v-model="login.data"
@@ -12,7 +12,7 @@
             <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
           </span>
         </label>
-        <label class = "label">
+        <label class="label-form">
           <span>Password</span>
           <input type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
             v-model="password.data"
@@ -21,7 +21,13 @@
             <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
           </span>
         </label>
-        <button type="submit" class = "button button-primary hoverable h5">Log in</button>
+        <label class="label-checkbox">
+          <button type="button" class="button button-checkbox" v-bind:class="{'bi bi-check-square': !rememberMe, 'bi bi-check-square-fill toggled': rememberMe}"
+              v-on:click="this.rememberMe=!this.rememberMe">
+          </button>
+          <span>Remember me</span>
+        </label>
+        <button type="submit" class="button button-primary hoverable h5">Log in</button>
       </form>
       <hr/>
       <span class="primary-text h5 left right">Don't have an account?
@@ -45,7 +51,8 @@ export default
   {
     return {
       login: { data: null, error: null },
-      password: {data: null, error: null }
+      password: {data: null, error: null },
+      rememberMe : false
     }
   },
   created()
@@ -83,6 +90,8 @@ export default
       }
       else if (r.loginData)
       {
+        r.loginData.rememberMe=this.rememberMe;
+
         this.$store.dispatch('logIn',r.loginData);
 
         if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});

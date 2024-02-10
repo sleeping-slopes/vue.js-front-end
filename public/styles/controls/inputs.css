@@ -8,48 +8,56 @@ input[type=range][orient=vertical]
 
 /* ================================================== */
 
-.label
+.notification-error { font-size:14px; color:red; }
+
+input.input-error, textarea.input-error { outline-color:red; }
+
+::placeholder { color: var(--light-gray); }
+
+/* ================================================== */
+
+.label-form
 {
   display:flex;
   flex-direction: column;
   gap:5px;
   color: var(--text-color-primary);
   width:100%;
+  font-size:16px;
 }
 
-.label input
+.label-form > span { width:min-content; white-space: nowrap; }
+
+.label-form > input, .label-form > textarea
 {
   outline: 2px solid var(--panel-border-color);
   border: none;
   background:none;
   color: var(--text-color-primary);
   border-radius:5px;
-  transition:0.1s all;
+  transition: outline-color 0.1s;
 }
 
-.label textarea
-{
-  outline: 2px solid var(--panel-border-color);
-  border: none;
-  box-sizing: border-box;
-  background:none;
-  color: var(--text-color-primary);
-  border-radius:5px;
-}
-
-.label input:focus, .label textarea:focus
-{
-  outline-color: var(--text-color-primary);
-}
-
-input.input-error, textarea.input-error
-{
-  outline-color:red;
-}
+.label-form input:focus, .label-form textarea:focus { outline-color: var(--text-color-primary); }
 
 /* ================================================== */
 
-.label-search-input
+.label-checkbox
+{
+  display:flex;
+  gap:5px;
+  align-items: center;
+  color: var(--text-color-primary);
+  width:100%;
+}
+
+.label-checkbox > .button { font-size: 16px; }
+
+.label-checkbox > span { font-size: 14px; white-space: nowrap;}
+
+/* ================================================== */
+
+.label-search
 {
   height:min-content;
   background-color: var(--soft-white);
@@ -63,14 +71,12 @@ input.input-error, textarea.input-error
   border: 2px solid var(--light-gray);
   box-sizing: border-box;
   padding:3px;
+  font-size:16px;
 }
 
-.label-search-input:focus-within
-{
-  border-color: var(--text-color-primary);
-}
+.label-search:focus-within { border-color: var(--text-color-primary); }
 
-.label-search-input i
+.label-search i
 {
   padding-left: 6px;
   padding-right: 6px;
@@ -78,7 +84,7 @@ input.input-error, textarea.input-error
   transition: color 0.2s;
 }
 
-.label-search-input input
+.label-search input
 {
   width:100%;
   background-color: transparent;
@@ -87,17 +93,7 @@ input.input-error, textarea.input-error
   border: none;
 }
 
-.label-search-input input:not(:placeholder-shown) + i
-{
-  color: var(--dark-gray);
-}
-
-/* ================================================== */
-
-::placeholder
-{
-  color: var(--light-gray);
-}
+.label-search input:not(:placeholder-shown) + i { color: var(--dark-gray); }
 
 /* ================================================== */
 

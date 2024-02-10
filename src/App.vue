@@ -10,7 +10,7 @@
           <li><router-link :to="{ name: 'You'}">Library</router-link></li>
         </ul>
         <form @submit.prevent="this.search()">
-          <label class="label-search-input h4">
+          <label class="label-search">
             <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
             <i class="fa fa-search"></i>
           </label>

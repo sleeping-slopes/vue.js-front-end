@@ -1,20 +1,20 @@
 <template>
     <div class="content x-center">
-        <div class="h-100 w-100 y-center x-center" v-if=!this.songs.length>
+        <div class="xy-center-absolute" v-if=!this.songs.length>
             <form class="drag-n-drop">
                 <h2 class="primary-text">Drag and drop your songs here</h2>
                 <button type="button" class="h4 button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
                 <input type="file" ref="songsInput" style="display:none" v-on:change="uploadSongs" accept=".mp3" multiple/>
-                <label class="label row y-center gap-5">
-                    <button type="button" class="button button-secondary h4" style="padding:0;border:none;" v-on:click="this.makePlaylist=!this.makePlaylist"
-                    v-bind:class="{'bi bi-check-square': !this.makePlaylist, 'bi bi-check-square-fill toggled': this.makePlaylist }">
+                <label class="label-checkbox">
+                    <button type="button" class="button button-checkbox" v-on:click="this.makePlaylist=!this.makePlaylist"
+                        v-bind:class="{'bi bi-check-square': !this.makePlaylist, 'bi bi-check-square-fill toggled': this.makePlaylist }">
                     </button>
-                    <span class="h5">Make a playlist when multiple files are selected</span>
+                    <span>Make a playlist when multiple files are selected</span>
                 </label>
             </form>
         </div>
-        <form class="column" @submit.prevent="submitLoadSongs" v-else>
-            <panel v-for="(song,songIndex) in this.songs" style="width:720px">
+        <form class="column" style="width:810px" @submit.prevent="submitLoadSongs" v-else>
+            <panel v-for="(song,songIndex) in this.songs">
                 <template v-slot:header>Upload song</template>
                 <template v-slot:menu>
                     <button type="button" class="button button-secondary h5" v-on:click="openSongAudioFileInput(songIndex)">Replace file</button>
@@ -46,8 +46,8 @@
                                     </template>
                                 </contextMenu>
                             </div>
-                            <div class="column gap-10 h4 w-100">
-                                <label class = "label">
+                            <div class="column gap-10 w-100">
+                                <label class="label-form">
                                     <span>Name</span>
                                     <input type="text" v-bind:class="{'input-error': false}" placeholder="Enter song name"
                                         v-model="song.name.data"
@@ -56,7 +56,7 @@
                                         <span class="bi bi-exclamation-circle-fill"></span><span>{{song.name.error}}</span>
                                     </span>
                                 </label>
-                                <label class = "label">
+                                <label class="label-form">
                                     <span>Tags</span>
                                     <input type="text" v-bind:class="{'input-error': false}" placeholder="Up to 5 space-separated tags"
                                         v-model="song.tags.data"
@@ -68,11 +68,11 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="column gap-5 h4">
-                            <span class="primary-text">Artists</span>
+                        <div class="column gap-5">
+                            <span class="primary-text h4">Artists</span>
                             <div class="column gap-15">
                                 <div class="row gap-10" v-for="(artist,artistIndex) in song.artists">
-                                    <label class = "label">
+                                    <label class="label-form">
                                         <input type="text" placeholder="Login"
                                             v-model="artist.login.data"
                                         />
@@ -80,7 +80,7 @@
                                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.login.error }}</span>
                                         </span>
                                     </label>
-                                    <label class = "label">
+                                    <label class="label-form">
                                         <input type="text" placeholder="Pseudoname"
                                             v-model="artist.pseudoname.data"
                                         />
@@ -88,7 +88,7 @@
                                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.pseudoname.error }}</span>
                                         </span>
                                     </label>
-                                    <button type="button" class="button button-secondary form-button bi bi-trash3-fill" v-on:click="song.artists.splice(artistIndex,1)"></button>
+                                    <button type="button" class="button button-secondary form-button bi bi-trash3-fill h5" v-on:click="song.artists.splice(artistIndex,1)"></button>
                                 </div>
                             </div>
                             <div class="row">
@@ -212,7 +212,6 @@ export default
                         if (artist.login.data)
                         {
                             artist.login.data = artist.login.data.trim().toLowerCase();
-                            // if (!validEmail(this.email.data)) this.email.error='Invalid email.';
                         }
 
                         artist.pseudoname.data = artist.pseudoname.data || null;
@@ -267,7 +266,6 @@ export default
 .drag-n-drop
 {
     display:flex;
-    margin-top:20px;
     flex-direction:column;
     padding:20px;
     border: 2px dashed var(--accent-color);
@@ -275,7 +273,8 @@ export default
     justify-content: center;
     gap:20px;
     height:400px;
-    width:800px;
+    width:810px;
+    box-sizing: border-box;
 }
 
 </style>

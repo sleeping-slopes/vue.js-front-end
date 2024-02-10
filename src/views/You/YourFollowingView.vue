@@ -1,14 +1,14 @@
 <template>
-    <div class="column">
-        <div class="row y-center">
-          <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
-          <label class="label-search-input h4 right">
-            <input type="text" placeholder="Filter" autocomplete="off">
-            <i class="fa fa-search"></i>
-          </label>
-        </div>
-        <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="following"></userContainer>
-    </div>
+  <div class="column">
+      <div class="row y-center">
+        <span class="h3 secondary-text">Hear what the people you follow have posted:</span>
+        <label class="label-search right">
+          <input type="text" placeholder="Filter" autocomplete="off">
+          <i class="fa fa-search"></i>
+        </label>
+      </div>
+      <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="following"></userContainer>
+  </div>
 </template>
 
 <script>

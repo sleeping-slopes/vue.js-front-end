@@ -8,7 +8,7 @@
           <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button button-secondary bi bi-grid-fill h3"></button>
           <button v-bind:class="{'toggled': this.currentViewStyle==0}" @click="this.currentViewStyle=0" class="button button-secondary bi bi-list h3"></button>
         </div>
-        <label class="label-search-input h4">
+        <label class="label-search">
           <input type="text" placeholder="Filter" autocomplete="off">
           <i class="fa fa-search"></i>
         </label>

@@ -92,6 +92,22 @@
 
 /* ================================================== */
 
+.button-checkbox
+{
+  padding:0px;
+  border: none;
+  background-color: transparent;
+  color: var(--text-color-secondary);
+  transition: color 0.2s;
+}
+
+.button-checkbox:not(.toggled):hover { color: var(--text-color-primary); }
+
+.button-checkbox.toggled { color:var(--accent-color); }
+
+
+/* ================================================== */
+
 .button-link
 {
   display:inline-flex;
