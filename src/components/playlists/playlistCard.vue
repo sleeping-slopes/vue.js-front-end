@@ -8,7 +8,7 @@
         <div class="cover-menu">
           <button class="button button-default button-large" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
         </div>
-        <div class="cover-menu playlist-stats h4">
+        <div class="cover-menu font-size-medium playlist-stats">
           <span class="icon-text">
             <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songList.songs?.length)}}</span>
           </span>
@@ -18,14 +18,14 @@
         </div>
       </div>
       <div class="info-wrapper">
-          <div class="h5 secondary-text">
+          <div class="secondary-text font-size-small">
               <template v-for="(artist,index) in this.playlist.artists">
                   <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                   <span v-else>{{artist.name}}</span>
                   <span v-if="index+1 < this.playlist.artists.length">, </span>
               </template>
           </div>
-          <span class="h4 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+          <span class="primary-text hoverable font-size-medium" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
       </div>
   </div>
   <playlistCardSkeleton v-else></playlistCardSkeleton>

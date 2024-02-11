@@ -10,19 +10,19 @@
             </div>
         </div>
         <div class="info-wrapper">
-            <div class="h5 secondary-text">
+            <div class="secondary-text font-size-small">
                 <template v-for="(artist,index) in this.playlist.artists">
                     <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                     <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
             </div>
-            <span class="h4 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+            <span class="primary-text hoverable font-size-medium" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
             <div class="row">
-                <span class="icon-text secondary-text h6">
+                <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-music-note-list"></span><span>{{abbreviateNumber(this.playlist.songList.songs?.length)}}</span>
                 </span>
-                <span class="icon-text secondary-text h6">
+                <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-suit-heart-fill"></span><span>{{abbreviateNumber(this.playlist.likes_count)}}</span>
                 </span>
             </div>

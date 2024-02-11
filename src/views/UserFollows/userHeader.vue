@@ -7,13 +7,13 @@
           <div class="user-image s100x100 gradient-bg" v-else></div>
         </router-link>
         <div class="info-wrapper" v-if="this.user">
-          <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text font-size-large hoverable">
+          <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable font-size-large">
             <slot name="caption"></slot> of {{this.user.username}}
           </router-link>
         </div>
       </div>
       <nav class="nav-tab">
-        <ul class="h3">
+        <ul>
           <li><router-link :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link></li>
           <li><router-link :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link></li>
         </ul>

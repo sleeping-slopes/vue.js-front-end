@@ -11,11 +11,11 @@
                 </div>
             </div>
             <div class="row bottom gap-5 y-center">
-                <skeleton class="button button-banner h5 shimmer" :exactwidth="75"></skeleton>
-                <skeleton class="button button-banner h5 shimmer" :exactwidth="135"></skeleton>
-                <skeleton class="button button-banner h5 shimmer" :exactwidth="100"></skeleton>
-                <skeleton class="button button-banner h5 shimmer" :exactwidth="100"></skeleton>
-                <skeleton class="button button-banner h5 shimmer" :exactwidth="105"></skeleton>
+                <skeleton class="button button-banner shimmer" :exactwidth="75"></skeleton>
+                <skeleton class="button button-banner shimmer" :exactwidth="135"></skeleton>
+                <skeleton class="button button-banner shimmer" :exactwidth="100"></skeleton>
+                <skeleton class="button button-banner shimmer" :exactwidth="100"></skeleton>
+                <skeleton class="button button-banner shimmer" :exactwidth="105"></skeleton>
             </div>
         </div>
         <div class="cover-wrapper s320x320 right shimmer"></div>

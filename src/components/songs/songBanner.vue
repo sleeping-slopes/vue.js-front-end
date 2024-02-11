@@ -21,23 +21,23 @@
                     </span>
                 </div>
                 <ul class="tag-container right">
-                    <li v-for="tag in this.song.tags"><router-link :to="{ name: 'Tag', params: { tag: tag.tag } }" class="button button-tag h6" >{{tag.tag}}</router-link></li>
+                    <li v-for="tag in this.song.tags"><router-link :to="{ name: 'Tag', params: { tag: tag.tag } }" class="button button-tag" >{{tag.tag}}</router-link></li>
                 </ul>
             </div>
             <div class="row bottom gap-5 y-center">
-                <button class="button button-banner h5 icon-text" style="width:75px;" v-bind:class="{'toggled':this.song.liked}" v-on:click="this.like()">
+                <button class="button button-banner icon-text" style="width:75px;" v-bind:class="{'toggled':this.song.liked}" v-on:click="this.like()">
                     <span class="bi bi-suit-heart-fill"></span><span>{{this.song.liked?"Liked":"Like"}}</span>
                 </button>
-                <button class="button button-banner h5 icon-text" style="width:135px;" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistEnd',this.song.id)">
+                <button class="button button-banner icon-text" style="width:135px;" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistEnd',this.song.id)">
                     <span class="bi bi-music-note-list"></span><span>Add to playlist</span>
                 </button>
-                <button class="button button-banner h5 icon-text" style="width:100px;" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
+                <button class="button button-banner icon-text" style="width:100px;" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
                     <span class="bi bi-music-note-list"></span><span>Play next</span>
                 </button>
-                <button class="button button-banner h5 icon-text" style="width:100px;">
+                <button class="button button-banner icon-text" style="width:100px;">
                     <span class="bi bi-link"></span><span>Copy link</span>
                 </button>
-                <button class="button button-banner h5 icon-text" style="width:105px;">
+                <button class="button button-banner icon-text" style="width:105px;">
                     <span class="bi bi-download"></span><span>Download</span>
                 </button>
             </div>

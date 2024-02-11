@@ -2,9 +2,9 @@
     <div class="user item">
         <div class="user-image s160x160 shimmer"></div>
         <div class="info-wrapper gap-10">
-            <skeleton class="h3 shimmer"></skeleton>
-            <skeleton class="h5 shimmer"></skeleton>
-            <skeleton class="button button-secondary h6 shimmer" :exactwidth="90"/>
+            <skeleton class="font-size-big shimmer"></skeleton>
+            <skeleton class="font-size-small shimmer"></skeleton>
+            <skeleton class="button button-secondary shimmer" :exactwidth="90"/>
         </div>
     </div>
 </template>

@@ -37,11 +37,11 @@
                                     </template>
                                     <template v-slot:options>
                                         <li>
-                                            <button type = "button" class="button h6" v-on:click="openSongCoverFileInput(songIndex)">Upload image</button>
+                                            <button type = "button" class="button" v-on:click="openSongCoverFileInput(songIndex)">Upload image</button>
                                             <input type="file" :ref="'songCoverInput'" style="display:none" v-on:change="uploadSongCoverFile($event,songIndex)" accept="image/*" />
                                         </li>
                                         <li>
-                                            <button type = "button" class="button h6" v-on:click="song.cover=null">Delete image</button>
+                                            <button type = "button" class="button" v-on:click="song.cover=null">Delete image</button>
                                         </li>
                                     </template>
                                 </contextMenu>

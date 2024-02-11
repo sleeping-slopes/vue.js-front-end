@@ -2,11 +2,11 @@
     <div class="song item">
         <div class="cover-wrapper s52x52 shimmer"></div>
         <div class="info-wrapper">
-            <skeleton class="h5 shimmer"/>
-            <skeleton class="h4 shimmer"/>
+            <skeleton class="font-size-small shimmer"/>
+            <skeleton class="font-size-medium shimmer"/>
             <div class="row">
-                <skeleton class="h6 shimmer" :exactwidth="30"/>
-                <skeleton class="h6 shimmer" :exactwidth="30"/>
+                <skeleton class="font-size-tiny shimmer" :exactwidth="30"/>
+                <skeleton class="font-size-tiny shimmer" :exactwidth="30"/>
             </div>
         </div>
     </div>

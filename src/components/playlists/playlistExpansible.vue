@@ -7,7 +7,7 @@
                     <img class="cover" :src="coversrc" v-if="this.playlist.cover"/>
                     <div class="cover bi bi-music-note-list" v-else></div>
                 </div>
-                <button class="button button-secondary h6" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
+                <button class="button button-secondary" style="width:90px;" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
                     <div class="icon-text">
                         <span class="bi bi-suit-heart-fill"></span><span>Like{{ this.playlist.liked?'d':'' }}</span>
                     </div>
@@ -21,19 +21,19 @@
             <div class="row gap-10 w-100 y-center">
                 <button class="button button-default button-round button-medium toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click.stop="playPlaylist()"></button>
                 <div class="info-wrapper">
-                    <div class="h4 secondary-text">
+                    <div class="secondary-text font-size-medium">
                         <template v-for="(artist,index) in this.playlist.artists">
                             <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                             <span v-else>{{artist.name}}</span>
                             <span v-if="index+1 < this.playlist.artists.length">, </span>
                         </template>
                     </div>
-                    <span class="h3 primary-text hoverable" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
+                    <span class="primary-text hoverable font-size-big" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">{{this.playlist.name}}</span>
                 </div>
             </div>
             <hr>
             <songContainer :type="'ul-list scroll'" :dynamicComponent="'songItem'" :playlist="this.playlist.songList"/>
-            <button class="button button-secondary h6" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
+            <button class="button button-secondary" style="width:90px;" v-on:click="this.expanded=!this.expanded" v-if="this.playlist.songList.songs?.length>4">{{this.expanded?"Hide":"Expand"}}</button>
         </div>
     </div>
     <playlistExpansibleSkeleton v-else></playlistExpansibleSkeleton>

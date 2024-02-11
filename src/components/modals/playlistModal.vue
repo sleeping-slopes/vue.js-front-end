@@ -29,7 +29,7 @@
                   <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
               </div>
-              <span class="font-size-medium secondary-text" style="margin-top:10px">
+              <span class="secondary-text font-size-medium" style="margin-top:10px">
                 {{ abbreviateNumber(this.playlist.songList.songs?.length) }} song{{ this.playlist.songList.songs?.length==1?'':'s' }}
                 <span class="bi bi-dot"></span>
                 {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count==1?'':'s' }}

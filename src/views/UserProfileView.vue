@@ -15,7 +15,7 @@
         <div class="user-image s200x200 gradient-bg" v-else></div>
         <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;" v-if="this.user.me">
           <template v-slot:header>
-            <button type = "button" class="button h6">
+            <button type = "button" class="button">
               <span class="icon-text">
                 <span class="bi bi-camera-fill"></span><span>Update image</span>
               </span>
@@ -23,11 +23,11 @@
           </template>
           <template v-slot:options>
             <li>
-              <button type = "button" class="button h6" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
+              <button type = "button" class="button" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
               <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
             </li>
             <li>
-              <button type = "button" class="button h6" v-on:click="deleteProfilePicture">Delete image</button>
+              <button type = "button" class="button" v-on:click="deleteProfilePicture">Delete image</button>
             </li>
           </template>
         </contextMenu>
@@ -40,7 +40,7 @@
       <div class="banner-edit-area" v-if="this.user.me">
         <contextMenu style="width:115px;">
           <template v-slot:header>
-            <button type = "button" class="button h6">
+            <button type = "button" class="button">
               <span class="icon-text">
                 <span class="bi bi-camera-fill"></span><span>Update image</span>
               </span>
@@ -48,11 +48,11 @@
           </template>
           <template v-slot:options>
             <li>
-              <button type = "button" class="button h6" v-on:click="this.$refs.bannerInput.click()">Replace image</button>
+              <button type = "button" class="button" v-on:click="this.$refs.bannerInput.click()">Replace image</button>
               <input type="file" ref="bannerInput" style="display:none" v-on:change="uploadBanner" accept="image/*" />
             </li>
             <li>
-              <button type = "button" class="button h6" v-on:click="deleteBanner">Delete image</button>
+              <button type = "button" class="button" v-on:click="deleteBanner">Delete image</button>
             </li>
           </template>
         </contextMenu>

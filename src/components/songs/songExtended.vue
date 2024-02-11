@@ -16,20 +16,20 @@
             </div>
         </div>
         <div class="info-wrapper">
-            <div class="h5 secondary-text">
+            <div class="secondary-text font-size-small">
                 <template v-for="(artist,index) in this.song.artists">
                     <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                     <span v-else>{{artist.name}}</span>
                     <span v-if="index+1 < this.song.artists.length">, </span>
                 </template>
             </div>
-            <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class="h4 primary-text hoverable">{{this.song.name}}</router-link>
+            <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class="primary-text hoverable font-size-medium">{{this.song.name}}</router-link>
             <div class="row bottom">
-                <span class="icon-text secondary-text h6">
+                <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-play-fill"></span>
                     <span>{{abbreviateNumber(53252)}}</span>
                 </span>
-                <span class="icon-text secondary-text h6">
+                <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-suit-heart-fill"></span>
                     <span>{{abbreviateNumber(this.song.likes_count)}}</span>
                 </span>
@@ -40,7 +40,7 @@
             <button class="button button-default button-tiny bi bi-suit-heart-fill" v-bind:class="{'toggled':this.song.liked}" v-on:click.stop="this.like()"></button>
             <button id = "deleteSongButton" class="button button-default button-tiny bi bi-x-lg" v-on:click.stop="$emit('deleteSong')"></button>
         </div>
-        <div class="song-duration h5">{{ numberToTimeString(this.song.duration) }}</div>
+        <div class="song-duration font-size-small">{{ numberToTimeString(this.song.duration) }}</div>
     </div>
     <songExtendedSkeleton v-else></songExtendedSkeleton>
 </Transition>
