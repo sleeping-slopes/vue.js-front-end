@@ -5,12 +5,12 @@
                 <span class="primary-text font-size-large">Drag and drop your songs here</span>
                 <button type="button" class="button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
                 <input type="file" ref="songsInput" style="display:none" v-on:change="uploadSongs" accept=".mp3" multiple/>
-                <label class="label-checkbox">
-                    <button type="button" class="button button-checkbox" v-on:click="this.makePlaylist=!this.makePlaylist"
+                <div class="form-checkbox" style="width:min-content">
+                    <button type="button" class="button button-checkbox" id="checkbox_makePlaylist" v-on:click="this.makePlaylist=!this.makePlaylist"
                         v-bind:class="{'bi bi-check-square': !this.makePlaylist, 'bi bi-check-square-fill toggled': this.makePlaylist }">
                     </button>
-                    <span>Make a playlist when multiple files are selected</span>
-                </label>
+                    <label for="checkbox_makePlaylist">Make a playlist when multiple files are selected</label>
+                </div>
             </form>
         </div>
         <form class="column" style="width:810px" @submit.prevent="submitLoadSongs" v-else>
@@ -47,24 +47,24 @@
                                 </contextMenu>
                             </div>
                             <div class="column gap-10 w-100">
-                                <label class="label-form">
-                                    <span>Name</span>
-                                    <input type="text" v-bind:class="{'input-error': false}" placeholder="Enter song name"
+                                <div class="form-field">
+                                    <label for="input_songName">Name</label>
+                                    <input id="input_songName" type="text" v-bind:class="{'input-error': false}" placeholder="Enter song name"
                                         v-model="song.name.data"
                                     />
                                     <span class="icon-text notification-error" v-if=song.name.error>
                                         <span class="bi bi-exclamation-circle-fill"></span><span>{{song.name.error}}</span>
                                     </span>
-                                </label>
-                                <label class="label-form">
-                                    <span>Tags</span>
-                                    <input type="text" v-bind:class="{'input-error': false}" placeholder="Up to 5 space-separated tags"
+                                </div>
+                                <div class="form-field">
+                                    <label for="input_songTags">Tags</label>
+                                    <input id="input_songTags" type="text" v-bind:class="{'input-error': false}" placeholder="Up to 5 space-separated tags"
                                         v-model="song.tags.data"
                                     />
                                     <span class="icon-text notification-error" v-if=song.tags.error>
                                         <span class="bi bi-exclamation-circle-fill"></span><span>{{song.tags.error}}</span>
                                     </span>
-                                </label>
+                                </div>
                             </div>
                         </div>
                         <hr>
@@ -72,22 +72,22 @@
                             <span class="primary-text font-size-medium">Artists</span>
                             <div class="column gap-15">
                                 <div class="row gap-10" v-for="(artist,artistIndex) in song.artists">
-                                    <label class="label-form">
+                                    <div class="form-field">
                                         <input type="text" placeholder="Login"
                                             v-model="artist.login.data"
                                         />
                                         <span class="icon-text notification-error" v-if=artist.login.error>
                                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.login.error }}</span>
                                         </span>
-                                    </label>
-                                    <label class="label-form">
+                                    </div>
+                                    <div class="form-field">
                                         <input type="text" placeholder="Pseudoname"
                                             v-model="artist.pseudoname.data"
                                         />
                                         <span class="icon-text notification-error" v-if=artist.pseudoname.error>
                                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.pseudoname.error }}</span>
                                         </span>
-                                    </label>
+                                    </div>
                                     <button type="button" class="button form-button bi bi-trash3-fill" v-on:click="song.artists.splice(artistIndex,1)"></button>
                                 </div>
                             </div>

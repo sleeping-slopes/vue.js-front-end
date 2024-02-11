@@ -24,32 +24,28 @@
                         </button>
                     </div>
                 </div>
-                <label class="label-checkbox">
-                    <button class="button button-checkbox" v-bind:class="{'bi bi-check-square': customTheme, 'bi bi-check-square-fill toggled': !customTheme}"
+                <div class="form-checkbox">
+                    <button class="button button-checkbox" id="checkbox_systemTheme" v-bind:class="{'bi bi-check-square': customTheme, 'bi bi-check-square-fill toggled': !customTheme}"
                         v-on:click="toggleCustomTheme()">
                     </button>
-                    <span>Use system theme</span>
-                </label>
+                    <label for="checkbox_systemTheme">Use system theme</label>
+                </div>
             </div>
             <hr>
             <form class="column" @submit.prevent="changeEmail">
-                <label class="label-form">
-                    <span>Email</span>
-                    <input type="text" style="width:480px" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
+                <div class="form-field">
+                    <label for="input_userEmail">Email</label>
+                    <input id="input_userEmail" type="text" style="width:480px" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
                         v-model="email.data"
                     />
                     <span class="icon-text notification-error" v-if=email.error>
                         <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
                     </span>
-                </label>
-                <button type="submit" class="button button-secondary h5">Change email</button>
+                </div>
+                <button type="submit" class="button button-secondary">Change email</button>
             </form>
             <hr>
             <div class="column gap-5">
-                <label class="label-form">
-                    <span>Password</span>
-                </label>
-                <button class="button button-secondary h5" v-on:click="resetPassword">Send password-reset link to email</button>
                 <span class="primary-text font-size-medium">Password</span>
                 <button class="button button-secondary" v-on:click="resetPassword">Send password-reset link to email</button>
             </div>

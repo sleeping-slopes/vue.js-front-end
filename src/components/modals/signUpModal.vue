@@ -3,34 +3,34 @@
     <template v-slot:content>
           <span class="primary-text left right font-size-large" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</span>
           <form @submit.prevent="postUser" class="column gap-10 y-center">
-              <label class="label-form">
-                  <span>Email</span>
-                  <input type="text" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
-                    v-model="email.data"
-                  />
-                  <span class="icon-text notification-error" v-if=email.error>
-                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
-                  </span>
-              </label>
-              <label class="label-form">
-                <span>Password</span>
-                  <input type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
-                    v-model="password.data"
-                  />
-                  <span class="icon-text notification-error" v-if=password.error>
-                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
-                  </span>
-              </label>
-              <label class="label-form">
-                <span>Login</span>
-                  <input type="text" v-bind:class="{'input-error': login.error}" placeholder="What should we call you?"
-                    v-model="login.data"
-                  />
-                  <span class="icon-text notification-error" v-if=login.error>
-                    <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
-                  </span>
-              </label>
-              <button type="submit" class="button button-primary hoverable h5">Sign up</button>
+              <div class="form-field">
+                <label for="input_userEmail">Email</label>
+                <input id="input_userEmail" type="text" v-bind:class="{'input-error': email.error}" placeholder="Enter email"
+                  v-model="email.data"
+                />
+                <span class="icon-text notification-error" v-if=email.error>
+                  <span class="bi bi-exclamation-circle-fill"></span><span>{{ email.error }}</span>
+                </span>
+              </div>
+              <div class="form-field">
+                <label for="input_userPassword">Password</label>
+                <input id="input_userPassword" type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
+                  v-model="password.data"
+                />
+                <span class="icon-text notification-error" v-if=password.error>
+                  <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
+                </span>
+              </div>
+              <div class="form-field">
+                <label for="input_userLogin">Login</label>
+                <input id="input_userLogin" type="text" v-bind:class="{'input-error': login.error}" placeholder="What should we call you?"
+                  v-model="login.data"
+                />
+                <span class="icon-text notification-error" v-if=login.error>
+                  <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
+                </span>
+              </div>
+              <button type="submit" class="button button-primary hoverable">Sign up</button>
             </form>
           <hr/>
           <span class="primary-text left right">Already have an account?

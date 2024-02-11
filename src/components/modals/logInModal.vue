@@ -3,31 +3,31 @@
     <template v-slot:content>
       <span class="primary-text left right font-size-large" style="padding:57px 0px 57px 0px">Log in to 3V3R51NC3</span>
       <form @submit.prevent="logIn" class="column gap-10 y-center">
-        <label class="label-form">
-          <span>Login or email</span>
-          <input type="text" v-bind:class="{'input-error': login.error}" placeholder="Enter login or email"
+        <div class="form-field">
+          <label for="input_userLogin">Login or email</label>
+          <input id="input_userLogin" type="text" v-bind:class="{'input-error': login.error}" placeholder="Enter login or email"
             v-model="login.data"
           />
           <span class="icon-text notification-error" v-if=login.error>
             <span class="bi bi-exclamation-circle-fill"></span><span>{{ login.error }}</span>
           </span>
-        </label>
-        <label class="label-form">
-          <span>Password</span>
-          <input type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
+        </div>
+        <div class="form-field">
+          <label for="input_userPassword">Password</label>
+          <input id="input_userPassword" type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
             v-model="password.data"
           />
           <span class="icon-text notification-error" v-if=password.error>
             <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
           </span>
-        </label>
-        <label class="label-checkbox">
-          <button type="button" class="button button-checkbox" v-bind:class="{'bi bi-check-square': !rememberMe, 'bi bi-check-square-fill toggled': rememberMe}"
+        </div>
+        <div class="form-checkbox">
+          <button type="button" class="button button-checkbox" id="checkbox_rememberMe" v-bind:class="{'bi bi-check-square': !rememberMe, 'bi bi-check-square-fill toggled': rememberMe}"
               v-on:click="this.rememberMe=!this.rememberMe">
           </button>
-          <span>Remember me</span>
-        </label>
-        <button type="submit" class="button button-primary hoverable h5">Log in</button>
+          <label for="checkbox_rememberMe">Remember me</label>
+        </div>
+        <button type="submit" class="button button-primary hoverable">Log in</button>
       </form>
       <hr/>
       <span class="primary-text left right">Don't have an account?

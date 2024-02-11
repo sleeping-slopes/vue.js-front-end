@@ -27,50 +27,50 @@
                     </contextMenu>
                 </div>
                 <div class="column gap-20 w-100">
-                    <label class="label-form">
-                        <span>Display name</span>
-                        <input type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
+                    <div class="form-field">
+                        <label for="input_userUsername">Display name</label>
+                        <input id="input_userUsername" type="text" v-bind:class="{'input-error': username.error}" :placeholder="this.user.login"
                             v-model="username.data"
                         />
                         <span class="icon-text notification-error" v-if=username.error>
                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ username.error }}</span>
                         </span>
-                    </label>
-                    <label class="label-form">
-                        <span>Status</span>
-                        <input type="text" v-bind:class="{'input-error': status.error}"
+                    </div>
+                    <div class="form-field">
+                        <label for="input_userStatus">Status</label>
+                        <input id="input_userStatus" type="text" v-bind:class="{'input-error': status.error}"
                             v-model="status.data"
                         />
                         <span class="icon-text notification-error" v-if=status.error>
                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ status.error }}</span>
                         </span>
-                    </label>
+                    </div>
                     <div class="row gap-10">
-                        <label class="label-form">
-                            <span>City</span>
-                            <input type="text" v-bind:class="{'input-error': city.error}"
+                        <div class="form-field">
+                            <label for="input_userCity">City</label>
+                            <input id="input_userCity" type="text" v-bind:class="{'input-error': city.error}"
                                 v-model="city.data"/>
                             <span class="icon-text notification-error" v-if=city.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ city.error }}</span>
                             </span>
-                        </label>
-                        <label class="label-form">
-                            <span>Country</span>
-                            <input type="text" v-bind:class="{'input-error': country.error}"
+                        </div>
+                        <div class="form-field">
+                            <label for="input_userCountry">Country</label>
+                            <input id="input_userCountry" type="text" v-bind:class="{'input-error': country.error}"
                                 v-model="country.data"/>
                             <span class="icon-text notification-error" v-if=country.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ country.error }}</span>
                             </span>
-                        </label>
+                        </div>
                     </div>
-                    <label class="label-form">
-                        <span>Bio</span>
-                        <textarea rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
+                    <div class="form-field">
+                        <label for="input_userBio">Bio</label>
+                        <textarea id="input_userBio" rows="5" type="text" v-bind:class="{'input-error': bio.error}" placeholder="Tell a little bit about yourself" style="resize: vertical;"
                             v-model="bio.data"></textarea>
                         <span class="icon-text notification-error" v-if=bio.error>
                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ bio.error }}</span>
                         </span>
-                    </label>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -78,20 +78,20 @@
                 <span class="primary-text font-size-medium">Your links</span>
                 <div class="column gap-15" v-if="this.links.length">
                     <div class="row gap-10" v-for="(link,linkIndex) in this.links">
-                        <label class="label-form">
+                        <div class="form-field">
                             <input type="text" v-bind:class="{'input-error': link.url.error}" placeholder="Web or email address"
                                 v-model="link.url.data"/>
                             <span class="icon-text notification-error" v-if=link.url.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.url.error }}</span>
                             </span>
-                        </label>
-                        <label class="label-form">
+                        </div>
+                        <div class="form-field">
                             <input type="text" v-bind:class="{'input-error': link.description.error}" placeholder="Short title"
                                 v-model="link.description.data"/>
                             <span class="icon-text notification-error" v-if=link.description.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.description.error }}</span>
                             </span>
-                        </label>
+                        </div>
                         <button type="button" class="button form-button bi bi-trash3-fill" v-on:click="this.links.splice(linkIndex,1)"></button>
                     </div>
                 </div>

@@ -16,7 +16,7 @@ input.input-error, textarea.input-error { outline-color:red; }
 
 /* ================================================== */
 
-.label-form
+.form-field
 {
   display:flex;
   flex-direction: column;
@@ -26,9 +26,9 @@ input.input-error, textarea.input-error { outline-color:red; }
   font-size:16px; font-weight:400;
 }
 
-.label-form > span { width:min-content; white-space: nowrap; }
+.form-field > label { width:min-content; white-space: nowrap; }
 
-.label-form > input, .label-form > textarea
+.form-field > input, .form-field > textarea
 {
   outline: 2px solid var(--panel-border-color);
   border: none;
@@ -38,20 +38,21 @@ input.input-error, textarea.input-error { outline-color:red; }
   transition: outline-color 0.1s;
 }
 
-.label-form input:focus, .label-form textarea:focus { outline-color: var(--text-color-primary); }
+.form-field input:focus, .form-field textarea:focus { outline-color: var(--text-color-primary); }
 
 /* ================================================== */
 
-.label-checkbox
+.form-checkbox
 {
   display:flex;
+  flex-direction: row;
   gap:5px;
-  align-items: center;
   color: var(--text-color-primary);
   width:100%;
+  align-items: center;
 }
 
-.label-checkbox > .button { font-size: 16px; }
+.form-checkbox > .button { font-size: 16px; }
 
 .form-checkbox > label { font-size: 14px; font-weight:400; white-space: nowrap;}
 
