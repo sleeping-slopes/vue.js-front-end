@@ -76,7 +76,8 @@ export default
       if (this.email.data)
       {
         this.email.data = this.email.data.trim().toLowerCase();
-        if (!validEmail(this.email.data)) this.email.error='Invalid email.';
+        if (this.email.data.length>50) this.email.error='Enter an email that is up to 50 characters.';
+        else if (!validEmail(this.email.data)) this.email.error='Invalid email.';
       }
       else this.email.error="Required field.";
 
