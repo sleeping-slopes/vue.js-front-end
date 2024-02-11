@@ -1,7 +1,7 @@
 <template>
   <modal :width="'400px'">
     <template v-slot:content>
-          <h2 class="primary-text left right" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</h2>
+          <span class="primary-text left right font-size-large" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</span>
           <form @submit.prevent="postUser" class="column gap-10 y-center">
               <label class="label-form">
                   <span>Email</span>
@@ -33,7 +33,7 @@
               <button type="submit" class="button button-primary hoverable h5">Sign up</button>
             </form>
           <hr/>
-          <span class="primary-text h5 left right">Already have an account?
+          <span class="primary-text left right">Already have an account?
             <button class="button button-link" v-on:click="this.$router.replace({query:{action:'login',to:this.$route.query.to}});">Log in</button>
           </span>
         </template>

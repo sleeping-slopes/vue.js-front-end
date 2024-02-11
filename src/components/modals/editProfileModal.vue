@@ -9,7 +9,7 @@
                     <div class="user-image s200x200 bi bi-person-fill" v-else></div>
                     <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;">
                         <template v-slot:header>
-                            <button type = "button" class="button h6">
+                            <button type = "button" class="button">
                                 <span class="icon-text">
                                     <span class="bi bi-camera-fill"></span><span>Update image</span>
                                 </span>
@@ -17,11 +17,11 @@
                         </template>
                         <template v-slot:options>
                             <li>
-                                <button type = "button" class="button h6" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
+                                <button type = "button" class="button" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
                                 <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
                             </li>
                             <li>
-                                <button type = "button" class="button h6" v-on:click="deleteProfilePicture">Delete image</button>
+                                <button type = "button" class="button" v-on:click="deleteProfilePicture">Delete image</button>
                             </li>
                         </template>
                     </contextMenu>
@@ -75,7 +75,7 @@
             </div>
             <hr>
             <div class="column gap-20">
-                <span class="primary-text h4">Your links</span>
+                <span class="primary-text font-size-medium">Your links</span>
                 <div class="column gap-15" v-if="this.links.length">
                     <div class="row gap-10" v-for="(link,linkIndex) in this.links">
                         <label class="label-form">
@@ -92,11 +92,11 @@
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.description.error }}</span>
                             </span>
                         </label>
-                        <button type="button" class="button button-secondary form-button bi bi-trash3-fill h4" v-on:click="this.links.splice(linkIndex,1)"></button>
+                        <button type="button" class="button form-button bi bi-trash3-fill" v-on:click="this.links.splice(linkIndex,1)"></button>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" class="button button-secondary h5"
+                    <button type="button" class="button button-secondary"
                     v-on:click="this.links.push({url: { data:null, error:null }, description: { data:null, error:null }})" :disabled='this.links.length>=10'>Add link</button>
                     <span class="icon-text notification-error" v-if="this.links.length>=10">
                         <span class="bi bi-exclamation-circle-fill"></span><span>A maximum of 10 links can be added to your profile.</span>
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <hr>
-            <div class="row right h5">
+            <div class="row right">
                 <button type="button" class="button button-secondary" v-on:click="$router.replace({query: null})">Cancel</button>
                 <button type="submit" class="button button-primary">Save changes</button>
             </div>

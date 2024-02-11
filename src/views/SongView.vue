@@ -19,7 +19,7 @@
               </span>
             </template>
           <template v-slot:menu>
-            <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
+            <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary">View all</router-link>
           </template>
           <template v-slot:content>
             <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
@@ -30,7 +30,7 @@
         <panel>
           <template v-slot:header>In playlists</template>
           <template v-slot:menu>
-            <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
+            <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary">View all</router-link>
           </template>
           <template v-slot:content>
             <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
@@ -43,7 +43,7 @@
             </span>
           </template>
           <template v-slot:menu>
-            <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button button-secondary h5">View all</router-link>
+            <router-link :to="{ name: 'SongLikes', params: { id: this.id }}" class="button button-secondary">View all</router-link>
           </template>
           <template v-slot:content>
             <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.users" :maxDisplay="13"></userContainer>

@@ -1,5 +1,5 @@
 <template>
-  <span class="secondary-text h4" v-if="this.users?.length">Found {{ abbreviateNumber(this.users.length) }} user{{this.users.length==1?'':'s'}}</span>
+  <span class="secondary-text font-size-medium" v-if="this.users?.length">Found {{ abbreviateNumber(this.users.length) }} user{{this.users.length==1?'':'s'}}</span>
   <userContainer :type="'column gap-10'" :dynamicComponent="'userItem'" :users="this.users"></userContainer>
 </template>
 

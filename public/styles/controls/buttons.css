@@ -11,6 +11,7 @@
   box-sizing: border-box;
   height:min-content;
   width:min-content;
+  font-size:14px; font-weight:400;
 }
 
 /* ================================================== */
@@ -24,7 +25,7 @@
   color: var(--soft-white);
 }
 
-.button-primary.bi { padding:3px; }
+.button-primary.bi { font-size:20px; padding:3px; }
 
 .button-primary.hoverable:hover { transform: scale(1.1); } .button-primary.hoverable:active { transform: scale(1.0); }
 
@@ -42,7 +43,7 @@
   transition: color 0.2s, border 0.2s;
 }
 
-.button-secondary.bi { padding:3px; }
+.button-secondary.bi { font-size:20px; padding:3px; }
 
 .button-secondary:not(.toggled):hover { color: var(--text-color-primary); border-color: var(--text-color-primary); }
 
@@ -72,10 +73,17 @@
 
 .form-button
 {
+  padding:3px;
+  background-color: transparent;
+  color: var(--text-color-secondary);
+  border-radius:5px;
   border:2px solid var(--panel-border-color);
-  height:20px;
-  width:20px;
+  height:22px;
+  width:22px;
+  transition: color 0.2s, border 0.2s;
 }
+
+.form-button:hover { color: var(--text-color-primary); border-color: var(--text-color-primary); }
 
 /* ================================================== */
 
@@ -128,12 +136,38 @@
   color: var(--soft-white);
   padding:3px 7px 3px 7px;
   border-radius: 50vh;
-  white-space: nowrap;
 }
 
-.button-tag::before { content:"# " }
+.button-tag::before { content:"#" }
 
 .button-tag:hover { background-color:var(--dark-gray); }
+
+/* ================================================== */
+
+.context-menu-nav .context-menu-nav-header .button
+{
+  height:100%;
+  background-color: transparent;
+  color:var(--light-gray);
+  transition: 0.2s all;
+  font-size:16px; font-weight:400;
+}
+
+.context-menu-nav:hover .context-menu-nav-header .button { color:var(--soft-white); }
+
+.context-menu-nav.context-menu-nav-active .context-menu-nav-header .button { background-color:var(--soft-black); color:var(--soft-white); }
+
+.context-menu-nav .context-menu-nav-options .button
+{
+  width:100%;
+  background-color: transparent;
+  color:var(--text-color-primary);
+  padding: 6px 12px 6px 12px;
+  justify-content: left;
+  font-size:16px; font-weight:400;
+}
+
+.context-menu-nav .context-menu-nav-options .button:hover { background-color:var(--selected-item-background-color); }
 
 /* ================================================== */
 
@@ -143,6 +177,7 @@
   background-color: transparent;
   color: var(--soft-black);
   padding: 3px 0px 3px 0px;
+  font-size:14px; font-weight:400;
 }
 
 .context-menu .context-menu-header .button
@@ -159,42 +194,33 @@
 
 /* ================================================== */
 
-.context-menu-nav .context-menu-nav-header .button
+.song-context-menu .button
 {
-  height:100%;
-  background-color: transparent;
-  color:var(--light-gray);
-  transition: 0.2s all;
-}
-
-.context-menu-nav:hover .context-menu-nav-header .button { color:var(--soft-white); }
-
-.context-menu-nav.context-menu-nav-active .context-menu-nav-header .button { background-color:var(--soft-black); color:var(--soft-white); }
-
-.context-menu-nav .context-menu-nav-options .button
-{
+  padding: 5px 8px 5px 8px;
+  border:none;
+  border-bottom:1px solid var(--panel-border-color);
+  color: var(--text-color-primary);
+  background-color:transparent;
   width:100%;
-  background-color: transparent;
-  color:var(--text-color-primary);
-  padding: 6px 12px 6px 12px;
-  justify-content: left;
+  justify-content: flex-start;
+  font-size:14px; font-weight:400;
 }
 
-.context-menu-nav .context-menu-nav-options .button:hover { background-color:var(--selected-item-background-color); }
+.song-context-menu .button:hover { background-color: var(--selected-item-background-color); }
 
 /* ================================================== */
 
-.button.button-round { border-radius: 50%; }
+.button.bi.button.button-round { border-radius: 50%; }
 
-.button-huge { font-size:60px; }
+.button.bi.button-large { font-size:60px; }
 
-.button-large { font-size:44px; }
+.button.bi.button-big { font-size:44px; }
 
-.button-medium { font-size:30px; }
+.button.bi.button-medium { font-size:30px; }
 
-.button-small { font-size:22px; }
+.button.bi.button-small { font-size:22px; }
 
-.button-tiny { font-size:14px; }
+.button.bi.button-tiny { font-size:14px; }
 
 /* ================================================== */
 

@@ -13,7 +13,7 @@
           <span v-if="index+1 < this.song.artists.length">, </span>
         </template>
       </div>
-      <router-link :to="{ name: 'Song', params: { id: this.id }}" class="h2 primary-text hoverable">{{this.song.name}}</router-link>
+      <router-link :to="{ name: 'Song', params: { id: this.id }}" class="primary-text font-size-large hoverable">{{this.song.name}}</router-link>
     </div>
   </div>
   <nav class="nav-tab">

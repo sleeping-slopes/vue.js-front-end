@@ -4,24 +4,24 @@
         <div class="banner-bg" :style="this.gradient"></div>
         <div class="column w-100" style="overflow:hidden;">
             <div class="row">
-                <button class="button button-default button-round button-huge toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
+                <button class="button button-default button-round button-large toggled" v-bind:class="this.isPlaying?'bi bi-pause-circle-fill':'bi bi-play-circle-fill'" v-on:click="setCurrentSong"></button>
                 <div class="info-wrapper gap-10">
-                    <h3 class="banner-info banner-info-secondary">
+                    <span class="banner-info banner-info-secondary font-size-big">
                         <template v-for="(artist,index) in this.song.artists">
                             <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
                             <span v-else>{{artist.name}}</span>
                             <span v-if="index+1 < this.song.artists.length">, </span>
                         </template>
-                    </h3>
-                    <h2 class="banner-info banner-info-primary">{{ this.song.name }}</h2>
-                    <span class="h5 banner-info banner-info-secondary">
+                    </span>
+                    <span class="banner-info banner-info-primary font-size-large">{{ this.song.name }}</span>
+                    <span class="banner-info banner-info-secondary font-size-small">
                     {{ abbreviateNumber(53252) }} play{{ 53252==1?'':'s' }}
                     <span class="bi bi-dot"></span>
                     {{ abbreviateNumber(this.song.likes_count) }} like{{ this.song.likes_count==1?'':'s' }}
                     </span>
                 </div>
                 <ul class="tag-container right">
-                    <li v-for="tag in this.song.tags"><router-link class="button-tag h6" :to="{ name: 'Tag', params: { tag: tag.tag } }">{{tag.tag}}</router-link></li>
+                    <li v-for="tag in this.song.tags"><router-link :to="{ name: 'Tag', params: { tag: tag.tag } }" class="button button-tag h6" >{{tag.tag}}</router-link></li>
                 </ul>
             </div>
             <div class="row bottom gap-5 y-center">

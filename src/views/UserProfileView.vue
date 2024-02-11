@@ -33,9 +33,9 @@
         </contextMenu>
       </div>
       <div class="info-wrapper gap-10">
-        <h2 class="banner-info banner-info-primary" v-if="this.user.username">{{ this.user.username }}</h2>
-        <h3 class="banner-info banner-info-secondary" v-if="this.user.status">{{ this.user.status }}</h3>
-        <h3 class="banner-info banner-info-secondary" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</h3>
+        <span class="banner-info banner-info-primary font-size-large" v-if="this.user.username">{{ this.user.username }}</span>
+        <span class="banner-info banner-info-secondary font-size-big" v-if="this.user.status">{{ this.user.status }}</span>
+        <span class="banner-info banner-info-secondary font-size-big" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</span>
       </div>
       <div class="banner-edit-area" v-if="this.user.me">
         <contextMenu style="width:115px;">
@@ -60,7 +60,7 @@
     </div>
     <div class="content column">
         <nav class="nav-tab">
-          <ul class="h3">
+          <ul>
             <li><router-link :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link></li>
             <li><router-link :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link></li>
             <li><router-link :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link></li>
@@ -68,17 +68,19 @@
             <li><router-link :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link></li>
           </ul>
           <div class="row right">
-            <button class="button button-secondary h6" v-if="this.user.me" v-on:click="$router.push({path: $route.fullPath,query:{action:'edit'}})">Edit</button>
-            <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+            <button class="button button-secondary icon-text" v-if="this.user.me" v-on:click="$router.push({path: $route.fullPath,query:{action:'edit'}})">
+              <span class="bi bi-pencil-fill"></span><span>Edit</span>
+            </button>
+            <button class="button button-secondary icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow</span>
             </button>
-            <button class="button button-secondary h6 icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+            <button class="button button-secondary icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
               <span class="bi bi-person-plus"></span><span>Follow back</span>
             </button>
-            <button class="button button-secondary toggled h6 icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
+            <button class="button button-secondary toggled icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
               <span class="bi bi bi-person-check-fill"></span><span>Following</span>
             </button>
-            <button class="button button-primary h6" v-if="!this.user.me">Message</button>
+            <button class="button button-primary" v-if="!this.user.me">Message</button>
           </div>
         </nav>
         <div class="row">
@@ -90,24 +92,24 @@
               <template v-slot:content>
                 <div class="row gap-5">
                   <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="user-stat">
-                    <span class="h4">Followers</span>
-                    <span class="h3">{{abbreviateNumber(this.user.followers_count,0)}}</span>
+                    <span class="font-size-medium">Followers</span>
+                    <span class="font-size-big">{{abbreviateNumber(this.user.followers_count,0)}}</span>
                   </router-link>
                   <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="user-stat">
-                    <span class="h4">Following</span>
-                    <span class="h3">{{abbreviateNumber(this.user.following_count,0)}}</span>
+                    <span class="font-size-medium">Following</span>
+                    <span class="font-size-big">{{abbreviateNumber(this.user.following_count,0)}}</span>
                   </router-link>
                   <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="user-stat">
-                    <span class="h4">Songs</span>
-                    <span class="h3">{{abbreviateNumber(this.user.songs_count,0)}}</span>
+                    <span class="font-size-medium">Songs</span>
+                    <span class="font-size-big">{{abbreviateNumber(this.user.songs_count,0)}}</span>
                   </router-link>
                 </div>
-                <p class="primary-text h5" v-if="this.user.bio">
+                <span class="primary-text font-size-small" v-if="this.user.bio">
                   {{ this.user.bio }}
-                </p>
-                <ul class="h5 column gap-5" v-if="this.user.links.length>0">
+                </span>
+                <ul class="column gap-5" v-if="this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
-                    <glyphLink :url="link.url" :description="link.description"/>
+                    <glyphLink class="font-size-small" :url="link.url" :description="link.description"/>
                   </li>
                 </ul>
               </template>
@@ -119,7 +121,7 @@
                 </span>
               </template>
               <template v-slot:menu>
-                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary h6">View all</router-link>
+                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary">View all</router-link>
               </template>
               <template v-slot:content>
                 <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"/>
@@ -132,7 +134,7 @@
                 </span>
               </template>
               <template v-slot:menu>
-                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary h5">View all</router-link>
+                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary">View all</router-link>
               </template>
               <template v-slot:content>
                 <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.followers" :maxDisplay="13"></userContainer>

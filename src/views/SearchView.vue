@@ -1,12 +1,12 @@
 <template>
     <div class="content column gap-0" style="padding-top:0px;">
       <div class="sticky-top" style="padding-bottom:20px;">
-        <h2 class="primary-text">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h2>
+        <span class="primary-text font-size-large">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</span>
       </div>
       <div class="row">
         <div style="width:360px;">
             <nav class="nav-side sticky">
-                <ul class="h3">
+                <ul>
                     <li>
                         <router-link :to="{ name: 'SearchSongs', query:this.$route.query }">
                             <span class="icon-text"><span class="bi bi-music-note"></span><span>Songs</span></span>

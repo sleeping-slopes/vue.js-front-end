@@ -3,8 +3,8 @@
 <template>
 <div class="error-message">
   <div class="errorIcon secondary-text" v-if="!!this.$slots.errorIcon"><slot name="errorIcon"></slot></div>
-  <span class="h2 secondary-text" v-if="!!this.$slots.status"><slot name="status"></slot></span>
-  <span class="h3 secondary-text" v-if="!!this.$slots.message"><slot name="message"></slot></span>
+  <span class="font-size-large secondary-text" v-if="!!this.$slots.status"><slot name="status"></slot></span>
+  <span class="font-size-big secondary-text" v-if="!!this.$slots.message"><slot name="message"></slot></span>
 </div>
 </template>
 

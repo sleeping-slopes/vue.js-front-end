@@ -6,7 +6,7 @@
             <div class="cover bi bi-music-note-list" v-else></div>
             <div class="shade"></div>
             <div class="cover-menu">
-                <button class="button button-default button-large" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
+                <button class="button button-default button-big" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
             </div>
             <div class="cover-menu playlist-stats h5">
                 <span class="icon-text">

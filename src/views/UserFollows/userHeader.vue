@@ -6,8 +6,11 @@
           <img class="user-image s100x100" :src="picturesrc"  v-if="imageAvailable" @error="imageAvailable=false"/>
           <div class="user-image s100x100 gradient-bg" v-else></div>
         </router-link>
-        <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text hoverable h2">
-          <slot name="caption"></slot> of {{this.user.username}}</router-link>
+        <div class="info-wrapper" v-if="this.user">
+          <router-link v-if="this.user" :to="{ name: 'User', params: { login: this.login }}" class="primary-text font-size-large hoverable">
+            <slot name="caption"></slot> of {{this.user.username}}
+          </router-link>
+        </div>
       </div>
       <nav class="nav-tab">
         <ul class="h3">

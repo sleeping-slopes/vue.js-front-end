@@ -1,9 +1,9 @@
 <template>
     <div class="content column gap-20">
         <div class="column" style="padding-top:30px;">
-            <span class="h2 primary-text">Settings</span>
+            <span class="primary-text font-size-large">Settings</span>
             <nav class="nav-tab">
-                <ul class="h3">
+                <ul>
                     <li><router-link :to="{ name: 'Settings'}">Account</router-link></li>
                     <li><router-link :to="{ path: '404'}">Notifications</router-link></li>
                     <li><router-link :to="{ path: '404'}">Privacy</router-link></li>
@@ -14,8 +14,8 @@
         <div class="column gap-15" style="width:min-content">
             <div class="column gap-15">
                 <div class="column gap-5">
-                    <span class="primary-text h4">Theme</span>
-                    <div class="row h2 gap-10">
+                    <span class="primary-text font-size-medium">Theme</span>
+                    <div class="row gap-10">
                         <button class="button button-secondary bi bi-brightness-high-fill" v-bind:class="{'toggled': theme==0 && customTheme}"
                             v-on:click="changeTheme(0)">
                         </button>
@@ -50,8 +50,10 @@
                     <span>Password</span>
                 </label>
                 <button class="button button-secondary h5" v-on:click="resetPassword">Send password-reset link to email</button>
+                <span class="primary-text font-size-medium">Password</span>
+                <button class="button button-secondary" v-on:click="resetPassword">Send password-reset link to email</button>
             </div>
-            <button class="button button-default toggled h6" style="margin-top:60px;" v-on:click="deleteAccount">Delete account</button>
+            <button class="button button-default toggled" style="margin-top:60px;" v-on:click="deleteAccount">Delete account</button>
         </div>
     </div>
 </template>

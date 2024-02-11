@@ -3,23 +3,23 @@
 
     <header>
       <nav class="nav-header">
-        <ul class="nav-menu nav-main-menu h4">
+        <ul class="nav-menu nav-main-menu">
           <li class="logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
           <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
           <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
           <li><router-link :to="{ name: 'You'}">Library</router-link></li>
         </ul>
         <form @submit.prevent="this.search()">
-          <label class="label-search">
+          <label class="label-search dark-theme">
             <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
             <i class="fa fa-search"></i>
           </label>
         </form>
-        <ul class="nav-menu right gap-10 h5" v-if="!$store.state.currentUser">
+        <ul class="nav-menu right gap-10" v-if="!$store.state.currentUser">
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark-theme">Sign up</button></li>
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button></li>
         </ul>
-        <ul class="nav-menu right h4" v-else>
+        <ul class="nav-menu right" v-else>
           <li><router-link to="/upload">Upload</router-link></li>
           <li>
             <contextMenuNav>
@@ -36,7 +36,7 @@
               </template>
               <template v-slot:options>
                 <li>
-                  <router-link :to="{ name: 'User', params: { login: $store.state.currentUser.login }}" class="button h5">
+                  <router-link :to="{ name: 'User', params: { login: $store.state.currentUser.login }}" class="button">
                     <span class="icon-text">
                       <span class="accent-text bi bi-person-fill"></span>
                       <span>Profile</span>
@@ -44,7 +44,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <router-link :to="{ name: 'Settings' }" class="button h5">
+                  <router-link :to="{ name: 'Settings' }" class="button">
                     <span class="icon-text">
                       <span class="accent-text bi bi-gear-fill"></span>
                       <span>Settings</span>
@@ -52,7 +52,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class="button h5">
+                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class="button">
                     <span class="icon-text">
                       <span class="accent-text bi bi-box-arrow-right"></span>
                       <span>Sign out</span>

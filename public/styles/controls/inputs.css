@@ -8,7 +8,7 @@ input[type=range][orient=vertical]
 
 /* ================================================== */
 
-.notification-error { font-size:14px; color:red; }
+.notification-error { font-size:14px; font-weight:400; color:red; }
 
 input.input-error, textarea.input-error { outline-color:red; }
 
@@ -23,7 +23,7 @@ input.input-error, textarea.input-error { outline-color:red; }
   gap:5px;
   color: var(--text-color-primary);
   width:100%;
-  font-size:16px;
+  font-size:16px; font-weight:400;
 }
 
 .label-form > span { width:min-content; white-space: nowrap; }
@@ -53,7 +53,7 @@ input.input-error, textarea.input-error { outline-color:red; }
 
 .label-checkbox > .button { font-size: 16px; }
 
-.label-checkbox > span { font-size: 14px; white-space: nowrap;}
+.form-checkbox > label { font-size: 14px; font-weight:400; white-space: nowrap;}
 
 /* ================================================== */
 
@@ -71,7 +71,7 @@ input.input-error, textarea.input-error { outline-color:red; }
   border: 2px solid var(--light-gray);
   box-sizing: border-box;
   padding:3px;
-  font-size:16px;
+  font-size:16px; font-weight:400;
 }
 
 .label-search:focus-within { border-color: var(--text-color-primary); }

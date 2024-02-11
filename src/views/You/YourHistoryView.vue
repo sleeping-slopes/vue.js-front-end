@@ -1,18 +1,18 @@
 <template>
   <div class="column">
     <div class="row y-center">
-      <span class="h3 secondary-text">Hear the songs you’ve played:</span>
+      <span class="secondary-text font-size-big">Hear the songs you’ve played:</span>
       <div class="row gap-20 y-center right">
         <div class="row y-center gap-5">
-          <span class="secondary-text h4">View</span>
-          <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button button-secondary bi bi-grid-fill h3"></button>
-          <button v-bind:class="{'toggled': this.currentViewStyle==0}" @click="this.currentViewStyle=0" class="button button-secondary bi bi-list h3"></button>
+          <span class="secondary-text font-size-medium">View</span>
+          <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button button-secondary bi bi-grid-fill"></button>
+          <button v-bind:class="{'toggled': this.currentViewStyle==0}" @click="this.currentViewStyle=0" class="button button-secondary bi bi-list"></button>
         </div>
         <label class="label-search">
           <input type="text" placeholder="Filter" autocomplete="off">
           <i class="fa fa-search"></i>
         </label>
-        <button class="button button-secondary h5" @click="this.$store.dispatch('clearSongHistory');playlist.songs=[]">Clear all history</button>
+        <button class="button button-secondary" @click="this.$store.dispatch('clearSongHistory');playlist.songs=[]">Clear all history</button>
       </div>
     </div>
     <panel v-if="this.currentViewStyle==0">

@@ -1,9 +1,9 @@
 <template>
     <article class="panel">
         <div class="panel-header" v-if="!!this.$slots.header">
-            <h3 class="primary-text">
+            <span class="panel-caption">
               <slot name="header"></slot>
-            </h3>
+            </span>
             <div class="panel-menu">
                 <slot name="menu"></slot>
             </div>
@@ -47,6 +47,13 @@ export default
   justify-content: space-between;
   box-sizing: border-box;
   border-bottom:1px solid var(--panel-border-color);
+}
+
+.panel-caption
+{
+  color: var(--text-color-primary);
+  font-size:18px;
+  font-weight:500;
 }
 
 .panel-menu

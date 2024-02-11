@@ -2,8 +2,8 @@
     <div class="content x-center">
         <div class="xy-center-absolute" v-if=!this.songs.length>
             <form class="drag-n-drop">
-                <h2 class="primary-text">Drag and drop your songs here</h2>
-                <button type="button" class="h4 button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
+                <span class="primary-text font-size-large">Drag and drop your songs here</span>
+                <button type="button" class="button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
                 <input type="file" ref="songsInput" style="display:none" v-on:change="uploadSongs" accept=".mp3" multiple/>
                 <label class="label-checkbox">
                     <button type="button" class="button button-checkbox" v-on:click="this.makePlaylist=!this.makePlaylist"
@@ -17,9 +17,9 @@
             <panel v-for="(song,songIndex) in this.songs">
                 <template v-slot:header>Upload song</template>
                 <template v-slot:menu>
-                    <button type="button" class="button button-secondary h5" v-on:click="openSongAudioFileInput(songIndex)">Replace file</button>
+                    <button type="button" class="button button-secondary" v-on:click="openSongAudioFileInput(songIndex)">Replace file</button>
                     <input type="file" :ref="'songAudioInput'" style="display:none" v-on:change="uploadSongAudioFile($event,songIndex)" accept=".mp3" />
-                    <button type="button" class="button button-default h4 bi bi-x-lg" v-on:click="this.songs.splice(songIndex,1)"></button>
+                    <button type="button" class="button button-default button-small bi bi-x-lg" v-on:click="this.songs.splice(songIndex,1)"></button>
                 </template>
                 <template v-slot:content>
                     <div class="column gap-10">
@@ -29,7 +29,7 @@
                                 <div class="cover bi bi-music-note" v-else></div>
                                 <contextMenu class="x-center-absolute" style="top:50%; width:115px;">
                                     <template v-slot:header>
-                                        <button type = "button" class="button h6">
+                                        <button type = "button" class="button">
                                             <span class="icon-text">
                                                 <span class="bi bi-camera-fill"></span><span>Update cover</span>
                                             </span>
@@ -69,7 +69,7 @@
                         </div>
                         <hr>
                         <div class="column gap-5">
-                            <span class="primary-text h4">Artists</span>
+                            <span class="primary-text font-size-medium">Artists</span>
                             <div class="column gap-15">
                                 <div class="row gap-10" v-for="(artist,artistIndex) in song.artists">
                                     <label class="label-form">
@@ -88,11 +88,11 @@
                                             <span class="bi bi-exclamation-circle-fill"></span><span>{{ artist.pseudoname.error }}</span>
                                         </span>
                                     </label>
-                                    <button type="button" class="button button-secondary form-button bi bi-trash3-fill h5" v-on:click="song.artists.splice(artistIndex,1)"></button>
+                                    <button type="button" class="button form-button bi bi-trash3-fill" v-on:click="song.artists.splice(artistIndex,1)"></button>
                                 </div>
                             </div>
                             <div class="row">
-                                <button type="button" class="button button-secondary h5" :disabled='song.artists.length>=10'
+                                <button type="button" class="button button-secondary" :disabled='song.artists.length>=10'
                                     v-on:click="song.artists.push({login: { data:null, error:null }, pseudoname: { data:null, error:null }})">
                                     Add artist
                                 </button>
@@ -105,8 +105,8 @@
                 </template>
             </panel>
             <div class="row right">
-                <button type="button" class="button button-secondary h5" v-on:click="this.songs=[]">Cancel</button>
-                <button type="submit" class="button button-primary hoverable h5">Upload</button>
+                <button type="button" class="button button-secondary" v-on:click="this.songs=[]">Cancel</button>
+                <button type="submit" class="button button-primary hoverable">Upload</button>
             </div>
         </form>
     </div>
