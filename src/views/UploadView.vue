@@ -27,7 +27,7 @@
                             <div class="cover-wrapper s200x200">
                                 <img id="songCover" class="cover" :src="song.cover.url" v-if="song.cover">
                                 <div class="cover bi bi-music-note" v-else></div>
-                                <contextMenu class="x-center-absolute" style="top:50%; width:115px;">
+                                <contextMenu class="x-center-absolute" style="top:50%; min-width:120px;">
                                     <template v-slot:header>
                                         <button type = "button" class="button">
                                             <span class="icon-text">

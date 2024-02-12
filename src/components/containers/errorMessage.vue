@@ -2,7 +2,7 @@
 
 <template>
 <div class="error-message">
-  <div class="errorIcon secondary-text" v-if="!!this.$slots.errorIcon"><slot name="errorIcon"></slot></div>
+  <div class="error-icon secondary-text" v-if="!!this.$slots.errorIcon"><slot name="errorIcon"></slot></div>
   <span class="secondary-text font-size-large" v-if="!!this.$slots.status"><slot name="status"></slot></span>
   <span class="secondary-text font-size-big" v-if="!!this.$slots.message"><slot name="message"></slot></span>
 </div>
@@ -32,7 +32,7 @@ export default
   box-sizing: border-box;
 }
 
-.errorIcon
+.error-icon
 {
   font-size:48px;
 }

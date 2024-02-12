@@ -13,7 +13,7 @@
       <div style="height:min-content;position:relative;">
         <img class="user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
         <div class="user-image s200x200 gradient-bg" v-else></div>
-        <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;" v-if="this.user.me">
+        <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); min-width:120px;" v-if="this.user.me">
           <template v-slot:header>
             <button type = "button" class="button">
               <span class="icon-text">
@@ -38,7 +38,7 @@
         <span class="banner-info banner-info-secondary font-size-big" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</span>
       </div>
       <div class="banner-edit-area" v-if="this.user.me">
-        <contextMenu style="width:115px;">
+        <contextMenu>
           <template v-slot:header>
             <button type = "button" class="button">
               <span class="icon-text">
@@ -229,7 +229,7 @@ export default
   top:0px;
   right:0px;
   bottom:0px;
-  width:175px;
+  width:180px;
   padding:20px 20px 0px 40px;
   box-sizing:border-box;
 }
@@ -239,9 +239,7 @@ export default
   width:100%;
   display:flex;
   flex-direction: column;
-  justify-content:center;
   color: var(--text-color-secondary);
-  cursor:pointer;
 }
 
 .user-stat:hover

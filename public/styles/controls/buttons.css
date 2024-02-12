@@ -149,7 +149,7 @@
   height:100%;
   background-color: transparent;
   color:var(--light-gray);
-  transition: 0.2s all;
+  transition: background-color 0.2s, color 0.2s;
   font-size:16px; font-weight:400;
 }
 
@@ -186,11 +186,37 @@
   border-radius:3px;
 }
 
-.context-menu .context-menu-options .button:hover
+.context-menu .context-menu-options .button:hover { background-color:var(--light-gray); color:var(--accent-color); }
+
+/* ================================================== */
+
+.context-menu-select .context-menu-select-header .button
 {
-  background-color:var(--light-gray);
+  border-radius:8px;
+  border: 2px solid var(--accent-color);
+  background-color:var(--soft-white);
   color:var(--accent-color);
+  width:100%;
+  height:100%;
+  font-size:16px; font-weight: 500;
 }
+
+.context-menu-select .context-menu-select-header:hover .button,
+.context-menu-select.context-menu-select-active .context-menu-select-header .button
+{
+  background-color:var(--accent-color);
+  color:var(--soft-white);
+}
+
+.context-menu-select .context-menu-select-options .button
+{
+  width:100%;
+  font-size:16px; font-weight: 400;
+  padding:5px 5px 5px 5px;
+  justify-content: left;
+}
+
+.context-menu-select .context-menu-select-options .button:hover { color:var(--accent-color); }
 
 /* ================================================== */
 

@@ -56,7 +56,7 @@ export default
 {
   position:absolute;
   top:100%;
-  display:none;
+  display:flex;
   flex-direction: column;
   background-color: var(--panel-background-color);
   border-bottom-left-radius:3px;
@@ -65,8 +65,9 @@ export default
   overflow:hidden;
   box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
   border-top:none;
+  visibility:hidden;
 }
 
-.context-menu-nav.context-menu-nav-active .context-menu-nav-options { display:flex; }
+.context-menu-nav.context-menu-nav-active .context-menu-nav-options { visibility:visible; }
 
 </style>

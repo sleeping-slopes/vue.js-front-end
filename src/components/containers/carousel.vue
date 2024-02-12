@@ -73,20 +73,14 @@ export default
   background-color:var(--text-color-primary);
   color: var(--text-color-secondary);
   opacity:0.0;
-  transition: all 0.2s;
+  transition: opacity 0.2s, left 0.2s, right 0.2s;
   top:50%;
   transform: translate(0,-50%);
 }
 
-.carousel:hover > .button
-{
-  opacity:0.75;
-}
+.carousel:hover > .button { opacity:0.7; }
 
-.carousel > .button:hover
-{
-  opacity:0.9;
-}
+.carousel > .button:hover { opacity:1.0; }
 
 .carousel-content
 {

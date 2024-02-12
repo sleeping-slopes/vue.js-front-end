@@ -31,12 +31,11 @@
   color: var(--light-gray);
   height:100%;
   box-sizing:border-box;
-  transition: all 0.2s;
+  transition: background-color 0.2s, color 0.2s;
   white-space: nowrap;
   padding:0px 20px 0px 20px;
   display:flex;
   align-items: center;
-
 }
 
 .nav-header .nav-menu > li > a:hover { color: var(--soft-white); }
@@ -66,9 +65,7 @@
 .nav-tab > ul > li > a
 {
   display:flex;
-  align-items: flex-end;
   color: var(--text-color-primary);
-  cursor:pointer;
   white-space: nowrap;
   padding:0px 5px 0px 5px;
 }
@@ -105,7 +102,6 @@
 {
   display:flex;
   color: var(--text-color-primary);
-  cursor:pointer;
   white-space: nowrap;
   padding:0px 5px 0px 5px;
 }

@@ -14,7 +14,7 @@
 {
   position:absolute;
   opacity:0.0;
-  transition: 0.2s all;
+  transition: opacity 0.2s;
   color:var(--soft-white);
   display:flex;
   padding:10px;

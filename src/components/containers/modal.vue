@@ -9,7 +9,7 @@
           <slot name="content"></slot>
         </template>
       </panel>
-      <button class="bi bi-x modal-close-button" v-on:click="$router.replace({query: null})"></button>
+      <button class="modal-close-button bi bi-x" v-on:click="$router.replace({query: null})"></button>
     </div>
   </div>
 </template>

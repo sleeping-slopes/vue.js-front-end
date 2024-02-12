@@ -7,7 +7,7 @@
                 <div style="height:min-content;position:relative;">
                     <img class="user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
                     <div class="user-image s200x200 bi bi-person-fill" v-else></div>
-                    <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); width:115px;">
+                    <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); min-width:120px;">
                         <template v-slot:header>
                             <button type = "button" class="button">
                                 <span class="icon-text">

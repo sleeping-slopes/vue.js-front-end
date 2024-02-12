@@ -50,13 +50,14 @@
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     background-color: var(--panel-background-color);
+    overflow:hidden;
     min-height:253px;
 }
 
 .playlist.playlist-expansible .right-column
 {
     max-height:288px;
-    transition:0.5s all;
+    transition: max-height 0.5s;
 }
 
 .playlist.playlist-expansible.expanded .right-column
