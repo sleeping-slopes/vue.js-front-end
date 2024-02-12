@@ -2,8 +2,8 @@
   <div class="column">
     <div class="row y-center">
       <span class="secondary-text font-size-big">Hear your own songs and the songs you’ve liked:</span>
-      <div class="row gap-20 y-center right">
-        <div class="row y-center gap-5">
+      <div class="row gap-20 right">
+        <div class="row gap-5 y-center">
           <span class="secondary-text font-size-medium">View</span>
           <button v-bind:class="{'toggled': this.currentViewStyle==1}" @click="this.currentViewStyle=1" class="button button-secondary bi bi-grid-fill"></button>
           <button v-bind:class="{'toggled': this.currentViewStyle==0}" @click="this.currentViewStyle=0" class="button button-secondary bi bi-list"></button>
@@ -12,13 +12,18 @@
           <input type="text" placeholder="Filter" autocomplete="off">
           <i class="fa fa-search"></i>
         </label>
-        <div class="select-wrapper">
-          <select v-model="selected" class="h4"> <!-- select h4 -->
-            <option>All</option>
-            <option>Created</option>
-            <option>Likes</option>
-          </select>
-        </div>
+        <contextMenuSelect style="min-width:120px;">
+          <template v-slot:header>
+            <button type = "button" class="button">
+              {{ this.contextMenuParams.options[this.contextMenuParams.selected] }} <span class="bi bi-chevron-down right"></span>
+            </button>
+          </template>
+          <template v-slot:options>
+            <li v-for="(option,index) in this.contextMenuParams.options">
+              <button class="button" v-on:click="this.contextMenuParams.selected=index">{{option}}</button>
+            </li>
+          </template>
+        </contextMenuSelect>
       </div>
     </div>
     <panel v-if="this.currentViewStyle==0">
@@ -32,21 +37,22 @@
 
 <script>
 
+import API from '@/axios/API';
+
 import panel from '@/components/containers/panel.vue';
 import songContainer from '@/components/containers/songContainer.vue';
-
-import API from '@/axios/API';
+import contextMenuSelect from '@/components/containers/contextMenuSelect.vue';
 
 export default
 {
   name: 'YourSongsView',
-  components: { panel, songContainer },
+  components: { panel, songContainer, contextMenuSelect },
   data()
   {
     return {
       playlist: undefined,
       currentViewStyle:1,
-      selected:'All',
+      contextMenuParams: {options:["All","Created","Likes"], selected:0}
     }
   },
   props:
@@ -55,11 +61,11 @@ export default
   },
   watch:
   {
-    'selected':
+    'contextMenuParams.selected':
     {
       handler: async function(value)
       {
-        switch (value)
+        switch (this.contextMenuParams.options[value])
         {
           case "All": this.playlist = await API.get("users/"+this.login+"/songs"); break;
           case "Created": this.playlist = await API.get("users/"+this.login+"/songs/created"); break;
