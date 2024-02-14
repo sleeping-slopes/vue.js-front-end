@@ -118,7 +118,7 @@
 import API from "@/axios/API";
 
 import modal from "@/components/containers/modal.vue";
-import contextMenu from "@/components/containers/contextMenu.vue";
+import contextMenu from "@/components/containers/contextMenu/contextMenu.vue";
 
 import { validURL } from "@/functions.js"
 

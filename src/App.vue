@@ -86,7 +86,7 @@
 
 import API from "@/axios/API";
 
-import contextMenuNav from "@/components/containers/contextMenuNav.vue"
+import contextMenuNav from "@/components/containers/contextMenu/contextMenuNav.vue"
 import player from "@/components/player.vue"
 
 import playlistModal from "@/components/modals/playlistModal.vue";

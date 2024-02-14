@@ -162,7 +162,7 @@ import panel from "@/components/containers/panel.vue"
 import songContainer from "@/components/containers/songContainer.vue"
 import glyphLink from "@/components/glyphLink.vue"
 import errorMessage from "@/components/containers/errorMessage.vue"
-import contextMenu from "@/components/containers/contextMenu.vue";
+import contextMenu from "@/components/containers/contextMenu/contextMenu.vue";
 
 import userContainer from "@/components/containers/userContainer.vue";
 

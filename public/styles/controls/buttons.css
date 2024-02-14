@@ -216,6 +216,7 @@
   justify-content: left;
 }
 
+.context-menu-select .context-menu-select-options .button.toggled,
 .context-menu-select .context-menu-select-options .button:hover { color:var(--accent-color); }
 
 /* ================================================== */

@@ -20,7 +20,7 @@
           </template>
           <template v-slot:options>
             <li v-for="(option,index) in this.contextMenuParams.options">
-              <button class="button" v-on:click="this.contextMenuParams.selected=index">{{option}}</button>
+              <button class="button" v-bind:class="{'toggled':this.contextMenuParams.selected==index}" v-on:click="this.contextMenuParams.selected=index">{{option}}</button>
             </li>
           </template>
         </contextMenuSelect>
@@ -37,7 +37,7 @@
 import API from '@/axios/API'
 
 import playlistContainer from '@/components/containers/playlistContainer.vue'
-import contextMenuSelect from '@/components/containers/contextMenuSelect.vue';
+import contextMenuSelect from '@/components/containers/contextMenu/contextMenuSelect.vue';
 
 export default
 {

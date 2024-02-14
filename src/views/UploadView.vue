@@ -117,7 +117,7 @@
 import API from '@/axios/API';
 
 import panel from '@/components/containers/panel.vue';
-import contextMenu from '@/components/containers/contextMenu.vue';
+import contextMenu from '@/components/containers/contextMenu/contextMenu.vue';
 
 export default
 {
