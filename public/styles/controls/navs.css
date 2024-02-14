@@ -26,6 +26,11 @@
   border-right:1px solid var(--soft-black);
 }
 
+.nav-header .nav-menu.nav-main-menu > li > a
+{
+  padding:0px 20px 0px 20px;
+}
+
 .nav-header .nav-menu > li > a
 {
   color: var(--light-gray);
@@ -33,9 +38,15 @@
   box-sizing:border-box;
   transition: background-color 0.2s, color 0.2s;
   white-space: nowrap;
-  padding:0px 20px 0px 20px;
+  padding:0px 15px 0px 15px;
   display:flex;
   align-items: center;
+  justify-content: center;
+}
+
+.nav-header .nav-menu > li > a.bi
+{
+  width:48px;
 }
 
 .nav-header .nav-menu > li > a:hover { color: var(--soft-white); }

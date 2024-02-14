@@ -22,15 +22,15 @@
         <ul class="nav-menu right" v-else>
           <li><router-link :to="{ name:'Upload'}">Upload</router-link></li>
           <li>
-            <contextMenuNav>
+            <contextMenuNav style="width:64px;">
               <template v-slot:header>
                 <button class="button">
-                  <span class="icon-text gap-10">
+                  <span class="icon-text gap-5">
                     <div>
                       <img class="user-image s36x36" v-if="$store.state.currentUser.profile_picture" :src="picturesrc"/>
                       <div class="user-image s36x36 bi bi-person-fill" v-else></div>
                     </div>
-                    <span class="bi bi-caret-down-fill" ></span>
+                    <span class="font-size-small bi bi-caret-down-fill" ></span>
                   </span>
                 </button>
               </template>

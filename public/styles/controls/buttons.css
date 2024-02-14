@@ -147,6 +147,7 @@
 .context-menu-nav .context-menu-nav-header .button
 {
   height:100%;
+  width:100%;
   background-color: transparent;
   color:var(--light-gray);
   transition: background-color 0.2s, color 0.2s;

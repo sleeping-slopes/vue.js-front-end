@@ -39,12 +39,11 @@ export default
 
 </script>
 
-<style>
+<style scoped>
 
 .context-menu-select
 {
     position:relative;
-    border-radius:8px;
 }
 
 .context-menu-select .context-menu-select-header
@@ -62,6 +61,9 @@ export default
     z-index:10;
     box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
     visibility:hidden;
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px;
+    overflow:hidden;
 }
 
 .context-menu-select.context-menu-select-active .context-menu-select-options { visibility:visible; }
