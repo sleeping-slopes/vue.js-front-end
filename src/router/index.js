@@ -184,6 +184,18 @@ const routes =
     meta: { authRequired:true }
   },
   {
+    name: "Notifications",
+    path: '/notifications',
+    component: () => import('@/views/NotificationsView.vue'),
+    meta: { authRequired:true }
+  },
+  {
+    name: "Messages",
+    path: '/messages',
+    component: () => import('@/views/MessagesView.vue'),
+    meta: { authRequired:true }
+  },
+  {
     name: "PageNotFound",
     path: "/:catchAll(.*)",
     component: () => import('@/views/PageNotFoundView.vue')

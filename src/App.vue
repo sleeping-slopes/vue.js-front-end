@@ -62,6 +62,12 @@
               </template>
             </contextMenuNav>
           </li>
+          <li>
+            <router-link :to="{ name: 'Notifications'}" class="bi bi-bell-fill"></router-link>
+          </li>
+          <li>
+            <router-link :to="{ name: 'Messages'}" class="bi bi-envelope-fill"></router-link>
+          </li>
         </ul>
       </nav>
     </header>
