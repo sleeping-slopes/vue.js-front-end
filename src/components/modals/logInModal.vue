@@ -22,10 +22,10 @@
           </span>
         </div>
         <div class="form-checkbox">
-          <button type="button" class="button button-checkbox" id="checkbox_rememberMe" v-bind:class="{'bi bi-check-square': !rememberMe, 'bi bi-check-square-fill toggled': rememberMe}"
-              v-on:click="this.rememberMe=!this.rememberMe">
+          <button type="button" class="button button-checkbox" id="checkbox_staySignedIn" v-bind:class="{'bi bi-check-square': !staySignedIn, 'bi bi-check-square-fill toggled': staySignedIn}"
+              v-on:click="this.staySignedIn=!this.staySignedIn">
           </button>
-          <label for="checkbox_rememberMe">Remember me</label>
+          <label for="checkbox_staySignedIn">Stay signed in</label>
         </div>
         <button type="submit" class="button button-primary hoverable">Log in</button>
       </form>
@@ -52,7 +52,7 @@ export default
     return {
       login: { data: null, error: null },
       password: {data: null, error: null },
-      rememberMe : false
+      staySignedIn: false
     }
   },
   created()
@@ -90,8 +90,6 @@ export default
       }
       else if (r.loginData)
       {
-        r.loginData.rememberMe=this.rememberMe;
-
         this.$store.dispatch('logIn',r.loginData);
 
         if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});

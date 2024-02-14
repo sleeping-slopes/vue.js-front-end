@@ -11,7 +11,7 @@ API.interceptors.request.use
 (
     config =>
     {
-        config.headers.authorization = store.state.authJWT;
+        config.headers.authorization = localStorage.getItem('authJWT');
         return config;
     },
     error =>

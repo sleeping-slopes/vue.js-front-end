@@ -202,6 +202,7 @@ router.beforeEach(async (to, from, next) =>
     const user = await API.get('me');
     if (user.error)
     {
+      if (from.meta?.authRequired) { to.name = from.name; from.name = "Root"; }
       const redirectLogIn = {name: from.name,query:{action:'login',to:to.name}};
       return next(redirectLogIn);
     }

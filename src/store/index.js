@@ -4,7 +4,6 @@ import API from '@/axios/API';
 export default createStore({
   state:
   {
-    authJWT: JSON.parse(localStorage.getItem('authJWT') || 'null'),
     currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') ||'{}'),
     currentSongIndex: JSON.parse(localStorage.getItem('currentSongIndex') ||'-1'),
     shuffle: JSON.parse(localStorage.getItem('shuffle') ||'false'),
@@ -119,25 +118,30 @@ export default createStore({
     },
     async setCurrentUserByToken(state)
     {
-      if (state.authJWT)
+      if (localStorage.getItem('authJWT'))
       {
         const r = await API.get('me');
-        state.currentUser = r;
+        if (r.error)
+        {
+          // localStorage.setItem('authJWT', null);
+          state.currentUser = null;
+        }
+        else state.currentUser = r;
       }
-      else state.currentUser = null;
+      else
+      {
+        // localStorage.setItem('authJWT', null);
+        state.currentUser = null;
+      }
     },
     logIn(state,loginData)
     {
-      state.authJWT=loginData.authJWT;
-      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
-
+      localStorage.setItem('authJWT', loginData.authJWT);
       state.currentUser = loginData.user;
     },
     logOut(state)
     {
-      state.authJWT=null;
-      localStorage.setItem('authJWT', JSON.stringify(state.authJWT));
-
+      localStorage.setItem('authJWT', null);
       state.currentUser=null;
       // state.songs={}; //memory leak
       // state.playlsts={}; //memory leak

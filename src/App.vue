@@ -20,7 +20,7 @@
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button></li>
         </ul>
         <ul class="nav-menu right" v-else>
-          <li><router-link to="/upload">Upload</router-link></li>
+          <li><router-link :to="{ name:'Upload'}">Upload</router-link></li>
           <li>
             <contextMenuNav>
               <template v-slot:header>
@@ -76,9 +76,9 @@
       <div style="background-color:var(--panel-background-color);width:100%;"></div>
     </footer>
 
-    <playlistModal  v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
-    <logInModal  v-if="this.$route.query.action=='login'"/>
-    <signUpModal  v-if="this.$route.query.action=='signup'"/>
+    <playlistModal v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
+    <logInModal v-if="this.$route.query.action=='login'"/>
+    <signUpModal v-if="this.$route.query.action=='signup'"/>
   </div>
 </template>
 
@@ -100,8 +100,16 @@ export default
   data()
   {
     return {
-      searchQuery:"",
+      searchQuery:""
     }
+  },
+  mounted()
+  {
+    window.addEventListener('storage', function authJWTChangedHandler(event) { if (event.key == 'authJWT') this.$store.dispatch('setCurrentUserByToken'); } );
+  },
+  beforeUnmount()
+  {
+    document.removeEventListener('storage', authJWTChangedHandler );
   },
   computed:
   {
