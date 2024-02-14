@@ -164,7 +164,7 @@
   color:var(--text-color-primary);
   padding: 6px 12px 6px 12px;
   justify-content: left;
-  font-size:16px; font-weight:400;
+  font-size:14px; font-weight:400;
 }
 
 .context-menu-nav .context-menu-nav-options .button:hover { background-color:var(--selected-item-background-color); }

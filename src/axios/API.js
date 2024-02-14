@@ -1,5 +1,4 @@
 import axios from "axios";
-import store from '@/store/index.js'
 
 const API = axios.create({
   baseURL: `http://192.168.100.7:5000/api/`,

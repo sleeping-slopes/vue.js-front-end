@@ -1,47 +1,3 @@
-/* ================================================== */
-
-h2, .h2
-{
-  margin:0;
-  font-size:30px;
-  font-weight:700;
-  /* background-color:red !important; */
-}
-
-h3, .h3
-{
-  margin:0;
-  font-size:20px;
-  font-weight:500;
-  /* background-color:green !important; */
-}
-
-h4, .h4
-{
-  margin:0;
-  font-size:16px;
-  font-weight:500;
-  /* background-color:blue !important; */
-}
-
-h5, .h5
-{
-  margin:0;
-  font-size:14px;
-  font-weight:400;
-  /* background-color:darkslateblue !important; */
-}
-
-h6, .h6
-{
-  margin:0;
-  font-size:12px;
-  font-weight:400;
-  /* background-color:plum !important; */
-}
-
-/* ================================================== */
-
 .font-size-large { font-size: 30px; font-weight:700; }
 .font-size-big { font-size: 18px; font-weight:500; }
 .font-size-medium { font-size: 16px; font-weight:500; }
@@ -132,32 +88,15 @@ h6, .h6
 
 /* ================================================== */
 
-.scroll
-{
-  overflow:auto;
-}
+.scroll { overflow:auto; }
 
-.scroll-hidden
-{
-  overflow:auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.scroll-hidden { overflow:auto; -ms-overflow-style: none; scrollbar-width: none; }
 
-.scroll-hidden::-webkit-scrollbar
-{
-  display: none;
-}
+.scroll-hidden::-webkit-scrollbar { display: none; }
 
 /* ================================================== */
 
-.top { margin-bottom:auto; }
-
-.right { margin-left:auto; }
-
-.bottom { margin-top:auto; }
-
-.left { margin-right:auto; }
+.top { margin-bottom:auto; } .right { margin-left:auto; } .bottom { margin-top:auto; } .left { margin-right:auto; }
 
 .x-center { display:flex; justify-content: center; }
 
