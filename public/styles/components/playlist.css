@@ -21,7 +21,6 @@
     border-bottom-left-radius: 10px;
     background-color: var(--panel-background-color);
     align-items: center;
-    justify-content: space-between;
 }
 
 .playlist.playlist-expansible .empty-column-panel

@@ -29,12 +29,12 @@
     <div class="player-slider">
       <span class="song-time font-size-medium"> {{ numberToTimeString(this.currentTime) }}</span>
       <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step=0.1 v-model="currentTime" @change="seek()">
-      <span class="song-time font-size-medium"> {{ numberToTimeString(this.$refs.audio.duration) }}</span>
+      <span class="song-time font-size-medium"> {{ numberToTimeString(this.$refs.audio.duration || this.$store.getters.getSong(this.currentSongID).duration) }}</span>
     </div>
     <div class="row gap-20">
       <div class="popup-wrapper">
         <div class="player-menu">
-          <button class="button button-default button-small" v-bind:class="{ 'bi bi-volume-up-fill': volume>=0.5,'bi bi-volume-down-fill': volume>0 && volume<0.5,'bi bi-volume-mute-fill': volume==0}"
+          <button class="button button-default button-small" v-bind:class="{ 'bi bi-volume-up-fill': volume>=0.5,'bi bi-volume-down-fill': volume>0 && volume<0.5,'bi bi-volume-mute-fill': volume==0,'toggled':this.showVolume }"
             v-on:click="this.showVolume=!this.showVolume">
           </button>
         </div>
