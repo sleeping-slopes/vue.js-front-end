@@ -4,10 +4,13 @@
 {
   --accent-color: cornflowerblue;
   --nav-color: #1d232f;
+
   --soft-white: #eeeeee;
-  --soft-black: #111111;
-  --light-gray: #808080;
+  --context-menu-selected: #e0e0e0;
+  --light-gray: #A0A0A0;
+  --gray: #808080;
   --dark-gray: #404040;
+  --soft-black: #111111;
 
   height:100%;
   width:100%;
@@ -151,7 +154,7 @@ a { text-decoration: none; }
 
 .banner-info.banner-info-primary { color:var(--soft-white); }
 
-.banner-info.banner-info-secondary { color:var(--light-gray); }
+.banner-info.banner-info-secondary { color:var(--gray); }
 
 /* ================================================== */
 

@@ -55,7 +55,6 @@ div:hover > .context-menu:not(.context-menu-active) { opacity:0.7; }
 
 div:hover > .context-menu:hover { opacity:1.0; }
 
-
 .context-menu .context-menu-options
 {
   display:none;

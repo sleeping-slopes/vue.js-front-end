@@ -12,7 +12,7 @@ input[type=range][orient=vertical]
 
 input.input-error, textarea.input-error { outline-color:red; }
 
-::placeholder { color: var(--light-gray); }
+::placeholder { color: var(--gray); }
 
 /* ================================================== */
 
@@ -69,7 +69,7 @@ input.input-error, textarea.input-error { outline-color:red; }
   display:flex;
   flex-direction: row-reverse;
   align-items: center;
-  border: 2px solid var(--light-gray);
+  border: 2px solid var(--gray);
   box-sizing: border-box;
   padding:3px;
   font-size:16px; font-weight:400;
@@ -81,7 +81,7 @@ input.input-error, textarea.input-error { outline-color:red; }
 {
   padding-left: 6px;
   padding-right: 6px;
-  color: var(--light-gray);
+  color: var(--gray);
   transition: color 0.2s;
 }
 
