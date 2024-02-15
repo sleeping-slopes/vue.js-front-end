@@ -242,7 +242,7 @@ export default
                     });
                     fd.append('songJSON',songJSON);
 
-                    const r = await API.post('me/songs', fd);
+                    const r = await API.post('me/songs/created', fd);
                     if (r.error)
                     {
                         if (r.error.message.artistsError)

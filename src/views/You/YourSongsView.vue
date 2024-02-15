@@ -67,9 +67,9 @@ export default
       {
         switch (this.contextMenuParams.options[value])
         {
-          case "All": this.playlist = await API.get("users/"+this.login+"/songs"); break;
-          case "Created": this.playlist = await API.get("users/"+this.login+"/songs/created"); break;
-          case "Likes": this.playlist = await API.get("users/"+this.login+"/songs/likes"); break;
+          case "All": this.playlist = undefined; this.playlist = (await API.get("users/"+this.login+"/songs")).songList; break;
+          case "Created": this.playlist = undefined; this.playlist = (await API.get("users/"+this.login+"/songs/created")).songList; break;
+          case "Likes": this.playlist = undefined; this.playlist = (await API.get("users/"+this.login+"/songs/likes")).songList; break;
         }
       },
       immediate: true

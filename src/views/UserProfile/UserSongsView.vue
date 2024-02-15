@@ -34,7 +34,7 @@ export default
   },
   async created()
   {
-    this.playlist = await API.get('users/'+this.login+'/songs/created');
+    this.playlist = (await API.get('users/'+this.login+'/songs/created')).songList;
   },
 }
 

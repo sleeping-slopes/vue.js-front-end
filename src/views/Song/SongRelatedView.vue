@@ -33,7 +33,7 @@ export default
   },
   async created()
   {
-    this.playlist = await API.get('/songs/'+this.id+"/related");
+    this.playlist = (await API.get('/songs/'+this.id+"/related")).songList;
   }
 }
 

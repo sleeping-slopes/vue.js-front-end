@@ -23,7 +23,7 @@ export default
     },
     async created()
     {
-        this.playlist = await API.get('tags/'+this.tag+"/popular");
+        this.playlist = (await API.get('tags/'+this.tag+"?popular")).songList;
     }
 }
 

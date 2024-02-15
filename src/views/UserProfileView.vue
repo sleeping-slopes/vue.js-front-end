@@ -117,7 +117,7 @@
             <panel v-if="this.userSongLikes?.songs?.length">
               <template v-slot:header>
                 <span class="icon-text">
-                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userSongLikes?.songs.length) }} like{{this.userSongLikes?.songs.length==1?'':'s'}}</span>
+                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userSongLikes.songs.length) }} like{{this.userSongLikes.songs.length==1?'':'s'}}</span>
                 </span>
               </template>
               <template v-slot:menu>
@@ -181,7 +181,7 @@ export default
   async created()
   {
     this.followers = await API.get('users/'+this.login+'/followers');
-    this.userSongLikes = await API.get('users/'+this.login+'/songs/likes');
+    this.userSongLikes = (await API.get('users/'+this.login+'/songs/likes')).songList;
   },
   methods:
   {

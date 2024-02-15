@@ -91,7 +91,7 @@ export default
     async created()
     {
       this.song = await API.get('songs/'+this.id);
-      this.relatedPlaylist = await API.get('songs/'+this.id+"/related");
+      this.relatedPlaylist = (await API.get('songs/'+this.id+"/related")).songList;
       this.playlists = await API.get('songs/'+this.id+'/playlists');
       this.users = await API.get('songs/'+this.id+'/likes');
     }

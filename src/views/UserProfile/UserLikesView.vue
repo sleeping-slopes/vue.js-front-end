@@ -50,7 +50,7 @@ export default
   },
   async created()
   {
-    this.userSongLikes = await API.get('users/'+this.login+'/songs/likes');
+    this.userSongLikes = (await API.get('users/'+this.login+'/songs/likes')).songList;
     this.userPlaylistLikes = await API.get('users/'+this.login+'/playlists/likes');
   },
 }

@@ -43,7 +43,7 @@ export default {
   async created()
   {
     this.playlists = await API.get('playlists');
-    this.playlist = await API.get('songs');
+    this.playlist = (await API.get('songs')).songList;
   }
 }
 </script>
