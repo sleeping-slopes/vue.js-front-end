@@ -14,9 +14,14 @@
               </div>
               <div class="form-field">
                 <label for="input_userPassword">Password</label>
-                <input id="input_userPassword" type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
-                  v-model="password.data"
-                />
+                <div class="row gap-5">
+                  <input id="input_userPassword" class="w-100" :type="this.showPassword?'text':'password'" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
+                    v-model="password.data"
+                  />
+                  <button type="button" class="button form-button" v-bind:class="{'bi bi-eye-slash-fill': !showPassword, 'bi bi-eye-fill': showPassword}"
+                    v-on:click="this.showPassword=!this.showPassword">
+                  </button>
+                </div>
                 <span class="icon-text notification-error" v-if=password.error>
                   <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
                 </span>
@@ -58,7 +63,8 @@ export default
     return {
       email:{ data: null,error: null },
       password:{ data: null, error: null },
-      login:{ data: null ,error: null }
+      login:{ data: null ,error: null },
+      showPassword: false
     }
   },
   created()
@@ -86,7 +92,7 @@ export default
       if (this.login.data)
       {
         this.login.data = this.login.data.trim().toLowerCase();
-        if (!(this.login.data.length>=6 || this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
+        if (!(this.login.data.length>=6 && this.login.data.length<=50)) this.login.error='Enter a login from 6 to 50 characters.';
         else if (!validLogin(this.login.data)) this.login.error='Invalid login.';
       }
       else this.login.error="Required field.";
@@ -95,7 +101,7 @@ export default
       this.password.error = null;
       if (this.password.data)
       {
-        if (!(this.password.data.length>=6 || this.password.data.length<=60)) this.password.error='Enter a password from 6 to 60 characters.';
+        if (!(this.password.data.length>=6 && this.password.data.length<=60)) this.password.error='Enter a password from 6 to 60 characters.';
       }
       else this.password.error="Required field.";
 

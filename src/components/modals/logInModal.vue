@@ -14,9 +14,14 @@
         </div>
         <div class="form-field">
           <label for="input_userPassword">Password</label>
-          <input id="input_userPassword" type="password" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
-            v-model="password.data"
-          />
+          <div class="row gap-5">
+            <input id="input_userPassword" class="w-100" :type="this.showPassword?'text':'password'" v-bind:class="{'input-error': password.error}" placeholder="Enter password"
+              v-model="password.data"
+            />
+            <button type="button" class="button form-button" v-bind:class="{'bi bi-eye-slash-fill': !showPassword, 'bi bi-eye-fill': showPassword}"
+              v-on:click="this.showPassword=!this.showPassword">
+            </button>
+          </div>
           <span class="icon-text notification-error" v-if=password.error>
             <span class="bi bi-exclamation-circle-fill"></span><span>{{ password.error }}</span>
           </span>
@@ -52,6 +57,7 @@ export default
     return {
       login: { data: null, error: null },
       password: {data: null, error: null },
+      showPassword: false,
       staySignedIn: false
     }
   },

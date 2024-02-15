@@ -28,7 +28,7 @@ input.input-error, textarea.input-error { outline-color:red; }
 
 .form-field > label { width:min-content; white-space: nowrap; }
 
-.form-field > input, .form-field > textarea
+.form-field input, .form-field textarea
 {
   outline: 2px solid var(--panel-border-color);
   border: none;
