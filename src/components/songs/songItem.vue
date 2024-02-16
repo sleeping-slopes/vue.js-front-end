@@ -17,7 +17,7 @@
     <div class="info-wrapper">
       <div class="secondary-text font-size-small">
         <template v-for="(artist,index) in this.song.artists">
-          <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+          <router-link :to="{ name: 'User', params: { login: artist.login }}" @click.stop class="alink" v-if="artist.login">{{artist.name}}</router-link>
           <span v-else>{{artist.name}}</span>
           <span v-if="index+1 < this.song.artists.length">, </span>
         </template>

@@ -8,7 +8,7 @@
     <div class="info-wrapper" v-if="this.song">
       <div class="secondary-text font-size-big">
         <template v-for="(artist,index) in this.song.artists">
-          <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+          <router-link :to="{ name: 'User', params: { login: artist.login }}" class="alink" v-if="artist.login">{{artist.name}}</router-link>
           <span v-else>{{artist.name}}</span>
           <span v-if="index+1 < this.song.artists.length">, </span>
         </template>
@@ -33,13 +33,10 @@ import API from "@/axios/API";
 export default
 {
   name: 'songHeader',
-  props:
-  {
-    id: { default: "noid" }
-  },
   data()
   {
     return {
+      id: this.$route.params.id,
       song: undefined,
       coversrc: API.defaults.baseURL+`songs/`+this.id+`/cover`,
       imageAvailable:true

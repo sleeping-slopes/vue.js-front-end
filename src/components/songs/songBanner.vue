@@ -8,7 +8,7 @@
                 <div class="info-wrapper gap-10">
                     <span class="banner-info banner-info-secondary font-size-big">
                         <template v-for="(artist,index) in this.song.artists">
-                            <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+                            <router-link :to="{ name: 'User', params: { login: artist.login }}" class="alink" v-if="artist.login">{{artist.name}}</router-link>
                             <span v-else>{{artist.name}}</span>
                             <span v-if="index+1 < this.song.artists.length">, </span>
                         </template>

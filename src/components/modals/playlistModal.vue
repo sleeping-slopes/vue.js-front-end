@@ -24,7 +24,7 @@
               <div class="primary-text font-size-big">
                 <span>by&nbsp;</span>
                 <template v-for="(artist,index) in this.playlist.artists">
-                  <router-link :to="{ name: 'User', params: { login: artist.login }}" class="artistlink" v-if="artist.login">{{artist.name}}</router-link>
+                  <router-link :to="{ name: 'User', params: { login: artist.login }}" class="alink" v-if="artist.login">{{artist.name}}</router-link>
                   <span v-else>{{artist.name}}</span>
                   <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
