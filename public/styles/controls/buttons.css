@@ -14,6 +14,12 @@
   font-size:14px; font-weight:400;
 }
 
+.button:disabled
+{
+  cursor:not-allowed;
+  background-color:var(--panel-border-color);
+}
+
 /* ================================================== */
 
 .button-primary
@@ -45,7 +51,7 @@
 
 .button-secondary.bi { font-size:20px; padding:3px; }
 
-.button-secondary:not(.toggled):hover { color: var(--text-color-primary); border-color: var(--text-color-primary); }
+.button-secondary:not(.toggled):not(:disabled):hover { color: var(--text-color-primary); border-color: var(--text-color-primary); }
 
 .button-secondary.toggled { color:var(--accent-color); border-color:var(--accent-color); }
 
