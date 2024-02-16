@@ -102,6 +102,27 @@ hr
 }
 
 a { text-decoration: none; }
+.project-info
+{
+  margin-top:10px;
+  padding-top:10px;
+  border-top: 1px solid var(--panel-border-color);
+  color:var(--text-color-primary);
+  font-size:12px; font-weight: 500;
+}
+
+.project-info p
+{
+  margin-top:0px;
+  padding-top:0px;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.project-info p span:not(.accent-text)
+{
+  font-weight:700;
+}
 
 /* ================================================== */
 

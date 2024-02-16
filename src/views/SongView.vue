@@ -49,6 +49,19 @@
             <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.users" :maxDisplay="13"></userContainer>
           </template>
         </panel>
+        <article class="project-info">
+          <p>
+            <span>About website</span><br>
+            Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
+          </p>
+          <p>
+            <span>Technologies used</span><br>
+            Frontend: HTML, CSS (PostCSS), Vue.js, Axios<br>
+            Backend: Express.js, MySQL, REST API, JSON Web Token
+          </p>
+          <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
+          <p><span class="accent-text">Language:&nbsp</span>English (US)</p>
+        </article>
       </div>
     </div>
   </template>
