@@ -2,7 +2,7 @@
 <errorMessage>
     <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
     <template v-slot:status>{{ "200" }}</template>
-    <template v-slot:message>{{ "WIP" }}</template>
+    <template v-slot:message>{{ "WIP: Feed View" }}</template>
 </errorMessage>
 <div class="content column">
     <div class="primary-text column">

@@ -4,7 +4,6 @@
         <template v-slot:status>{{ "200" }}</template>
         <template v-slot:message>{{ "WIP: Notifications View" }}</template>
     </errorMessage>
-    </template>
     <div class="content column">
         <article class="project-info row">
             <p>
@@ -21,17 +20,18 @@
             <p class="right"><span class="accent-text">Language:&nbsp</span>English (US)</p>
         </article>
     </div>
+</template>
 
-    <script>
+<script>
 
-    import errorMessage from "@/components/containers/errorMessage.vue";
+import errorMessage from "@/components/containers/errorMessage.vue";
 
-    export default
-    {
-        name: 'NotificationsView',
-        components: { errorMessage },
-    }
+export default
+{
+    name: 'NotificationsView',
+    components: { errorMessage },
+}
 
-    </script>
+</script>
 
 

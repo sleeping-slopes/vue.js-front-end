@@ -109,14 +109,6 @@ export default
       searchQuery:""
     }
   },
-  mounted()
-  {
-    window.addEventListener('storage', function authJWTChangedHandler(event) { if (event.key == 'authJWT') this.$store.dispatch('setCurrentUserByToken'); } );
-  },
-  beforeUnmount()
-  {
-    document.removeEventListener('storage', authJWTChangedHandler );
-  },
   computed:
   {
     picturesrc() { return API.defaults.baseURL+`users/`+this.$store.state.currentUser?.login+`/picture` },
@@ -129,18 +121,30 @@ export default
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }
   },
-  created()
-  {
-    this.$store.dispatch('setCurrentUserByToken');
-  },
   methods:
   {
+    authJWTChangedHandler(event)
+    {
+      if (event.key == 'authJWT') this.$store.dispatch('setCurrentUserByToken');
+    },
     search()
     {
       if (!this.searchQuery.trim()) return;
       if (this.$route.matched.some(route => route.name == "Search")) return this.$router.push({name: this.$route.name, query: { q: this.searchQuery.trim() } });
       return this.$router.push({ name: 'Search', query: { q: this.searchQuery.trim() } });
     }
+  },
+  created()
+  {
+    this.$store.dispatch('setCurrentUserByToken');
+  },
+  mounted()
+  {
+    window.addEventListener('storage', this.authJWTChangedHandler);
+  },
+  beforeUnmount()
+  {
+    document.removeEventListener('storage', this.authJWTChangedHandler);
   }
 }
 

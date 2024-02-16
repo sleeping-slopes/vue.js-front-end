@@ -101,7 +101,10 @@ hr
   margin:0px;
 }
 
-a { text-decoration: none; }
+a { color:inherit; text-decoration: none; }
+
+.alink:hover { text-decoration: underline; }
+
 .project-info
 {
   margin-top:10px;
@@ -303,10 +306,6 @@ ul.container > li { position:relative; }
 /* ================================================== */
 
 .hoverable { cursor:pointer; }
-
-.artistlink { color:inherit; }
-
-.artistlink:hover { text-decoration: underline; }
 
 .primary-text { color:var(--text-color-primary); /* display:inline; height:min-content; */ }
 
