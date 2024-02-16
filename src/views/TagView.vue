@@ -35,7 +35,7 @@ export default
   components: { errorMessage },
   props:
   {
-    tag: { default: "notag" }
+    tag: { default: "route_param_tag" }
   }
 }
 

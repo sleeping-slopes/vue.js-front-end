@@ -8,7 +8,7 @@
         <li><router-link :to="{ name: 'YourHistory'}">History</router-link></li>
       </ul>
     </nav>
-    <router-view :login="this.login" v-if="this.login !== null"></router-view>
+    <router-view></router-view>
     <article class="project-info row">
       <p>
         <span>About website</span><br>
@@ -28,21 +28,8 @@
 
 <script>
 
-import API from '@/axios/API';
-
 export default
 {
-  name: 'YouView',
-  async created()
-  {
-    const user = await API.get('me');
-    this.login = user.login;
-  },
-  data()
-  {
-    return{
-      login: null
-    }
-  }
+  name: 'YouView'
 }
 </script>

@@ -20,14 +20,10 @@ export default
 {
   name: 'YourFollowingView',
   components: { userContainer },
-  props:
-  {
-    login: { default: "nologin" }
-  },
   data()
   {
     return {
-      user: undefined,
+      login: this.$store.state.currentUser.login,
       following: undefined,
     }
   },

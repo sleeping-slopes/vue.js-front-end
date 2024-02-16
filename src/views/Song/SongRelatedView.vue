@@ -1,6 +1,6 @@
 <template>
   <div class="content column" style="padding-top:0px;">
-    <songHeader :id="this.id"></songHeader>
+    <songHeader></songHeader>
     <panel>
       <template v-slot:content>
         <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
@@ -37,7 +37,7 @@ export default
   components: { songHeader, panel, songContainer },
   props:
   {
-    id: { default: "noid" }
+    id: { default: "route_param_id" }
   },
   data()
   {

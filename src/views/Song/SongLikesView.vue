@@ -1,6 +1,6 @@
 <template>
   <div class="content column" style="padding-top:0px;">
-    <songHeader :id="this.id"></songHeader>
+    <songHeader></songHeader>
     <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="users"></userContainer>
     <article class="project-info row">
       <p>
@@ -32,7 +32,7 @@ export default
   components: { songHeader, userContainer },
   props:
   {
-    id: { default: "noid" }
+    id: { default: "route_param_id" }
   },
   data()
   {

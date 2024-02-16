@@ -1,6 +1,6 @@
 <template>
   <div class="content column" style="padding-top:0px;">
-    <songHeader :id="this.id"></songHeader>
+    <songHeader></songHeader>
     <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
     <article class="project-info row">
       <p>
@@ -32,7 +32,7 @@ export default
   components: { songHeader, playlistContainer },
   props:
   {
-    id: { default: "noid" }
+    id: { default: "route_param_id" }
   },
   data()
   {

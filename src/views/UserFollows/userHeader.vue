@@ -29,13 +29,10 @@ import API from "@/axios/API";
 export default
 {
   name: 'userHeader',
-  props:
-  {
-    login: { default: "nologin" }
-  },
   data()
   {
     return {
+      login: this.$route.params.login,
       user: undefined,
       picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       imageAvailable:true

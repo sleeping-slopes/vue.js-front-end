@@ -46,14 +46,11 @@ export default
   data()
   {
     return {
+      login: this.$store.state.currentUser.login,
       playlists: undefined,
       currentViewStyle:1,
       contextMenuParams: {options:["All","Created","Likes"], selected:0}
     }
-  },
-  props:
-  {
-    login: { default: "nologin" }
   },
   watch:
   {

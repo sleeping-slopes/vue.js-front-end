@@ -1,6 +1,6 @@
 <template>
 <div class="content column" style="padding-top:0px;">
-  <userHeader :login = "this.login"><template v-slot:caption>Followers</template></userHeader>
+  <userHeader><template v-slot:caption>Followers</template></userHeader>
   <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="followers"></userContainer>
   <article class="project-info row">
     <p>
@@ -32,7 +32,7 @@ export default
   components: { userHeader, userContainer },
   props:
   {
-    login: { default: "nologin" }
+    login: { default: "route_param_login" }
   },
   data()
   {

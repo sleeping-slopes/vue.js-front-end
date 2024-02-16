@@ -13,7 +13,7 @@ export default
     components: { songContainer },
     props:
     {
-        tag: { default: "notag" }
+        tag: { default: "route_param_tag" }
     },
     data()
     {

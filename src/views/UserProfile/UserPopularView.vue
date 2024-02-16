@@ -35,7 +35,7 @@ export default
   components: { panel, carousel, songContainer, playlistContainer },
   props:
   {
-    login: { default: "nologin" }
+    login: { default: "route_param_login" }
   },
   data()
   {

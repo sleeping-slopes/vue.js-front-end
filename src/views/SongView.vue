@@ -86,7 +86,7 @@ export default
     components: { panel, errorMessage, songContainer, playlistContainer, userContainer },
     props:
     {
-        id: { default: "noid" }
+        id: { default: "route_param_id" }
     },
     data()
     {

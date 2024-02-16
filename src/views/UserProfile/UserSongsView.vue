@@ -20,7 +20,7 @@ export default
   components: { panel, songContainer },
   props:
   {
-    login: { default: "nologin" }
+    login: { default: "route_param_login" }
   },
   data()
   {
