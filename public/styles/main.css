@@ -110,7 +110,7 @@ a { color:inherit; text-decoration: none; }
   margin-top:10px;
   padding-top:10px;
   border-top: 1px solid var(--panel-border-color);
-  color:var(--text-color-primary);
+  color:var(--text-color-secondary);
   font-size:12px; font-weight: 500;
 }
 
