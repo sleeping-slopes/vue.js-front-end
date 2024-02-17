@@ -1,7 +1,7 @@
 <template>
     <div class="content column gap-20">
         <div class="column" style="padding-top:30px;">
-            <span class="primary-text font-size-large">Settings</span>
+            <h1 class="primary-text font-size-large" style="margin-top:30px">Settings</h1>
             <nav class="nav-tab">
                 <ul>
                     <li><router-link :to="{ name: 'Settings'}">Account</router-link></li>

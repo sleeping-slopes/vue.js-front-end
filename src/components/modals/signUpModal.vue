@@ -1,7 +1,7 @@
 <template>
   <modal :width="'400px'">
     <template v-slot:content>
-          <span class="primary-text font-size-large left right" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</span>
+          <h1 class="primary-text font-size-large left right" style="padding:57px 0px 57px 0px">Sign up to 3V3R51NC3</h1>
           <form @submit.prevent="postUser" class="column gap-10 y-center">
               <div class="form-field">
                 <label for="input_userEmail">Email</label>

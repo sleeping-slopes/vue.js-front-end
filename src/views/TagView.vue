@@ -1,6 +1,6 @@
 <template>
 <div class="content column" style="padding-top:30px">
-  <span class="primary-text font-size-large">Songs tagged #{{ this.tag }}</span>
+  <h1 class="primary-text font-size-large" style="margin-top:30px;">Songs tagged #{{ this.tag }}</h1>
   <nav class="nav-tab">
     <ul>
       <li><router-link :to="{ name: 'TagPopular'}">Popular</router-link></li>

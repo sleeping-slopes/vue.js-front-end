@@ -5,6 +5,7 @@
         <template v-slot:message>{{ "WIP: Notifications View" }}</template>
     </errorMessage>
     <div class="content column">
+        <h1 class="primary-text font-size-large" style="margin-top:30px">Notifications</h1>
         <article class="project-info row">
             <p>
                 <span>About website</span><br>

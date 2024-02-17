@@ -11,6 +11,7 @@
         <span class="font-size-medium">Hello world! font-size-medium</span>
         <span class="font-size-small">Hello world! font-size-small</span>
         <span class="font-size-tiny">Hello world! font-size-tiny</span>
+        <h1 class="primary-text font-size-large" style="margin-top:30px">Feed</h1>
     </div>
     <article class="project-info row">
         <p>

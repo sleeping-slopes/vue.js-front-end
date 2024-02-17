@@ -1,7 +1,7 @@
 <template>
     <div class="content column gap-0" style="padding-top:0px;">
       <div class="sticky-top" style="padding-bottom:20px;">
-        <span class="primary-text font-size-large">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</span>
+        <h1 class="primary-text font-size-large">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h1>
       </div>
       <div class="row">
         <div style="width:360px;">

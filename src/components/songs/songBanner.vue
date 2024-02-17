@@ -13,7 +13,7 @@
                             <span v-if="index+1 < this.song.artists.length">, </span>
                         </template>
                     </span>
-                    <span class="banner-info banner-info-primary font-size-large">{{ this.song.name }}</span>
+                    <h1 class="banner-info banner-info-primary font-size-large">{{ this.song.name }}</h1>
                     <span class="banner-info banner-info-secondary font-size-small">
                     {{ abbreviateNumber(53252) }} play{{ 53252==1?'':'s' }}
                     <span class="bi bi-dot"></span>

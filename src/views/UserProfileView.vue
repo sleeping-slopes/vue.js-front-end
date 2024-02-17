@@ -33,7 +33,7 @@
         </contextMenu>
       </div>
       <div class="info-wrapper gap-10">
-        <span class="banner-info banner-info-primary font-size-large" v-if="this.user.username">{{ this.user.username }}</span>
+        <h1 class="banner-info banner-info-primary font-size-large" v-if="this.user.username">{{ this.user.username }}</h1>
         <span class="banner-info banner-info-secondary font-size-big" v-if="this.user.status">{{ this.user.status }}</span>
         <span class="banner-info banner-info-secondary font-size-big" v-if="this.user.city || this.user.country">{{ [this.user.city,this.user.country].filter((el)=>{return el}).join(", ") }}</span>
       </div>

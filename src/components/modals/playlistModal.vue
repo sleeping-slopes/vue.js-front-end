@@ -20,7 +20,7 @@
               </div>
             </div>
             <div class="info-wrapper">
-              <span class="primary-text font-size-large">{{this.playlist.name}}</span>
+              <h1 class="primary-text font-size-large">{{this.playlist.name}}</h1>
               <div class="primary-text font-size-big">
                 <span>by&nbsp;</span>
                 <template v-for="(artist,index) in this.playlist.artists">
