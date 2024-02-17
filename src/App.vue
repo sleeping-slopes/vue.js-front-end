@@ -1,10 +1,10 @@
 <template>
-  <div class="app" v-if="$store.state.currentUser !== undefined"  v-bind:class="{'dark-theme': this.darkTheme}">
+  <div class="app" v-if="this.$store.getters.getCurrentUser !== undefined"  v-bind:class="{'dark-theme': this.darkTheme}">
 
     <header>
       <nav class="nav-header">
         <ul class="nav-menu nav-main-menu">
-          <li class="logo"><router-link :to="{ name: 'Discover'}"><img src="@/assets/images/logo.png"></router-link></li>
+          <li class="logo"><router-link :to="{ name: 'Discover'}"><img src="/assets/logo.png"></router-link></li>
           <li><router-link :to="{ name: 'Discover'}">Discover</router-link></li>
           <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
           <li><router-link :to="{ name: 'You'}">Library</router-link></li>
