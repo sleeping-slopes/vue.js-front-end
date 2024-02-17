@@ -1,11 +1,12 @@
 <template>
-    <div class="content column gap-0" style="padding-top:0px;">
-      <div class="sticky-top" style="padding-bottom:20px;">
+    <div class="content column">
+      <div class="sticky-top" style="padding-bottom:10px;">
         <h1 class="primary-text font-size-large">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h1>
       </div>
       <div class="row">
         <div style="width:360px;">
-            <nav class="nav-side sticky">
+            <div style="position:sticky; top:89.5px;">
+            <nav class="nav-side">
                 <ul>
                     <li>
                         <router-link :to="{ name: 'SearchSongs', query:this.$route.query }">
@@ -37,6 +38,7 @@
                 <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
                 <p><span class="accent-text">Language:&nbsp</span>English (US)</p>
             </article>
+            </div>
         </div>
         <div class="column" style="width:810px">
             <errorMessage v-if="!this.$route.query.q?.trim()">
@@ -60,13 +62,3 @@ export default
 }
 
 </script>
-
-<style scoped>
-
-.sticky
-{
-    position:sticky;
-    top:74.5px;
-}
-
-</style>

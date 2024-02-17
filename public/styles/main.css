@@ -189,6 +189,19 @@ a { color:inherit; text-decoration: none; }
   box-sizing: border-box;
 }
 
+.sticky-top
+{
+  background-color: var(--main-background-color);
+  position:sticky;
+  position: -webkit-sticky;
+  z-index:1;
+  top:0px;
+  padding-top:35px;
+  width:100%;
+}
+
+.content:has(.sticky-top) { padding-top:0px; }
+
 /* ================================================== */
 
 .container { position:relative; }
@@ -332,19 +345,6 @@ ul.container > li { position:relative; }
   background-color: var(--panel-border-color);
   border-radius: 5px;
   max-width:100%;
-}
-
-/* ================================================== */
-
-.sticky-top
-{
-  background-color: var(--main-background-color);
-  position:sticky;
-  position: -webkit-sticky;
-  z-index:1;
-  top:0px;
-  padding-top:20px;
-  width:100%;
 }
 
 /* ================================================== */

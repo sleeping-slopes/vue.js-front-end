@@ -1,6 +1,6 @@
 <template>
-<div class="content column" style="padding-top:0px;">
-  <userHeader><template v-slot:caption>Followers</template></userHeader>
+<div class="content column">
+  <userHeader><template v-slot:caption>Followers of</template></userHeader>
   <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="followers"></userContainer>
   <article class="project-info row">
     <p>

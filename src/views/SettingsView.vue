@@ -1,6 +1,6 @@
 <template>
     <div class="content column gap-20">
-        <div class="column" style="padding-top:30px;">
+        <div class="column">
             <h1 class="primary-text font-size-large" style="margin-top:30px">Settings</h1>
             <nav class="nav-tab">
                 <ul>
@@ -49,7 +49,7 @@
                 <span class="primary-text font-size-medium">Password</span>
                 <button class="button button-secondary" v-on:click="resetPassword">Send password-reset link to email</button>
             </div>
-            <button class="button button-default toggled" style="margin-top:60px;" v-on:click="deleteAccount">Delete account</button>
+            <button class="button button-default toggled" style="margin-top:90px;" v-on:click="deleteAccount">Delete account</button>
         </div>
         <article class="project-info row">
             <p>
@@ -59,8 +59,8 @@
             </p>
             <p >
                 <span>Technologies used</span><br>
-                Frontend: HTML, CSS (PostCSS), Vue.js, Axios<br>
-                Backend: Express.js, MySQL, REST API, JSON Web Token
+                Frontend: HTML, CSS (PostCSS), Vue.js, Axios;<br>
+                Backend: Express.js, MySQL, REST API, Multer, JSON Web Token.
             </p>
             <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
             <p class="right"><span class="accent-text">Language:&nbsp</span>English (US)</p>
@@ -80,9 +80,9 @@ export default
     data()
     {
         return {
-            email:{ data: this.$store.state.currentUser.email, error: null },
-            theme: this.$store.state.currentUser.theme,
-            customTheme: this.$store.state.currentUser.custom_theme
+            email:{ data: this.$store.getters.getCurrentUser.email, error: null },
+            theme: this.$store.getters.getCurrentUser.theme,
+            customTheme: this.$store.getters.getCurrentUser.custom_theme
         }
     },
     methods:

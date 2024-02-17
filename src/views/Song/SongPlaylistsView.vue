@@ -1,5 +1,5 @@
 <template>
-  <div class="content column" style="padding-top:0px;">
+  <div class="content column">
     <songHeader></songHeader>
     <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
     <article class="project-info row">

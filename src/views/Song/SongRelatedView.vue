@@ -1,5 +1,5 @@
 <template>
-  <div class="content column" style="padding-top:0px;">
+  <div class="content column">
     <songHeader></songHeader>
     <panel>
       <template v-slot:content>
