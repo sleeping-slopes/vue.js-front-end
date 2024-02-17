@@ -12,15 +12,15 @@
           <input type="text" placeholder="Filter" autocomplete="off">
           <i class="fa fa-search"></i>
         </label>
-        <button class="button button-secondary" @click="this.$store.dispatch('clearSongHistory');playlist.songs=[]">Clear all history</button>
+        <button class="button button-secondary" @click="this.$store.dispatch('clearSongHistory');historyPlaylist.songs=[]">Clear all history</button>
       </div>
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
+        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="historyPlaylist"/>
       </template>
     </panel>
-    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="playlist" v-else/>
+    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="historyPlaylist" v-else/>
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default
   data()
   {
     return {
-      playlist:
+      historyPlaylist:
       {
         id:'[]RENAME',
         songs:JSON.parse(JSON.stringify(this.$store.getters.getSongHistory)),

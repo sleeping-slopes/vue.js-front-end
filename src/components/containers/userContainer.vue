@@ -27,7 +27,7 @@ import errorMessage from "@/components/containers/errorMessage.vue"
 
 export default
 {
-  name: 'playlistContainer',
+  name: 'userContainer',
   components:
   {
       userCard, userItem, userIcon,

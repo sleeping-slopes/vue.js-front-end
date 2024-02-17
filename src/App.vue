@@ -15,7 +15,7 @@
             <i class="fa fa-search"></i>
           </label>
         </form>
-        <ul class="nav-menu right gap-10" v-if="!$store.state.currentUser">
+        <ul class="nav-menu right gap-10" v-if="!this.$store.getters.getCurrentUser">
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'signup'}})" class="button button-secondary dark-theme">Sign up</button></li>
           <li><button v-on:click="$router.push({path: $route.fullPath,query:{action:'login'}})" class="button button-primary hoverable">Log in</button></li>
         </ul>
@@ -27,7 +27,7 @@
                 <button class="button">
                   <span class="icon-text gap-5">
                     <div>
-                      <img class="user-image s36x36" v-if="$store.state.currentUser.profile_picture" :src="picturesrc"/>
+                      <img class="user-image s36x36" v-if="this.$store.getters.getCurrentUser.profile_picture" :src="picturesrc"/>
                       <div class="user-image s36x36 bi bi-person-fill" v-else></div>
                     </div>
                     <span class="font-size-small bi bi-caret-down-fill" ></span>
@@ -36,7 +36,7 @@
               </template>
               <template v-slot:options>
                 <li>
-                  <router-link :to="{ name: 'User', params: { login: $store.state.currentUser.login }}" class="button">
+                  <router-link :to="{ name: 'User', params: { login: this.$store.getters.getCurrentUser.login }}" class="button">
                     <span class="icon-text">
                       <span class="accent-text bi bi-person-fill"></span>
                       <span>Profile</span>
@@ -111,12 +111,12 @@ export default
   },
   computed:
   {
-    picturesrc() { return API.defaults.baseURL+`users/`+this.$store.state.currentUser?.login+`/picture` },
+    picturesrc() { return API.defaults.baseURL+`users/`+this.$store.getters.getCurrentUser?.login+`/picture` },
     darkTheme()
     {
-      if (this.$store.state.currentUser && this.$store.state.currentUser.custom_theme)
+      if (this.$store.getters.getCurrentUser && this.$store.getters.getCurrentUser.custom_theme)
       {
-        return this.$store.state.currentUser.theme;
+        return this.$store.getters.getCurrentUser.theme;
       }
       return window.matchMedia("(prefers-color-scheme: dark)").matches;
     }

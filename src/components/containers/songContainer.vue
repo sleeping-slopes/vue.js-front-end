@@ -37,7 +37,7 @@ import songDropdown from '@/components/containers/songDropdown.vue';
 
 export default
 {
-  name: 'playlist',
+  name: 'songContainer',
   components:
   {
     songItem, songExtended,songCard, songBanner,

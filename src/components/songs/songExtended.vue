@@ -26,7 +26,7 @@
             <router-link :to="{ name: 'Song', params: { id: this.id }}" @click.stop class="primary-text hoverable font-size-medium">{{this.song.name}}</router-link>
             <div class="row bottom">
                 <span class="icon-text secondary-text font-size-tiny">
-                    <span class="bi bi-play-fill"></span>
+                    <span class="bi bi-headphones"></span>
                     <span>{{abbreviateNumber(53252)}}</span>
                 </span>
                 <span class="icon-text secondary-text font-size-tiny">
