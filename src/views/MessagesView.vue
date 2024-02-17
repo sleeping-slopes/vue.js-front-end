@@ -1,11 +1,11 @@
 <template>
-    <errorMessage>
-        <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-        <template v-slot:status>{{ "200" }}</template>
-        <template v-slot:message>{{ "WIP: Messages View" }}</template>
-    </errorMessage>
     <div class="content column">
         <h1 class="primary-text font-size-large" style="margin-top:30px">Messages</h1>
+        <errorMessage>
+            <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+            <template v-slot:status>{{ "200" }}</template>
+            <template v-slot:message>{{ "WIP: Messages View" }}</template>
+        </errorMessage>
         <article class="project-info row">
             <p>
                 <span>About website</span><br>
