@@ -69,7 +69,7 @@ export default
   },
   created()
   {
-    if (!this.$store.state.currentUser) return;
+    if (!this.$store.getters.getCurrentUser) return;
     if (this.$route.query.to && this.$router.hasRoute(this.$route.query.to)) this.$router.push({name:this.$route.query.to});
     else this.$router.replace({query: null});
   },

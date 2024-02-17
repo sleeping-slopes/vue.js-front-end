@@ -30,6 +30,7 @@ export default createStore({
       if (state.currentPlaylist.songs)
       return state.currentPlaylist.songs[state.currentSongIndex].id;
     },
+    getCurrentUser(state) { return state.currentUser },
     getPlaylist: (state) => (id) => { return state.playlists[id] || {"error":{"status":404,"message":"Vuex: Song not found"}}; },
     getSong: (state) => (id) => { return state.songs[id] || {"error":{"status":404,"message":"Vuex: Playlist not found"}}; },
     getUser: (state) => (login) => { return state.users[login] || {"error":{"status":404,"message":"Vuex: User not found"}}; },

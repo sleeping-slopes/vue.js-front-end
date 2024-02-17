@@ -23,7 +23,7 @@ export default
   data()
   {
     return {
-      login: this.$store.state.currentUser.login,
+      login: this.$store.getters.getCurrentUser.login,
       following: undefined,
     }
   },

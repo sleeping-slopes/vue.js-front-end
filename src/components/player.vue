@@ -22,7 +22,7 @@
         v-bind:class="{'toggled':this.$store.state.shuffle}"
         v-on:click = "this.$store.dispatch('shuffle')">
       </button>
-      <button class="button button-default button-small" v-bind:class="{ 'bi bi-repeat': $store.state.repeatMode==0, 'bi bi-repeat toggled': $store.state.repeatMode==1,'bi bi-repeat-1 toggled': $store.state.repeatMode==2}"
+      <button class="button button-default button-small" v-bind:class="{ 'bi bi-repeat': this.$store.state.repeatMode==0, 'bi bi-repeat toggled': this.$store.state.repeatMode==1,'bi bi-repeat-1 toggled': this.$store.state.repeatMode==2}"
           v-on:click="this.$store.dispatch('toggleRepeatMode')">
       </button>
     </div>
