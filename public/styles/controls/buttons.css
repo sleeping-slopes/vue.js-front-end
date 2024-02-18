@@ -150,6 +150,15 @@
 
 /* ================================================== */
 
+.button-size-compact
+{
+  /* background-color:red; */
+  font-size:12px; font-weight:500;
+  padding:5px 5px 5px 5px;
+}
+
+/* ================================================== */
+
 .context-menu-nav .context-menu-nav-header .button
 {
   height:100%;

@@ -21,6 +21,7 @@
 
 import userCard from '@/components/users/userCard.vue'
 import userItem from '@/components/users/userItem.vue'
+import userItemSmall from '@/components/users/userItemSmall.vue'
 import userIcon from '@/components/users/userIcon.vue'
 
 import errorMessage from "@/components/containers/errorMessage.vue"
@@ -30,7 +31,7 @@ export default
   name: 'userContainer',
   components:
   {
-      userCard, userItem, userIcon,
+      userCard, userItem, userItemSmall, userIcon,
       errorMessage
   },
   props:
