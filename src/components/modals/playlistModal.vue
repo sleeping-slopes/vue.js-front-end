@@ -44,8 +44,8 @@
               </div>
             </div>
           </div>
-          <hr/>
-          <songContainer :type="'ul-list scroll-hidden'" :playlist="this.playlist.songList"/>
+          <hr>
+          <songContainer :type="'ul-list scroll-hidden'" :playlist="this.playlist.songList"></songContainer>
         </template>
       </template>
       <div class="loader-wrapper" v-else>

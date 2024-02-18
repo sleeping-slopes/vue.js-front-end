@@ -78,13 +78,13 @@
 
     <footer>
       <div style="background-color:var(--panel-background-color);width:100%;"></div>
-      <player/>
+      <player></player>
       <div style="background-color:var(--panel-background-color);width:100%;"></div>
     </footer>
 
-    <playlistModal v-if="this.$route.query.playlist" :id="this.$route.query.playlist"/>
-    <logInModal v-if="this.$route.query.action=='login'"/>
-    <signUpModal v-if="this.$route.query.action=='signup'"/>
+    <playlistModal v-if="this.$route.query.playlist" :id="this.$route.query.playlist"></playlistModal>
+    <logInModal v-if="this.$route.query.action=='login'"></logInModal>
+    <signUpModal v-if="this.$route.query.action=='signup'"></signUpModal>
   </div>
 </template>
 

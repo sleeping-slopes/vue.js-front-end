@@ -6,7 +6,7 @@
     <template v-slot:message>{{ this.user.error.message }}</template>
   </errorMessage>
   <template v-else>
-    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user"/>
+    <editProfileModal v-if="this.$route.query.action=='edit' && this.user.me" :user="this.user"></editProfileModal>
     <div class="banner">
       <img class="banner-bg" :src="bannersrc" v-if="this.user.banner"/>
       <div class="banner-bg gradient-bg-reverse" v-else></div>
@@ -109,7 +109,7 @@
                 </span>
                 <ul class="column gap-5" v-if="this.user.links.length>0">
                   <li v-for="(link) in this.user.links">
-                    <glyphLink class="font-size-small" :url="link.url" :description="link.description"/>
+                    <glyphLink class="font-size-small" :url="link.url" :description="link.description"></glyphLink>
                   </li>
                 </ul>
               </template>
@@ -124,7 +124,7 @@
                 <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary">View all</router-link>
               </template>
               <template v-slot:content>
-                <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"/>
+                <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"></songContainer>
               </template>
             </panel>
             <panel v-if="this.followers?.length">

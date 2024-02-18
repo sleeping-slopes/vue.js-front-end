@@ -2,8 +2,8 @@
 <div class="playlist card">
   <div class="cover-wrapper s128x128 shimmer"></div>
   <div class="info-wrapper">
-    <skeleton class="font-size-small shimmer"/>
-    <skeleton class="font-size-medium shimmer"/>
+    <skeleton class="font-size-small shimmer"></skeleton>
+    <skeleton class="font-size-medium shimmer"></skeleton>
   </div>
 </div>
 </template>

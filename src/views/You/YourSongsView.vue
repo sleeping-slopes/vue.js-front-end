@@ -28,10 +28,10 @@
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist" :key="playlist?.id"/>
+        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist" :key="playlist?.id"></songContainer>
       </template>
     </panel>
-    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="playlist" :key="playlist?.id" v-else/>
+    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="playlist" :key="playlist?.id" v-else></songContainer>
   </div>
 </template>
 

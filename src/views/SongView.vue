@@ -22,7 +22,7 @@
             <router-link :to="{ name: 'SongRelated', params: { id: this.id }}" class="button button-secondary">View all</router-link>
           </template>
           <template v-slot:content>
-            <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"/>
+            <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="this.relatedPlaylist"></songContainer>
           </template>
         </panel>
       </div>
@@ -33,7 +33,7 @@
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary">View all</router-link>
           </template>
           <template v-slot:content>
-            <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"/>
+            <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"></playlistContainer>
           </template>
         </panel>
         <panel v-if="this.users?.length">

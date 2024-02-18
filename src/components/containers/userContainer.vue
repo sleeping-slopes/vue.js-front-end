@@ -7,8 +7,8 @@
       <ul class="container" :class="type" v-else>
         <li v-for="(user) in getShortList">
           <component :is = "this.dynamicComponent" :login="user.login"
-            @loaded="this.counter++"
-          />
+            @loaded="this.counter++">
+          </component>
         </li>
       </ul>
   </template>

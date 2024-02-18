@@ -3,7 +3,7 @@
     <songHeader></songHeader>
     <panel>
       <template v-slot:content>
-        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
+        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
       </template>
     </panel>
     <article class="project-info row">

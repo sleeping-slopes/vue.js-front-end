@@ -34,7 +34,7 @@
         </div>
         <button type="submit" class="button button-primary hoverable">Log in</button>
       </form>
-      <hr/>
+      <hr>
       <span class="primary-text font-size-small left right">Don't have an account?
         <button class="button button-link" v-on:click="this.$router.replace({query:{action:'signup',to:this.$route.query.to}});">Sign up</button>
       </span>

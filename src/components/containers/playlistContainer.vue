@@ -6,9 +6,7 @@
     </errorMessage>
       <ul class="container" :class="type" v-else>
         <li v-for="(playlist) in getShortList ">
-            <component :is = "this.dynamicComponent" :id="playlist.id"
-              @loaded="this.counter++"
-            />
+          <component :is = "this.dynamicComponent" :id="playlist.id" @loaded="this.counter++"></component>
         </li>
       </ul>
   </template>

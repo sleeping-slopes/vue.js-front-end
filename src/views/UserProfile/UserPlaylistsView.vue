@@ -1,7 +1,5 @@
 <template>
-
 <playlistContainer :type="'column'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
-
 </template>
 
 <script>

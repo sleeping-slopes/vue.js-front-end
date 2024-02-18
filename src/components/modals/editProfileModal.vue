@@ -18,7 +18,7 @@
                         <template v-slot:options>
                             <li>
                                 <button type = "button" class="button" v-on:click="this.$refs.profilePictureInput.click()">Replace image</button>
-                                <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*" />
+                                <input type="file" ref="profilePictureInput" style="display:none" v-on:change="uploadProfilePicture" accept="image/*"/>
                             </li>
                             <li>
                                 <button type = "button" class="button" v-on:click="deleteProfilePicture">Delete image</button>
@@ -49,7 +49,8 @@
                         <div class="form-field">
                             <label for="input_userCity">City</label>
                             <input id="input_userCity" type="text" v-bind:class="{'input-error': city.error}"
-                                v-model="city.data"/>
+                                v-model="city.data"
+                            />
                             <span class="icon-text notification-error" v-if=city.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ city.error }}</span>
                             </span>
@@ -57,7 +58,8 @@
                         <div class="form-field">
                             <label for="input_userCountry">Country</label>
                             <input id="input_userCountry" type="text" v-bind:class="{'input-error': country.error}"
-                                v-model="country.data"/>
+                                v-model="country.data"
+                            />
                             <span class="icon-text notification-error" v-if=country.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ country.error }}</span>
                             </span>
@@ -80,14 +82,16 @@
                     <div class="row gap-10" v-for="(link,linkIndex) in this.links">
                         <div class="form-field">
                             <input type="text" v-bind:class="{'input-error': link.url.error}" placeholder="Web or email address"
-                                v-model="link.url.data"/>
+                                v-model="link.url.data"
+                            />
                             <span class="icon-text notification-error" v-if=link.url.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.url.error }}</span>
                             </span>
                         </div>
                         <div class="form-field">
                             <input type="text" v-bind:class="{'input-error': link.description.error}" placeholder="Short title"
-                                v-model="link.description.data"/>
+                                v-model="link.description.data"
+                            />
                             <span class="icon-text notification-error" v-if=link.description.error>
                                 <span class="bi bi-exclamation-circle-fill"></span><span>{{ link.description.error }}</span>
                             </span>

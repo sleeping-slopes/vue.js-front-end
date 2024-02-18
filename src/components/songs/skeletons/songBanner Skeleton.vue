@@ -5,9 +5,9 @@
             <div class="row">
                 <button class="button button-default button-round button-large toggled bi bi-play-circle-fill"></button>
                 <div class="info-wrapper gap-10">
-                    <skeleton class="banner-info font-size-big shimmer" :minwidth="150" :maxwidth="300"/>
-                    <skeleton class="banner-info font-size-large shimmer" :minwidth="350" :maxwidth="500"/>
-                    <skeleton class="banner-info font-size-small shimmer" :exactwidth="140"/>
+                    <skeleton class="banner-info font-size-big shimmer" :minwidth="150" :maxwidth="300"></skeleton>
+                    <skeleton class="banner-info font-size-large shimmer" :minwidth="350" :maxwidth="500"></skeleton>
+                    <skeleton class="banner-info font-size-small shimmer" :exactwidth="140"></skeleton>
                 </div>
             </div>
             <div class="row bottom gap-5 y-center">

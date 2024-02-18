@@ -1,6 +1,6 @@
 <template>
     <span class="secondary-text font-size-medium" v-if="this.playlists?.length">Found {{ abbreviateNumber(this.playlists?.length) }} playlist{{this.playlists?.length==1?'':'s'}}</span>
-    <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
+    <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
 </template>
 
 <script>

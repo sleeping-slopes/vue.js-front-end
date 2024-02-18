@@ -15,7 +15,7 @@
                     </span>
                     <h1 class="banner-info banner-info-primary font-size-large">{{ this.song.name }}</h1>
                     <span class="banner-info banner-info-secondary font-size-small">
-                    {{ abbreviateNumber(53252) }} play{{ 53252==1?'':'s' }}
+                    {{ abbreviateNumber(88) }} play{{ 88==1?'':'s' }}
                     <span class="bi bi-dot"></span>
                     {{ abbreviateNumber(this.song.likes_count) }} like{{ this.song.likes_count==1?'':'s' }}
                     </span>

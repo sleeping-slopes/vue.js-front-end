@@ -39,10 +39,12 @@
           </button>
         </div>
         <panel class="popup volume-popup" v-bind:class="this.showVolume?'visible':'hidden'">
-          <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical"/> </template>
+          <template v-slot:content><input v-model="volume" type="range" min=0 max=1 step=0.01 orient="vertical"/></template>
         </panel>
       </div>
-      <div style="width:320px;position:relative;"><songItem ref="song" :id = "this.currentSongID" :key = "this.currentSongID"/></div>
+      <div style="width:320px;position:relative;">
+        <songItem ref="song" :id = "this.currentSongID" :key = "this.currentSongID"></songItem>
+      </div>
       <div class="popup-wrapper">
         <div class="player-menu">
           <button class="button button-default button-small bi bi-suit-heart-fill"

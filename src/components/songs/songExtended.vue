@@ -27,7 +27,7 @@
             <div class="row bottom">
                 <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-headphones"></span>
-                    <span>{{abbreviateNumber(53252)}}</span>
+                    <span>{{abbreviateNumber(88)}}</span>
                 </span>
                 <span class="icon-text secondary-text font-size-tiny">
                     <span class="bi bi-suit-heart-fill"></span>

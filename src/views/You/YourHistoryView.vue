@@ -17,10 +17,10 @@
     </div>
     <panel v-if="this.currentViewStyle==0">
       <template v-slot:content>
-        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="historyPlaylist"/>
+        <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="historyPlaylist"></songContainer>
       </template>
     </panel>
-    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="historyPlaylist" v-else/>
+    <songContainer :type="'ul-grid'" :dynamicComponent="'songCard'" :playlist="historyPlaylist" v-else></songContainer>
   </div>
 </template>
 

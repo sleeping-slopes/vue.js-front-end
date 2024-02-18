@@ -3,7 +3,7 @@
   <div class="column gap-0">
     <div class="left-column">
       <div class="cover-wrapper s160x160 shimmer"></div>
-      <skeleton class="button button-secondary shimmer" :exactwidth="90"/>
+      <skeleton class="button button-secondary shimmer" :exactwidth="90"></skeleton>
     </div>
     <div class="empty-column-panel">
       <div class="empty-column-main"></div>
@@ -13,8 +13,8 @@
     <div class="row gap-10 y-center w-100">
       <button class="button button-default button-round button-medium toggled bi bi-play-circle-fill"></button>
       <div class="info-wrapper">
-        <skeleton class="font-size-medium shimmer"/>
-        <skeleton class="font-size-big shimmer"/>
+        <skeleton class="font-size-medium shimmer"></skeleton>
+        <skeleton class="font-size-big shimmer"></skeleton>
       </div>
     </div>
     <hr>

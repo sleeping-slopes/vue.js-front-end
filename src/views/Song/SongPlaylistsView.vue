@@ -1,7 +1,7 @@
 <template>
   <div class="content column">
     <songHeader></songHeader>
-    <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"/>
+    <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistExpansible'"></playlistContainer>
     <article class="project-info row">
       <p>
         <span>About website</span><br>

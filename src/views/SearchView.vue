@@ -45,7 +45,7 @@
                 <template v-slot:errorIcon><span class="bi bi-search"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>
             </errorMessage>
-            <router-view :key="this.$route.query.q?.trim()" v-else/>
+            <router-view :key="this.$route.query.q?.trim()" v-else></router-view>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@
     <span class="secondary-text font-size-medium" v-if="this.playlist?.songs">Found {{ abbreviateNumber(this.playlist?.songs.length) }} song{{this.playlist?.songs.length==1?'':'s'}}</span>
     <panel>
         <template v-slot:content>
-            <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"/>
+            <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
         </template>
     </panel>
 </template>

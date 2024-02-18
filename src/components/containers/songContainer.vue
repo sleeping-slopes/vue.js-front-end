@@ -5,18 +5,16 @@
       <template v-slot:message>{{ this.playlist.error.message }}</template>
     </errorMessage>
     <ul class="container" :class="type" ref="list" v-else>
-      <songDropdown v-if="this.contextMenuSong"
-        :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
-        @hideSongDropdown="this.contextMenuSong=undefined"
-      />
+      <songDropdown v-if="this.contextMenuSong" :song="this.contextMenuSong" :x="this.contextMenuX" :y="this.contextMenuY"
+        @hideSongDropdown="this.contextMenuSong=undefined">
+      </songDropdown>
       <li v-for="(song,index) in getShortList">
-        <component :is = "this.dynamicComponent"
+        <component :is = "this.dynamicComponent" :id = "song.id" :pos = "song.pos" :key = "song.id"
           :class="{ 'active': JSON.stringify(this.contextMenuSong) == JSON.stringify({id:song.id,pos:song.pos}) }"
-          :id = "song.id" :pos = "song.pos" :key = "song.id"
           @setCurrentSong="setCurrentPlaylistAndSong(index)"
           @openSongDropdown="openSongDropdown"
-          @loaded="this.counter++;"
-        />
+          @loaded="this.counter++;">
+        </component>
       </li>
     </ul>
   </template>
