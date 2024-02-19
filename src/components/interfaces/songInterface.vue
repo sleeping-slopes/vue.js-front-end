@@ -51,6 +51,12 @@ export default
     {
       this.$emit('openSongDropdown',event,{id:this.id,pos:this.pos});
     },
+    copyLinkToClipboard()
+    {
+      const route = this.$router.resolve({ name:"Song", params: {id:this.id} });
+      const absoluteURL = new URL(route.href, window.location.origin).href;
+      navigator.clipboard.writeText(absoluteURL);
+    },
     async like()
     {
       if (!this.song.liked)

@@ -34,7 +34,7 @@
                 <button class="button button-banner icon-text" style="width:100px;" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
                     <span class="bi bi-music-note-list"></span><span>Play next</span>
                 </button>
-                <button class="button button-banner icon-text" style="width:100px;">
+                <button class="button button-banner icon-text" style="width:100px;" v-on:click="this.copyLinkToClipboard()">
                     <span class="bi bi-link"></span><span>Copy link</span>
                 </button>
                 <button class="button button-banner icon-text" style="width:105px;">
