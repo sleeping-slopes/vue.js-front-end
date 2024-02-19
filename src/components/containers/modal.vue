@@ -68,4 +68,5 @@ export default
   cursor:pointer;
   font-size:48px;
 }
-  </style>
+
+</style>

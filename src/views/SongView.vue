@@ -11,7 +11,7 @@
       :dynamicComponent="'songBanner'">
     </songContainer>
     <div class="content row">
-      <div class="column" style="width:810px">
+      <div class="column" style="width:810px;">
         <panel>
           <template v-slot:header>
               <span class="icon-text">

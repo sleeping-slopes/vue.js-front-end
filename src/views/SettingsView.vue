@@ -1,5 +1,5 @@
 <template>
-    <div class="content column gap-20">
+    <div class="content column">
         <div class="column">
             <h1 class="primary-text font-size-large" style="margin-top:30px">Settings</h1>
             <nav class="nav-tab">

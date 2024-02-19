@@ -52,8 +52,12 @@ export default
 .panel-caption
 {
   color: var(--text-color-primary);
-  font-size:18px;
-  font-weight:500;
+  font-size:18px; font-weight:500;
+  width: min-content;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .panel-menu
@@ -63,6 +67,7 @@ export default
   align-items: center;
   gap:20px;
 }
+
 .panel-content
 {
   display:flex;

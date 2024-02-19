@@ -27,9 +27,9 @@
       </button>
     </div>
     <div class="player-slider">
-      <span class="song-time font-size-medium"> {{ numberToTimeString(this.currentTime) }}</span>
+      <span class="song-time font-size-small"> {{ numberToTimeString(this.currentTime) }}</span>
       <input class="song-slider" ref="slider" type="range" min=0 :max="this.$refs.audio.duration" step=0.1 v-model="currentTime" @change="seek()">
-      <span class="song-time font-size-medium"> {{ numberToTimeString(this.$refs.audio.duration || this.$store.getters.getSong(this.currentSongID).duration) }}</span>
+      <span class="song-time font-size-small"> {{ numberToTimeString(this.$refs.audio.duration || this.$store.getters.getSong(this.currentSongID).duration) }}</span>
     </div>
     <div class="row gap-20">
       <div class="popup-wrapper">
@@ -68,9 +68,9 @@
             </button>
           </template>
           <template v-slot:content>
-            <songContainer :type="'ul-list scroll-hidden'"
-              :playlist="this.$store.state.currentPlaylist" :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()"
-            />
+            <songContainer :type="'ul-list scroll-hidden'" :playlist="this.$store.state.currentPlaylist"
+              :key="[this.$store.state.currentPlaylist.id,this.$store.state.currentPlaylist.edited].toString()">
+            </songContainer>
           </template>
         </panel>
       </div>

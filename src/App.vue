@@ -9,7 +9,7 @@
           <li><router-link :to="{ name: 'Feed'}">Feed</router-link></li>
           <li><router-link :to="{ name: 'You'}">Library</router-link></li>
         </ul>
-        <form @submit.prevent="this.search()">
+        <form @submit.prevent="this.search()" style="width:400px;">
           <label class="label-search dark-theme">
             <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
             <i class="fa fa-search"></i>

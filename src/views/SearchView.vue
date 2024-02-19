@@ -5,7 +5,7 @@
       </div>
       <div class="row">
         <div style="width:360px;">
-            <div style="position:sticky; top:89.5px;">
+            <div class="column" style="position:sticky; top:89.5px;">
             <nav class="nav-side">
                 <ul>
                     <li>
@@ -40,7 +40,7 @@
             </article>
             </div>
         </div>
-        <div class="column" style="width:810px">
+        <div class="column" style="width:810px;">
             <errorMessage v-if="!this.$route.query.q?.trim()">
                 <template v-slot:errorIcon><span class="bi bi-search"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>

@@ -13,7 +13,7 @@
                 </div>
             </form>
         </div>
-        <form class="column" style="width:810px" @submit.prevent="submitLoadSongs" v-else>
+        <form class="column" style="width:810px;" @submit.prevent="submitLoadSongs" v-else>
             <panel v-for="(song,songIndex) in this.songs">
                 <template v-slot:header>Upload song</template>
                 <template v-slot:menu>

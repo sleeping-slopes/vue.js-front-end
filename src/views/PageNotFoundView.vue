@@ -1,10 +1,10 @@
 <template>
-    <errorMessage>
-        <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
-        <template v-slot:status>{{ "404" }}</template>
-        <template v-slot:message>{{ "Page not found" }}</template>
-    </errorMessage>
     <div class="content column">
+        <errorMessage>
+            <template v-slot:errorIcon><span class="bi bi-emoji-frown"></span></template>
+            <template v-slot:status>{{ "404" }}</template>
+            <template v-slot:message>{{ "Page not found" }}</template>
+        </errorMessage>
         <article class="project-info row">
             <p>
                 <span>About website</span><br>
