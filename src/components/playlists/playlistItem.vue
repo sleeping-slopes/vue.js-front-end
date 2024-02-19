@@ -1,5 +1,5 @@
 <template>
-<Transition name="fade">
+<Transition name="skeletonFade">
     <div class="playlist item" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="cover-wrapper s52x52" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
             <img class="cover" :src="coversrc" v-if="this.playlist.cover"/>

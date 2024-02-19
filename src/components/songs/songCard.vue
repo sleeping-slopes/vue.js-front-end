@@ -1,6 +1,6 @@
 
 <template>
-<Transition name="fade">
+<Transition name="skeletonFade">
     <div class="song card" v-bind:class="{'current': current}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="cover-wrapper s180x180">
             <img class="cover" :src="coversrc" v-if="this.song.cover"/>

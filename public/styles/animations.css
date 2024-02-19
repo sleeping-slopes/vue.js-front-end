@@ -32,14 +32,14 @@
 
 /* ================================================== */
 
-.fade-enter-active,
-.fade-leave-active
+.skeletonFade-enter-active,
+.skeletonFade-leave-active
 {
   transition: opacity 0.5s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to
+.skeletonFade-enter-from,
+.skeletonFade-leave-to
 {
   position:absolute !important;
   opacity: 0;
@@ -47,6 +47,31 @@
   right:0px;
   bottom:0px;
   left:0px;
+}
+
+/* ================================================== */
+
+.panelFade-move
+{
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.panelFade-enter-active
+{
+  transition: opacity 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+  transition-delay:0.7s;
+}
+
+.panelFade-leave-active
+{
+  position: absolute;
+  transition: opacity 0.0s;
+}
+
+.panelFade-enter-from,
+.panelFade-leave-to
+{
+  opacity: 0;
 }
 
 /* ================================================== */

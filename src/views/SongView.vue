@@ -26,8 +26,8 @@
           </template>
         </panel>
       </div>
-      <div class="column" style="width:360px">
-        <panel>
+      <TransitionGroup name="panelFade" tag="div" class="column" style="width:360px;">
+        <panel v-if="this.playlists?.length" :key="'playlistsPanel'">
           <template v-slot:header>In playlists</template>
           <template v-slot:menu>
             <router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}" class="button button-secondary">View all</router-link>
@@ -36,7 +36,7 @@
             <playlistContainer :type="'ul-list'" :playlists="this.playlists" :dynamicComponent="'playlistItem'" :maxDisplay="3"></playlistContainer>
           </template>
         </panel>
-        <panel v-if="this.users?.length">
+        <panel v-if="this.users?.length" :key="'userLikedPanel'">
           <template v-slot:header>
             <span class="icon-text">
               <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.users.length) }} like{{this.users.length==1?'':'s'}}</span>
@@ -49,7 +49,7 @@
             <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.users" :maxDisplay="13"></userContainer>
           </template>
         </panel>
-        <article class="project-info">
+        <article class="project-info" :key="'projectInfo'">
           <p>
             <span>About website</span><br>
             Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
@@ -62,7 +62,7 @@
           <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
           <p><span class="accent-text">Language:&nbsp</span>English (US)</p>
         </article>
-      </div>
+      </TransitionGroup>
     </div>
   </template>
   </template>

@@ -1,5 +1,5 @@
 <template>
-<Transition name="fade">
+<Transition name="skeletonFade">
     <div class="playlist playlist-expansible" v-bind:class="{'expanded': this.expanded}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="column gap-0">
             <div class="left-column">

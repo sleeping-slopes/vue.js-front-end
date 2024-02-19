@@ -59,102 +59,102 @@
       </div>
     </div>
     <div class="content column">
-        <nav class="nav-tab">
-          <ul>
-            <li><router-link :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link></li>
-            <li><router-link :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link></li>
-            <li><router-link :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link></li>
-            <li><router-link :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link></li>
-            <li><router-link :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link></li>
-          </ul>
-          <div class="row right">
-            <button class="button button-secondary icon-text" v-if="this.user.me" v-on:click="$router.push({path: $route.fullPath,query:{action:'edit'}})">
-              <span class="bi bi-pencil-fill"></span><span>Edit</span>
-            </button>
-            <button class="button button-secondary icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
-              <span class="bi bi-person-plus"></span><span>Follow</span>
-            </button>
-            <button class="button button-secondary icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
-              <span class="bi bi-person-plus"></span><span>Follow back</span>
-            </button>
-            <button class="button button-secondary toggled icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
-              <span class="bi bi bi-person-check-fill"></span><span>Following</span>
-            </button>
-            <button class="button button-primary" v-if="!this.user.me">Message</button>
-          </div>
-        </nav>
-        <div class="row">
-          <div class="column" style="width:810px;">
-            <router-view></router-view>
-          </div>
-          <div class="column" style="width:360px;">
-            <panel>
-              <template v-slot:content>
-                <div class="row gap-5">
-                  <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="user-stat">
-                    <span class="font-size-medium">Followers</span>
-                    <span class="font-size-big">{{abbreviateNumber(this.user.followers_count,0)}}</span>
-                  </router-link>
-                  <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="user-stat">
-                    <span class="font-size-medium">Following</span>
-                    <span class="font-size-big">{{abbreviateNumber(this.user.following_count,0)}}</span>
-                  </router-link>
-                  <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="user-stat">
-                    <span class="font-size-medium">Songs</span>
-                    <span class="font-size-big">{{abbreviateNumber(this.user.songs_count,0)}}</span>
-                  </router-link>
-                </div>
-                <span class="primary-text font-size-small" v-if="this.user.bio">
-                  {{ this.user.bio }}
-                </span>
-                <ul class="column gap-5" v-if="this.user.links.length>0">
-                  <li v-for="(link) in this.user.links">
-                    <glyphLink class="font-size-small" :url="link.url" :description="link.description"></glyphLink>
-                  </li>
-                </ul>
-              </template>
-            </panel>
-            <panel v-if="this.userSongLikes?.songs?.length">
-              <template v-slot:header>
-                <span class="icon-text">
-                  <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userSongLikes.songs.length) }} like{{this.userSongLikes.songs.length==1?'':'s'}}</span>
-                </span>
-              </template>
-              <template v-slot:menu>
-                <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary">View all</router-link>
-              </template>
-              <template v-slot:content>
-                <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"></songContainer>
-              </template>
-            </panel>
-            <panel v-if="this.followers?.length">
-              <template v-slot:header>
-                <span class="icon-text">
-                  <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
-                </span>
-              </template>
-              <template v-slot:menu>
-                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary">View all</router-link>
-              </template>
-              <template v-slot:content>
-                <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.followers" :maxDisplay="13"></userContainer>
-              </template>
-            </panel>
-            <article class="project-info">
-              <p>
-                <span>About website</span><br>
-                Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
-              </p>
-              <p>
-                <span>Technologies used</span><br>
-                Frontend: HTML, CSS (PostCSS), Vue.js, Axios;<br>
-                Backend: Express.js, MySQL, REST API, Multer, JSON Web Token.
-              </p>
-              <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
-              <p><span class="accent-text">Language:&nbsp</span>English (US)</p>
-            </article>
-          </div>
+      <nav class="nav-tab">
+        <ul>
+          <li><router-link :to="{ name: 'UserActivity', params: { login: this.login }}">All</router-link></li>
+          <li><router-link :to="{ name: 'UserPopular', params: { login: this.login }}">Popular</router-link></li>
+          <li><router-link :to="{ name: 'UserSongs', params: { login: this.login }}">Songs</router-link></li>
+          <li><router-link :to="{ name: 'UserPlaylists', params: { login: this.login }}">Playlists</router-link></li>
+          <li><router-link :to="{ name: 'UserLikes', params: { login: this.login }}">Likes</router-link></li>
+        </ul>
+        <div class="row right">
+          <button class="button button-secondary icon-text" v-if="this.user.me" v-on:click="$router.push({path: $route.fullPath,query:{action:'edit'}})">
+            <span class="bi bi-pencil-fill"></span><span>Edit</span>
+          </button>
+          <button class="button button-secondary icon-text" v-if="!this.user.youFollow && !this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+            <span class="bi bi-person-plus"></span><span>Follow</span>
+          </button>
+          <button class="button button-secondary icon-text" v-if="!this.user.youFollow && this.user.followsYou && !this.user.me" v-on:click.stop="this.follow()">
+            <span class="bi bi-person-plus"></span><span>Follow back</span>
+          </button>
+          <button class="button button-secondary toggled icon-text" v-if="this.user.youFollow && !this.user.me" v-on:click.stop="this.unfollow()">
+            <span class="bi bi bi-person-check-fill"></span><span>Following</span>
+          </button>
+          <button class="button button-primary" v-if="!this.user.me">Message</button>
         </div>
+      </nav>
+      <div class="row">
+        <div class="column" style="width:810px;">
+          <router-view></router-view>
+        </div>
+        <TransitionGroup name="panelFade" tag="div" class="column" style="width:360px;">
+          <panel :key="'userStatsPanel'">
+            <template v-slot:content>
+              <div class="row gap-5">
+                <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="user-stat">
+                  <span class="font-size-medium">Followers</span>
+                  <span class="font-size-big">{{abbreviateNumber(this.user.followers_count,0)}}</span>
+                </router-link>
+                <router-link :to="{ name: 'UserFollowing', params: { login: this.login }}" class="user-stat">
+                  <span class="font-size-medium">Following</span>
+                  <span class="font-size-big">{{abbreviateNumber(this.user.following_count,0)}}</span>
+                </router-link>
+                <router-link :to="{ name: 'UserSongs', params: { login: this.login }}" class="user-stat">
+                  <span class="font-size-medium">Songs</span>
+                  <span class="font-size-big">{{abbreviateNumber(this.user.songs_count,0)}}</span>
+                </router-link>
+              </div>
+              <span class="primary-text font-size-small" v-if="this.user.bio">
+                {{ this.user.bio }}
+              </span>
+              <ul class="column gap-5" v-if="this.user.links.length>0">
+                <li v-for="(link) in this.user.links">
+                  <glyphLink class="font-size-small" :url="link.url" :description="link.description"></glyphLink>
+                </li>
+              </ul>
+            </template>
+          </panel>
+          <panel v-if="this.userSongLikes?.songs?.length" :key="'songLikesPanel'">
+            <template v-slot:header>
+              <span class="icon-text">
+                <span class="bi bi-suit-heart-fill"></span><span>{{ abbreviateNumber(this.userSongLikes.songs.length) }} like{{this.userSongLikes.songs.length==1?'':'s'}}</span>
+              </span>
+            </template>
+            <template v-slot:menu>
+              <router-link :to="{ name: 'UserLikes', params: { login: this.login }}" class="button button-secondary">View all</router-link>
+            </template>
+            <template v-slot:content>
+              <songContainer :type="'ul-list'" :playlist="this.userSongLikes" :maxDisplay="3"></songContainer>
+            </template>
+          </panel>
+          <panel v-if="this.followers?.length" :key="'followersPanel'">
+            <template v-slot:header>
+              <span class="icon-text">
+                <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
+              </span>
+            </template>
+            <template v-slot:menu>
+              <router-link :to="{ name: 'UserFollowers', params: { login: this.login }}" class="button button-secondary">View all</router-link>
+            </template>
+            <template v-slot:content>
+              <userContainer :type="'row gap-0'" :dynamicComponent="'userIcon'" :users="this.followers" :maxDisplay="13"></userContainer>
+            </template>
+          </panel>
+          <article class="project-info"  :key="'projectInfo'">
+            <p>
+              <span>About website</span><br>
+              Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
+            </p>
+            <p>
+              <span>Technologies used</span><br>
+              Frontend: HTML, CSS (PostCSS), Vue.js, Axios;<br>
+              Backend: Express.js, MySQL, REST API, Multer, JSON Web Token.
+            </p>
+            <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
+            <p><span class="accent-text">Language:&nbsp</span>English (US)</p>
+          </article>
+        </TransitionGroup>
+      </div>
     </div>
   </template>
 </template>
@@ -193,8 +193,8 @@ export default
   },
   async created()
   {
-    this.followers = await API.get('users/'+this.login+'/followers');
     this.userSongLikes = (await API.get('users/'+this.login+'/songs/likes')).songList;
+    this.followers = await API.get('users/'+this.login+'/followers');
   },
   methods:
   {
