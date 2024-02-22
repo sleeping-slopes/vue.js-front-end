@@ -1,13 +1,3 @@
-input[type=range][orient=vertical]
-{
-  appearance: slider-vertical;
-  width: 8px;
-  height: 175px;
-  padding: 0 5px;
-}
-
-/* ================================================== */
-
 .notification-error { font-size:14px; font-weight:400; color:red; }
 
 input.input-error, textarea.input-error { outline-color:red; }
