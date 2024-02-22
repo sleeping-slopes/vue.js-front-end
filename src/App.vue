@@ -11,7 +11,7 @@
         </ul>
         <form @submit.prevent="this.search()" style="width:400px;">
           <label class="label-search dark-theme">
-            <input type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
+            <input id="search" type="text" v-model="this.searchQuery" placeholder="Search music" autocomplete="off">
             <i class="fa fa-search"></i>
           </label>
         </form>
@@ -144,7 +144,7 @@ export default
   },
   beforeUnmount()
   {
-    document.removeEventListener('storage', this.authJWTChangedHandler);
+    window.removeEventListener('storage', this.authJWTChangedHandler);
   }
 }
 

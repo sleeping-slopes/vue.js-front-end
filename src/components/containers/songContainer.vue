@@ -65,10 +65,10 @@ export default
     },
     openSongDropdown(event,song)
     {
-      const target = event.target;
-      let el = target;
-      let x = target.getBoundingClientRect().width;
-      let y = target.getBoundingClientRect().height;
+      let el = event.target;
+      const bcr = event.target.getBoundingClientRect();
+      let x = bcr.width;
+      let y = bcr.height;
       while (el.offsetParent &&  el!=this.$refs.list)
       {
         x+=el.offsetLeft;

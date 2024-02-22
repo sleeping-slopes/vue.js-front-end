@@ -2,16 +2,6 @@
 
 #app
 {
-  --accent-color: cornflowerblue;
-  --nav-color: #1d232f;
-
-  --soft-white: #eeeeee;
-  --context-menu-selected: #e0e0e0;
-  --light-gray: #A0A0A0;
-  --gray: #808080;
-  --dark-gray: #404040;
-  --soft-black: #111111;
-
   height:100%;
   width:100%;
   position:relative;
@@ -20,6 +10,18 @@
   align-items:center;
   box-sizing: border-box;
   overflow:hidden;
+}
+
+#app
+{
+  --accent-color: rgb(100, 149, 237);
+  --nav-color: #1d232f;
+  --soft-white: #eeeeee;
+  --context-menu-selected: #e0e0e0;
+  --light-gray: #A0A0A0;
+  --gray: #808080;
+  --dark-gray: #404040;
+  --soft-black: #111111;
 }
 
 #app
@@ -33,7 +35,7 @@
   --text-color-secondary: #808080;
 }
 
-#app .dark-theme, #app .dark-theme *
+.dark-theme, .dark-theme *
 {
   --main-background-color: #12151d;
   --panel-background-color: #1d232f;
