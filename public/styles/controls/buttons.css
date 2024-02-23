@@ -159,7 +159,7 @@
 
 /* ================================================== */
 
-.context-menu-nav .context-menu-nav-header .button
+.context-menu-nav .context-header .button
 {
   height:100%;
   width:100%;
@@ -169,11 +169,11 @@
   font-size:16px; font-weight:400;
 }
 
-.context-menu-nav:hover .context-menu-nav-header .button { color:var(--soft-white); }
+.context-menu-nav:hover .context-header .button { color:var(--soft-white); }
 
-.context-menu-nav.context-menu-nav-active .context-menu-nav-header .button { background-color:var(--soft-black); color:var(--soft-white); }
+.context-menu-nav.context-active .context-header .button { background-color:var(--soft-black); color:var(--soft-white); }
 
-.context-menu-nav .context-menu-nav-options .button
+.context-menu-nav .context-options .button
 {
   width:100%;
   background-color: transparent;
@@ -183,7 +183,7 @@
   font-size:14px; font-weight:400;
 }
 
-.context-menu-nav .context-menu-nav-options .button:hover { background-color:var(--selected-item-background-color); }
+.context-menu-nav .context-options .button:hover { background-color:var(--selected-item-background-color); }
 
 /* ================================================== */
 
@@ -196,17 +196,17 @@
   font-size:14px; font-weight:400;
 }
 
-.context-menu .context-menu-header .button
+.context-menu .context-header .button
 {
   border:1px solid var(--gray);
   border-radius:3px;
 }
 
-.context-menu .context-menu-options .button:hover { background-color: var(--context-menu-selected); color:var(--accent-color); }
+.context-menu .context-options .button:hover { background-color: var(--context-menu-selected); color:var(--accent-color); }
 
 /* ================================================== */
 
-.context-menu-select .context-menu-select-header .button
+.context-menu-select .context-header .button
 {
   border-radius:8px;
   border: 2px solid var(--accent-color);
@@ -217,14 +217,14 @@
   font-size:16px; font-weight: 500;
 }
 
-.context-menu-select .context-menu-select-header:hover .button,
-.context-menu-select.context-menu-select-active .context-menu-select-header .button
+.context-menu-select .context-header:hover .button,
+.context-menu-select.context-active .context-header .button
 {
   background-color:var(--accent-color);
   color:var(--soft-white);
 }
 
-.context-menu-select .context-menu-select-options .button
+.context-menu-select .context-options .button
 {
   width:100%;
   font-size:16px; font-weight: 400;
@@ -232,8 +232,8 @@
   justify-content: left;
 }
 
-.context-menu-select .context-menu-select-options .button.toggled,
-.context-menu-select .context-menu-select-options .button:hover { color:var(--accent-color); }
+.context-menu-select .context-options .button.toggled,
+.context-menu-select .context-options .button:hover { color:var(--accent-color); }
 
 /* ================================================== */
 

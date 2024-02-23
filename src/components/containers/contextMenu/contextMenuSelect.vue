@@ -1,9 +1,9 @@
 <template>
-    <div class="context-menu-select" v-bind:class="{'context-menu-select-active': this.active}">
-        <div class="context-menu-select-header" ref="header" v-on:click="this.active=!this.active">
+    <div class="context-menu-select" v-bind:class="{'context-active': this.active}">
+        <div class="context-header" ref="header" v-on:click="this.active=!this.active">
             <slot name="header"></slot>
         </div>
-        <ul class="context-menu-select-options">
+        <ul class="context-options">
             <slot name="options"></slot>
         </ul>
     </div>
@@ -46,13 +46,13 @@ export default
     position:relative;
 }
 
-.context-menu-select .context-menu-select-header
+.context-menu-select .context-header
 {
     height:100%;
     width:100%;
 }
 
-.context-menu-select .context-menu-select-options
+.context-menu-select .context-options
 {
     display:flex;
     flex-direction: column;
@@ -66,6 +66,6 @@ export default
     overflow:hidden;
 }
 
-.context-menu-select.context-menu-select-active .context-menu-select-options { visibility:visible; }
+.context-menu-select.context-active .context-options { visibility:visible; }
 
 </style>

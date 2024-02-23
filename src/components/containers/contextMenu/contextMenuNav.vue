@@ -1,9 +1,9 @@
 <template>
-<div class="context-menu-nav" v-bind:class="{'context-menu-nav-active': this.active}">
-  <div class="context-menu-nav-header" ref="header" v-on:click="this.active=!this.active">
+<div class="context-menu-nav" v-bind:class="{'context-active': this.active}">
+  <div class="context-header" ref="header" v-on:click="this.active=!this.active">
     <slot name="header"></slot>
   </div>
-  <ul class="context-menu-nav-options">
+  <ul class="context-options">
     <slot name="options"></slot>
   </ul>
 </div>
@@ -47,12 +47,12 @@ export default
   height:100%;
 }
 
-.context-menu-nav .context-menu-nav-header
+.context-menu-nav .context-header
 {
   height:100%;
 }
 
-.context-menu-nav .context-menu-nav-options
+.context-menu-nav .context-options
 {
   position:absolute;
   top:100%;
@@ -68,6 +68,6 @@ export default
   visibility:hidden;
 }
 
-.context-menu-nav.context-menu-nav-active .context-menu-nav-options { visibility:visible; }
+.context-menu-nav.context-active .context-options { visibility:visible; }
 
 </style>

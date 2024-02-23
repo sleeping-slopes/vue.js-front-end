@@ -1,9 +1,9 @@
 <template>
-<div class="context-menu" v-bind:class="{'context-menu-active': this.active}">
-  <div class="context-menu-header" ref="header" v-on:click="this.active=!this.active">
+<div class="context-menu" v-bind:class="{'context-active': this.active}">
+  <div class="context-header" ref="header" v-on:click="this.active=!this.active">
     <slot name="header"></slot>
   </div>
-  <ul class="context-menu-options">
+  <ul class="context-options">
     <slot name="options"></slot>
   </ul>
 </div>
@@ -49,19 +49,19 @@ export default
   box-shadow: 0 0 15px 1px rgba(0,0,0,.2);
 }
 
-.context-menu:not(.context-menu-active) { opacity:0.0; }
+.context-menu:not(.context-active) { opacity:0.0; }
 
-div:hover > .context-menu:not(.context-menu-active) { opacity:0.7; }
+div:hover > .context-menu:not(.context-active) { opacity:0.7; }
 
 div:hover > .context-menu:hover { opacity:1.0; }
 
-.context-menu .context-menu-options
+.context-menu .context-options
 {
   display:none;
   flex-direction: column;
   width:100%;
 }
 
-.context-menu.context-menu-active .context-menu-options { display:flex; }
+.context-menu.context-active .context-options { display:flex; }
 
 </style>
