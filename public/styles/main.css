@@ -14,7 +14,8 @@
 
 #app
 {
-  --accent-color: rgb(100, 149, 237);
+  --accent-color: #6699ff;
+  --accent-color-decimal: 102, 153, 255;
   --nav-color: #1d232f;
   --soft-white: #eeeeee;
   --context-menu-selected: #e0e0e0;

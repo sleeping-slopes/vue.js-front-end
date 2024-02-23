@@ -14,7 +14,14 @@ export default createStore({
     playlists:{}, //memory leak
     users:{}, //memory leak
     isPlaying: false,
-    currentUser: undefined
+    currentUser: undefined,
+    accentColors: [
+      {hex:"#6699ff",decimal:"102, 153, 255"},
+      {hex:"#ff3333",decimal:"255, 51 , 51 "},
+      {hex:"#ff3399",decimal:"255, 51 , 153"},
+      {hex:"#ff6600",decimal:"255, 102, 0  "},
+      {hex:"#33cc66",decimal:"51 , 204, 102"}
+    ]
   },
   getters:
   {

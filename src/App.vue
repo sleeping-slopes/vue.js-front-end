@@ -134,6 +134,19 @@ export default
       return this.$router.push({ name: 'Search', query: { q: this.searchQuery.trim() } });
     }
   },
+  watch:
+  {
+    "$store.getters.getCurrentUser.accent_color":
+    {
+      handler: function(value)
+      {
+        const app = document.querySelector('#app');
+        app.style.setProperty('--accent-color', this.$store.state.accentColors[value]?.hex??this.$store.state.accentColors[0].hex);
+        app.style.setProperty('--accent-color-decimal', this.$store.state.accentColors[value]?.decimal??this.$store.state.accentColors[0].decimal);
+      },
+      immediate: true
+    }
+  },
   created()
   {
     this.$store.dispatch('setCurrentUserByToken');
