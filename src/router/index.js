@@ -181,7 +181,21 @@ const routes =
     name: "Settings",
     path: '/settings',
     component: () => import('@/views/SettingsView.vue'),
-    meta: { authRequired:true }
+    redirect: {name:'SettingsAccount'},
+    meta: { authRequired:true },
+    children:
+    [
+      {
+        name: "SettingsAccount",
+        path: '',
+        component: () => import('@/views/Settings/SettingsAccountView.vue'),
+      },
+      {
+        name: "SettingsTheme",
+        path: 'theme',
+        component: () => import('@/views/Settings/SettingsThemeView.vue'),
+      }
+    ]
   },
   {
     name: "Notifications",
