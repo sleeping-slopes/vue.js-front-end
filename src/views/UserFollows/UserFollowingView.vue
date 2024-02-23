@@ -1,6 +1,16 @@
 <template>
 <div class="content column">
-  <userHeader><template v-slot:caption>Followings of</template></userHeader>
+  <div class="sticky-top">
+    <div style="position:relative">
+      <userHeader :login="this.login"><template v-slot:caption>Followings of</template></userHeader>
+    </div>
+    <nav class="nav-tab">
+      <ul>
+        <li><router-link :to="{ name: 'UserFollowers', params: { login: this.login }}">Followers</router-link></li>
+        <li><router-link :to="{ name: 'UserFollowing', params: { login: this.login }}">Following</router-link></li>
+      </ul>
+    </nav>
+  </div>
   <userContainer :type="'ul-grid'" :dynamicComponent="'userCard'" :users="following"></userContainer>
   <article class="project-info row">
     <p>
@@ -23,7 +33,7 @@
 
 import API from "@/axios/API";
 
-import userHeader from "./userHeader.vue"
+import userHeader from "@/components/users/userHeader.vue"
 import userContainer from "@/components/containers/userContainer.vue";
 
 export default
