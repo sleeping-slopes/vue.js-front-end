@@ -1,6 +1,17 @@
 <template>
   <div class="content column">
-    <songHeader></songHeader>
+    <div class="sticky-top">
+      <div style="position:relative">
+        <songHeader :id="this.id"></songHeader>
+      </div>
+      <nav class="nav-tab">
+        <ul>
+          <li><router-link :to="{ name: 'SongLikes', params: { id: this.id }}">Likes</router-link></li>
+          <li><router-link :to="{ name: 'SongPlaylists', params: { id: this.id }}">In playlists</router-link></li>
+          <li><router-link :to="{ name: 'SongRelated', params: { id: this.id }}">Related songs</router-link></li>
+        </ul>
+      </nav>
+    </div>
     <panel>
       <template v-slot:content>
         <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
@@ -27,7 +38,7 @@
 
 import API from "@/axios/API";
 
-import songHeader from "./songHeader.vue";
+import songHeader from "@/components/songs/songHeader.vue";
 import panel from "@/components/containers/panel.vue";
 import songContainer from "@/components/containers/songContainer.vue";
 
