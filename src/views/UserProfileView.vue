@@ -195,40 +195,6 @@ export default
   {
     this.userSongLikes = (await API.get('users/'+this.login+'/songs/likes')).songList;
     this.followers = await API.get('users/'+this.login+'/followers');
-  },
-  methods:
-  {
-    async uploadProfilePicture(event)
-    {
-      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-
-      const selectedFile = event.target.files[0];
-      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
-
-      const fd = new FormData();
-      fd.append('userProfilePicture',selectedFile,selectedFile.name);
-      const r = await API.post('me/profile-picture', fd);
-    },
-    async deleteProfilePicture()
-    {
-      const r = await API.delete('me/profile-picture');
-    },
-
-    async uploadBanner(event)
-    {
-      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
-
-      const selectedFile = event.target.files[0];
-      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
-
-      const fd = new FormData();
-      fd.append('userBanner',selectedFile,selectedFile.name);
-      const r = await API.post('me/banner', fd);
-    },
-    async deleteBanner()
-    {
-      const r = await API.delete('me/banner');
-    },
   }
 }
 

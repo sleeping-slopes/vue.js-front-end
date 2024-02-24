@@ -28,7 +28,6 @@ export default
   },
   methods:
   {
-    abbreviateNumber: abbreviateNumber,
     async follow()
     {
       const response = await API.post("me/users/following", { login: this.login });
@@ -42,7 +41,45 @@ export default
       if (response?.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
       this.user.followers_count--;
       this.user.youFollow=false;
-    }
+    },
+    async uploadProfilePicture(event)
+    {
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+      const selectedFile = event.target.files[0];
+      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
+
+      const fd = new FormData();
+      fd.append('userProfilePicture',selectedFile,selectedFile.name);
+      const r = await API.post('me/profile-picture', fd);
+      this.$store.dispatch('uploadUserProfilePicture',this.login);
+    },
+    async deleteProfilePicture()
+    {
+      const r = await API.delete('me/profile-picture');
+
+      this.$store.dispatch('deleteUserProfilePicture',this.login);
+    },
+    async uploadBanner(event)
+    {
+      const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+
+      const selectedFile = event.target.files[0];
+      if (!selectedFile || !validImageTypes.includes(selectedFile.type)) return;
+
+      const fd = new FormData();
+      fd.append('userBanner',selectedFile,selectedFile.name);
+      const r = await API.post('me/banner', fd);
+
+      this.$store.dispatch('uploadUserBanner',this.login);
+    },
+    async deleteBanner()
+    {
+      const r = await API.delete('me/banner');
+
+      this.$store.dispatch('deleteUserBanner',this.login);
+    },
+    abbreviateNumber: abbreviateNumber
   }
 }
 
