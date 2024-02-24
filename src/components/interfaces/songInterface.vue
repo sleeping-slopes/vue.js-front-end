@@ -14,7 +14,6 @@ export default
   data()
   {
     return {
-      coversrc: API.defaults.baseURL+`songs/`+this.id+`/cover`,
       loaded:false
     }
   },

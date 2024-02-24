@@ -3,7 +3,7 @@
 <Transition name="skeletonFade">
     <div class="song item" v-on:click="setCurrentSong" v-bind:class="{'current': current}" v-if="(this.$parent.loaded??true) && this.loaded">
         <div class="cover-wrapper s52x52">
-            <img class="cover" :src="coversrc" v-if="this.song.cover"/>
+            <img class="cover" :src="this.song.coversrc" v-if="this.song.cover"/>
             <div class="cover bi bi-music-note" v-else></div>
             <div class="shade"></div>
             <div class="cover-menu">

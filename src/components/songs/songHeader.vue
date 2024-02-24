@@ -2,7 +2,7 @@
 <Transition name="skeletonFade">
   <div class="row" v-if="(this.$parent.loaded??true) && this.loaded">
     <router-link :to="{ name: 'Song', params: { id: this.id }}" class="cover-wrapper s100x100">
-      <img class="cover" :src="coversrc" v-if="this.song.cover"/>
+      <img class="cover" :src="this.song.coversrc" v-if="this.song.cover"/>
       <div class="cover bi bi-music-note" v-else></div>
     </router-link>
     <div class="info-wrapper">

@@ -5,7 +5,7 @@
         <form @submit.prevent="editProfile" class="column gap-15 scroll" style="padding:5px">
             <div class="row gap-20">
                 <div style="height:min-content;position:relative;">
-                    <img class="user-image s200x200" :src="picturesrc" v-if="this.user.profile_picture"/>
+                    <img class="user-image s200x200" :src="this.user.picturesrc" v-if="this.user.profile_picture"/>
                     <div class="user-image s200x200 bi bi-person-fill" v-else></div>
                     <contextMenu class="x-center-absolute" style="top:calc(100% - 50px); min-width:120px;">
                         <template v-slot:header>
@@ -138,8 +138,7 @@ export default
       city: {data: this.user.city, error: null },
       country: {data: this.user.country, error: null },
       bio: {data: this.user.bio, error: null },
-      links: [],
-      picturesrc: API.defaults.baseURL+`users/`+this.user.login+`/picture`
+      links: []
     }
   },
   props:

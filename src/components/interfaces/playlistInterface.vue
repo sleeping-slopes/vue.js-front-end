@@ -13,7 +13,6 @@ export default
   data()
   {
     return {
-      coversrc: API.defaults.baseURL+`playlists/`+this.id+`/cover`,
       loaded:false
     }
   },

@@ -2,7 +2,7 @@
 <Transition name="skeletonFade">
   <div class="playlist card" v-if="(this.$parent.loaded??true) && this.loaded">
       <div class="cover-wrapper s180x180" v-on:click="$router.push({path: $route.fullPath,query:{playlist:this.id}})">
-        <img class="cover" :src="coversrc" v-if="this.playlist.cover"/>
+        <img class="cover" :src="this.playlist.coversrc" v-if="this.playlist.cover"/>
         <div class="cover bi bi-music-note-list" v-else></div>
         <div class="shade"></div>
         <div class="cover-menu">

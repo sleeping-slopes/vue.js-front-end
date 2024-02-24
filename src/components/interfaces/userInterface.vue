@@ -13,8 +13,6 @@ export default
   data()
   {
     return {
-      bannersrc: API.defaults.baseURL+`users/`+this.login+`/banner`,
-      picturesrc: API.defaults.baseURL+`users/`+this.login+`/picture`,
       loaded: false
     }
   },

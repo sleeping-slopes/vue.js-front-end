@@ -238,16 +238,20 @@ export default createStore({
     async loadSong({commit},id)
     {
       const response = await API.get('songs/'+id);
+      response.coversrc=API.defaults.baseURL+`songs/`+id+`/cover`;
       commit("loadSong", { id: id, data: response });
     },
     async loadPlaylist({commit},id)
     {
       const response = await API.get('playlists/'+id);
+      response.coversrc=API.defaults.baseURL+`playlists/`+id+`/cover`;
       commit("loadPlaylist", { id: id, data: response });
     },
     async loadUser({commit},login)
     {
       const response = await API.get('users/'+login+'/profile');
+      response.picturesrc=API.defaults.baseURL+`users/`+login+`/picture`;
+      response.bannersrc=API.defaults.baseURL+`users/`+login+`/banner`;
       commit("loadUser", { login: login, data: response });
     },
 

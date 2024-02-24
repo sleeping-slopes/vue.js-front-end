@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="cover-wrapper s320x320 right">
-            <img id="songCover" class="cover" :src="coversrc" v-if="this.song.cover"
+            <img id="songCover" class="cover" :src="this.song.coversrc" v-if="this.song.cover"
                 crossorigin="anonymous"
                 @load="setColors"/>
             <div class="cover bi bi-music-note" v-else></div>
