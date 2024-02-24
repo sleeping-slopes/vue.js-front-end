@@ -145,7 +145,7 @@ export default
                 this.songs.push(
                 {
                     name: { data: selectedFiles[i].name.split('.').slice(0, -1).join('.'), error:null },
-                    tags: { data:"", error:null },
+                    tags: { data: "", error:null },
                     artists: [],
                     cover: null,
                     audio: selectedFiles[i]

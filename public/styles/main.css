@@ -104,6 +104,8 @@ hr
   margin:0px;
 }
 
+.bi { user-select: none; }
+
 a { color:inherit; text-decoration: none; }
 
 .alink:hover { text-decoration: underline; }
