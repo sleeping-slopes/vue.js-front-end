@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import API from '@/axios/API';
 
-export default createStore({
+export default createStore
+({
   state:
   {
     currentPlaylist: JSON.parse(localStorage.getItem('currentPlaylist') ||'{}'),
@@ -153,6 +154,7 @@ export default createStore({
       state.currentUser=null;
       // state.songs={}; //memory leak
       // state.playlsts={}; //memory leak
+      // state.users={}; //memory leak
     },
     togglePlayingState(state)
     {
@@ -231,7 +233,15 @@ export default createStore({
       if (state.songHistory.length>15) state.songHistory.pop();
 
       localStorage.setItem('songHistory', JSON.stringify(state.songHistory));
-    }
+    },
+    uploadSongCover(state,id) { state.songs[id].cover = true; state.songs[id].coversrc = state.songs[id].coversrc.split("?")[0]+"?"+Date.now(); },
+    deleteSongCover(state,id) { state.songs[id].cover = false; },
+    uploadPlaylistCover(state,id) { state.playlists[id].cover = true; state.playlists[id].coversrc = state.playlists[id].coversrc.split("?")[0]+"?"+Date.now(); },
+    deletePlaylistCover(state,id) { state.playlists[id].cover = false; },
+    uploadUserProfilePicture(state,login) { state.users[login].profile_picture = true; state.users[login].picturesrc = state.users[login].picturesrc.split("?")[0]+"?"+Date.now(); },
+    deleteUserProfilePicture(state,login) { state.users[login].profile_picture = false; },
+    uploadUserBanner(state,login) { state.users[login].banner = true; state.users[login].bannersrc = state.users[login].bannersrc.split("?")[0]+"?"+Date.now(); },
+    deleteUserBanner(state,login) { state.users[login].banner = false; }
   },
   actions:
   {
@@ -282,7 +292,16 @@ export default createStore({
     clearSongHistory({commit}) { commit("clearSongHistory") },
     clearCurrentPlaylist({commit}) { commit("clearCurrentPlaylist") },
     addSongToCurrentPlaylistEnd({commit},id) { commit("addSongToCurrentPlaylistEnd",id) },
-    addSongToCurrentPlaylistNext({commit},id) { commit("addSongToCurrentPlaylistNext",id) }
+    addSongToCurrentPlaylistNext({commit},id) { commit("addSongToCurrentPlaylistNext",id) },
+
+    uploadSongCover({commit},id) { commit("uploadSongCover",id) },
+    deleteSongCover({commit},id) { commit("deleteSongCover",id) },
+    uploadPlaylistCover({commit},id) { commit("uploadPlaylistCover",id) },
+    deletePlaylistCover({commit},id) { commit("deletePlaylistCover",id) },
+    uploadUserProfilePicture({commit},login) { commit("uploadUserProfilePicture",login) },
+    deleteUserProfilePicture({commit},login) { commit("deleteUserProfilePicture",login) },
+    uploadUserBanner({commit},login) { commit("uploadUserBanner",login) },
+    deleteUserBanner({commit},login) { commit("deleteUserBanner",login) }
   },
   modules: {}
 })
