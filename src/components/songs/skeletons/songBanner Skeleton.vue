@@ -8,6 +8,7 @@
                     <skeleton class="banner-info font-size-big shimmer" :minwidth="150" :maxwidth="300"></skeleton>
                     <skeleton class="banner-info font-size-large shimmer" :minwidth="350" :maxwidth="500"></skeleton>
                     <skeleton class="banner-info font-size-small shimmer" :exactwidth="140"></skeleton>
+                    <skeleton class="banner-info font-size-tiny shimmer" :minwidth="150" :maxwidth="200"></skeleton>
                 </div>
             </div>
             <div class="row bottom gap-5 y-center">

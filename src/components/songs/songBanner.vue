@@ -19,6 +19,9 @@
                     <span class="bi bi-dot"></span>
                     {{ abbreviateNumber(this.song.likes_count) }} like{{ this.song.likes_count==1?'':'s' }}
                     </span>
+                    <span class="banner-info banner-info-secondary font-size-tiny">
+                    Uploaded by <router-link :to="{ name: 'User', params: { login: this.song.created_by }}" class="alink">{{this.song.created_by_username}}</router-link>
+                    </span>
                 </div>
                 <ul class="tag-container right">
                     <li v-for="tag in this.song.tags"><router-link :to="{ name: 'Tag', params: { tag: tag.tag } }" class="button button-tag" >{{tag.tag}}</router-link></li>

@@ -19,7 +19,7 @@
                 <button class="button button-default button-large" v-bind:class="this.isPlaying?'bi bi-pause-fill':'bi bi-play-fill'" v-on:click.stop="playPlaylist()"></button>
               </div>
             </div>
-            <div class="info-wrapper">
+            <div class="info-wrapper gap-5" >
               <h1 class="primary-text font-size-large">{{this.playlist.name}}</h1>
               <div class="primary-text font-size-big">
                 <span>by&nbsp;</span>
@@ -29,10 +29,13 @@
                   <span v-if="index+1 < this.playlist.artists.length">, </span>
                 </template>
               </div>
-              <span class="secondary-text font-size-medium" style="margin-top:10px">
+              <span class="secondary-text font-size-small" style="margin-top:10px;">
                 {{ abbreviateNumber(this.playlist.songList.songs?.length) }} song{{ this.playlist.songList.songs?.length==1?'':'s' }}
                 <span class="bi bi-dot"></span>
                 {{ abbreviateNumber(this.playlist.likes_count) }} like{{ this.playlist.likes_count==1?'':'s' }}
+              </span>
+              <span class="secondary-text font-size-small" style="margin-top:10px;">
+                Created by <router-link :to="{ name: 'User', params: { login: this.playlist.created_by }}" class="alink">{{this.playlist.created_by_username}}</router-link>
               </span>
               <div class="row gap-5 bottom">
                 <button class="button button-secondary icon-text" v-bind:class="{'toggled': this.playlist.liked}" v-on:click.stop="this.like()">
