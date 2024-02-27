@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: `http://192.168.100.7:5000/api/`,
+  baseURL: process.env.VUE_APP_API_URL,
   timeout: 10000,
   // headers: {'Content-Type': 'application/json', }
 });
