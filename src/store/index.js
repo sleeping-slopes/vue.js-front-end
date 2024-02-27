@@ -152,6 +152,7 @@ export default createStore
     {
       localStorage.setItem('authJWT', null);
       state.currentUser=null;
+      window.location.href = '';
       // state.songs={}; //memory leak
       // state.playlsts={}; //memory leak
       // state.users={}; //memory leak

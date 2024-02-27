@@ -52,7 +52,7 @@
                   </router-link>
                 </li>
                 <li>
-                  <button v-on:click="this.$store.dispatch('logOut'); this.$router.push({name: 'Root'});" class="button">
+                  <button v-on:click="this.$store.dispatch('logOut');" class="button">
                     <span class="icon-text">
                       <span class="accent-text bi bi-box-arrow-right"></span>
                       <span>Sign out</span>
