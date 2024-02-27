@@ -62,15 +62,13 @@ export default
       {
         const response = await API.post("me/songs/likes", { id: this.id });
         if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
-        this.song.likes_count++;
-        this.song.liked=true;
+        this.$store.dispatch('toggleSongLike',this.id);
       }
       else
       {
         const response = await API.delete("me/songs/likes/"+this.id);
         if (response?.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
-        this.song.likes_count--;
-        this.song.liked=false;
+        this.$store.dispatch('toggleSongLike',this.id);
       }
     }
   }

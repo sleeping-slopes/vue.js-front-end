@@ -36,15 +36,13 @@ export default
       {
         const response = await API.post("me/playlists/likes", { id: this.id });
         if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
-        this.playlist.likes_count++;
-        this.playlist.liked=true;
+        this.$store.dispatch('togglePlaylistLike',this.id);
       }
       else
       {
         const response = await API.delete("me/playlists/likes/"+this.id);
         if (response?.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
-        this.playlist.likes_count--;
-        this.playlist.liked=false;
+        this.$store.dispatch('togglePlaylistLike',this.id);
       }
     },
     playPlaylist()

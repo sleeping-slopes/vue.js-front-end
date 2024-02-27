@@ -235,10 +235,28 @@ export default createStore
 
       localStorage.setItem('songHistory', JSON.stringify(state.songHistory));
     },
+
+    toggleSongLike(state,id)
+    {
+      state.songs[id].liked=!state.songs[id].liked;
+      state.songs[id].likes_count+=state.songs[id].liked?1:-1;
+    },
     uploadSongCover(state,id) { state.songs[id].cover = true; state.songs[id].coversrc = state.songs[id].coversrc.split("?")[0]+"?"+Date.now(); },
     deleteSongCover(state,id) { state.songs[id].cover = false; },
+
+    togglePlaylistLike(state,id)
+    {
+      state.playlists[id].liked=!state.playlists[id].liked;
+      state.playlists[id].likes_count+=state.playlists[id].liked?1:-1;
+    },
     uploadPlaylistCover(state,id) { state.playlists[id].cover = true; state.playlists[id].coversrc = state.playlists[id].coversrc.split("?")[0]+"?"+Date.now(); },
     deletePlaylistCover(state,id) { state.playlists[id].cover = false; },
+
+    togglePlaylistLike(state,login)
+    {
+      state.users[login].youFollow=!state.users[login].youFollow;
+      state.users[login].followers_count+=state.users[login].youFollow?1:-1;
+    },
     uploadUserProfilePicture(state,login) { state.users[login].profile_picture = true; state.users[login].picturesrc = state.users[login].picturesrc.split("?")[0]+"?"+Date.now(); },
     deleteUserProfilePicture(state,login) { state.users[login].profile_picture = false; },
     uploadUserBanner(state,login) { state.users[login].banner = true; state.users[login].bannersrc = state.users[login].bannersrc.split("?")[0]+"?"+Date.now(); },
@@ -295,10 +313,15 @@ export default createStore
     addSongToCurrentPlaylistEnd({commit},id) { commit("addSongToCurrentPlaylistEnd",id) },
     addSongToCurrentPlaylistNext({commit},id) { commit("addSongToCurrentPlaylistNext",id) },
 
+    toggleSongLike({commit},id) { commit("toggleSongLike",id) },
     uploadSongCover({commit},id) { commit("uploadSongCover",id) },
     deleteSongCover({commit},id) { commit("deleteSongCover",id) },
+
+    togglePlaylistLike({commit},id) { commit("togglePlaylistLike",id) },
     uploadPlaylistCover({commit},id) { commit("uploadPlaylistCover",id) },
     deletePlaylistCover({commit},id) { commit("deletePlaylistCover",id) },
+
+    toggleUserFollow({commit},login) { commit("toggleUserFollow",login) },
     uploadUserProfilePicture({commit},login) { commit("uploadUserProfilePicture",login) },
     deleteUserProfilePicture({commit},login) { commit("deleteUserProfilePicture",login) },
     uploadUserBanner({commit},login) { commit("uploadUserBanner",login) },
