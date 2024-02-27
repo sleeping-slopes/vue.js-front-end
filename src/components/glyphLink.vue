@@ -33,7 +33,7 @@ export default
                 return "telegram";
             case "twitter":
             case "x":
-                return "twitter-x";
+                return "twitter";
             case "youtube":
             case "youtu":
                 return "youtube";

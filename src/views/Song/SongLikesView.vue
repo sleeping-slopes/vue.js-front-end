@@ -58,6 +58,7 @@ export default
   {
     this.song = await API.get('songs/'+this.id);
     if (this.song.error) this.$router.push({ name:"Song", params: { id: this.id } });
+
     this.users = await API.get('songs/'+this.id+'/likes');
   }
 }

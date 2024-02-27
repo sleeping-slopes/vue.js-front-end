@@ -22,9 +22,9 @@
       </panel>
     </div>
     <div style="width:360px;">
-      <TransitionGroup name="panelFade" tag="div" class="column" style="position:sticky; top:5px;"> <!--position:sticky; top:5px; -->
+      <TransitionGroup name="panelFade" tag="div" class="column" style="position:sticky; top:5px;">
         <template v-if="this.$store.getters.getCurrentUser">
-          <panel v-if="this.recommendedUsers?.length" style="height:238px; width:100%" :key="'recommendedUsersPanel'">
+          <panel style="height:238px; width:100%" :key="'recommendedUsersPanel'">
             <template v-slot:header>Artists you should follow</template>
             <template v-slot:menu>
               <button class="button button-secondary icon-text" v-on:click="this.refreshRecommendations()">

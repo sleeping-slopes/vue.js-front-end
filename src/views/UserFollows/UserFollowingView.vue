@@ -57,6 +57,7 @@ export default
   {
     this.user = await API.get('users/'+this.login+'/profile');
     if (this.user.error) this.$router.push({ name:"User", params: { login: this.login } });
+
     this.following = await API.get('users/'+this.login+'/following');
   }
 }

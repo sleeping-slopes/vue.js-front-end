@@ -14,7 +14,7 @@
   </form>
   <div class="column gap-5">
     <span class="primary-text font-size-small">Password</span>
-    <button class="button button-secondary" v-on:click="resetPassword">Send password-reset link to email</button>
+    <button class="button button-secondary">Send password-reset link to email</button>
   </div>
   <button class="button button-default toggled" style="margin-top:90px;" v-on:click="deleteAccount">Delete account</button>
 </div>
@@ -56,10 +56,6 @@ export default
       {
         if (r.error.message.emailError) this.email.error = r.error.message.emailError;
       }
-    },
-    async resetPassword()
-    {
-      alert("resetPassword");
     },
     async deleteAccount()
     {

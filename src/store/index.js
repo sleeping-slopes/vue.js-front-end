@@ -157,10 +157,7 @@ export default createStore
       // state.playlsts={}; //memory leak
       // state.users={}; //memory leak
     },
-    togglePlayingState(state)
-    {
-      state.isPlaying=!state.isPlaying;
-    },
+    togglePlayingState(state) { state.isPlaying=!state.isPlaying; },
     loadSong(state,song) { state.songs[song.id]=song.data; },
     loadPlaylist(state,playlist) { state.playlists[playlist.id]=playlist.data; },
     loadUser(state,user) { state.users[user.login]=user.data; },

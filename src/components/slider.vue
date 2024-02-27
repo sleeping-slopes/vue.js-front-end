@@ -96,7 +96,7 @@ export default
 
 <style scoped>
 
-.slider-wrapper { position:relative; cursor:pointer; }
+.slider-wrapper { position:relative; cursor:pointer; user-select: none;}
 
 .slider-wrapper.horizontal
 {
