@@ -2,7 +2,7 @@
 <div class="row">
     <div class="user-image s100x100 shimmer"></div>
     <div class="info-wrapper">
-        <skeleton class="font-size-large shimmer"></skeleton>
+        <skeleton class="font-size-large shimmer" :minwidth="200" :maxwidth="400"></skeleton>
     </div>
   </div>
 </template>
