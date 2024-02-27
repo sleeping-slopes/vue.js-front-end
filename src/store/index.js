@@ -161,18 +161,9 @@ export default createStore
     {
       state.isPlaying=!state.isPlaying;
     },
-    loadSong(state,song)
-    {
-      state.songs[song.id]=song.data;
-    },
-    loadPlaylist(state,playlist)
-    {
-      state.playlists[playlist.id]=playlist.data;
-    },
-    loadUser(state,user)
-    {
-      state.users[user.login]=user.data;
-    },
+    loadSong(state,song) { state.songs[song.id]=song.data; },
+    loadPlaylist(state,playlist) { state.playlists[playlist.id]=playlist.data; },
+    loadUser(state,user) { state.users[user.login]=user.data; },
     setVolume(state,volume)
     {
       state.volume=volume;
@@ -264,23 +255,41 @@ export default createStore
   },
   actions:
   {
-    async loadSong({commit},id)
+    async loadSong({commit,state},id)
     {
+      if (state.songs[id]?.lastUpdated && Date.now() - state.songs[id].lastUpdated<5000)
+      {
+        state.songs[id].lastUpdated=Date.now();
+        return;
+      }
       const response = await API.get('songs/'+id);
       response.coversrc=API.defaults.baseURL+`songs/`+id+`/cover`;
+      response.lastUpdated = Date.now();
       commit("loadSong", { id: id, data: response });
     },
-    async loadPlaylist({commit},id)
+    async loadPlaylist({commit,state},id)
     {
+      if (state.playlists[id]?.lastUpdated && Date.now() - state.playlists[id].lastUpdated<5000)
+      {
+        state.playlists[id].lastUpdated=Date.now();
+        return;
+      }
       const response = await API.get('playlists/'+id);
       response.coversrc=API.defaults.baseURL+`playlists/`+id+`/cover`;
+      response.lastUpdated = Date.now();
       commit("loadPlaylist", { id: id, data: response });
     },
-    async loadUser({commit},login)
+    async loadUser({commit,state},login)
     {
+      if (state.users[login]?.lastUpdated && Date.now() - state.users[login].lastUpdated<5000)
+      {
+        state.users[login].lastUpdated=Date.now();
+        return;
+      }
       const response = await API.get('users/'+login+'/profile');
       response.picturesrc=API.defaults.baseURL+`users/`+login+`/picture`;
       response.bannersrc=API.defaults.baseURL+`users/`+login+`/banner`;
+      response.lastUpdated = Date.now();
       commit("loadUser", { login: login, data: response });
     },
 
