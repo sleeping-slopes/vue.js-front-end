@@ -3,13 +3,13 @@
 <template>
     <div class="song-context-menu" :style="'right: calc(100% - '+ (this.x) +'px); top:'+ this.y +'px;'">
       <button class="button icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistNext',this.song.id)">
-        <span class="bi bi-music-note-list"></span><span>Play next</span>
+        <span class="accent-text bi bi-music-note-list"></span><span>Play next</span>
       </button>
       <button class="button icon-text" v-on:click="this.$store.dispatch('addSongToCurrentPlaylistEnd',this.song.id)">
-        <span class="bi bi-music-note-list"></span><span>Add to current playlist</span>
+        <span class="accent-text bi bi-music-note-list"></span><span>Add to current playlist</span>
       </button>
       <router-link class="button icon-text" :to="{ name: 'Song', params: { id: this.song.id }}">
-        <span class="bi bi-globe"></span><span>Song page</span>
+        <span class="accent-text bi bi-globe"></span><span>Song page</span>
       </router-link>
     </div>
 </template>

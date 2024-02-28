@@ -65,7 +65,7 @@ export default
   height:100%;
   display:flex;
   align-items: center;
-  gap:20px;
+  gap:10px;
 }
 
 .panel-content

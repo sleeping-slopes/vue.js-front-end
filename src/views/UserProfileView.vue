@@ -130,7 +130,7 @@
           <panel v-if="this.followers?.length" :key="'followersPanel'">
             <template v-slot:header>
               <span class="icon-text">
-                <span class="bi bi-person-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
+                <span class="bi bi-people-fill"></span><span>{{ abbreviateNumber(this.followers?.length) }} follower{{this.followers?.length==1?'':'s'}}</span>
               </span>
             </template>
             <template v-slot:menu>

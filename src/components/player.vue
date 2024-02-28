@@ -54,7 +54,7 @@
           </template>
         </panel>
       </div>
-      <div style="width:320px;position:relative;">
+      <div style="width:280px;position:relative;">
         <songItem ref="song" :id = "this.currentSongID" :key = "this.currentSongID"></songItem>
       </div>
       <div class="popup-wrapper">
@@ -209,14 +209,13 @@ export default
 .player
 {
   display:flex;
-  max-width:1240px;
-  width:100%;
-  flex-shrink: 0;
+  width: 100%;
   gap:40px;
   position:relative;
   padding: 3px 10px 3px 10px;
   box-sizing: border-box;
   background-color:var(--panel-background-color);
+  align-items: center;
 }
 
 .player-menu
@@ -239,7 +238,6 @@ export default
 
 .player-slider
 {
-  min-width:250px;
   display:flex;
   width:100%;
   align-items:center;

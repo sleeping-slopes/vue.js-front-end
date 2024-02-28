@@ -23,13 +23,13 @@
     align-items: center;
 }
 
-.playlist.playlist-expansible .empty-column-panel
+.playlist.playlist-expansible .empty-column-bg-panel
 {
     height:100%;
     background-color: var(--panel-background-color);
 }
 
-.playlist.playlist-expansible .empty-column-main
+.playlist.playlist-expansible .empty-column-bg-main
 {
     height:100%;
     background-color: var(--main-background-color);

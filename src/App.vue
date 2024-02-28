@@ -78,7 +78,9 @@
 
     <footer>
       <div style="background-color:var(--panel-background-color);width:100%;"></div>
-      <player></player>
+      <div class="player-wrapper">
+        <player></player>
+      </div>
       <div style="background-color:var(--panel-background-color);width:100%;"></div>
     </footer>
 

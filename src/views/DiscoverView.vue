@@ -25,7 +25,11 @@
       <TransitionGroup name="panelFade" tag="div" class="column" style="position:sticky; top:5px;">
         <template v-if="this.$store.getters.getCurrentUser">
           <panel style="height:238px; width:100%" :key="'recommendedUsersPanel'">
-            <template v-slot:header>Artists you should follow</template>
+            <template v-slot:header>
+              <span class="icon-text">
+                <span class="bi bi-people-fill"></span><span>Artists you should follow</span>
+              </span>
+            </template>
             <template v-slot:menu>
               <button class="button button-secondary icon-text" v-on:click="this.refreshRecommendations()">
                 <span class="bi bi-arrow-repeat"></span><span>Refresh</span></button>
@@ -48,7 +52,11 @@
             </template>
           </panel>
           <panel v-if="this.historyPlaylist?.songs?.length" :key="'historyPlaylistPanel'">
-            <template v-slot:header>Listening history</template>
+            <template v-slot:header>
+              <span class="icon-text">
+                <span class="bi bi-clock-history"></span><span>Listening history</span>
+              </span>
+            </template>
             <template v-slot:menu>
               <router-link :to="{ name: 'YourHistory' }" class="button button-secondary">View all</router-link>
             </template>

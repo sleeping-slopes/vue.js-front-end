@@ -13,8 +13,8 @@
                     </div>
                 </button>
             </div>
-            <div class="empty-column-panel">
-                <div class="empty-column-main"></div>
+            <div class="empty-column-bg-panel">
+                <div class="empty-column-bg-main"></div>
             </div>
         </div>
         <div class="right-column">

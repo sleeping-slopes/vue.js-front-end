@@ -5,8 +5,8 @@
       <div class="cover-wrapper s160x160 shimmer"></div>
       <skeleton class="button button-secondary shimmer" :exactwidth="90"></skeleton>
     </div>
-    <div class="empty-column-panel">
-      <div class="empty-column-main"></div>
+    <div class="empty-column-bg-panel">
+      <div class="empty-column-bg-main"></div>
     </div>
   </div>
   <div class="right-column">

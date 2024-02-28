@@ -197,6 +197,12 @@ a { color:inherit; text-decoration: none; }
 
 .column-side { width:360px; }
 
+.player-wrapper
+{
+  width:1240px;
+  flex-shrink: 0;
+}
+
 .sticky-top
 {
   background-color: var(--main-background-color);

@@ -70,8 +70,8 @@ export default
 .carousel > .button
 {
   position:absolute;
-  background-color:var(--text-color-primary);
-  color: var(--text-color-secondary);
+  background-color:var(--soft-white);
+  color: var(--light-gray);
   opacity:0.0;
   transition: opacity 0.2s, left 0.2s, right 0.2s;
   top:50%;

@@ -20,6 +20,8 @@
   background-color:var(--panel-border-color);
 }
 
+.panel-menu .button { padding:5px 10px 5px 10px; }
+
 /* ================================================== */
 
 .button-primary
