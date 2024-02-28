@@ -84,10 +84,10 @@
         </div>
       </nav>
       <div class="row">
-        <div class="column" style="width:810px;">
+        <div class="column column-main">
           <router-view></router-view>
         </div>
-        <TransitionGroup name="panelFade" tag="div" class="column" style="width:360px;">
+        <TransitionGroup name="panelFade" tag="div" class="column column-side">
           <panel :key="'userStatsPanel'">
             <template v-slot:content>
               <div class="row gap-5">

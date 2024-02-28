@@ -4,7 +4,7 @@
         <h1 class="primary-text font-size-large">{{this.$route.query.q?.trim()?"Search results for '"+this.$route.query.q?.trim()+"'":"Search"}}</h1>
       </div>
       <div class="row">
-        <div style="width:360px;">
+        <div class="column-side">
             <div class="column" style="position:sticky; top:89.5px;">
             <nav class="nav-side">
                 <ul>
@@ -40,7 +40,7 @@
             </article>
             </div>
         </div>
-        <div class="column" style="width:810px;">
+        <div class="column column-main">
             <errorMessage v-if="!this.$route.query.q?.trim()">
                 <template v-slot:errorIcon><span class="bi bi-search"></span></template>
                 <template v-slot:message>Search 3V3R51NC3 for songs, playlists and artists.</template>

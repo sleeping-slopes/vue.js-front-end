@@ -1,5 +1,5 @@
 <template>
-<div class="column gap-15" style="width:360px;">
+<div class="column gap-15 column-side">
   <form class="column" @submit.prevent="changeEmail">
     <div class="form-field">
       <label for="input_userEmail">Email</label>

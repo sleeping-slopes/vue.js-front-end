@@ -193,6 +193,10 @@ a { color:inherit; text-decoration: none; }
   box-sizing: border-box;
 }
 
+.column-main { width: 810px; }
+
+.column-side { width:360px; }
+
 .sticky-top
 {
   background-color: var(--main-background-color);

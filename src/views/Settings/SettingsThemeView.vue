@@ -1,5 +1,5 @@
 <template>
-<div class="column gap-15" style="width:360px;">
+<div class="column gap-15 column-side">
   <div class="column">
     <div class="column gap-5">
       <span class="primary-text font-size-medium">Theme</span>

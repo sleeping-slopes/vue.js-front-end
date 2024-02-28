@@ -1,6 +1,6 @@
 <template>
   <div class="content row">
-    <div class="column" style="width:810px;">
+    <div class="column column-main">
       <panel>
         <template v-slot:header>All playlists</template>
         <template v-slot:content>
@@ -21,7 +21,7 @@
         </template>
       </panel>
     </div>
-    <div style="width:360px;">
+    <div class="column-side">
       <TransitionGroup name="panelFade" tag="div" class="column" style="position:sticky; top:5px;">
         <template v-if="this.$store.getters.getCurrentUser">
           <panel style="height:238px; width:100%" :key="'recommendedUsersPanel'">

@@ -11,7 +11,7 @@
         :dynamicComponent="'songBanner'">
       </songContainer>
       <div class="content row">
-        <div class="column" style="width:810px;">
+        <div class="column column-main">
           <panel>
             <template v-slot:header>
                 <span class="icon-text">
@@ -26,7 +26,7 @@
             </template>
           </panel>
         </div>
-        <TransitionGroup name="panelFade" tag="div" class="column" style="width:360px;">
+        <TransitionGroup name="panelFade" tag="div" class="column column-side">
           <panel v-if="this.playlists?.length" :key="'playlistsPanel'">
             <template v-slot:header>In playlists</template>
             <template v-slot:menu>
