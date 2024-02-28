@@ -16,8 +16,8 @@
                 Frontend: HTML, CSS (PostCSS), Vue.js, Axios;<br>
                 Backend: Express.js, MySQL, REST API, Multer, JSON Web Token.
             </p>
-            <p>Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
-            <p class="right"><span class="accent-text">Language:&nbsp</span>English (US)</p>
+            <p style="white-space:nowrap">Created by <a href="https://github.com/sleeping-slopes" class="accent-text alink" target=”_blank” rel="noopener noreferrer">@sleeping-slopes</a></p>
+            <p class="right" style="white-space:nowrap"><span class="accent-text">Language:&nbsp</span>English (US)</p>
         </article>
     </div>
 </template>
