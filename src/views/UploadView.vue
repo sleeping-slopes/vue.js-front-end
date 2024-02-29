@@ -1,17 +1,22 @@
 <template>
     <div class="content x-center">
         <div class="xy-center-absolute" v-if=!this.songs.length>
-            <form class="drag-n-drop">
+            <div class="drag-and-drop" v-bind:class="{'dragging':this.dragging}"
+                v-on:dragenter="dragenter"
+                v-on:dragover="dragover"
+                v-on:dragleave="dragleave"
+                v-on:drop="drop"
+            >
                 <span class="primary-text font-size-large">Drag and drop your songs here</span>
                 <button type="button" class="button button-primary hoverable" v-on:click="this.$refs.songsInput.click()">or choose files to upload</button>
-                <input type="file" ref="songsInput" style="display:none" v-on:change="uploadSongs" accept=".mp3" multiple/>
+                <input type="file" ref="songsInput" style="display:none" v-on:change="fileInputChange" accept=".mp3" multiple/>
                 <div class="form-checkbox" style="width:min-content">
-                    <button type="button" class="button button-checkbox" id="checkbox_makePlaylist" v-on:click="this.makePlaylist=!this.makePlaylist"
+                    <button class="button button-checkbox" id="checkbox_makePlaylist" v-on:click="this.makePlaylist=!this.makePlaylist"
                         v-bind:class="{'bi bi-check-square': !this.makePlaylist, 'bi bi-check-square-fill toggled': this.makePlaylist }">
                     </button>
                     <label for="checkbox_makePlaylist">Make a playlist when multiple files are selected</label>
                 </div>
-            </form>
+            </div>
         </div>
         <form class="column column-main" @submit.prevent="submitLoadSongs" v-else>
             <panel v-for="(song,songIndex) in this.songs">
@@ -129,16 +134,47 @@ export default
             validImageTypes: ['image/gif', 'image/jpeg', 'image/png'],
             validAudioTypes: ['audio/mpeg'],
             makePlaylist:false,
-            songs: []
+            songs: [],
+            dragging: false,
+            dragTime: undefined
         }
     },
     methods:
     {
-        uploadSongs(event)
+        dragenter(event)
+        {
+            const dt = event.dataTransfer;
+            if (dt?.types.indexOf ? dt?.types.indexOf('Files') != -1 : dt?.types?.contains('Files'))
+            this.dragging=true;
+            this.dragTime=Date.now();
+        },
+        dragover(event)
+        {
+            event.preventDefault();
+
+        },
+        dragleave(event)
+        {
+            if (Date.now()-this.dragTime>25)
+            {
+                this.dragging=false;
+                this.dragTime=undefined;
+            }
+        },
+        drop(event)
+        {
+            event.preventDefault();
+            this.dragging=false;
+            this.dragTime=undefined;
+            this.uploadSongs(event.dataTransfer.files);
+        },
+        fileInputChange(event)
+        {
+            this.uploadSongs(event.target.files);
+        },
+        uploadSongs(selectedFiles)
         {
             this.songs=[];
-            const selectedFiles = event.target.files;
-
             for (let i = 0;i<selectedFiles.length;i++)
             {
                 if (!this.validAudioTypes.includes(selectedFiles[i].type)) continue;
@@ -266,7 +302,7 @@ export default
 
 <style scoped>
 
-.drag-n-drop
+.drag-and-drop
 {
     display:flex;
     flex-direction:column;
@@ -278,6 +314,12 @@ export default
     height:400px;
     width:810px;
     box-sizing: border-box;
+}
+
+.drag-and-drop.dragging
+{
+    border: 2px solid var(--accent-color);
+    background-color: var(--panel-background-color);
 }
 
 </style>
