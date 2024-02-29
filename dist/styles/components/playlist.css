@@ -1,0 +1,67 @@
+/* ================================================== */
+
+.playlist.playlist-expansible
+{
+    display:flex;
+    flex-direction: row;
+    height:fit-content;
+    flex-shrink: 0;
+    width:100%;
+}
+
+.playlist.playlist-expansible .left-column
+{
+    display:flex;
+    flex-direction: column;
+    height:min-content;
+    padding:5px;
+    box-sizing: border-box;
+    gap: 5px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--panel-background-color);
+    align-items: center;
+}
+
+.playlist.playlist-expansible .empty-column-bg-panel
+{
+    height:100%;
+    background-color: var(--panel-background-color);
+}
+
+.playlist.playlist-expansible .empty-column-bg-main
+{
+    height:100%;
+    background-color: var(--main-background-color);
+    border-top-right-radius: 10px;
+}
+
+.playlist.playlist-expansible .right-column
+{
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    gap:5px;
+    padding:5px;
+    box-sizing: border-box;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--panel-background-color);
+    overflow:hidden;
+    min-height:253px;
+}
+
+.playlist.playlist-expansible .right-column
+{
+    max-height:288px;
+    transition: max-height 0.5s;
+}
+
+.playlist.playlist-expansible.expanded .right-column
+{
+    max-height:624px;
+}
+
+/* ================================================== */
