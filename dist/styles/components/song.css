@@ -1,0 +1,72 @@
+/* ================================================== */
+
+.container .song.item:hover,
+.container .song.item.current,
+.container .song.item.active
+{
+  background-color:var(--selected-item-background-color);
+}
+
+/* ================================================== */
+
+.song .wrapper-wave
+{
+  visibility:hidden;
+}
+
+.song.current:not(.active):not(:hover) .wrapper-wave
+{
+  visibility:visible;
+}
+
+/* ================================================== */
+
+.song .song-menu
+{
+  display:none;
+  gap:10px;
+  padding-right:10px;
+  align-items: center;
+}
+
+.container .song:hover .song-menu,
+.container .song.active .song-menu
+{
+  display:flex;
+}
+
+.song .song-duration{ display:none; }
+
+.container .song .song-duration
+{
+  display:inline;
+  text-align: center;
+  color: var(--text-color-secondary);
+}
+
+.container .song:hover .song-duration,
+.container .song.active .song-duration
+{
+  display:none;
+}
+
+/* ================================================== */
+
+.song .song-menu .button-default:not(.toggled) { color: var(--text-color-secondary); }
+
+.song .song-menu .button-default:not(.toggled):hover { color: var(--text-color-primary); }
+
+/* ================================================== */
+
+.song.current #deleteSongButton
+{
+  display:none;
+}
+
+.song.active #dropdownButton
+{
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* ================================================== */
