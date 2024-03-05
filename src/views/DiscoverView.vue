@@ -17,7 +17,7 @@
       <panel>
         <template v-slot:header>All songs</template>
         <template v-slot:content>
-          <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
+          <songContainer :type="'ul-list scroll-hidden'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
         </template>
       </panel>
     </div>
@@ -48,7 +48,7 @@
               <router-link :to="{ name: 'UserLikes', params: { login: this.$store.getters.getCurrentUser.login }}" class="button button-secondary">View all</router-link>
             </template>
             <template v-slot:content>
-              <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="songLikesPlaylist" max-display="3"></songContainer>
+              <songContainer :type="'ul-list scroll-hidden'" :dynamicComponent="'songExtended'" :playlist="songLikesPlaylist" max-display="3"></songContainer>
             </template>
           </panel>
           <panel v-if="this.historyPlaylist?.songs?.length" :key="'historyPlaylistPanel'">
@@ -61,7 +61,7 @@
               <router-link :to="{ name: 'YourHistory' }" class="button button-secondary">View all</router-link>
             </template>
             <template v-slot:content>
-              <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="historyPlaylist" max-display="3"></songContainer>
+              <songContainer :type="'ul-list scroll-hidden'" :dynamicComponent="'songExtended'" :playlist="historyPlaylist" max-display="3"></songContainer>
             </template>
           </panel>
         </template>

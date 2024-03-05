@@ -15,7 +15,7 @@
       </div>
       <panel>
         <template v-slot:content>
-          <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
+          <songContainer :type="'ul-list scroll-hidden'" :dynamicComponent="'songExtended'" :playlist="playlist"></songContainer>
         </template>
       </panel>
       <article class="project-info row">

@@ -175,7 +175,7 @@ export default
   flex-direction: column;
 }
 
-header .logo { background-color: var(--soft-black); }
+header .logo { background-color: var(--soft-black);width:120px; }
 
 header .logo a { padding:0px; }
 

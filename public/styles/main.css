@@ -182,7 +182,7 @@ a { color:inherit; text-decoration: none; }
 
 .banner-info.banner-info-primary { color:var(--soft-white); }
 
-.banner-info.banner-info-secondary { color:var(--gray); }
+.banner-info.banner-info-secondary { color:var(--light-gray); }
 
 /* ================================================== */
 

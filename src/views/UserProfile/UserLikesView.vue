@@ -15,7 +15,7 @@
   <panel>
     <template v-slot:header>Songs liked by {{ this.user.username }}</template>
     <template v-slot:content>
-      <songContainer :type="'ul-list'" :dynamicComponent="'songExtended'" :playlist="userSongLikes"></songContainer>
+      <songContainer :type="'ul-list scroll-hidden'" :dynamicComponent="'songExtended'" :playlist="userSongLikes"></songContainer>
     </template>
   </panel>
 </template>

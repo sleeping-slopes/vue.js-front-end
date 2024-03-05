@@ -33,8 +33,6 @@ export default
       const response = await API.post("me/users/following", { login: this.login });
       if (response.error?.status==401) return this.$router.push({path: this.$route.fullPath,query:{action:'login'}});
       this.$store.dispatch('toggleUserFollow',this.login);
-      this.user.followers_count++;
-      this.user.youFollow=true;
     },
     async unfollow()
     {
