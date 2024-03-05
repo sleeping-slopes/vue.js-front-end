@@ -245,7 +245,7 @@ export default createStore
     uploadPlaylistCover(state,id) { state.playlists[id].cover = true; state.playlists[id].coversrc = state.playlists[id].coversrc.split("?")[0]+"?"+Date.now(); },
     deletePlaylistCover(state,id) { state.playlists[id].cover = false; },
 
-    togglePlaylistLike(state,login)
+    toggleUserFollow(state,login)
     {
       state.users[login].youFollow=!state.users[login].youFollow;
       state.users[login].followers_count+=state.users[login].youFollow?1:-1;
