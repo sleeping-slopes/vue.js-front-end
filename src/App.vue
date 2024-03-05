@@ -27,7 +27,7 @@
                 <button class="button">
                   <span class="icon-text gap-5">
                     <div>
-                      <img class="user-image s36x36" v-if="this.$store.getters.getCurrentUser.profile_picture" :src="picturesrc"/>
+                      <img class="user-image s36x36" v-if="this.$store.getters.getCurrentUser.profile_picture" :src="this.$store.getters.getCurrentUser.picturesrc"/>
                       <div class="user-image s36x36 bi bi-person-fill" v-else></div>
                     </div>
                     <span class="font-size-small bi bi-caret-down-fill" ></span>
@@ -113,7 +113,6 @@ export default
   },
   computed:
   {
-    picturesrc() { return API.defaults.baseURL+`users/`+this.$store.getters.getCurrentUser?.login+`/picture` },
     darkTheme()
     {
       if (this.$store.getters.getCurrentUser && this.$store.getters.getCurrentUser.custom_theme)

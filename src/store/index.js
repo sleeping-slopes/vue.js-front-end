@@ -135,7 +135,11 @@ export default createStore
           // localStorage.setItem('authJWT', null);
           state.currentUser = null;
         }
-        else state.currentUser = r;
+        else
+        {
+          state.currentUser = r;
+          state.currentUser.picturesrc = API.defaults.baseURL+`users/`+r.login+`/picture`;
+        }
       }
       else
       {
@@ -147,6 +151,7 @@ export default createStore
     {
       localStorage.setItem('authJWT', loginData.authJWT);
       state.currentUser = loginData.user;
+      state.currentUser.picturesrc = API.defaults.baseURL+`users/`+loginData.user.login+`/picture`;
     },
     logOut(state)
     {
@@ -245,8 +250,20 @@ export default createStore
       state.users[login].youFollow=!state.users[login].youFollow;
       state.users[login].followers_count+=state.users[login].youFollow?1:-1;
     },
-    uploadUserProfilePicture(state,login) { state.users[login].profile_picture = true; state.users[login].picturesrc = state.users[login].picturesrc.split("?")[0]+"?"+Date.now(); },
-    deleteUserProfilePicture(state,login) { state.users[login].profile_picture = false; },
+    uploadUserProfilePicture(state,login)
+    {
+      state.users[login].profile_picture = true;
+      state.users[login].picturesrc = state.users[login].picturesrc.split("?")[0]+"?"+Date.now();
+
+      state.currentUser.profile_picture = state.users[login].profile_picture;
+      state.currentUser.picturesrc = state.users[login].picturesrc;
+    },
+    deleteUserProfilePicture(state,login)
+    {
+      state.users[login].profile_picture = false;
+
+      state.currentUser.profile_picture = state.users[login].profile_picture;
+    },
     uploadUserBanner(state,login) { state.users[login].banner = true; state.users[login].bannersrc = state.users[login].bannersrc.split("?")[0]+"?"+Date.now(); },
     deleteUserBanner(state,login) { state.users[login].banner = false; }
   },
