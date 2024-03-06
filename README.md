@@ -2,6 +2,7 @@
 Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
 
 Project demo is available at https://sleeping-slopes.github.io/vue.js-front-end
+Backend repo is available at https://github.com/sleeping-slopes/express-rest-api
 
 ### Technologies used
 - Frontend: HTML, CSS (PostCSS), Vue.js, Axios;
