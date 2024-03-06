@@ -1,4 +1,26 @@
-# vuejs-spa
+# vue.js audio player website
+Non-commercial project created solely for demonstration purposes. I do not own the copyrights to the posted content.
+
+Project demo is available at https://sleeping-slopes.github.io/vue.js-front-end
+
+### Technologies used
+- Frontend: HTML, CSS (PostCSS), Vue.js, Axios;
+- Backend: Express.js, MySQL, REST API, Multer, JSON Web Token.
+
+## Roadmap
+- Add song options (edit, delete);
+- Add playlist actions (create, edit, delete);
+- Add current playlist actions (song order, delete song from queue);
+- Add feed;
+- Add library filter;
+- Improve search;
+- Create notifications;
+- Create messages;
+- Fix stay signed login option;
+- Add lazy loading;
+- Add hotkeys;
+- Add localization;
+- Create mobile version.
 
 ## Project setup
 ```
