@@ -46,7 +46,7 @@ export default createStore
   },
   mutations:
   {
-    setCurrentPlaylistAndSong(state,playlistSong)
+    async setCurrentPlaylistAndSong(state,playlistSong)
     {
       state.isPlaying=false;
       if (JSON.stringify(playlistSong.playlist) !== JSON.stringify(state.currentPlaylist)) state.shuffle=false;
@@ -64,7 +64,7 @@ export default createStore
       state.repeatMode = (state.repeatMode+1)%3;
       localStorage.setItem('repeatMode', JSON.stringify(state.repeatMode));
     },
-    shiftCurrentSong(state,shift)
+    async shiftCurrentSong(state,shift)
     {
       state.isPlaying=false;
       state.currentSongIndex+=shift;
@@ -73,7 +73,7 @@ export default createStore
       localStorage.setItem('currentSongIndex', JSON.stringify(state.currentSongIndex));
       setTimeout(()=>{state.isPlaying=true}, 0);
     },
-    playNextSong(state)
+    async playNextSong(state)
     {
       state.isPlaying=false;
       switch (state.repeatMode)
