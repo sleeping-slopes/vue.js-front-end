@@ -1,5 +1,3 @@
-
-
 <template>
   <modal :width="'600px'">
     <template v-slot:content>
