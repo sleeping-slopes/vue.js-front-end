@@ -271,40 +271,34 @@ export default createStore
   {
     async loadSong({commit,state},id)
     {
-      if (state.songs[id]?.lastUpdated && Date.now() - state.songs[id].lastUpdated<5000)
+      if ((state.songs[id] && (state.songs[id].error || Date.now() - state.songs[id].lastUpdated>5*60*1000)) || !state.songs[id])
       {
-        state.songs[id].lastUpdated=Date.now();
-        return;
+        const response = await API.get('songs/'+id);
+        response.coversrc=API.defaults.baseURL+`songs/`+id+`/cover`;
+        commit("loadSong", { id: id, data: response });
       }
-      const response = await API.get('songs/'+id);
-      response.coversrc=API.defaults.baseURL+`songs/`+id+`/cover`;
-      response.lastUpdated = Date.now();
-      commit("loadSong", { id: id, data: response });
+      else state.songs[id].lastUpdated=Date.now();
     },
     async loadPlaylist({commit,state},id)
     {
-      if (state.playlists[id]?.lastUpdated && Date.now() - state.playlists[id].lastUpdated<5000)
+      if ((state.playlists[id] && (state.playlists[id].error || Date.now() - state.playlists[id].lastUpdated>5*60*1000)) || !state.playlists[id])
       {
-        state.playlists[id].lastUpdated=Date.now();
-        return;
+        const response = await API.get('playlists/'+id);
+        response.coversrc=API.defaults.baseURL+`playlists/`+id+`/cover`;
+        commit("loadPlaylist", { id: id, data: response });
       }
-      const response = await API.get('playlists/'+id);
-      response.coversrc=API.defaults.baseURL+`playlists/`+id+`/cover`;
-      response.lastUpdated = Date.now();
-      commit("loadPlaylist", { id: id, data: response });
+      else state.playlists[id].lastUpdated=Date.now();
     },
     async loadUser({commit,state},login)
     {
-      if (state.users[login]?.lastUpdated && Date.now() - state.users[login].lastUpdated<5000)
+      if ((state.users[login] && (state.users[login].error || Date.now() - state.users[login].lastUpdated>5*60*1000)) || !state.users[login])
       {
-        state.users[login].lastUpdated=Date.now();
-        return;
+        const response = await API.get('users/'+login+'/profile');
+        response.picturesrc=API.defaults.baseURL+`users/`+login+`/picture`;
+        response.bannersrc=API.defaults.baseURL+`users/`+login+`/banner`;
+        commit("loadUser", { login: login, data: response });
       }
-      const response = await API.get('users/'+login+'/profile');
-      response.picturesrc=API.defaults.baseURL+`users/`+login+`/picture`;
-      response.bannersrc=API.defaults.baseURL+`users/`+login+`/banner`;
-      response.lastUpdated = Date.now();
-      commit("loadUser", { login: login, data: response });
+      else state.users[login].lastUpdated=Date.now();
     },
 
     logIn({commit},loginData) { commit("logIn",loginData) },
