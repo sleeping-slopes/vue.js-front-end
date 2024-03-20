@@ -11,6 +11,7 @@ Backend repo is available at https://github.com/sleeping-slopes/express-rest-api
 
 ## Roadmap
 - Fix logo;
+- API refactoring;
 - Add song actions (edit, delete);
 - Add playlist actions (create, edit, delete);
 - Add current playlist actions (change song order, delete song from queue);
